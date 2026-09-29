@@ -1,0 +1,20 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# 数据集（Spider 很大，不进仓库）
+第二周/数据集/database/
+第二周/数据集/dev.json
+第二周/数据集/tables.json
+第二周/数据集/train_spider.json
+第二周/数据集/*.sqlite
+
+# 模型
+models/
+*.bin
+*.safetensors
+
+# 其他
+.DS_Store
+.idea/
