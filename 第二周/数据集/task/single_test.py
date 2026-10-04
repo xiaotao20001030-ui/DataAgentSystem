@@ -1,5 +1,7 @@
 import os
 
+import re
+
 # ★ 必须在 import torch 之前设置
 os.environ["HF_ENDPOINT"] = "https://hf-mirror.com"
 # 服务器上指定卡（本地跑可删）
@@ -28,22 +30,43 @@ def build_prompt(schema_text, question):
 
 
 def clean_sql(text):
-    """从模型输出里提取纯 SQL"""
+    """从模型输出里提取纯 SQL（终极版）"""
     text = text.strip()
-    # 去掉 ```sql ... ``` 包裹
+
+    # 1. 去掉 </think> 之前的所有内容
+    if "</think>" in text:
+        text = text.split("</think>")[-1].strip()
+
+    # 2. 处理 ```sql ... ``` 包裹
     if "```" in text:
         parts = text.split("```")
         for p in parts:
             p = p.strip()
             if p.lower().startswith("sql"):
                 p = p[3:].strip()
-            if p.upper().startswith("SELECT"):
-                return p.strip().rstrip(";").strip()
-    # 没有 code fence，直接找 SELECT 开头
-    idx = text.upper().find("SELECT")
-    if idx != -1:
-        text = text[idx:]
-    return text.strip().rstrip(";").strip()
+            if p.upper().startswith("SELECT") or p.upper().startswith("WITH"):
+                text = p
+                break
+
+    # 3. 用正则找真正的 SQL 语句（严格匹配单词边界）
+    candidates = []
+    for m in re.finditer(r'\b(SELECT|WITH)\b', text, re.IGNORECASE):
+        start = m.start()
+        after = text[start:start + 20]
+        # 要求 SQL 关键字后面紧跟空格 + 合法字符
+        if re.match(r'(SELECT|WITH)\s+[\w\*\("]', after, re.IGNORECASE):
+            candidates.append(start)
+
+    if candidates:
+        text = text[candidates[-1]:]
+    else:
+        # 找不到真正的 SQL，返回原文
+        return text.strip()
+
+    # 4. 去掉分号及之后的所有内容
+    text = text.split(";")[0].strip()
+
+    return text
 
 
 def main():

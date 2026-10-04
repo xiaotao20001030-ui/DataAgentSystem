@@ -1,13 +1,13 @@
-import json, os
+import json
+import os
 
 DATA_DIR = "/Users/xiaotao/PycharmProjects/DataAgentSystem/第二周/数据集"
 
 with open(os.path.join(DATA_DIR, "tables.json"), encoding="utf-8") as f:
     tables = json.load(f)
-# print("tables:", tables)
-db_schemas = {t["db_id"]: t for t in tables}
-
-
+db_schemas = {
+    t["db_id"]: t for t in tables
+}
 def build_schema_text(schema):
     """把 tables.json 里的 schema 拼成 CREATE TABLE 文本"""
     table_names = schema["table_names_original"]
@@ -15,11 +15,10 @@ def build_schema_text(schema):
     column_types = schema["column_types"]
     primary_keys = schema.get("primary_keys", [])
     foreign_keys = schema.get("foreign_keys", [])
-
     # 按表分组
     tables_cols = {i: [] for i in range(len(table_names))}
     for col_idx, (table_idx, col_name) in enumerate(column_names):
-        if table_idx == -1:      # 通配符 *，跳过
+        if table_idx == -1:  # 通配符 *，跳过
             continue
         col_type = column_types[col_idx]
         tables_cols[table_idx].append((col_name, col_type, col_idx))

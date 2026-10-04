@@ -1,8 +1,8 @@
 import os
 
 # ★ 必须在 import torch 之前设置
-os.environ["HF_ENDPOINT"] = "https://hf-mirror.com"
-# os.environ["CUDA_VISIBLE_DEVICES"] = "0"   # 服务器上跑时解开注释
+#os.environ["HF_ENDPOINT"] = "https://hf-mirror.com"
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"   # 服务器上跑时解开注释
 
 import json
 import sqlite3
@@ -11,7 +11,8 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 from build_schema import db_schemas, build_schema_text
 
 # ============ 配置 ============
-DATA_DIR = "/Users/xiaotao/PycharmProjects/DataAgentSystem/第二周/数据集"
+#DATA_DIR = "/Users/xiaotao/PycharmProjects/DataAgentSystem/第二周/数据集"
+DATA_DIR = "/root/fsas/home/xiaotao/xiaotao/spider"
 MODEL_NAME = "Qwen/Qwen3-0.6B"  # 之后可改成 1.7B
 SAMPLE_INDEX = 0  # 先跑第 0 条，之后可以改
 
@@ -31,27 +32,47 @@ def build_prompt(schema_text, question):
 
 
 # ============ 输出清洗 ============
+import re
+
+
 def clean_sql(text):
-    """从模型输出里提取纯 SQL"""
+    """从模型输出里提取纯 SQL（终极版）"""
     text = text.strip()
 
-    # 处理 ```sql ... ``` 包裹
+    # 1. 去掉 </think> 之前的所有内容
+    if "</think>" in text:
+        text = text.split("</think>")[-1].strip()
+
+    # 2. 处理 ```sql ... ``` 包裹
     if "```" in text:
         parts = text.split("```")
         for p in parts:
             p = p.strip()
             if p.lower().startswith("sql"):
                 p = p[3:].strip()
-            if p.upper().startswith("SELECT"):
-                return p.strip().rstrip(";").strip()
+            if p.upper().startswith("SELECT") or p.upper().startswith("WITH"):
+                text = p
+                break
 
-    # 没有 code fence，找 SELECT 开头
-    idx = text.upper().find("SELECT")
-    if idx != -1:
-        text = text[idx:]
+    # 3. 用正则找真正的 SQL 语句（严格匹配单词边界）
+    candidates = []
+    for m in re.finditer(r'\b(SELECT|WITH)\b', text, re.IGNORECASE):
+        start = m.start()
+        after = text[start:start + 20]
+        # 要求 SQL 关键字后面紧跟空格 + 合法字符
+        if re.match(r'(SELECT|WITH)\s+[\w\*\("]', after, re.IGNORECASE):
+            candidates.append(start)
 
-    return text.strip().rstrip(";").strip()
+    if candidates:
+        text = text[candidates[-1]:]
+    else:
+        # 找不到真正的 SQL，返回原文
+        return text.strip()
 
+    # 4. 去掉分号及之后的所有内容
+    text = text.split(";")[0].strip()
+
+    return text
 
 # ============ 执行 SQL ============
 def execute_sql(db_path, sql):
