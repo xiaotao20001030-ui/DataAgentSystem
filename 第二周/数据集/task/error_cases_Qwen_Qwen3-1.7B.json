@@ -1,0 +1,742 @@
+[
+  {
+    "question_id": 0,
+    "db_id": "flight_2",
+    "question": "Give the code of the airport with the least flights.",
+    "gold_sql": "SELECT T1.AirportCode FROM AIRPORTS AS T1 JOIN FLIGHTS AS T2 ON T1.AirportCode  =  T2.DestAirport OR T1.AirportCode  =  T2.SourceAirport GROUP BY T1.AirportCode ORDER BY count(*) LIMIT 1",
+    "pred_sql": "select the AirportCode from airports where the count is the minimum.\n\nBut how to write that in SQL. Let's think.\n\nFirst, I need to calculate the count of flights per airport. So maybe a subquery that groups by AirportCode",
+    "pred_error": "near \"count\": syntax error",
+    "gold_result": "[]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 1,
+    "db_id": "pets_1",
+    "question": "Find number of pets owned by students who are older than 20.",
+    "gold_sql": "SELECT count(*) FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid WHERE T1.age  >  20",
+    "pred_sql": "with Has_Pet to get all the pets they own. Then, count the number of distinct pets? Or just the number of entries in Has_Pet?\n\nWait, the question says \"number of pets owned by students\". So each pet is owned by a student. But if a student has multiple pets",
+    "pred_error": "near \"to\": syntax error",
+    "gold_result": "[(0,)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 2,
+    "db_id": "student_transcripts_tracking",
+    "question": "On average, when were the transcripts printed?",
+    "gold_sql": "SELECT avg(transcript_date) FROM Transcripts",
+    "pred_sql": "<think>\nOkay, let's see. The question is asking for the average time when transcripts were printed. So, I need to find the average of the transcript_date from the Transcripts table.\n\nFirst, I should check the Transcripts table. The transcript_date is a time field, so it's probably stored as a datetime or timestamp. The question is about the average, so I need to calculate the mean of these dates.\n\nBut wait, how do I calculate the average of dates in SQL? Well, the AVG() function works on numeric values. So if the transcript_date is stored as a date, maybe it's stored as a DATE or DATETIME type. But if it's a time, like '2023-10-05 14:30:00', then converting it to a numeric value might not be straightforward. However, in SQLite, dates are stored as DATE type, and the AVG() function can handle that.\n\nBut the problem is that the transcript_date is a time, but in the schema, it's defined as a time. Wait, looking back at the schema: Transcripts has a transcript_date time. So in SQLite, the time type is stored as a string, but maybe it's stored as a",
+    "pred_error": "near \"<\": syntax error",
+    "gold_result": "[(1989.9333333333334,)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 3,
+    "db_id": "battle_death",
+    "question": "What are the distinct battle names which are between bulgarian commander 'Kaloyan' and latin commander 'Baldwin I'?",
+    "gold_sql": "SELECT name FROM battle WHERE bulgarian_commander  =  'Kaloyan' AND latin_commander  =  'Baldwin I'",
+    "pred_sql": "SELECT DISTINCT name FROM battle WHERE bulgarian_commander = 'Kaloyan' AND latin_commander = 'Baldwin I'. \n\nI need to make sure there are no typos in the names. The user specified 'Kaloyan' and 'Baldwin I' exactly. Also, the battle table's columns are name, bulgarian_commander, latin_commander. So the query should work. \n\nNo need for joins since the data is directly in the battle",
+    "pred_error": "near \"need\": syntax error",
+    "gold_result": "[('Battle of Adrianople',)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 4,
+    "db_id": "wta_1",
+    "question": "List the first and last name of all players who are left / L hand in the order of birth date.",
+    "gold_sql": "SELECT first_name ,  last_name FROM players WHERE hand  =  'L' ORDER BY birth_date",
+    "pred_sql": "select first_name and last_name from players where hand is 'L' (assuming that's the case). But wait, the question says \"left / L hand\", so maybe the hand can be 'L' or 'left'? But the schema says hand is text, so maybe the data is stored as 'L' or 'left' in the database. However, the",
+    "pred_error": "near \"(\": syntax error",
+    "gold_result": "[('Ann', 'Jones'), ('Wendy', 'Gilchrist'), ('Martina', 'Navratilova'), ('Mary', 'Carillo'), ('Katerina', 'Bohmova'), ('Petra', 'Delhees Jauch'), ('Nancy', 'Loeffler Caro'), ('Lise', 'Gregory'), ('Rene', 'Collins'), ('Nicole', 'Arendt'), ('Florencia', 'Labat'), ('Sabine', 'Appelmans'), ('Andreea', 'Ehritt Vanc'), ('Monica', 'Seles'), ('Gala', 'Leon Garcia'), ('Karen', 'Cross'), ('Julie', 'Pullin'), ('Vanessa', 'Webb'), ('Elena', 'Tatarkova'), ('Anca', 'Barna'), ('Francesca', 'Lubiani'), ('Gaelle', 'Widmer'), ('Amanda', 'Keen'), ('Amanda', 'Augustus'), ('Rita', 'Kuti Kis'), ('Amelie', 'Cocheteux'), ('Amelie', 'Castera'), ('Saori', 'Obata'), ('Marine', 'Nizri Spiegel'), ('Patty', 'Schnyder'), ('Julie', 'Ditty'), ('Joana', 'Cortez'), ('Barbara', 'Schwartz'), ('Ludmilla', 'Varmuza'), ('Magui', 'Serna'), ('Amanda', 'Grahame'), ('Kim', 'Kilsdonk'), ('Emilie', 'Loit'), ('Erika', 'Pineider'), ('Anne Gaelle', 'Sidot'), ('Erica', 'Biro'), ('Stephanie', 'Kovacic'), ('Sybille', 'Bammer'), ('Lisa', 'Fritz'), ('Maja', 'Matevzic'), ('Leanne', 'Baker'), ('Aurelie', 'Vedy'), ('Carla', 'Tiene'), ('Erika', 'Venere'), ('Jelena', 'Kostanic Tosic'), ('Clarisa', 'Fernandez'), ('Ansley', 'Cargill'), ('Dimana', 'Krastevitch'), ('Maria Jose', 'Martinez Sanchez'), ('Zerene', 'Reyes'), ('Melinda', 'Czink'), ('Sandra', 'Klemenschits'), ('Maria Elizabeth', 'Lopez'), ('Salome', 'Llaguno'), ('Lindsay', 'Cox'), ('Iveta', 'Benesova'), ('Eugenia', 'Chialvo'), ('Chun Yan', 'He'), ('Maria Fernanda', 'Alves'), ('Emily', 'Quin'), ('Fernanda', 'Oliveira Da Silva'), ('Annabel', 'Blow'), ('Julia', 'Smith'), ('Ana Lucia', 'Migliarini De Leon'), ('Elizabeth', 'Bondi'), ('Galina', 'Fokina'), ('Elise', 'Tamaela'), ('Bit Na', 'Lee'), ('Sonia', 'Iacovacci'), ('Mariana Pires', 'Junqueira'), ('Natalia', 'Bogdanova'), ('Irina', 'Smirnova'), ('Meghha', 'Vakaria'), ('Angela', 'Haynes'), ('Karly', 'Olson'), ('Casey', 'Dellacqua'), ('Kathrin', 'Hegel'), ('Beatrix', 'Csordas'), ('Zsuzsanna', 'Babos'), ('Emily', 'Applegate'), ('Olga', 'Pasichnichenko'), ('Theresa', 'Logar'), ('Jin A', 'Lee'), ('Hannah', 'Kuervers'), ('Andreea', 'Novaceanu'), ('Valentina', 'Tizzano'), ('Helen', 'Fritche'), ('Sandra', 'Sasidharan'), ('Isha', 'Lakhani'), ('Krushmi', 'Chheda'), ('Ljubica', 'Avramovic'), ('Avel Romaly', 'Coronado'), ('Shadisha', 'Robinson'), ('Carla', 'Zabaleta'), ('Diana', 'Arutyunova'), ('Cecile', 'Baijot'), ('Laura', 'Rocchi'), ('Rie', 'Imai'), ('Danielle', 'Harmsen'), ('Alejandra', 'Obregon'), ('Ariela', 'Perez'), ('Vasilisa', 'Davydova'), ('Emilia', 'Yorio'), ('Lizaan', 'Du Plessis'), ('Claire', 'Feuerstein'), ('Alexandria', 'Liles'), ('Katharine', 'Baker'), ('Emma', 'Laine'), ('Geraldine', 'Roma'), ('Aya', 'El Akkad'), ('Alexandra', 'Kazanova'), ('Allison', 'Baker'), ('Lucy', 'Fletcher'), ('Monika', 'Musilova'), ('Jitka', 'Gavdunova'), ('Elena', 'Petrucciano'), ('Varvara', 'Lepchenko'), ('Claire', 'De Gubernatis'), ('Seheno', 'Razafindramaso'), ('Karolina', 'Soor'), ('Melisa', 'Cabrera Handt'), ('Shraddha', 'Lodha'), ('Sylvia', 'Krywacz'), ('Amina', 'El Sahn'), ('Hendrike Lea', 'Heitmann'), ('Dunja', 'Antunovic'), ('Micaela', 'Acosta'), ('Katerina', 'Bohmova'), ('Catherine', 'Grotz'), ('Yurika', 'Sema'), ('Sheng Nan', 'Sun'), ('Lucie', 'Safarova'), ('Jitka', 'Kleisnerova'), ('Carolina', 'Escamilla'), ('Tapiwa', 'Marobela'), ('Punam', 'Reddy'), ('Katia', 'Sabate Orera'), ('Shana', 'Claes'), ('Chrissie', 'Seredni'), ('Yui', 'Nagasawa'), ('Marcela', 'Vojtiskova'), ('Seul Ki', 'Chin'), ('Nina', 'Munch Soegaard'), ('Hannah', 'Grady'), ('Karen', 'Castiblanco'), ('Angelique', 'Kerber'), ('Lauren', 'Lui'), ('Rana', 'Tharwat Hafez'), ('Nicole', 'Grunwald'), ('Ana', 'Veselinovic'), ('Sanaa', 'Bhambri'), ('Diana Andreea', 'Gae'), ('Ana', 'Beltran Trigueros'), ('Barbora', 'Bozkova'), ('Camila', 'Belassi'), ('Violette', 'Huck'), ('Megumi', 'Fukui'), ('Rita', 'Gouveia'), ('Mihaela', 'Buzarnescu'), ('Liset', 'Brito Herrera'), ('Paulina', 'Jorquera'), ('Ekaterina', 'Makarova'), ('Dessislava', 'Mladenova'), ('Sanaz', 'Marand'), ('Cristina', 'Greco Naccarato'), ('Cagla', 'Urcu'), ('Liege', 'Vieira'), ('Chang', 'Xu'), ('Jessica', 'Sweeting'), ('Yi Fan', 'Xu'), ('Eloisa Maria', 'Compostizo De Andres'), ('Karina', 'Porushkevich'), ('Ornella', 'Gentile'), ('Valeria', 'Casillo'), ('Bianca Ioana', 'Bonifate'), ('Michelle', 'Russ'), ('Monika', 'Lalewicz'), ('Amandine', 'Cazeaux'), ('Fatima', 'El Allami'), ('Simonetta', 'Miori'), ('Gabriela', 'Roux'), ('Sherazad', 'Benamar'), ('Sherazad', 'Reix'), ('Zora', 'Vlckova'), ('Naomi', 'Cavaday'), ('Nathalia', 'Rossi'), ('Maria Eugenia', 'Roca Recarey'), ('Lauren', 'Jones'), ('Roxane', 'Vaisemberg'), ('Ivana', 'Belejova'), ('Petra', 'Vogel'), ('Majdouline', 'Akrate'), ('Laura', 'Sadria'), ('Ia', 'Jikia'), ('Alessandra', 'Caprara'), ('Guadalupe', 'Moreno'), ('Lucie', 'Sipkova'), ('Xenia', 'Samoilova'), ('Kotomi', 'Takahata'), ('Stephanie', 'Theiler'), ('Maria', 'Prishlyak'), ('Grace', 'Leake'), ('Ioana Alexandra', 'Oprea'), ('Sanne', 'Bakker'), ('Katerina', 'Vankova'), ('Kristy', 'Frilling'), ('Tatiana', 'Bua'), ('Anastasia', 'Kontratevidi'), ('Chane', 'Hines'), ('Julia', 'Gavenko'), ('Yuuki', 'Tanaka'), ('Petra', 'Kvitova'), ('Leticia', 'Costas'), ('Sandra', 'Roma'), ('Nina', 'Mujezinovic'), ('Stella', 'Papaspyrou'), ('Chinami', 'Ogi'), ('Martina', 'Balogova'), ('Xinyun', 'Han'), ('Nicole', 'Riner'), ('Lara', 'Meccico'), ('Mai', 'Iwasaki'), ('Oksana', 'Kalashnikova'), ('Dipti', 'Srivastava'), ('Claudia', 'Mercado'), ('Margarita', 'Lazareva'), ('Shaozhuo', 'Liu'), ('Ana Maria', 'Chavez Franco'), ('Arantxa', 'Rus'), ('Ekaterina', 'Kamendova'), ('Monika', 'Tumova'), ('Gabriella', 'Boboc'), ('Ganna', 'Lukianchykova'), ('Sofia', 'Medina'), ('Ekaterina', 'Abaeva'), ('Andressa', 'Garcia'), ('Giulia', 'Bruzzone'), ('Catia', 'Rodrigues'), ('Danielle', 'Mills'), ('Flavia', 'Borges'), ('Misaki', 'Doi'), ('Veronika', 'Domagala'), ('Cindy', 'Chala'), ('Ksenia', 'Pervak'), ('Bianca', 'Botto'), ('Marianna', 'Natali'), ('Carolina', 'Orsi'), ('Aleksandra', 'Vukadinovic'), ('Elixane', 'Lechemia'), ('Sonya', 'Dayal'), ('Francesca', 'Campigotto'), ('Cristina Bianca', 'Danaila'), ('Tereza', 'Budilova'), ('Gemma', 'Praditngam'), ('Ekaterine', 'Gorgodze'), ('Dejana', 'Raickovic'), ('Alena', 'Gerasimova'), ('Quirine', 'Lemoine'), ('Chieh Yu', 'Hsu'), ('Anastasiya', 'Vasylyeva'), ('Alexia', 'Quartetto'), ('Joanna', 'Bougon'), ('Kristyna', 'Pliskova'), ('Elena', 'Bogdan'), ('Fiorella', 'Jerardino'), ('Julie', 'Gonzalez Rodriguez'), ('Alejandra', 'Barragan'), ('Renata', 'Bakieva'), ('Ashley', 'Krysiak'), ('Sarah Rebecca', 'Sekulic'), ('Na Lae', 'Han'), ('Natali', 'Coronel'), ('Kristyna', 'Hancarova'), ('Doroteja', 'Eric'), ('Chanel', 'Simmonds'), ('Kobkanok', 'Upapong'), ('Annie', 'Sullivan'), ('Jenny Thuy', 'Le'), ('Xenia', 'Knoll'), ('Francisca', 'Matos'), ('Christina', 'Madenoglou'), ('Alexandra', 'Avirvarei'), ('Georgina', 'Fedosenkova'), ('Alicia', 'Doms Golobart'), ('Amy', 'Hoburn'), ('Monica', 'Turewicz'), ('Martina', 'Zerbola'), ('Mashaal', 'Hameed'), ('Sabrina', 'Dos Reis'), ('Maria Sol', 'Carrasco'), ('Ruxandra', 'Ababii'), ('Daniella', 'Patton'), ('Veronika', 'Zavodska'), ('Briar', 'Preston'), ('Gabriela', 'Ce'), ('Amanda', 'Rodgers'), ('Constanze', 'Lotz'), ('Paula', 'Mocete Talamantes'), ('Verena', 'Gantschnig'), ('Ainhoa', 'Atucha Gomez'), ('Katarzyna', 'Kossowska'), ('Julia', 'Stamatova'), ('Vorranavaporn', 'Vorrarattanamongkol'), ('Michaela', 'Jasenakova'), ('Agustina Sol', 'Eskenazi'), ('Maja', 'Mladenovic'), ('Sandra', 'Garriga Catala'), ('Rita', 'Vilaca'), ('Zanmarie', 'Pienaar'), ('Julia', 'Kimmelmann'), ('Martina', 'Trevisan'), ('Charitomeni', 'Matoula'), ('Andreea', 'Istrate'), ('Sowjanya', 'Bavisetti'), ('Gabrielle', 'Moxey'), ('Viktoryia', 'Kisialeva'), ('Sarahi', 'Garcia Carrera'), ('Rachel', 'Girard'), ('Laura', 'Robson'), ('Kate', 'Vialle'), ('Anna', 'Montserrat Sanchez'), ('Elena Teodora', 'Cadar'), ('Carol', 'Augustine Benito'), ('Kamila', 'Pavelkova'), ('Arantxa', 'Sanchez'), ('Ana Sofia', 'Sanchez'), ('Julia', 'Wachaczyk'), ('Ecaterina', 'Oproiu'), ('Snigdha', 'Padamata'), ('Rona', 'Berisha'), ('Olga', 'Doroshina'), ('So Ra', 'Lee'), ('Brandy', 'Mina'), ('Natalie', 'Novakova'), ('Storm', 'Sanders'), ('Alexandra', 'Martinez'), ('Ysaline', 'Bonaventure'), ('Barbora', 'Trestikova'), ('Stefania', 'Hristov'), ('Ana Maria', 'Crisan'), ('Elpida', 'Papanelopoulou'), ('Tereza', 'Jankovska'), ('Rebecca', 'Andrade'), ('Kelly', 'Williford'), ('Tina', 'Rupert'), ('Mia Nicole', 'Eklund'), ('Bernarda', 'Pera'), ('Montserrat', 'Alonso'), ('Rosalie', 'Van Der Hoek'), ('Hedda', 'Odegaard'), ('Samira', 'Radjaa'), ('Zuzanna', 'Maciejewska'), ('Saumya', 'Vig'), ('Marie', 'Benoit'), ('Iga', 'Odrzywolek'), ('Shakhlo', 'Saidova'), ('Irina', 'Khromacheva'), ('Yuliya', 'Lysa'), ('Sophie', 'Blom'), ('Jennifer', 'Zerbone'), ('Kristina', 'Chasovskikh'), ('Maria Camila', 'Trujillo Hoyos'), ('Karina', 'Rovira'), ('Teodora Adina', 'Ardeleanu'), ('Yasmine', 'Rashad'), ('Judit', 'Vives Joan'), ('Sarah Beth', 'Askew'), ('Yasmine', 'Xantos'), ('Lea', 'Tholey'), ('Hikari', 'Yamamoto'), ('Ines Miren', 'De Pablo'), ('Stuti', 'Singh Tomar'), ('Naomi', 'Totka'), ('Polina', 'Bezsmertnaya'), ('Hannah', 'King'), ('Gabriele', 'Bertasiute'), ('Rebecca', 'Smaller'), ('Busra', 'Kayrun'), ('Stephani', 'Rodriguez'), ('Raquel', 'Montalvo'), ('Oana', 'Irimescu'), ('Taylor', 'Townsend'), ('Carmen', 'Blasco Robaina'), ('Giulia', 'Della Cioppa'), ('Nadege', 'Jorda'), ('Beatriz', 'Haddad Maia'), ('Nelise', 'Verster'), ('Eleonore', 'Barrere'), ('Anastasia', 'Prokopenko'), ('Dzina', 'Milovanovic'), ('Isabelle', 'Wallace'), ('Katelyn', 'Jackson'), ('Polina', 'Novoselova'), ('Maite', 'Cano'), ('Ria', 'Vaidya'), ('Ana Lorena', 'Garcia Navas'), ('Aayushi', 'Chouhan'), ('Ivona', 'Cudina'), ('Karina', 'Gurgenyan'), ('Maria', 'Patrascu'), ('Denisa', 'Chereches'), ('Mirabelle', 'Njoze'), ('Vasanti', 'Shinde'), ('Amanda', 'Schneider'), ('Katharina', 'Herpertz'), ('Tayisiya', 'Morderger'), ('Tamara', 'Tomic'), ('Maria Fernanda', 'Herazo Gonzalez'), ('Andra Maria', 'Nitescu'), ('Micheline', 'Aubuchon'), ('Ilayda', 'Yondem'), ('Birgit', 'Burk'), ('Kanako', 'Osafune'), ('Anastasiya', 'Komardina'), ('Nina', 'Holanova'), ('Jil Belen', 'Teichmann'), ('Francesca', 'Di Lorenzo'), ('Natsuho', 'Arakawa'), ('Emerald', 'Able'), ('Manca', 'Pislak'), ('Irys', 'Ekani'), ('Veronica', 'Miroshnichenko'), ('Martina', 'Capurro Taborda'), ('Mariam', 'Bolkvadze'), ('Diana', 'Valverde'), ('Do Hee', 'Bae'), ('Daniela', 'Morales Beckmann'), ('Ioana Diana', 'Pietroiu'), ('Luisa Fernanda', 'Echeverry Rodriguez'), ('Mayuka', 'Aikawa'), ('Nicole', 'Frenkel'), ('Daria', 'Kruzhkova'), ('Alejandra', 'Tamayo Gomez'), ('Tereza', 'Koplova'), ('Chiara', 'Lommer'), ('Laura', 'Illanes'), ('Olga', 'Fridman'), ('Ana Paula', 'Leal'), ('Shiraz', 'Bronstein'), ('Nicole', 'Bunea'), ('Charlotte', 'Robillard Millette'), ('Ashley', 'Kratzer'), ('Momoka', 'Chimura'), ('Anna', 'Slovakova'), ('Ai Qi', 'Chen'), ('Jiaying', 'He'), ('Ysabel', 'Gonzalez Rico'), ('Andreea', 'Stanescu'), ('Marketa', 'Vondrousova'), ('Ecaterina', 'Ivasco'), ('Ivon', 'Mihaleva'), ('Jasmine', 'Boyd'), ('Andrea', 'Arratia Fernandez'), ('Kayla', 'Day'), ('Ekaterina', 'Davletova'), ('Irina', 'Cantos Siemers'), ('Oceane', 'Mialon'), ('Watsachol', 'Sawasdee'), ('Ellen', 'Ashley'), ('Mila', 'Mejic'), ('Natalia', 'Nikolopoulou'), ('Marta', 'Del Pino Maturano'), ('Jayci', 'Goldsmith'), ('Yang', 'Lee'), ('Isabella', 'Tcherkes Zade'), ('Mara', 'Vidal'), ('Taylor', 'Johnson'), ('Julia', 'Vulpio'), ('Dagmar', 'Zdrubecka'), ('Olga', 'Danilovic'), ('Xiyu', 'Wang'), ('Lina', 'Shokry'), ('Ya Hsin', 'Lee'), ('Ruxandra', 'Schech'), ('Yasmina', 'Karimjanova'), ('Lara', 'Biter'), ('Najah', 'Dawson'), ('Giulia', 'Morlet'), ('Matilde', 'Mariani'), ('Isabella', 'Nunez'), ('Betina', 'Tokac'), ('Noa', 'Krznaric')]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 5,
+    "db_id": "employee_hire_evaluation",
+    "question": "Find the name of the shops that do not hire any employee.",
+    "gold_sql": "SELECT name FROM shop WHERE shop_id NOT IN (SELECT shop_id FROM hiring)",
+    "pred_sql": "SELECT shop.Name\nFROM shop\nLEFT JOIN hiring ON shop.Shop_ID = hiring.Shop_ID\nWHERE hiring.Shop_ID",
+    "pred_error": null,
+    "gold_result": "[('FC Honka',), ('KuPS',), ('IFK Mariehamn',)]",
+    "pred_result": "[('FC Haka',), ('FC Haka',), ('FC Lahti',), ('FC Inter',), ('FF Jaro',), ('HJK',), ('FC KooTeePee',)]"
+  },
+  {
+    "question_id": 6,
+    "db_id": "flight_2",
+    "question": "How many flights arriving in Aberdeen city?",
+    "gold_sql": "SELECT count(*) FROM FLIGHTS AS T1 JOIN AIRPORTS AS T2 ON T1.DestAirport  =  T2.AirportCode WHERE T2.City  =  \"Aberdeen\"",
+    "pred_sql": "<think>\nOkay, let's see. The user wants to know how many flights are arriving in Aberdeen city. So first, I need to figure out which tables are involved here.\n\nThe question is about flights arriving in Aberdeen. The airports table has a City column, and the flights table has SourceAirport and DestAirport. But the question is about arrivals, so probably the SourceAirport is where the flight starts, and the DestAirport is where it ends. But the user is asking for flights arriving in Aberdeen, which would be the source airport of a flight that's coming into Aberdeen. Wait, no. Wait, \"arriving in Aberdeen\" would mean that the flight is arriving at Aberdeen. So the DestAirport would be Aberdeen. But the question is about flights arriving in Aberdeen, so the DestAirport is Aberdeen. But the SourceAirport would be where the flight starts. But the user is asking for flights that arrive in Aberdeen, which would be the flights that have DestAirport as Aberdeen. So the answer would be the count of flights where DestAirport is 'Aberdeen'.\n\nBut wait, the airports table has a City column. So maybe the DestAirport is a code, and the City is the actual name. But the question is about the city name, not the",
+    "pred_error": "near \"<\": syntax error",
+    "gold_result": "[(0,)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 7,
+    "db_id": "car_1",
+    "question": "What are the ids and names of all countries that either have more than 3 car makers or produce fiats?",
+    "gold_sql": "SELECT T1.countryId ,  T1.CountryName FROM Countries AS T1 JOIN CAR_MAKERS AS T2 ON T1.CountryId  =  T2.Country GROUP BY T1.countryId HAVING count(*)  >  3 UNION SELECT T1.countryId ,  T1.CountryName FROM Countries AS T1 JOIN CAR_MAKERS AS T2 ON T1.CountryId  =  T2.Country JOIN MODEL_LIST AS T3 ON T2.Id  =  T3.Maker WHERE T3.Model  =  'fiat';",
+    "pred_sql": "<think>\nOkay, let's tackle this problem. The user wants the IDs and names of all countries that either have more than 3 car makers or produce Fiats. \n\nFirst, I need to understand the database schema. Let's look at the tables involved. The countries table has a Continent column which is a foreign key to continents.ContId. The car_makers table has a Country column which is a foreign key to countries.CountryId. So, to find countries that have more than 3 car makers, I need to count the number of car_makers entries per country and check if that count is greater than 3.\n\nThen, the other condition is producing Fiats. The car_makers table has a Maker column, and the model_list has a Maker column which is a foreign key to car_makers.Id. The car_names table links models to makers, and the cars_data table has the model information. Wait, but the question is about producing Fiats. So, maybe the car_makers table has a Maker that is a car maker, and the model_list has models. But the question is about producing Fiats, which are car models. So, perhaps the car_makers table has a Maker that is a car maker, and the model_list has",
+    "pred_error": "near \"<\": syntax error",
+    "gold_result": "[(1, 'usa'), (2, 'germany'), (4, 'japan'), (5, 'italy')]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 9,
+    "db_id": "pets_1",
+    "question": "Find the first name and age of students who have a dog but do not have a cat as a pet.",
+    "gold_sql": "SELECT T1.fname ,  T1.age FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'dog' AND T1.stuid NOT IN (SELECT T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'cat')",
+    "pred_sql": "with Pets to get the PetType.\n3. Filter where PetType is 'dog' and",
+    "pred_error": "near \"to\": syntax error",
+    "gold_result": "[('Tracy', 19), ('Tracy', 19)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 10,
+    "db_id": "pets_1",
+    "question": "Find the major and age of students who do not have a cat pet.",
+    "gold_sql": "SELECT major ,  age FROM student WHERE stuid NOT IN (SELECT T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'cat')",
+    "pred_sql": "select the Major and Age from Student where the student is not in the list of students who have a cat.\n\nWait, but how to structure the SQL query. Let me",
+    "pred_error": "near \"and\": syntax error",
+    "gold_result": "[(600, 19), (600, 21), (600, 20), (600, 26), (600, 18), (600, 18), (600, 20), (600, 19), (600, 17), (600, 22), (600, 20), (600, 18), (600, 16), (600, 17), (600, 27), (600, 20), (600, 18), (520, 22), (520, 19), (540, 17), (520, 20), (540, 18), (520, 18), (520, 19), (520, 18), (550, 20), (100, 17), (550, 21), (550, 20), (550, 20), (550, 18), (50, 18), (50, 26)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 11,
+    "db_id": "car_1",
+    "question": "Which model of the car has the minimum horsepower?",
+    "gold_sql": "SELECT T1.Model FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId  =  T2.Id ORDER BY T2.horsepower ASC LIMIT 1;",
+    "pred_sql": "with that minimum Horsepower.\n\nBut how to get the model? The car_names table has MakeId and Model. The model_list has Maker and Model. The car_makers has Id, Maker, FullName, Country. So the model_list's Maker is linked to car_makers.Id, which is linked to countries.CountryId, which is linked to continents.ContId.\n\nBut the main thing is that the model is in car_names, which is",
+    "pred_error": "near \"minimum\": syntax error",
+    "gold_result": "[('amc',)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 12,
+    "db_id": "flight_2",
+    "question": "Which city has most number of departing flights?",
+    "gold_sql": "SELECT T1.City FROM AIRPORTS AS T1 JOIN FLIGHTS AS T2 ON T1.AirportCode  =  T2.SourceAirport GROUP BY T1.City ORDER BY count(*) DESC LIMIT 1",
+    "pred_sql": "with airports on SourceAirport.\n2. Group by the City.\n3. Count the number of flights per city.\n4. Find the city",
+    "pred_error": "near \"on\": syntax error",
+    "gold_result": "[]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 13,
+    "db_id": "flight_2",
+    "question": "Which airlines have departing flights from both APG and CVO airports?",
+    "gold_sql": "SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline WHERE T2.SourceAirport  =  \"APG\" INTERSECT SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline WHERE T2.SourceAirport  =  \"CVO\"",
+    "pred_sql": "<think>\nOkay, let's see. The question is asking which airlines have departing flights from both APG and CVO airports. So I need to find airlines that have at least one flight from APG and at least one flight from CVO.\n\nFirst, I need to look at the tables. The airlines table has Airline, Abbreviation, Country. The airports table has AirportCode, City, AirportName, Country, CountryAbbrev. The flights table has Airline (which is a number, primary key), FlightNo, SourceAirport, DestAirport.\n\nSo the flights table's SourceAirport and DestAirport are foreign keys to the airports table's AirportCode. So to find flights from APG and CVO airports, I need to look at the SourceAirport and DestAirport columns in the flights table and check if they match APG and CVO.\n\nBut wait, the question is about departing flights from both airports. So the source airport is APG, and the destination is CVO? Or maybe the source is APG and the destination is something else, but the airline has flights from both APG and CVO. Wait, the question says \"departing flights from both APG and CVO airports.\" So the airline has flights that depart from",
+    "pred_error": "near \"<\": syntax error",
+    "gold_result": "[]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 14,
+    "db_id": "student_transcripts_tracking",
+    "question": "How many departments offer any degree?",
+    "gold_sql": "SELECT count(DISTINCT department_id) FROM Degree_Programs",
+    "pred_sql": "select the count of distinct department_id from Degree_Programs. But",
+    "pred_error": "near \"of\": syntax error",
+    "gold_result": "[(10,)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 15,
+    "db_id": "tvshow",
+    "question": "What are 3 most highly rated episodes in the TV series table and what were those ratings?",
+    "gold_sql": "SELECT Episode ,  Rating FROM TV_series ORDER BY Rating DESC LIMIT 3;",
+    "pred_sql": "SELECT Episode, Rating FROM TV_series ORDER BY Rating DESC LIMIT 3. But wait",
+    "pred_error": "near \"But\": syntax error",
+    "gold_result": "[('A Love of a Lifetime', '5.8'), ('Friendly Skies', '5.3'), ('Game Three', '4.4')]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 16,
+    "db_id": "concert_singer",
+    "question": "What is the year that had the most concerts?",
+    "gold_sql": "SELECT YEAR FROM concert GROUP BY YEAR ORDER BY count(*) DESC LIMIT 1",
+    "pred_sql": "with the same maximum count? The question says \"the year\", so maybe there's only one. But the LIMIT 1 would return the first one. However, if there's a tie, it might return any. But the",
+    "pred_error": "near \"same\": syntax error",
+    "gold_result": "[('2015',)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 17,
+    "db_id": "student_transcripts_tracking",
+    "question": "What is the date and id of the transcript with the least number of results?",
+    "gold_sql": "SELECT T2.transcript_date ,  T1.transcript_id FROM Transcript_Contents AS T1 JOIN Transcripts AS T2 ON T1.transcript_id  =  T2.transcript_id GROUP BY T1.transcript_id ORDER BY count(*) ASC LIMIT 1",
+    "pred_sql": "with the least count,",
+    "pred_error": "near \"least\": syntax error",
+    "gold_result": "[('1975-10-28 15:16:51', 2)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 20,
+    "db_id": "poker_player",
+    "question": "What is the birth date of the poker player with the lowest earnings?",
+    "gold_sql": "SELECT T1.Birth_Date FROM people AS T1 JOIN poker_player AS T2 ON T1.People_ID  =  T2.People_ID ORDER BY T2.Earnings ASC LIMIT 1",
+    "pred_sql": "with the people table to get the Birth_Date.\n\nBut the question is asking for the birth date",
+    "pred_error": "near \"people\": syntax error",
+    "gold_result": "[('August 8, 1986',)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 22,
+    "db_id": "student_transcripts_tracking",
+    "question": "What is the first, middle, and last name of the earliest school graduate?",
+    "gold_sql": "SELECT first_name ,  middle_name ,  last_name FROM Students ORDER BY date_left ASC LIMIT 1",
+    "pred_sql": "with the earliest date_left. But I need to confirm.\n\nAlternatively, maybe the date_first_registered is when they first registered, but graduation would be when they completed their degree. However, the schema doesn't have a direct field for graduation date. The date_left might be when they left, but that's not necessarily graduation",
+    "pred_error": "near \"earliest\": syntax error",
+    "gold_result": "[('Timmothy', 'Anna', 'Ward')]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 25,
+    "db_id": "wta_1",
+    "question": "Find the first name and country code of the player who did the most number of tours.",
+    "gold_sql": "SELECT T1.country_code ,  T1.first_name FROM players AS T1 JOIN rankings AS T2 ON T1.player_id  =  T2.player_id ORDER BY T2.tours DESC LIMIT 1",
+    "pred_sql": "with the highest value in the tours column from the rankings table. Then retrieve their first name and country code from the players table.\n\nHmm, but wait, the rankings table's tours column is named tours. So I need to count the number of tours each player has. But how? Because each ranking entry might represent a different tour. But the question is about the number of tours, so maybe each ranking entry is a different tour. But maybe the tours column is the count of how many times the player has been ranked. But I need to make sure.\n\nWait, the question says \"the player who did the most number of tours.\" So the tours column in the rankings table is probably the number of tours the player has participated in. So we need to count the number of entries in the rankings table for each",
+    "pred_error": "near \"highest\": syntax error",
+    "gold_result": "[('USA', 'Julia')]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 27,
+    "db_id": "employee_hire_evaluation",
+    "question": "Which shop has the most employees? Give me the shop name.",
+    "gold_sql": "SELECT t2.name FROM hiring AS t1 JOIN shop AS t2 ON t1.shop_id  =  t2.shop_id GROUP BY t1.shop_id ORDER BY count(*) DESC LIMIT 1",
+    "pred_sql": "with the hiring table on Shop_ID, then count the number of employees per shop. Then order by that count in descending order and pick the top one.\n\nBut wait, the shop table has Shop_ID as primary key, and the hiring table has Shop_ID as a foreign key. So, the shop's Shop_ID is the same as the hiring's Shop_ID. So, joining on Shop",
+    "pred_error": "near \"hiring\": syntax error",
+    "gold_result": "[('FC Haka',)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 28,
+    "db_id": "orchestra",
+    "question": "What are the record companies of orchestras in descending order of years in which they were founded?",
+    "gold_sql": "SELECT Record_Company FROM orchestra ORDER BY Year_of_Founded DESC",
+    "pred_sql": "SELECT Record",
+    "pred_error": "no such column: Record",
+    "gold_result": "[('Columbia Masterworks',), ('Philips',), ('Philips Classics Records',), ('RCA',), ('EMI',), ('Koch Records / Naxos Records',), ('Decca Records',), ('Mercury Records',), ('Deutsche Grammophon',), ('Kultur',), ('Decca Records',), ('Delos Records',)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 29,
+    "db_id": "network_1",
+    "question": "Show the names of all of the high schooler Kyle's friends.",
+    "gold_sql": "SELECT T3.name FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id  =  T2.id JOIN Highschooler AS T3 ON T1.friend_id  =  T3.id WHERE T2.name  =  \"Kyle\"",
+    "pred_sql": "SELECT ID FROM Highschooler WHERE name = 'Kyle')\n)",
+    "pred_error": "near \")\": syntax error",
+    "gold_result": "[('Jordan',)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 30,
+    "db_id": "concert_singer",
+    "question": "Show the name and the release year of the song by the youngest singer.",
+    "gold_sql": "SELECT song_name ,  song_release_year FROM singer ORDER BY age LIMIT 1",
+    "pred_sql": "select Name and Song_release_year from",
+    "pred_error": "incomplete input",
+    "gold_result": "[('Love', '2016')]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 31,
+    "db_id": "world_1",
+    "question": "What are the Asian countries which have a population larger than that of any country in Africa?",
+    "gold_sql": "SELECT Name FROM country WHERE Continent  =  \"Asia\"  AND population  >  (SELECT min(population) FROM country WHERE Continent  =  \"Africa\")",
+    "pred_sql": "with population larger than any African country. So, first, I need to find all African countries and then find the maximum population among them. Then, find all Asian countries whose population is greater than that maximum.\n\nBut wait, the country table's Continent field is for each country. So, to get African countries, I need to filter where Continent = 'Africa'. Then, find the maximum population among those. Then, find all Asian countries (Continent = 'Asia') where their population is greater than that maximum.\n\nBut wait, the",
+    "pred_error": "near \"larger\": syntax error",
+    "gold_result": "[('Afghanistan',), ('United Arab Emirates',), ('Armenia',), ('Azerbaijan',), ('Bangladesh',), ('Bahrain',), ('Brunei',), ('Bhutan',), ('China',), ('Cyprus',), ('Georgia',), ('Hong Kong',), ('Indonesia',), ('India',), ('Iran',), ('Iraq',), ('Israel',), ('Jordan',), ('Japan',), ('Kazakstan',), ('Kyrgyzstan',), ('Cambodia',), ('South Korea',), ('Kuwait',), ('Laos',), ('Lebanon',), ('Sri Lanka',), ('Macao',), ('Maldives',), ('Myanmar',), ('Mongolia',), ('Malaysia',), ('Nepal',), ('Oman',), ('Pakistan',), ('Philippines',), ('North Korea',), ('Palestine',), ('Qatar',), ('Saudi Arabia',), ('Singapore',), ('Syria',), ('Thailand',), ('Tajikistan',), ('Turkmenistan',), ('East Timor',), ('Turkey',), ('Taiwan',), ('Uzbekistan',), ('Vietnam',), ('Yemen',)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 33,
+    "db_id": "car_1",
+    "question": "How many cars has over 6 cylinders?",
+    "gold_sql": "SELECT COUNT(*) FROM CARS_DATA WHERE Cylinders  >  6;",
+    "pred_sql": "<think>\nOkay, let's see. The user wants to know how many cars have over 6 cylinders. The database has several tables, so I need to figure out which ones are involved.\n\nFirst, the cars_data table has the cylinders information. The columns are Cylinders, so I need to count the number of entries where Cylinders is greater than 6. But wait, the Cylinders column is of type number, so comparing it to 6 should work.\n\nBut I need to make sure that the Cylinders value is indeed greater than 6. So the SQL query would be a simple COUNT(*) from cars_data where Cylinders > 6.\n\nWait, but are there any possible issues? Like, maybe the data is stored as a string instead of a number? But the schema says Cylinders is number, so it's numeric. So the comparison should be straightforward.\n\nNo foreign keys are needed here because the question is directly about the cars_data table. The other tables (continents, countries, car_makers, model_list, car_names) don't seem to be involved in the count. So the query is just selecting the count of rows where Cylinders > 6 in cars_data.\n\nSo the SQL would be",
+    "pred_error": "near \"<\": syntax error",
+    "gold_result": "[(108,)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 34,
+    "db_id": "world_1",
+    "question": "What are the population and life expectancies in Brazil?",
+    "gold_sql": "SELECT Population ,  LifeExpectancy FROM country WHERE Name  =  \"Brazil\"",
+    "pred_sql": "with the city table if needed, but since the question is about the country's data, not cities, maybe just the country table is enough.\n\nWait, the question says \"population and life expectancies in Brazil\". So Brazil's population is the country's population, and life expectancy is the",
+    "pred_error": "near \"city\": syntax error",
+    "gold_result": "[(170115000, 62.9)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 35,
+    "db_id": "wta_1",
+    "question": "Count the number of matches.",
+    "gold_sql": "SELECT count(*) FROM matches",
+    "pred_sql": "with two players (winner",
+    "pred_error": "near \"players\": syntax error",
+    "gold_result": "[(278,)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 38,
+    "db_id": "car_1",
+    "question": "How many cars have a larger accelerate than the car with the largest horsepower?",
+    "gold_sql": "SELECT COUNT(*) FROM CARS_DATA WHERE Accelerate  >  ( SELECT Accelerate FROM CARS_DATA ORDER BY Horsepower DESC LIMIT 1 );",
+    "pred_sql": "with the largest horsepower. That means I need to find the maximum value of the Horsepower column in the cars_data table. Once I have that, I need to compare all cars' Accelerate values to see how many are larger than that maximum.\n\nSo, the steps are:\n\n1. Find the maximum Horsepower in cars_data.\n2. Find all cars where Accelerate is greater than this maximum value.\n\nBut wait, there's a catch. The cars_data table has a Horsepower column that's text. Oh right, the problem says the columns are of type text for Horsepower and MPG, but the other columns like Cylinders, Edispl, etc., are numbers. So, when comparing Horsepower, we need to convert it to a numeric value. But the question is about comparing the actual values, so maybe the data is stored as strings, but the problem might assume that the data is numeric. However, the schema says Horsepower is text. Hmm, that's a problem. Because if the Horsepower is stored as text, comparing it to",
+    "pred_error": "near \"largest\": syntax error",
+    "gold_result": "[(39,)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 39,
+    "db_id": "flight_2",
+    "question": "Count the number of United Airlines flights that arrive in Aberdeen.",
+    "gold_sql": "SELECT count(*) FROM FLIGHTS AS T1 JOIN AIRPORTS AS T2 ON T1.DestAirport  =  T2.AirportCode JOIN AIRLINES AS T3 ON T3.uid  =  T1.Airline WHERE T2.City  =  \"Aberdeen\" AND T3.Airline  =  \"United Airlines\"",
+    "pred_sql": "with Airline 'United Airlines' or maybe the abbreviation. The question says \"United Airlines\", but the abbreviation might be UAL. So maybe I should look for the abbreviation first. But the problem is, the user might have the actual name. Hmm, but the schema says the Airline column is text. So maybe the Airline column has the full name, like \"United Airlines\". But the question is about United Airlines, so maybe the Airline column has that. But I need to check if the abbreviation is UAL. Wait, the question says \"United Airlines\", so maybe the Airline column has the full name. But the user might have the abbreviation. But the problem is, the schema doesn't specify that. So perhaps the correct approach is to use the Airline column as is.",
+    "pred_error": "near \"'United Airlines'\": syntax error",
+    "gold_result": "[(0,)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 40,
+    "db_id": "dog_kennels",
+    "question": "How many owners temporarily do not have any dogs?",
+    "gold_sql": "SELECT count(*) FROM Owners WHERE owner_id NOT IN ( SELECT owner_id FROM Dogs )",
+    "pred_sql": "<think>\nOkay, let's see. The question is asking how many owners temporarily do not have any dogs. Hmm. So first, I need to figure out which tables are involved here. The Owners table has owner_id, and the Dogs table has owner_id as a foreign key. So, the owners who don't have any dogs would be those who have no entries in the Dogs table for their owner_id.\n\nBut wait, the question mentions \"temporarily do not have any dogs.\" Does that mean they have no dogs currently, or that they don't have any dogs at all? The term \"temporarily\" might imply that they are not currently registered, but the database schema doesn't have a field for that. So maybe the question is just asking for owners who have no dogs in the Dogs table.\n\nSo the approach would be to count the number of distinct owner_ids that are not present in the Dogs table. But how to do that in SQL?\n\nThe standard way would be to use a subquery. For example, count the number of owner_ids that are not in the Dogs table. But since each owner_id can be in the Dogs table multiple times (if they have multiple dogs), but we need to count each owner once. So, the count of distinct",
+    "pred_error": "near \"<\": syntax error",
+    "gold_result": "[(3,)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 41,
+    "db_id": "world_1",
+    "question": "Give the country codes for countries in which people speak langauges that are not English.",
+    "gold_sql": "SELECT DISTINCT CountryCode FROM countrylanguage WHERE LANGUAGE != \"English\"",
+    "pred_sql": "select CountryCode from countrylanguage where Language != 'English', but make sure that the CountryCode is present in the country table. But since the countrylanguage table has a foreign key to country, the CountryCode in countrylanguage is already a valid country code. So joining them isn't necessary. Wait, no, the countrylanguage table's CountryCode is a foreign key to country.Code, so the CountryCode in countrylanguage is a valid country code. So maybe we can just",
+    "pred_error": "near \",\": syntax error",
+    "gold_result": "[('ABW',), ('AFG',), ('AGO',), ('ALB',), ('AND',), ('ANT',), ('ARE',), ('ARG',), ('ARM',), ('ASM',), ('ATG',), ('AUS',), ('AUT',), ('AZE',), ('BDI',), ('BEL',), ('BEN',), ('BFA',), ('BGD',), ('BGR',), ('BHR',), ('BHS',), ('BIH',), ('BLR',), ('BLZ',), ('BOL',), ('BRA',), ('BRB',), ('BRN',), ('BTN',), ('BWA',), ('CAF',), ('CAN',), ('CCK',), ('CHE',), ('CHL',), ('CHN',), ('CIV',), ('CMR',), ('COD',), ('COG',), ('COK',), ('COL',), ('COM',), ('CPV',), ('CRI',), ('CUB',), ('CXR',), ('CYP',), ('CZE',), ('DEU',), ('DJI',), ('DMA',), ('DNK',), ('DOM',), ('DZA',), ('ECU',), ('EGY',), ('ERI',), ('ESH',), ('ESP',), ('EST',), ('ETH',), ('FIN',), ('FJI',), ('FRA',), ('FRO',), ('FSM',), ('GAB',), ('GBR',), ('GEO',), ('GHA',), ('GIB',), ('GIN',), ('GLP',), ('GMB',), ('GNB',), ('GNQ',), ('GRC',), ('GRD',), ('GRL',), ('GTM',), ('GUF',), ('GUM',), ('GUY',), ('HKG',), ('HND',), ('HRV',), ('HTI',), ('HUN',), ('IDN',), ('IND',), ('IRL',), ('IRN',), ('IRQ',), ('ISL',), ('ISR',), ('ITA',), ('JAM',), ('JOR',), ('JPN',), ('KAZ',), ('KEN',), ('KGZ',), ('KHM',), ('KIR',), ('KNA',), ('KOR',), ('KWT',), ('LAO',), ('LBN',), ('LBR',), ('LBY',), ('LCA',), ('LIE',), ('LKA',), ('LSO',), ('LTU',), ('LUX',), ('LVA',), ('MAC',), ('MAR',), ('MCO',), ('MDA',), ('MDG',), ('MDV',), ('MEX',), ('MHL',), ('MKD',), ('MLI',), ('MLT',), ('MMR',), ('MNG',), ('MNP',), ('MOZ',), ('MRT',), ('MTQ',), ('MUS',), ('MWI',), ('MYS',), ('MYT',), ('NAM',), ('NCL',), ('NER',), ('NGA',), ('NIC',), ('NIU',), ('NLD',), ('NOR',), ('NPL',), ('NRU',), ('NZL',), ('OMN',), ('PAK',), ('PAN',), ('PCN',), ('PER',), ('PHL',), ('PLW',), ('PNG',), ('POL',), ('PRI',), ('PRK',), ('PRT',), ('PRY',), ('PSE',), ('PYF',), ('QAT',), ('REU',), ('ROM',), ('RUS',), ('RWA',), ('SAU',), ('SDN',), ('SEN',), ('SGP',), ('SJM',), ('SLB',), ('SLE',), ('SLV',), ('SMR',), ('SOM',), ('SPM',), ('STP',), ('SUR',), ('SVK',), ('SVN',), ('SWE',), ('SWZ',), ('SYC',), ('SYR',), ('TCD',), ('TGO',), ('THA',), ('TJK',), ('TKL',), ('TKM',), ('TMP',), ('TON',), ('TTO',), ('TUN',), ('TUR',), ('TUV',), ('TWN',), ('TZA',), ('UGA',), ('UKR',), ('URY',), ('USA',), ('UZB',), ('VAT',), ('VCT',), ('VEN',), ('VIR',), ('VNM',), ('VUT',), ('WLF',), ('WSM',), ('YEM',), ('YUG',), ('ZAF',), ('ZMB',), ('ZWE',)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 42,
+    "db_id": "cre_Doc_Template_Mgt",
+    "question": "Return the code of the template type that is most commonly used in documents.",
+    "gold_sql": "SELECT T1.template_type_code FROM Templates AS T1 JOIN Documents AS T2 ON T1.template_id  =  T2.template_id GROUP BY T1.template_type_code ORDER BY count(*) DESC LIMIT 1",
+    "pred_sql": "with the maximum count.\n\nSo the SQL query would involve:\n\n1. Joining Templates and Documents on Template_ID.\n2. Grouping by Template_Type_Code.\n3. Counting the number of documents per type.\n4. Ordering by the count in descending order.\n5. Limit",
+    "pred_error": "near \"maximum\": syntax error",
+    "gold_result": "[('BK',)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 43,
+    "db_id": "car_1",
+    "question": "What are the different models for the cards produced after 1980?",
+    "gold_sql": "SELECT DISTINCT T1.model FROM MODEL_LIST AS T1 JOIN CAR_NAMES AS T2 ON T1.model  =  T2.model JOIN CARS_DATA AS T3 ON T2.MakeId  =  T3.id WHERE T3.year  >  1980;",
+    "pred_sql": "with Year > 1980. \n\nBut wait, the model_list table has a Maker linked to car_makers, which in turn is linked to countries. However, the problem is about models, so maybe the model_list is the key here. The model_list has a Maker and Model. But the cars_data has the Model through the car_names table. \n\nWait, the car_names table has MakeId, Model, and Make. The model_list has Maker (which is the same as car_makers.Id) and Model. So, the model_list's Maker is the car_makers.Id, which is linked to the car_makers table. \n\nSo, to get the models, I need to join model_list with",
+    "pred_error": "near \">\": syntax error",
+    "gold_result": "[('plymouth',), ('buick',), ('dodge',), ('chevrolet',), ('toyota',), ('honda',), ('subaru',), ('datsun',), ('mazda',), ('ford',), ('volkswagen',), ('renault',), ('peugeot',), ('saab',), ('volvo',), ('oldsmobile',), ('chrysler',), ('pontiac',), ('amc',), ('mercury',), ('nissan',)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 44,
+    "db_id": "car_1",
+    "question": "What is the full name of each car maker, along with its id and how many models it produces?",
+    "gold_sql": "SELECT T1.FullName ,  T1.Id ,  count(*) FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id  =  T2.Maker GROUP BY T1.Id;",
+    "pred_sql": "with Id, Maker, FullName, and Country. Then there's model_list which has Maker (foreign key to car_makers.Id) and Model. Also, car_names has MakeId (foreign key to car_makers.Id) and Model. \n\nWait, the question is about the number of models each car maker produces. So, each car maker has multiple models. The model_list table links makers to models. So, for each car maker, the number of models would be the count of distinct models they have in model_list. \n\nBut wait, the model_list has a Maker number (foreign key to car_makers.Id). So, if I can get the count of distinct Models in model_list for each Maker, that would give the number of models. \n\nBut how to get the count of models per maker. Let's think. \n\nSo, the car_makers table has the Maker and FullName. The model_list has Maker (foreign key to car_makers.Id). So, for each car maker,",
+    "pred_error": "near \",\": syntax error",
+    "gold_result": "[('American Motor Company', 1, 1), ('Volkswagen', 2, 2), ('BMW', 3, 1), ('General Motors', 4, 5), ('Ford Motor Company', 5, 3), ('Chrysler', 6, 4), ('Citroen', 7, 1), ('Nissan Motors', 8, 2), ('Fiat', 9, 1), ('Honda', 11, 1), ('Mazda', 12, 1), ('Daimler Benz', 13, 2), ('Opel', 14, 1), ('Peugeaut', 15, 1), ('Renault', 16, 1), ('Saab', 17, 1), ('Subaru', 18, 1), ('Toyota', 19, 2), ('Triumph', 20, 1), ('Volvo', 21, 1), ('Kia Motors', 22, 1), ('Hyundai', 23, 1)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 45,
+    "db_id": "course_teach",
+    "question": "Show the name of teachers aged either 32 or 33?",
+    "gold_sql": "SELECT Name FROM teacher WHERE Age  =  32 OR Age  =  33",
+    "pred_sql": "<think>\nOkay, let's see. The user wants to find the names of teachers who are either 32 or 33 years old. The database has three tables: course, teacher, and course_arrange. The teacher table has columns Teacher_ID, Name, Age, and Hometown.\n\nSo, the question is about teachers' ages. The relevant table is the teacher table. The Age column is stored as a text type, but the question is asking for ages 32 or 33. Wait, the Age is a text field. Hmm, that's a problem. Because if the Age is stored as text, comparing it to numbers like 32 or 33 would not work. But maybe the data is stored as strings, like '32' or '33'? Or maybe the Age is actually a number but the schema says text. Wait, looking back at the schema:\n\nThe teacher table's Age is defined as text. So the Age column is a text field. So, if the user wants to filter for Age equal to 32 or 33, but the column is text, then we need to check if the Age is exactly '32' or '33'. But the question says \"aged",
+    "pred_error": "near \"<\": syntax error",
+    "gold_result": "[('Joseph Huts',), ('John Deloor',)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 46,
+    "db_id": "car_1",
+    "question": "Find the name of the makers that produced some cars in the year of 1970?",
+    "gold_sql": "SELECT DISTINCT T1.Maker FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id  =  T2.Maker JOIN CAR_NAMES AS T3 ON T2.model  =  T3.model JOIN CARS_DATA AS T4 ON T3.MakeId  =  T4.id WHERE T4.year  =  '1970';",
+    "pred_sql": "<think>\nOkay, let's see. The user wants to find the names of car makers that produced some cars in the year 1970. \n\nFirst, I need to look at the database schema to figure out which tables are involved. The relevant tables here are car_makers, model_list, and cars_data. \n\nThe car_makers table has the Maker and Country fields. The model_list connects to car_makers via Maker, and cars_data has a Year field. So, the idea is to find car makers (from car_makers) who have at least one model in model_list that was produced in 1970. \n\nBut wait, the cars_data table has a Year column. However, the model_list table has a Maker field which is a foreign key to car_makers.Id. So, the model_list's Maker is the car_maker's Id. So, to find if a car maker produced a car in 1970, we need to check if there's a model in model_list where the Year is 1970. But wait, the cars_data table has the Year, but how does that relate to the model? \n\nWait, the model_list table has a Maker (which is the car_m",
+    "pred_error": "near \"<\": syntax error",
+    "gold_result": "[('gm',), ('chrysler',), ('amc',), ('ford',), ('citroen',), ('toyota',), ('nissan',), ('volkswagen',), ('peugeaut',), ('saab',), ('bmw',)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 51,
+    "db_id": "employee_hire_evaluation",
+    "question": "What are the manager name and district of the shop that sells the largest number of products?",
+    "gold_sql": "SELECT manager_name ,  district FROM shop ORDER BY number_products DESC LIMIT 1",
+    "pred_sql": "SELECT MAX(Number",
+    "pred_error": "incomplete input",
+    "gold_result": "[('Ilkka Mäkelä', 'Lahden Stadion')]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 52,
+    "db_id": "orchestra",
+    "question": "What are the names of conductors whose nationalities are not \"USA\"?",
+    "gold_sql": "SELECT Name FROM conductor WHERE Nationality != 'USA'",
+    "pred_sql": "SELECT Name FROM conductor",
+    "pred_error": null,
+    "gold_result": "[('Igor Stravinsky',), ('Paul Jorgensen',), ('Charles Dutoit',), ('Pierre Boulez',), ('Robert Craft',), ('Michael Tilson Thomas',)]",
+    "pred_result": "[('Antal Doráti',), ('Igor Stravinsky',), ('Colin Davis',), ('Paul Jorgensen',), ('Antal Brown',), ('Charles Dutoit',), ('Gerard Schwarz',), ('Pierre Boulez',), ('Valeri Gergiev',), ('Robert Craft',), ('Seiji Ozawa',), ('Michael Tilson Thomas',)]"
+  },
+  {
+    "question_id": 54,
+    "db_id": "world_1",
+    "question": "Give the names of nations that speak both English and French.",
+    "gold_sql": "SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Language  =  \"English\" INTERSECT SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Language  =  \"French\"",
+    "pred_sql": "SELECT DISTINCT country.Name\nFROM country\nJOIN countrylanguage ON country.Code = countrylanguage.CountryCode\nWHERE countrylanguage.Language = 'English' AND countrylanguage.Language = 'French'",
+    "pred_error": null,
+    "gold_result": "[('Canada',), ('Monaco',), ('Seychelles',), ('United States',), ('Vanuatu',), ('Virgin Islands, U.S.',)]",
+    "pred_result": "[]"
+  },
+  {
+    "question_id": 55,
+    "db_id": "wta_1",
+    "question": "What are the first names of all players, and their average rankings?",
+    "gold_sql": "SELECT avg(ranking) ,  T1.first_name FROM players AS T1 JOIN rankings AS T2 ON T1.player_id  =  T2.player_id GROUP BY T1.first_name",
+    "pred_sql": "<think>\nOkay, let's see. The user wants the first names of all players and their average rankings. So I need to find a way to get the players' first names and calculate the average ranking for each player.\n\nFirst, I need to look at the tables. The players table has first_name, last_name, hand, birth_date, country_code. The rankings table has ranking_date, ranking, player_id, ranking_points, tours. The foreign key is rankings.player_id = players.player_id.\n\nSo the plan is to join the players and rankings tables on player_id. Then, for each player, calculate the average ranking_points. But wait, the rankings table has a ranking column, which is the rank, and ranking_points which is the points. But the question says average rankings. Hmm, maybe the ranking is the rank, and the average of that? Or maybe the ranking_points? The question says \"average rankings\", so probably the ranking column. But I need to check.\n\nWait, the question says \"average rankings\". The rankings table has a ranking column, which is the rank. So for each player, we need to get their average ranking. But how? Because each player might have multiple rankings. For example, a player could have multiple entries in",
+    "pred_error": "near \"<\": syntax error",
+    "gold_result": "[(1199.8235294117646, 'Aastha'), (1110.0434782608695, 'Abbi'), (808.4545454545455, 'Abbie'), (387.66706161137444, 'Abigail'), (1039.6744186046512, 'Abiodun'), (1228.75, 'Abir'), (790.1538461538462, 'Adeliya'), (1122.4423076923076, 'Adnya'), (619.6814159292036, 'Adriana'), (1213.1666666666667, 'Adrienn'), (627.12, 'Adrijana'), (1255.3333333333333, 'Adva'), (1155.0392156862745, 'Afroditi'), (960.6770186335403, 'Agata'), (1082.3548387096773, 'Agata Jadwiga'), (1231.5, 'Agne'), (391.3003629764065, 'Agnes'), (694.0659898477157, 'Agnese'), (940.2125603864735, 'Agni'), (122.19587628865979, 'Agnieszka'), (684.8497652582159, 'Agustina'), (1154.25, 'Agustina Elena'), (1156.340425531915, 'Ah'), (1248.72, 'Ahlam'), (728.5, 'Ahsha'), (890.8728448275862, 'Ai'), (912.1523178807947, 'Ai Wen'), (1110.3333333333333, 'Aida'), (284.8724727838258, 'Aiko'), (1034.5833333333333, 'Ailen'), (1200.2, 'Aimee'), (1164.95, 'Aina'), (943.7397959183673, 'Ainhoa'), (1024.625, 'Aishwarya'), (302.84831460674155, 'Ajla'), (704.9618138424821, 'Akari'), (215.25185185185185, 'Akgul'), (710.9617224880383, 'Aki'), (1145.8235294117646, 'Akiho'), (493.98205383848455, 'Akiko'), (772.8571428571429, 'Akilah'), (1038.35, 'Akvile'), (1119.1639344262296, 'Alana'), (843.7260273972603, 'Alba'), (343.22432701894314, 'Alberta'), (775.2734375, 'Albina'), (1185.7142857142858, 'Aldana'), (1067.019801980198, 'Alejandra'), (450.22998544395927, 'Aleksandra'), (578.07962529274, 'Aleksandrina'), (820.4563492063492, 'Alena'), (1123.4864864864865, 'Alessandra'), (1057.628205128205, 'Alessia'), (1145.1641791044776, 'Alessondra'), (383.9921465968586, 'Alexa'), (569.2647632558965, 'Alexandra'), (945.625, 'Alexandria'), (718.5202702702703, 'Alexia'), (604.15, 'Alexis'), (441.9846743295019, 'Aliaksandra'), (710.3822682786414, 'Alice'), (951.9764150943396, 'Alice Andrada'), (1105.1298701298701, 'Alicia'), (855.813627254509, 'Alicja'), (925.0028776978418, 'Alina'), (611.35, 'Aliona'), (453.01556420233464, 'Alisa'), (403.48784576697403, 'Alison'), (822.3459915611814, 'Alix'), (252.11485774499474, 'Alize'), (217.85922330097088, 'Alla'), (557.9232456140351, 'Allie'), (1157.8, 'Almudena'), (871.6926829268293, 'Alona'), (1181.6078431372548, 'Alory Regina Elorriaga'), (496.9431818181818, 'Alyona'), (650.6240276577355, 'Amanda'), (747.4375, 'Amandine'), (1011.3666666666667, 'Amelie'), (803.9764705882353, 'Amina'), (613.195652173913, 'Aminat'), (1075.8260869565217, 'Amira'), (415.9078341013825, 'Amra'), (1209.4, 'Amrita'), (763.888198757764, 'Amy'), (460.8932038834951, 'An Sophie'), (396.2893280632411, 'Ana'), (842.8446601941747, 'Ana Bianca'), (524.9192825112108, 'Ana Clara'), (1084.7916666666667, 'Ana Gabriela'), (1243.4285714285713, 'Ana Luisa'), (1031.228855721393, 'Ana Paula'), (496.7156398104265, 'Ana Sofia'), (961.2631578947369, 'Ana Victoria'), (144.3264367816092, 'Anabel'), (922.2255639097745, 'Anaeve'), (482.26169844020797, 'Anais'), (859.3059701492538, 'Anamika'), (430.0872542522642, 'Anastasia'), (956.5754716981132, 'Anastasia Evgenyevna'), (1245.75, 'Anastasiia'), (221.66153846153847, 'Anastasija'), (671.2584369449378, 'Anastasiya'), (1127.7368421052631, 'Anca'), (1150.0, 'Anda'), (970.3620689655172, 'Andie K'), (1063.4736842105262, 'Andjela'), (1275.8235294117646, 'Andra Maria'), (414.4332292750607, 'Andrea'), (878.3939393939394, 'Andrea Renee'), (956.0333333333333, 'Andreea'), (801.84375, 'Andreea Amalia'), (726.2657657657658, 'Andreea Roxana'), (424.64521739130436, 'Andreja'), (1184.0416666666667, 'Andressa Cristina'), (1045.6666666666667, 'Andrina'), (1152.0857142857142, 'Aneta'), (367.2274678111588, 'Anett'), (969.8181818181819, 'Anette'), (1226.3333333333333, 'Ange Oby'), (1128.7272727272727, 'Angela'), (686.2234432234433, 'Angelica'), (1089.1603773584907, 'Angeliki'), (750.3207810320781, 'Angelina'), (308.56833824975416, 'Angelique'), (432.6949152542373, 'Anhelina'), (850.9791666666666, 'Anhzelika'), (720.1431870669746, 'Ani'), (947.472972972973, 'Anita'), (725.3893333333333, 'Anja'), (1228.388888888889, 'Anke'), (618.4714285714285, 'Ankita'), (907.4, 'Ann'), (551.5557158312297, 'Anna'), (760.639175257732, 'Anna Arina'), (428.5496828752643, 'Anna Giulia'), (345.51020408163265, 'Anna Karolina'), (916.7115384615385, 'Anna Katalina'), (201.87700534759358, 'Anna Lena'), (1070.3967391304348, 'Anna Maria'), (583.9347826086956, 'Annalisa'), (248.74237737516572, 'Anne'), (762.7606382978723, 'Anne Liz'), (1237.6363636363637, 'Anne Marie'), (1252.0, 'Anne Sophie'), (1042.037037037037, 'Annie'), (265.79487179487177, 'Annika'), (969.5882352941177, 'Anouk'), (1051.7096774193549, 'Antonela'), (589.1298076923077, 'Antonia'), (1049.4655172413793, 'Antonina'), (1037.0833333333333, 'Anushka'), (617.3333333333334, 'Ao'), (1016.5714285714286, 'Apichaya'), (658.5074074074074, 'Arabela'), (279.23336006415394, 'Arantxa'), (490.4144736842105, 'Aranza'), (200.97080291970804, 'Aravane'), (951.4146341463414, 'Ariadna'), (560.6778190830236, 'Arina'), (1224.0, 'Arina Gabriela'), (1074.3333333333333, 'Arlinda'), (1281.8461538461538, 'Arthi'), (349.54794520547944, 'Aryna'), (1181.27868852459, 'Aselya'), (1151.95, 'Asha'), (331.3681818181818, 'Ashleigh'), (638.88, 'Ashley'), (823.0909090909091, 'Ashling'), (1018.6637931034483, 'Ashmitha'), (803.3904761904762, 'Ashvarya'), (453.43392070484583, 'Asia'), (790.46875, 'Asiya'), (1172.5531914893618, 'Assia'), (829.5625, 'Astra'), (1086.45, 'Astrid Wanja'), (591.2544731610338, 'Audrey'), (1208.4285714285713, 'Avgusta'), (1064.0, 'Axana'), (552.4653465346535, 'Ayaka'), (901.8717948717949, 'Ayan'), (597.6981132075472, 'Ayano'), (397.83561643835617, 'Ayla'), (915.5932203389831, 'Aymet'), (479.5530612244898, 'Ayu Fani'), (412.74466019417474, 'Ayumi'), (556.2303370786517, 'Azra'), (763.8900651465798, 'Barbara'), (252.6093155893536, 'Barbora'), (656.2932551319648, 'Basak'), (785.0707482993197, 'Beatrice'), (457.4050279329609, 'Beatriz'), (1253.4, 'Beatriz Magdalena'), (971.2865853658536, 'Beatriz Maria'), (1382.1538461538462, 'Beauty'), (1167.3368421052633, 'Belen'), (681.7736842105263, 'Belinda'), (705.4688346883469, 'Benedetta'), (625.013698630137, 'Berfu'), (717.7932330827068, 'Bermet'), (541.273631840796, 'Bernarda'), (834.1005025125628, 'Bernice'), (1005.75, 'Berta'), (146.59709379128137, 'Bethanie'), (1229.5714285714287, 'Betina'), (878.0138888888889, 'Bhuvana'), (653.2805383022775, 'Bianca'), (696.952380952381, 'Bianka'), (550.1941544885177, 'Bibiane'), (912.71875, 'Blair'), (904.6538461538462, 'Blanca'), (1221.8333333333333, 'Blessing'), (1254.6341463414635, 'Boba'), (392.7313829787234, 'Bojana'), (834.2066115702479, 'Borislava'), (992.4222222222222, 'Boyan'), (970.9846153846154, 'Brandy'), (872.0930232558139, 'Breaunna'), (211.01377118644066, 'Brenda'), (854.3170731707318, 'Brianna'), (917.0, 'Brienne'), (1126.3333333333333, 'Brindtha'), (647.5205479452055, 'Britt'), (990.5210084033613, 'Brittany'), (804.6277056277056, 'Brooke'), (952.5619834710744, 'Brynn'), (555.3384615384615, 'Bunyawi'), (1140.981981981982, 'Busra'), (311.87854251012146, 'Cagla'), (709.4247787610619, 'Caitlin'), (803.7139479905437, 'Camelia Elena'), (1192.1818181818182, 'Cameron'), (539.7944621938232, 'Camila'), (1192.3783783783783, 'Camila Vital'), (801.6850649350649, 'Camilla'), (1112.9450549450548, 'Camille'), (236.07412398921832, 'Cara'), (416.3666666666667, 'Carina'), (411.70779777206513, 'Carla'), (1236.7777777777778, 'Carlota'), (1127.9338842975208, 'Carlotta'), (318.69978858350953, 'Carly'), (890.6351351351351, 'Carmen'), (842.1553398058253, 'Carmen Raluca'), (564.1434426229508, 'Carol'), (645.2279792746114, 'Carolin'), (718.725321888412, 'Carolina'), (799.0650406504066, 'Carolina Meligeni Rodrigues'), (342.40130505709624, 'Caroline'), (1161.5675675675675, 'Caroline B'), (1197.578947368421, 'Carolyn'), (1020.6, 'Carson'), (378.0163727959698, 'Casey'), (293.76942355889724, 'Catalina'), (941.4724409448819, 'Catherine'), (134.21917808219177, 'Catherine Cartan'), (744.0, 'Caty'), (755.4649681528663, 'Cecilia'), (1141.842105263158, 'Cecilie Lundgaard'), (708.618398637138, 'Celine'), (1123.3855421686746, 'Cemre'), (650.1367521367522, 'Chalena'), (343.2835365853659, 'Chanel'), (215.6615811373093, 'Chanelle'), (575.4626436781609, 'Chang'), (1281.8461538461538, 'Chanikarn'), (609.90625, 'Chantal'), (1128.030303030303, 'Chantelle'), (1232.8, 'Chaoyi'), (766.4794520547945, 'Charlene'), (927.7647058823529, 'Charlotte'), (593.9759036144578, 'Chayenne'), (1132.0, 'Chelsea'), (719.3061224489796, 'Chelsey'), (524.7444668008048, 'Chen'), (789.2857142857143, 'Chengyiyi'), (464.1367781155015, 'Chi Chi'), (1039.3902439024391, 'Chi Fan'), (950.8813559322034, 'Chia Hsien'), (359.3764705882353, 'Chia Jung'), (437.73858921161826, 'Chiaki'), (977.9640591966173, 'Chiara'), (533.9586374695864, 'Chieh Yu'), (848.9908952959029, 'Chihiro'), (385.2651515151515, 'Chin Wei'), (615.2230215827338, 'Chinami'), (583.530303030303, 'Ching Wen'), (749.3582089552239, 'Chiraz'), (874.8181818181819, 'Chisa'), (675.2445414847161, 'Chloe'), (1112.1458333333333, 'Chompoothip'), (1112.875, 'Christie'), (454.9920529801324, 'Christina'), (841.4051724137931, 'Christine'), (692.390625, 'Chun Mei'), (986.3944099378882, 'Chun Yan'), (659.3055555555555, 'Cindy'), (443.45754716981133, 'Claire'), (1190.7307692307693, 'Clara'), (826.2619047619048, 'Claudia'), (967.2978723404256, 'Claudia Antonia'), (996.2574257425742, 'Claudia Gianina'), (383.6413199426112, 'Claudine'), (823.6306306306307, 'Clelia'), (875.9772727272727, 'Clemence'), (964.1224489795918, 'Clementina Eugenia'), (620.4120171673819, 'Clothilde'), (270.5896860986547, 'Coco'), (1165.093023255814, 'Colomba'), (390.0, 'Conny'), (570.2723004694835, 'Constance'), (835.1132075471698, 'Constanza'), (1245.3333333333333, 'Constanze'), (832.7818181818182, 'Corina'), (356.8219696969697, 'Corinna'), (757.2253521126761, 'Cornelia'), (406.5511363636364, 'Cory Ann'), (1049.0, 'Costanza'), (554.5376344086021, 'Cristiana'), (643.616049382716, 'Cristina'), (439.5747863247863, 'Cristina Andreea'), (720.6428571428571, 'Cristina Madalina'), (949.7944444444445, 'Csilla'), (998.7722772277227, 'Cynthia'), (1010.3333333333334, 'Da Hye'), (920.1276595744681, 'Dabin'), (1159.1818181818182, 'Dagmara'), (720.7490039840637, 'Daiana'), (1181.4736842105262, 'Dajana'), (801.6933333333334, 'Dalia'), (525.9552572706936, 'Dalila'), (279.16438356164383, 'Dalma'), (1493.0, 'Damilola'), (1242.0, 'Damini'), (1198.3333333333333, 'Damira'), (994.4769230769231, 'Dan Ni'), (805.7028985507246, 'Dana'), (977.4539007092199, 'Daneika'), (380.609375, 'Danica'), (348.6364892881825, 'Daniela'), (643.9216101694915, 'Daniella'), (744.7453250222618, 'Danielle'), (434.68, 'Danielle Rose'), (1107.0919540229886, 'Danijela'), (302.83268482490274, 'Danka'), (1226.5454545454545, 'Daphne'), (629.6443987667009, 'Daria'), (464.95631067961165, 'Darija'), (1132.1744186046512, 'Dariya'), (531.1829405162739, 'Darya'), (722.6986301369863, 'Dasha'), (576.4307692307692, 'Dayana'), (550.9545454545455, 'Dea'), (764.6785714285714, 'Deborah'), (1115.0851063829787, 'Deeon'), (758.5342960288808, 'Dejana'), (983.4174757281553, 'Demi'), (419.1633466135458, 'Denisa'), (949.1239316239316, 'Denise'), (1160.3125, 'Denise Antonela'), (551.5304659498208, 'Deniz'), (1123.6486486486488, 'Deria'), (863.7826086956521, 'Desirae'), (1032.2666666666667, 'Desiree'), (665.686684073107, 'Despina'), (746.0962962962963, 'Despoina'), (483.77464788732397, 'Destanee'), (1154.2857142857142, 'Dewi'), (615.1506849315068, 'Dhruthi'), (736.1650485436893, 'Di'), (383.7832512315271, 'Dia'), (654.3773657782928, 'Diana'), (1205.7692307692307, 'Diana Maria'), (809.697247706422, 'Dianne'), (669.2982456140351, 'Dijana'), (1248.2, 'Dilara'), (1094.4583333333333, 'Dina'), (268.05945945945945, 'Dinah'), (1234.6176470588234, 'Doga Selen'), (803.8666666666667, 'Domenica'), (171.71134020618555, 'Dominika'), (1042.7843137254902, 'Dominique'), (1131.6333333333334, 'Donika'), (223.50900900900902, 'Donna'), (1196.56, 'Dorien'), (520.9397993311037, 'Doroteja'), (913.7272727272727, 'Draginja'), (929.0599369085173, 'Dunja'), (1073.1752577319587, 'Ebony'), (1029.6888888888889, 'Eden'), (211.67325428194994, 'Edina'), (656.2851711026616, 'Eduarda'), (842.7045454545455, 'Eetee'), (1214.857142857143, 'Ege'), (471.8367290748899, 'Ekaterina'), (553.9434782608696, 'Ekaterine'), (1221.7931034482758, 'Elaine'), (1066.5343511450383, 'Eleanor'), (324.3720930232558, 'Elena'), (392.44444444444446, 'Elena Gabriela'), (686.6470588235294, 'Elena Teodora'), (249.5244140625, 'Eleni'), (950.0277777777778, 'Eleonora'), (1087.372340425532, 'Eleonore'), (876.1730769230769, 'Eliessa'), (421.6573033707865, 'Elina'), (888.2213114754098, 'Elisabeth'), (334.7118644067797, 'Elise'), (418.39748953974896, 'Elitsa'), (579.5214723926381, 'Elixane'), (978.2708333333334, 'Eliza'), (1154.2714285714285, 'Elizabeta'), (736.9747747747748, 'Elizabeth'), (1006.2982456140351, 'Elizabeth Anita Alexandria'), (489.5307517084282, 'Elizaveta'), (981.9814814814815, 'Elizaveta Anna'), (1011.9433962264151, 'Elke'), (1168.7967479674796, 'Ella'), (750.9460093896714, 'Ellen'), (508.340206185567, 'Ellie'), (1211.2333333333333, 'Elodie'), (652.1984732824427, 'Elyne'), (819.3400503778338, 'Ema'), (672.730407523511, 'Emelyn'), (770.8472222222222, 'Emi'), (1232.0, 'Emilia'), (1022.9174311926605, 'Emiliana'), (705.4716981132076, 'Emilie'), (1209.625, 'Emilija'), (1092.2771084337348, 'Emiliya'), (585.093851132686, 'Emily'), (1041.948717948718, 'Emily J'), (682.0972222222222, 'Emina'), (641.046992481203, 'Emma'), (1193.3529411764705, 'Emma Christine'), (943.7716535433071, 'Emmanuelle'), (1229.7333333333333, 'En Pei'), (980.3333333333334, 'Ena'), (321.23595505617976, 'Eri'), (788.0384615384615, 'Erica'), (544.5041866028708, 'Erika'), (942.7969696969697, 'Erin'), (733.1351351351351, 'Erina'), (1218.5652173913043, 'Esen'), (966.0540540540541, 'Estela'), (617.4935251798561, 'Estelle'), (950.9090909090909, 'Ester'), (347.34943639291464, 'Estrella'), (781.3218390804598, 'Etsuko'), (911.7241379310345, 'Eudice Wong'), (1157.5, 'Eugenia'), (477.62886597938143, 'Eugenie'), (620.6746411483253, 'Eugeniya'), (500.29483037156706, 'Eva'), (1083.8333333333333, 'Eva Marie'), (1023.8690476190476, 'Eveliina'), (471.5439093484419, 'Evelyn'), (414.66339869281046, 'Evgenia'), (442.0344827586207, 'Evgeniya'), (612.0185185185185, 'Fang Ying'), (406.9281767955801, 'Fangzhou'), (569.1904761904761, 'Fanny'), (1106.3076923076924, 'Farah'), (673.7509157509157, 'Fatima'), (1070.9463414634147, 'Fatimah'), (648.2984054669704, 'Fatma'), (1015.5, 'Fatyha'), (722.7286493034525, 'Federica'), (1204.7272727272727, 'Federica Joe'), (647.922077922078, 'Fernanda'), (1187.0384615384614, 'Ferny'), (853.3908045977012, 'Fiona'), (376.47888446215137, 'Flavia'), (451.5810397553517, 'Florencia'), (999.2, 'Frances'), (570.534951862704, 'Francesca'), (903.1666666666666, 'Francisca'), (437.05298013245033, 'Francoise'), (949.6575342465753, 'Franziska'), (1244.3333333333333, 'Frederikke'), (544.1627906976744, 'Freya'), (696.7697332607512, 'Gabriela'), (994.0612244897959, 'Gabriela Nicole'), (792.5, 'Gabriella'), (985.7211538461538, 'Gabrielle Faith'), (1052.8314606741574, 'Gaelle'), (759.5352697095435, 'Gaia'), (526.2644836272041, 'Gail'), (305.19563522992985, 'Galina'), (606.7211740041929, 'Ganna'), (229.3774193548387, 'Garbine'), (1152.142857142857, 'Gebriela'), (772.2857142857143, 'Genevieve'), (533.5940594059406, 'Georgia'), (763.1014492753624, 'Georgia Andreea'), (1153.9166666666667, 'Georgiana'), (396.225, 'Georgina'), (1150.6607142857142, 'Ghislaine'), (813.1351351351351, 'Giada'), (567.8518518518518, 'Gioia'), (960.4941860465116, 'Giorgia'), (1226.5, 'Giorgie'), (1197.0, 'Giovanna'), (693.6215943491422, 'Giulia'), (584.359375, 'Giuliana'), (794.7118644067797, 'Gloria'), (716.3150684931506, 'Gozal'), (454.06233062330625, 'Grace'), (783.8288043478261, 'Gracia'), (547.277108433735, 'Greetje'), (296.8219584569733, 'Greta'), (797.383606557377, 'Guadalupe'), (1027.0, 'Guillermina'), (957.9512195121952, 'Guiomar'), (1168.3396226415093, 'Gulben'), (1196.0, 'Gulchekhra'), (1236.6153846153845, 'Gulnaz'), (995.4074074074074, 'Guzal'), (1087.6216216216217, 'Gyulnara'), (1051.623188405797, 'Habiba'), (844.3856812933026, 'Hae Sung'), (1179.4153846153847, 'Haine'), (1110.5376344086021, 'Hana'), (957.2, 'Hanna'), (543.968253968254, 'Hanyu'), (680.1050228310502, 'Hao Chen'), (1153.936507936508, 'Hao Ching'), (574.8723404255319, 'Harmony'), (694.341935483871, 'Harriet'), (774.6837606837607, 'Haruka'), (512.1515151515151, 'Haruna'), (914.5321100917431, 'Hayley'), (1214.7692307692307, 'Hazal'), (167.50632911392404, 'Heather'), (417.44323483670297, 'Heidi'), (1019.4107142857143, 'Helen'), (696.4752475247525, 'Helene'), (1095.1176470588234, 'Hikari'), (673.6635071090047, 'Hilda'), (1219.0, 'Himari'), (534.890243902439, 'Hiroko'), (860.8104265402843, 'Hirono'), (925.9865771812081, 'Ho Ching'), (1185.75, 'Hollie'), (914.8607594936709, 'Hongrui'), (1251.1333333333334, 'Hortencia'), (1107.7142857142858, 'Hsin Yuan'), (726.1737089201878, 'Hua Chen'), (1118.904761904762, 'Huijie'), (888.0055096418732, 'Hulya'), (1020.28125, 'Hye Min'), (1069.3208955223881, 'Hyojung'), (729.0671936758894, 'Hyun Hui'), (1038.6911764705883, 'I Hsuan'), (1085.581818181818, 'Iana'), (962.5, 'Ida'), (1232.2, 'Idia'), (705.5625, 'Iga'), (1135.5, 'Ilay'), (868.2191780821918, 'Ilka'), (452.625, 'Ilona'), (847.0941176470589, 'Ilze'), (845.375, 'Imane Maelle'), (1165.5573770491803, 'Ina'), (1069.0925925925926, 'Inci'), (954.046875, 'India'), (627.7027027027027, 'Indire'), (485.9559748427673, 'Indy'), (919.6147540983607, 'Ineke'), (687.0229885057471, 'Ines'), (1039.0, 'Inger'), (766.2549019607843, 'Ingrid'), (869.3571428571429, 'Ingrid Alexandra'), (748.6622691292876, 'Ingrid Esperanza'), (1192.5454545454545, 'Intissar'), (980.2232142857143, 'Ioana'), (482.43243243243245, 'Ioana Diana'), (646.0441176470588, 'Ioana Loredana'), (799.0552486187845, 'Ionela Andreea'), (655.7828348504552, 'Ipek'), (288.74423480083857, 'Irena'), (579.2153846153847, 'Irene'), (436.84339509862525, 'Irina'), (285.84388185654007, 'Irina Camelia'), (578.1381578947369, 'Irina Maria'), (866.1075949367089, 'Iris'), (489.5294964028777, 'Iryna'), (724.9178743961353, 'Isabel'), (1114.99375, 'Isabela'), (566.7873931623932, 'Isabella'), (781.6993464052288, 'Isabelle'), (1170.9411764705883, 'Iulia Maria'), (732.7386018237082, 'Iva'), (439.81414868105514, 'Ivana'), (871.109375, 'Ivania'), (1079.05, 'Ivanka'), (117.95684523809524, 'Iveta'), (1136.8535031847134, 'Ivette'), (872.0, 'Ivone'), (591.3809523809524, 'Ivonne'), (624.6089494163424, 'Jacqueline'), (909.2, 'Jada'), (739.04802259887, 'Jade'), (760.4920634920635, 'Jaeda'), (562.8450704225352, 'Jaimee'), (1243.875, 'Jaimy Gayle'), (1037.5274725274726, 'Jainy'), (402.36756756756756, 'Jamie'), (1247.3333333333333, 'Jamilya'), (592.5990783410139, 'Jan'), (406.6258503401361, 'Jana'), (240.5306603773585, 'Janette'), (699.7864583333334, 'Janina'), (1262.5416666666667, 'Janja'), (861.5102040816327, 'Janneke'), (748.7238095238096, 'Jaqueline Adina'), (1121.767857142857, 'Jara'), (149.46360759493672, 'Jarmila'), (633.027027027027, 'Jasmin'), (642.1811989100818, 'Jasmina'), (437.86915887850466, 'Jasmine'), (1117.64, 'Jasmine Amber'), (1070.5648854961833, 'Jawairiah'), (1035.46, 'Jazmin'), (983.1290322580645, 'Jazzamay'), (767.7730496453901, 'Jeannine'), (348.19338235294117, 'Jelena'), (556.7936681222708, 'Jennifer'), (902.1470588235294, 'Jenny'), (501.5860215053763, 'Jesika'), (655.7464059804486, 'Jessica'), (818.2043795620438, 'Jessika'), (967.6708860759494, 'Jessy'), (823.9789029535865, 'Ji Hee'), (833.5061082024433, 'Ji Young'), (1169.6923076923076, 'Jia'), (682.961038961039, 'Jia Jing'), (529.7777777777778, 'Jia Qi'), (794.4931506849315, 'Jiahui'), (1230.6, 'Jiakang'), (1232.032258064516, 'Jiatian'), (578.5, 'Jiaxi'), (1161.0, 'Jiaxue'), (114.05571428571429, 'Jie'), (501.0619469026549, 'Jil Belen'), (1116.4190476190477, 'Jil Nora'), (121.9579326923077, 'Jill'), (721.14, 'Jillian'), (1267.0, 'Jin'), (492.8915187376726, 'Jin A'), (1035.6470588235295, 'Jin Ju'), (369.1620469083156, 'Jing Jing'), (863.3225806451613, 'Joana'), (931.025641025641, 'Joanna'), (1227.8, 'Joanne'), (925.4230769230769, 'Jodie Anna'), (1111.8333333333333, 'Johana'), (310.3405299313052, 'Johanna'), (1022.6198347107438, 'Jordana'), (924.9325842696629, 'Josepha'), (684.4892086330935, 'Josephine'), (993.2105263157895, 'Josie'), (601.9846625766871, 'Jovana'), (812.6, 'Ju Eun'), (1224.0, 'Judith'), (1243.904761904762, 'Jule'), (576.9173467252564, 'Julia'), (1024.6666666666667, 'Julia Mansano'), (1110.0816326530612, 'Juliana'), (1175.7666666666667, 'Juliana Rocha'), (512.3787128712871, 'Julie'), (707.1467889908257, 'Julieta Lara'), (1019.9411764705883, 'Julita'), (732.1666666666666, 'Julyette Maria Josephine'), (1189.0, 'June'), (262.30884808013354, 'Junri'), (1212.9166666666667, 'Justina'), (521.5358361774744, 'Justine'), (585.8517745302714, 'Justyna'), (1055.020202020202, 'Kady'), (272.08855291576674, 'Kai Chen'), (522.6561403508772, 'Kai Lin'), (127.06775067750678, 'Kaia'), (901.3333333333334, 'Kaitlin'), (756.2549019607843, 'Kaitlyn'), (633.5454545454545, 'Kaja'), (661.9589041095891, 'Kajsa'), (568.2547169811321, 'Kamila'), (1162.8301886792453, 'Kamilla'), (765.1395348837209, 'Kamonwan'), (924.2782608695652, 'Kana'), (635.346516007533, 'Kanae'), (1105.3125, 'Kanako'), (799.9940828402367, 'Kanami'), (962.8536585365854, 'Kanika'), (871.0790513833992, 'Kaori'), (674.9672514619883, 'Karen'), (1068.9166666666667, 'Kariann'), (472.338003502627, 'Karin'), (883.6090909090909, 'Karina'), (696.9606060606061, 'Karina Ildor'), (1062.795918367347, 'Karina Kristina'), (868.8904109589041, 'Karine'), (1001.0679611650486, 'Karis'), (807.616, 'Karla'), (652.917808219178, 'Karman'), (928.3333333333334, 'Karola Patricia'), (1077.8095238095239, 'Karolayne'), (586.9412296564195, 'Karolina'), (873.6229508196722, 'Karoline'), (903.5769230769231, 'Karyn'), (927.0350877192982, 'Kassandra'), (331.93949394939494, 'Katalin'), (401.0998263888889, 'Katarina'), (459.29286608260327, 'Katarzyna'), (1117.7142857142858, 'Kate'), (491.8507295173962, 'Katerina'), (294.33209990749305, 'Kateryna'), (680.677700348432, 'Katharina'), (882.1071428571429, 'Katharine'), (836.6804511278195, 'Katherine'), (910.396694214876, 'Katherine Gabriela'), (415.7, 'Kathinka'), (291.4792817679558, 'Kathrin'), (620.9404580152672, 'Katie'), (1111.08, 'Katrine Isabel'), (492.6608695652174, 'Katy'), (1050.7, 'Katya'), (1010.1818181818181, 'Katyarina'), (583.1686746987951, 'Kayla'), (1163.3478260869565, 'Kaylah'), (772.2402912621359, 'Kazusa'), (1003.1212121212121, 'Kei'), (1114.9433962264152, 'Kelia'), (804.873831775701, 'Kelly'), (312.7584269662921, 'Kelly S'), (1012.325, 'Kelsey'), (807.7222222222222, 'Kennedy'), (643.422641509434, 'Keren'), (1018.6534653465346, 'Keri'), (1020.4271844660194, 'Kerstin'), (978.0229885057471, 'Khristina'), (1164.090909090909, 'Ki Ryang'), (287.71625344352617, 'Kiki'), (687.3120567375887, 'Kim'), (762.4081632653061, 'Kim Alice'), (846.9154228855722, 'Kimberley'), (618.6923076923077, 'Kimberly'), (1097.219512195122, 'Kimika'), (95.03465982028241, 'Kimiko'), (606.1467576791808, 'Kinnie'), (308.64912280701753, 'Kirsten'), (1035.0384615384614, 'Kirsten Andrea'), (576.9, 'Klaartje'), (235.31431431431432, 'Klara'), (780.7905027932961, 'Klaudia'), (826.0238095238095, 'Komola'), (567.0507399577167, 'Korina'), (844.7460317460317, 'Kotomi'), (522.984693877551, 'Krista'), (445.18918918918916, 'Kristie'), (343.25546975546973, 'Kristina'), (1060.5633802816901, 'Kristina N'), (837.7730496453901, 'Kristy'), (443.8467908902692, 'Kristyna'), (482.36648501362396, 'Ksenia'), (990.6, 'Kseniia'), (975.6271186440678, 'Ksenija'), (488.76107382550333, 'Kumiko'), (165.96132596685084, 'Kurumi'), (159.62397820163488, 'Kveta'), (1070.0377358490566, 'Kwan Yau'), (887.502487562189, 'Kyle'), (798.3181818181819, 'Kylie'), (348.54794520547944, 'Kyoka'), (443.76148409893995, 'Kyra'), (533.433770014556, 'Kyung Mi'), (677.4458598726114, 'Laetitia'), (996.8148148148148, 'Laili'), (1062.3666666666666, 'Lamis'), (643.6939163498099, 'Lara'), (1054.9019607843138, 'Larikah'), (504.4145867098865, 'Laura'), (910.5714285714286, 'Laura D'), (516.1982942430703, 'Laura Ioana'), (1198.1538461538462, 'Laura Sofia'), (484.9442231075697, 'Lauren'), (1107.0882352941176, 'Lauryn'), (612.736, 'Lavinia'), (1226.076923076923, 'Laylo'), (1184.0, 'Layne'), (858.4107142857143, 'Lea'), (1179.6216216216217, 'Leah'), (908.156862745098, 'Lee'), (594.9436936936937, 'Lena'), (657.8934169278997, 'Lena Marie'), (451.33577981651376, 'Lenka'), (773.5666666666667, 'Leolia'), (825.972972972973, 'Leonie'), (887.4545454545455, 'Lesedi Sheya'), (205.17590361445784, 'Lesia'), (514.7174515235457, 'Lesley'), (1180.5454545454545, 'Leslie'), (481.3229166666667, 'Leticia'), (1072.4, 'Leticia Garcia'), (1030.5, 'Leylah Annie'), (988.7425149700599, 'Li'), (387.87113402061857, 'Liana Gabriela'), (899.9150326797386, 'Libby'), (1035.327868852459, 'Libi'), (1147.8529411764705, 'Lidia'), (797.2128378378378, 'Lidziya'), (284.8326771653543, 'Liezel'), (567.9464544138929, 'Liga'), (722.5087719298245, 'Lilla'), (497.42124542124543, 'Lin'), (574.9808362369338, 'Lina'), (929.4398496240601, 'Linda'), (275.6055900621118, 'Lindsay'), (986.82, 'Lindsey'), (418.81925343811395, 'Ling'), (1184.7222222222222, 'Liniques'), (959.6981132075472, 'Linnea'), (356.0105210420842, 'Lisa'), (758.06, 'Lisa Maria'), (996.0408163265306, 'Lisa Marie'), (673.6507936507936, 'Lisanne'), (887.2875, 'Liubov'), (1179.875, 'Livia'), (870.9007633587786, 'Liz Tatiane'), (1120.5652173913043, 'Lizaveta'), (666.1496062992126, 'Lizette'), (1231.2727272727273, 'Lorenza'), (972.75, 'Lorraine M'), (680.1724137931035, 'Lou'), (1220.0, 'Loudmilla'), (380.5308641975309, 'Louisa'), (1070.1025641025642, 'Louise'), (188.06095041322314, 'Lourdes'), (907.3557312252965, 'Lu'), (859.8644067796611, 'Luca'), (845.740638002774, 'Lucia'), (885.7495107632094, 'Luciana'), (322.62611607142856, 'Lucie'), (845.986301369863, 'Lucrezia'), (756.3141592920354, 'Lucy'), (846.2727272727273, 'Ludmila'), (787.5416666666666, 'Ludmilla'), (981.7517730496454, 'Luisa'), (820.59375, 'Luisa Marie'), (284.22813688212926, 'Luksika'), (1098.2888888888888, 'Lulu'), (1139.0, 'Luna'), (974.2702702702703, 'Lusine'), (1190.0629921259842, 'Lutfiye'), (982.6666666666666, 'Lyann'), (952.4411764705883, 'Lynn'), (382.82479784366575, 'Lyudmyla'), (607.3360995850622, 'Macall'), (692.1515151515151, 'Macarena'), (324.63613231552165, 'Madalina'), (748.0, 'Maddison'), (1028.0365853658536, 'Madeleine'), (1217.469387755102, 'Madeline'), (1203.5, 'Madina'), (290.64452214452217, 'Madison'), (958.0955414012739, 'Madrie'), (787.0, 'Maegan'), (1139.7, 'Mafalda'), (1173.75, 'Maftuna'), (734.0, 'Magali'), (1036.1214953271028, 'Magalie'), (300.3974358974359, 'Magda'), (443.6296006264683, 'Magdalena'), (1092.7621951219512, 'Magy'), (875.0, 'Mahak'), (1007.15, 'Mahitha'), (687.25, 'Mai'), (745.433962264151, 'Maia'), (1206.6666666666667, 'Maia A'), (438.4245810055866, 'Maiko'), (1152.888888888889, 'Maileen'), (410.8463541666667, 'Mailen'), (896.7413793103449, 'Maja'), (784.8009049773756, 'Makiho'), (516.6615384615385, 'Makoto'), (999.15625, 'Malene'), (1004.7428571428571, 'Malika'), (825.039603960396, 'Malin'), (1031.5342465753424, 'Mallaurie'), (143.48235294117646, 'Mallory'), (947.3333333333334, 'Malou'), (1153.590909090909, 'Mami'), (1202.2692307692307, 'Man Ying Maggie'), (689.891129032258, 'Mana'), (1230.6, 'Mananchaya'), (838.1780821917808, 'Manca'), (361.0, 'Mandy'), (897.0974358974358, 'Manisha'), (622.7673469387755, 'Manon'), (1181.3548387096773, 'Manya'), (908.3962264150944, 'Mara'), (774.64, 'Marcela'), (1143.7957746478874, 'Marcela Guimaraes'), (1247.3636363636363, 'Marcelina'), (657.0171919770773, 'Marcella'), (325.5912596401028, 'Margalita'), (987.6739130434783, 'Margarida'), (611.4060995184591, 'Margarita'), (1051.1224489795918, 'Margaux'), (753.8346456692914, 'Margot'), (526.3698630136986, 'Mari'), (426.6002565198803, 'Maria'), (1190.0833333333333, 'Maria Agustina'), (1072.9591836734694, 'Maria Andrea'), (1188.5277777777778, 'Maria Camila'), (861.5050505050505, 'Maria Constanza De Las Mercedes'), (1119.4897959183672, 'Maria Del Rosario'), (194.2392065344224, 'Maria Elena'), (443.0228531855956, 'Maria Fernanda'), (1170.1830985915492, 'Maria Jesus'), (486.6092544987147, 'Maria Joao'), (306.1794310722101, 'Maria Jose'), (918.0769230769231, 'Maria Lourdes'), (1047.98224852071, 'Maria Paulina'), (359.81081081081084, 'Maria Teresa'), (662.1182795698925, 'Mariam'), (556.0428051001821, 'Mariana'), (730.3831168831168, 'Marianna'), (993.175925925926, 'Marianne'), (1085.4242424242425, 'Mariaryeni'), (695.574074074074, 'Marie'), (300.56296296296296, 'Marie Eve'), (1148.9166666666667, 'Mariia'), (544.2636655948553, 'Marija'), (1215.0, 'Marijana'), (532.6881807180315, 'Marina'), (774.5654761904761, 'Marine'), (279.78655282817505, 'Marion'), (1163.0, 'Mariona'), (1067.3413173652696, 'Marisa'), (281.871335504886, 'Mariya'), (353.44444444444446, 'Marketa'), (946.8934426229508, 'Marlies'), (783.1711711711712, 'Marrit'), (419.32988047808766, 'Marta'), (851.1224489795918, 'Marta Huqi'), (1056.0588235294117, 'Martha'), (751.8679119412942, 'Martina'), (869.1666666666666, 'Mary'), (1188.7096774193549, 'Mary Ann'), (323.86176470588236, 'Maryna'), (355.7223168654174, 'Masa'), (437.11396648044695, 'Mathilde'), (799.1875, 'Matilda'), (1013.4761904761905, 'Maud'), (1070.21875, 'Maureen'), (1121.0869565217392, 'Maurien'), (973.8717948717949, 'Maxine'), (1084.0294117647059, 'May'), (732.4260679079956, 'Maya'), (891.6309523809524, 'Mayar'), (407.029702970297, 'Mayo'), (619.9064748201439, 'Mayya'), (736.4809523809524, 'Megan'), (1025.0, 'Megumi'), (1031.6, 'Mei Xu'), (812.85, 'Meiling'), (1029.1666666666667, 'Meiqi'), (372.32502965599053, 'Melanie'), (1039.8333333333333, 'Melany Solange'), (1017.2560553633218, 'Melina'), (169.13578500707214, 'Melinda'), (634.7950310559006, 'Melis'), (993.1351351351351, 'Melisa'), (1154.093023255814, 'Melissa'), (1104.357142857143, 'Melissa Ishuan'), (1035.95, 'Meng Ning'), (1213.2142857142858, 'Mercedes'), (900.75, 'Merel'), (1182.9107142857142, 'Meritxell'), (337.5292682926829, 'Mervana'), (554.3953934740883, 'Mi'), (1071.3076923076924, 'Mi Jeong'), (992.7225433526012, 'Mi Rae'), (999.375, 'Mi Zhuoma'), (987.504761904762, 'Mia Nicole'), (1332.0737704918033, 'Micaela'), (676.90589198036, 'Michaela'), (185.3469387755102, 'Michaella'), (1228.9285714285713, 'Michela'), (946.8846153846154, 'Michele Alexandra'), (280.79959100204496, 'Michelle'), (718.047619047619, 'Michika'), (376.7356115107914, 'Mihaela'), (1223.4, 'Mihaela Lorena'), (523.2788844621514, 'Miharu'), (1064.142857142857, 'Mihika'), (1110.4411764705883, 'Mihoki'), (586.2250489236791, 'Miki'), (1201.16, 'Mila'), (1234.2857142857142, 'Milagros'), (626.441935483871, 'Milana'), (1114.4074074074074, 'Milena'), (1221.904761904762, 'Milica'), (866.0693069306931, 'Min'), (819.8425531914894, 'Min Hwa'), (1238.0625, 'Minami'), (788.2622950819672, 'Mira'), (721.1643835616438, 'Mirabelle'), (1169.4864864864865, 'Miranda'), (912.120218579235, 'Miriam'), (628.075, 'Miriam Bianca'), (950.6263736263736, 'Miriana'), (843.6428571428571, 'Mirjam'), (186.76587795765877, 'Mirjana'), (617.0379241516966, 'Misa'), (208.95263157894738, 'Misaki'), (1121.04, 'Mitsumi'), (447.93283582089555, 'Miyabi'), (594.9036697247707, 'Miyu'), (593.1506849315068, 'Mizuno'), (1029.0, 'Molly'), (772.6981132075472, 'Momoko'), (273.57517899761336, 'Mona'), (210.0846394984326, 'Monica'), (980.575, 'Monika'), (462.4270462633452, 'Monique'), (541.952380952381, 'Montserrat'), (880.6527777777778, 'Morgane'), (1243.4, 'Moulika'), (1258.5, 'Mouna'), (1198.25, 'Moyuka'), (1227.0, 'Muazzez'), (1186.9444444444443, 'Muge'), (485.40168539325845, 'Myrtille'), (82.13112391930835, 'Na'), (608.7791798107255, 'Na Lae'), (573.5197368421053, 'Na Ri'), (868.6521739130435, 'Nadezda'), (407.5463976945245, 'Nadia'), (637.4607407407408, 'Nadiya'), (631.8181818181819, 'Nadja'), (828.0675675675676, 'Nagi'), (767.4963503649635, 'Naiktha'), (930.7027027027027, 'Naima'), (878.6666666666666, 'Nam Yeon'), (890.4455445544554, 'Nan Nan'), (542.7168141592921, 'Nanuli'), (313.45625, 'Nao'), (1180.3828125, 'Naoko'), (483.97225572979494, 'Naomi'), (929.4388489208633, 'Napatsakorn'), (1138.9166666666667, 'Nastassia'), (554.5290322580645, 'Nastassja'), (593.1772853185596, 'Nastja'), (720.132932166302, 'Natalia'), (577.9677419354839, 'Natalie'), (634.3620689655172, 'Natalija'), (1247.909090909091, 'Nataliya'), (666.2853403141361, 'Natasa'), (883.0777142857143, 'Natasha'), (566.4943396226415, 'Natela'), (962.0188679245283, 'Natella'), (543.031185031185, 'Nathalia'), (617.4615384615385, 'Nathaly'), (929.6928104575163, 'Natia'), (547.7037037037037, 'Natsumi'), (1177.622641509434, 'Nattawadee'), (1087.3823529411766, 'Naz'), (825.7291666666666, 'Nazari'), (745.421052631579, 'Neda'), (1164.107142857143, 'Nelise'), (1069.15, 'Nermeen'), (1031.0, 'Nevena'), (515.3191489361702, 'Nicha'), (843.9007633587786, 'Nicky'), (753.2253164556962, 'Nicola'), (499.4127634660422, 'Nicole'), (485.46875, 'Nicoleta Catalina'), (778.1648648648649, 'Nicolette'), (762.1578947368421, 'Nidhi'), (376.7617554858934, 'Nigina'), (913.4380165289256, 'Nika'), (1174.0, 'Nikita'), (1017.3134328358209, 'Nikki'), (1054.0813953488373, 'Nikol'), (723.484076433121, 'Nikola'), (528.8673050615595, 'Nina'), (1124.1666666666667, 'Nina Isabella'), (841.0514705882352, 'Nives'), (965.5343511450382, 'Noel'), (1049.834745762712, 'Noelia'), (883.7787610619469, 'Noelle'), (1167.2758620689656, 'Nonna'), (374.93926247288505, 'Noppawan'), (921.6216216216217, 'Nora'), (1096.1140350877192, 'Nour'), (936.3392857142857, 'Nozomi'), (436.66881028938906, 'Nudnida'), (537.577922077922, 'Nungnadda'), (395.6680227827502, 'Nuria'), (1027.1382978723404, 'Oana'), (686.3047619047619, 'Oana Georgeta'), (728.7630208333334, 'Oceane'), (839.4923664122138, 'Ofri'), (533.9652351738241, 'Oksana'), (660.8924731182796, 'Ola'), (1397.5, 'Olawaseun'), (1112.75, 'Olaya'), (903.4289156626506, 'Oleksandra'), (1179.1555555555556, 'Olena'), (501.44444444444446, 'Olesya'), (432.6511627906977, 'Olga'), (446.7231833910035, 'Olivia'), (1006.5128205128206, 'Oliwia'), (435.1470588235294, 'Ons'), (978.7321428571429, 'Ornella'), (866.0454545454545, 'Oyku'), (1156.28125, 'Paige Mary'), (989.1904761904761, 'Pamela'), (683.1081081081081, 'Panna'), (132.12638580931264, 'Paola'), (1099.625, 'Parris'), (863.5507246376811, 'Patcharin'), (572.8059701492538, 'Patricia'), (403.935, 'Patricia Maria'), (657.3816155988858, 'Patrycja'), (385.8135593220339, 'Patty'), (558.0162601626016, 'Paula'), (1175.909090909091, 'Paula Andrea'), (868.7624113475177, 'Paula Catalina'), (508.4679802955665, 'Paula Cristina'), (1035.7780678851175, 'Paulina'), (298.1861898890259, 'Pauline'), (915.5892857142857, 'Pavla'), (514.586319218241, 'Peangtarn'), (755.5813953488372, 'Peggy'), (673.9809523809524, 'Pei Chi'), (1106.5, 'Pei Hsuan'), (1061.3076923076924, 'Pei Ju'), (465.24962852897477, 'Pemra'), (619.4154929577464, 'Pernilla'), (710.3972602739726, 'Petia'), (365.50280484204313, 'Petra'), (1211.0, 'Phenomena'), (826.6486486486486, 'Phillis'), (737.862676056338, 'Pia'), (668.2581196581197, 'Piia'), (740.5879828326181, 'Pilar'), (1041.0740740740741, 'Pippa'), (937.7945205479452, 'Plobrung'), (630.7953529937444, 'Polina'), (478.30369515011546, 'Polona'), (729.1047904191616, 'Poojashree'), (795.4736842105264, 'Pranjala'), (653.5070422535211, 'Prarthana G'), (740.5361842105264, 'Prerna'), (1137.19, 'Priscila'), (675.4124293785311, 'Priscilla'), (383.4714587737844, 'Qiang'), (826.1388888888889, 'Qianhui'), (943.421052631579, 'Qianqian'), (705.8493150684932, 'Qiu Yu'), (883.2352941176471, 'Quinn'), (633.9770491803279, 'Quirine'), (859.2706766917294, 'Rachael'), (1147.8526315789475, 'Rachel'), (955.7833333333333, 'Radina'), (1121.2432432432433, 'Rafaela'), (1176.5, 'Ralina'), (304.4619771863118, 'Raluca'), (672.2258064516129, 'Raluca Elena'), (539.6164383561644, 'Raluca Georgiana'), (1010.4545454545455, 'Ramu'), (1121.8846153846155, 'Ramya'), (598.2655172413793, 'Ran'), (1117.6666666666667, 'Rana'), (700.7644444444444, 'Raquel'), (1089.2100840336134, 'Rashmi'), (1021.6504854368932, 'Ratnika'), (487.6268656716418, 'Raveena'), (1145.4333333333334, 'Rebeca'), (568.3374316939891, 'Rebecca'), (676.1090909090909, 'Rebeka'), (289.60283687943263, 'Regina'), (1019.0, 'Reina'), (323.1388101983003, 'Reka Luca'), (494.6111111111111, 'Remi'), (274.85317919075146, 'Renata'), (669.448275862069, 'Ria'), (638.6666666666666, 'Rianna'), (246.19871794871796, 'Richel'), (290.0614657210402, 'Rika'), (495.22641509433964, 'Riko'), (1125.0363636363636, 'Rio'), (489.65909090909093, 'Risa'), (775.7269624573379, 'Rishika'), (1051.7349397590363, 'Rita'), (651.4246575342465, 'Riya'), (150.96681415929203, 'Roberta'), (431.19607843137254, 'Robin'), (1054.606896551724, 'Robyn'), (795.6201232032854, 'Rocio'), (402.49931972789113, 'Romana'), (669.8542372881356, 'Romana Caroline'), (283.63246554364474, 'Romina'), (758.1714285714286, 'Romy'), (1125.5471698113208, 'Rona'), (427.0, 'Ronit'), (1072.857142857143, 'Ronke'), (1168.2857142857142, 'Roosh'), (965.0, 'Rosa'), (1059.73, 'Rosalia'), (1066.5887096774193, 'Rosalie'), (984.1714285714286, 'Rosie'), (479.51738241308794, 'Roxane'), (1209.625, 'Rui'), (573.8729603729604, 'Rushmi'), (808.5096774193548, 'Rutuja'), (1069.0379746835442, 'Ryann'), (1117.88, 'Saana'), (982.7397260273973, 'Sabastiani'), (682.2005532503458, 'Sabina'), (1184.6666666666667, 'Sabina Elena'), (203.5871080139373, 'Sabine'), (905.6324786324786, 'Sabrina'), (340.2890442890443, 'Sacha'), (400.8093385214008, 'Sachia'), (368.26881720430106, 'Sachie'), (665.8219178082192, 'Sadafmoh'), (998.5238095238095, 'Sai Samhitha'), (297.39032258064515, 'Saisai'), (832.9585365853659, 'Sakiko'), (529.583908045977, 'Sally'), (1204.6666666666667, 'Salma'), (406.21702404158543, 'Samantha'), (932.8940397350993, 'Samira'), (1105.171875, 'Sanae'), (703.1372549019608, 'Sanaz'), (563.964505613908, 'Sandra'), (1028.9565217391305, 'Sandy'), (857.9508196721312, 'Sang Hee'), (177.22695035460993, 'Sania'), (509.80945757997216, 'Sara'), (546.5551763367463, 'Sarah'), (875.9277108433735, 'Sarah Beth'), (743.6062176165804, 'Sarah Rebecca'), (1139.2340425531916, 'Sarahi'), (1191.6470588235295, 'Sarai Delfina'), (840.0776699029126, 'Saray'), (1081.1666666666667, 'Sari'), (1209.7777777777778, 'Sarlota'), (1235.1960784313726, 'Sarvinoz'), (1033.027027027027, 'Sasa'), (747.3695652173913, 'Saska'), (888.7272727272727, 'Satsuki'), (1142.9285714285713, 'Savannah'), (1188.2941176470588, 'Schena'), (1210.2571428571428, 'Se Hyun'), (1122.4545454545455, 'Se Jin'), (1240.92, 'Sean'), (1003.5367647058823, 'Seda'), (1115.72, 'Seira'), (1168.6571428571428, 'Selin'), (858.9173789173789, 'Seo Kyung'), (889.8028169014085, 'Seone'), (14.654294803817603, 'Serena'), (162.3505747126437, 'Sesil'), (784.0465949820789, 'Seung Yeon'), (218.4701086956522, 'Severine'), (166.41358024691357, 'Shahar'), (924.8818897637796, 'Shakhlo'), (1236.7627118644068, 'Shakhnoza'), (1228.3235294117646, 'Shangqing'), (694.2, 'Shanshan'), (967.9034090909091, 'Shao Yuan'), (851.5633802816901, 'Sharmada'), (296.5792682926829, 'Sharon'), (1097.0, 'Sharon Sanchana'), (372.89398280802294, 'Shelby'), (1171.0, 'Shelly'), (451.8657487091222, 'Sheng Nan'), (649.5154639175257, 'Sherazad'), (1024.0116279069769, 'Sherry'), (500.688679245283, 'Shiho'), (632.2824427480916, 'Shilin'), (1070.6666666666667, 'Shiori'), (1154.4166666666667, 'Shir'), (1187.9245283018868, 'Shiran'), (935.2322946175638, 'Shivika'), (1120.388888888889, 'Shou Na'), (1148.0, 'Shreya'), (1042.6802325581396, 'Shu Ying'), (167.90740740740742, 'Shuai'), (421.44179894179894, 'Shuko'), (864.1538461538462, 'Shuo'), (966.0588235294117, 'Shuyue'), (897.6951219512196, 'Shweta'), (1047.7575757575758, 'Si Qi'), (565.8211508553654, 'Silvia'), (542.2382851445662, 'Simona'), (1070.3417721518988, 'Simone'), (974.8, 'Simran Kaur'), (728.7443609022556, 'Sina'), (975.3484848484849, 'Sinead'), (1141.842105263158, 'Sing Le'), (980.9076923076923, 'Siqi'), (949.7916666666666, 'Sirui'), (1241.1379310344828, 'Siyu'), (259.63589743589745, 'Sloane'), (1184.8260869565217, 'Smriti'), (1225.388888888889, 'Sneha'), (632.3150684931506, 'Snehadevi S'), (514.1732026143791, 'So Jung'), (572.2654545454545, 'So Ra'), (526.3535641547861, 'Sofia'), (1084.107142857143, 'Sofico'), (724.5, 'Sofie'), (541.1570881226054, 'Sofiya'), (640.8727272727273, 'Sofya'), (1004.6666666666666, 'Sohyun'), (1029.0980392156862, 'Sonia'), (885.0976744186047, 'Sonja'), (1221.3333333333333, 'Sophia'), (600.6881091617934, 'Sophie'), (213.75043630017453, 'Sorana'), (813.1357142857142, 'Sowjanya'), (1149.3125, 'Spurti'), (792.1927710843373, 'Sri Vaishnavi'), (841.8387096774194, 'Stamatia'), (312.54158964879855, 'Stanislava'), (993.4255319148937, 'Stefana'), (1167.3333333333333, 'Stefani'), (759.2894995093228, 'Stefania'), (387.73412112259973, 'Stefanie'), (939.746835443038, 'Steffi'), (439.87772357723577, 'Stephanie'), (1035.5548387096774, 'Stephanie Mariel'), (573.6708333333333, 'Storm'), (426.3886462882096, 'Su Jeong'), (217.2493188010899, 'Su Wei'), (911.7619047619048, 'Suellen'), (944.2432432432432, 'Sultan'), (812.4581005586592, 'Sun Jung'), (1229.8, 'Sunae'), (611.0757575757576, 'Sunam'), (635.7449168207024, 'Sung Hee'), (1015.6792452830189, 'Susan'), (417.8053097345133, 'Susanne'), (982.7222222222222, 'Suzan'), (980.6666666666666, 'Suzuho'), (698.7567567567568, 'Suzy'), (844.203007518797, 'Svenja'), (267.03227571115974, 'Svetlana'), (691.9934640522875, 'Sviatlana'), (1002.6792452830189, 'Sybille'), (869.1702127659574, 'Sylvia'), (787.7645348837209, 'Sylwia'), (791.1240506329113, 'Syna'), (772.3186813186813, 'Szabina'), (343.0985324947589, 'Tadeja'), (969.6588235294117, 'Taisiya'), (1230.2, 'Talya'), (949.8059701492538, 'Tamachan'), (1118.4166666666667, 'Tamar'), (614.0434782608696, 'Tamara'), (1146.3934426229507, 'Tamari'), (121.82273948075202, 'Tamarine'), (386.7025316455696, 'Tamaryn'), (135.88910505836577, 'Tamira'), (601.906914893617, 'Tammi'), (1113.2325581395348, 'Tanaporn'), (1023.089430894309, 'Tanya'), (475.2979683972912, 'Tara'), (1075.0, 'Tatia'), (681.9417582417583, 'Tatiana'), (247.7449768160742, 'Tatjana'), (912.1077844311377, 'Tatsiana'), (747.3172413793103, 'Tayisiya'), (387.5662100456621, 'Taylor'), (1068.7457627118645, 'Tea'), (461.06702898550725, 'Teliana'), (614.9346733668342, 'Tena'), (489.27513227513225, 'Teodora'), (557.241418764302, 'Tereza'), (963.5, 'Terri'), (696.2878787878788, 'Tess'), (390.2361111111111, 'Tessah'), (437.4119658119658, 'Tetiana'), (398.83478260869566, 'Tetyana'), (802.7222222222222, 'Thai Sa Grana'), (650.1206896551724, 'Theo'), (1159.5632183908046, 'Theresa'), (1017.7777777777778, 'Tijana'), (182.02426160337552, 'Timea'), (425.82394366197184, 'Tina'), (810.6666666666666, 'Tinatin'), (739.7727272727273, 'Ting Fei'), (789.6113989637306, 'Ting Jr'), (1015.2352941176471, 'Tingting'), (743.1953125, 'Tjasa'), (838.8065217391304, 'Tomoko'), (841.7167381974249, 'Tori'), (878.1666666666666, 'Tornado Alicia'), (1029.3196721311476, 'Trang'), (1009.8666666666667, 'Treta'), (131.02074074074073, 'Tsvetana'), (992.4870588235294, 'Tyra'), (506.39344262295083, 'Ulrikke'), (844.0692307692308, 'Ulyana'), (229.35687022900763, 'Urszula'), (1132.4109589041095, 'Ushna'), (411.5068493150685, 'Usue Maitane'), (921.3333333333334, 'Valentina'), (751.2668918918919, 'Valentine'), (479.8914728682171, 'Valentini'), (368.14331210191085, 'Valentyna'), (661.8474576271186, 'Valeria'), (806.2648401826484, 'Valerie'), (799.8668224299065, 'Valeriya'), (696.4126984126984, 'Vanda'), (579.437984496124, 'Vanesa'), (398.3106546854942, 'Vanessa'), (185.75, 'Vania'), (1130.6037735849056, 'Vaniya'), (1089.7111111111112, 'Vanja'), (450.4642082429501, 'Varatchaya'), (894.3846153846154, 'Varunya'), (382.6888217522659, 'Varvara'), (613.5330490405117, 'Vasilisa'), (859.8103448275862, 'Vaszilisza'), (729.0117647058823, 'Vendula'), (32.984862819299906, 'Venus'), (195.66923570969814, 'Vera'), (958.1327800829876, 'Verena'), (726.1852387843704, 'Veronica'), (951.0075757575758, 'Veronica M'), (734.6018957345972, 'Veronika'), (240.0448979591837, 'Vesna'), (1252.9130434782608, 'Vicky'), (1138.8490566037735, 'Victoire'), (444.9760935910478, 'Victoria'), (1236.0, 'Victoria Ariadna'), (566.9148936170212, 'Viktoria'), (1236.5333333333333, 'Viktoriia'), (507.4, 'Viktorija'), (736.2288557213931, 'Viktoriya'), (966.4671052631579, 'Viktoryia'), (1243.0, 'Vilma Y'), (1214.1142857142856, 'Vincenza'), (1150.0, 'Vinciane'), (1170.840579710145, 'Violetta'), (355.88102893890675, 'Virginie'), (1208.952380952381, 'Vishesh'), (1201.25, 'Vita'), (296.2025641025641, 'Vitalia'), (670.9108527131783, 'Vivian'), (607.2810218978102, 'Vivien'), (659.2103004291846, 'Vivienne'), (595.3291666666667, 'Vlada'), (943.5432098765432, 'Vladica'), (823.8770833333333, 'Vladimira'), (1006.1769911504425, 'Vladislava'), (856.0782608695653, 'Vladyslava'), (555.6572164948453, 'Vojislava'), (999.0215053763441, 'Voni'), (701.4009009009009, 'Wan Ting'), (1081.142857142857, 'Wan Yi'), (1249.3333333333333, 'Warona'), (440.35214446952597, 'Wen Hsin'), (1117.55, 'Wen Ling'), (1011.469696969697, 'Wendy Qi Wen'), (1152.7837837837837, 'Weronika Jasmina'), (886.1407407407407, 'Whitney'), (1083.1454545454546, 'Wiktoria'), (585.2589641434263, 'Wing Yau Venise'), (937.7878787878788, 'Wushuang'), (661.2222222222222, 'Xenia'), (714.8653846153846, 'Xi Yao'), (814.4171122994652, 'Xiao'), (467.24657534246575, 'Xiaodi'), (848.4418604651163, 'Xiaorong'), (737.7547169811321, 'Xiaoxi'), (712.2780373831775, 'Ximena'), (694.4808743169399, 'Xin'), (1022.3333333333334, 'Xin Yu'), (480.646017699115, 'Xinyu'), (309.35767790262173, 'Xinyun'), (954.6, 'Xiyu'), (488.7671232876712, 'Xu Liu'), (1225.75, 'Ya'), (586.865, 'Ya Hsuan'), (325.6162790697674, 'Yafan'), (768.560975609756, 'Yan'), (740.0214504596527, 'Yana'), (1177.8823529411766, 'Yang'), (381.2581602373887, 'Yanina'), (1059.2702702702702, 'Yanni'), (1166.875, 'Yarden'), (211.41240310077518, 'Yaroslava'), (702.1784386617101, 'Yasmin'), (1227.7777777777778, 'Yasmina'), (983.0410958904109, 'Yasmine'), (1261.8181818181818, 'Yasmyn'), (1110.4594594594594, 'Yawna'), (114.78806907378336, 'Yayuk'), (431.3144424131627, 'Ye Ra'), (1048.081081081081, 'Ye Xin'), (1155.8191489361702, 'Yekaterina'), (897.4873949579832, 'Yelena'), (973.8617021276596, 'Yeong Won'), (724.8712871287129, 'Yevgeniya'), (791.0756207674943, 'Yi'), (381.5512572533849, 'Yi Fan'), (656.8787276341948, 'Yi Jing'), (418.2566137566138, 'Yi Miao'), (1185.030303030303, 'Yidi'), (1209.625, 'Yihong'), (1063.9411764705883, 'Yijia'), (661.3972602739726, 'Ying'), (403.8775981524249, 'Ying Ying'), (801.6712328767123, 'Yixuan'), (892.3561643835617, 'Ylena'), (642.9487179487179, 'Ylona Georgiana'), (1128.901098901099, 'Yoko'), (1068.4619883040937, 'Yolande'), (1263.7666666666667, 'Yoo Ri'), (844.9310344827586, 'Yoon Young'), (1096.9130434782608, 'Yoshimi'), (1222.24, 'Yosr'), (1170.3461538461538, 'You Na'), (458.86633663366337, 'Ysaline'), (1098.357142857143, 'Yu Jin'), (1239.6666666666667, 'Yu Tong'), (1054.0, 'Yuan'), (891.2340425531914, 'Yuanyi'), (983.359649122807, 'Yue'), (444.96190476190475, 'Yue Yue'), (961.876923076923, 'Yuenu'), (1034.1304347826087, 'Yujia'), (748.8250591016548, 'Yuka'), (1071.5833333333333, 'Yukako'), (876.7428571428571, 'Yuki'), (698.8285714285714, 'Yuki Kristina'), (857.1692307692308, 'Yukina'), (824.3936170212766, 'Yukun'), (485.35135135135135, 'Yulia'), (725.5322195704057, 'Yuliana'), (384.87776983559684, 'Yuliya'), (799.1332586786115, 'Yumi'), (166.6586270871985, 'Yung Jan'), (1047.3529411764705, 'Yuqi'), (322.17758620689654, 'Yurika'), (1041.5367231638418, 'Yuriko'), (746.4803493449782, 'Yurina'), (608.1309090909091, 'Yuuki'), (1230.2, 'Yuval'), (545.449074074074, 'Yuxuan'), (318.2867132867133, 'Yvonne'), (1227.344827586207, 'Zaineb'), (867.5288461538462, 'Zalina'), (709.625, 'Zarah'), (222.81428571428572, 'Zarina'), (791.2352941176471, 'Zeel'), (1229.5714285714287, 'Zeynep  Sena'), (627.7777777777778, 'Zhanlan'), (629.0081967213115, 'Zhaoxuan'), (1058.0, 'Zhibek'), (1144.45, 'Zhima'), (1237.9, 'Zhou'), (989.75, 'Zhuoma'), (391.4656290531777, 'Zi'), (1221.5, 'Zinovia'), (878.4606741573034, 'Ziyue'), (765.3777777777777, 'Zoe'), (935.081081081081, 'Zoe Gwen'), (916.559633027523, 'Zsofia'), (451.92875448487956, 'Zuzana'), (794.5416666666666, 'Zuzanna')]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 56,
+    "db_id": "student_transcripts_tracking",
+    "question": "Find the last name of the students who currently live in the state of North Carolina but have not registered in any degree program.",
+    "gold_sql": "SELECT T1.last_name FROM Students AS T1 JOIN Addresses AS T2 ON T1.current_address_id  =  T2.address_id WHERE T2.state_province_county  =  'NorthCarolina' EXCEPT SELECT DISTINCT T3.last_name FROM Students AS T3 JOIN Student_Enrolment AS T4 ON T3.student_id  =  T4.student_id",
+    "pred_sql": "<think>\nOkay, let's tackle this problem. The user wants the last names of students who currently live in North Carolina but haven't registered in any degree program. \n\nFirst, I need to figure out which tables are involved. The Students table has current_address_id and permanent_address_id, which are linked to the Addresses table. So I need to check the state_province_county in the Addresses table for North Carolina. \n\nThen, the Students table has a student_id, and the Student_Enrolment table links to the Degree_Programs. But the question is about students who haven't registered in any degree program. So I need to find students who are in the Students table but not in any Student_Enrolment records.\n\nWait, but how do I check if they have registered in any degree program? The Student_Enrolment table has a degree_program_id, so if a student has no entries in Student_Enrolment, they haven't registered. But I need to make sure they are currently living in NC. \n\nSo the steps are:\n\n1. Find all students where their current_address_id's state_province_county is 'North Carolina'.\n2. Exclude students who have any entries in Student_Enrolment (since they have registered).\n3",
+    "pred_error": "near \"<\": syntax error",
+    "gold_result": "[('Gleichner',), ('Weimann',)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 57,
+    "db_id": "car_1",
+    "question": "What is the average weight of cars each year?",
+    "gold_sql": "SELECT avg(Weight) ,  YEAR FROM CARS_DATA GROUP BY YEAR;",
+    "pred_sql": "SELECT Year, AVG(Weight) AS AverageWeight\nFROM cars_data\nGROUP BY Year",
+    "pred_error": null,
+    "gold_result": "[(3441.3142857142857, 1970), (2960.344827586207, 1971), (3237.714285714286, 1972), (3419.025, 1973), (2877.925925925926, 1974), (3176.8, 1975), (3078.735294117647, 1976), (2997.3571428571427, 1977), (2861.8055555555557, 1978), (3055.344827586207, 1979), (2436.655172413793, 1980), (2532.1666666666665, 1981), (2453.548387096774, 1982)]",
+    "pred_result": "[(1970, 3441.3142857142857), (1971, 2960.344827586207), (1972, 3237.714285714286), (1973, 3419.025), (1974, 2877.925925925926), (1975, 3176.8), (1976, 3078.735294117647), (1977, 2997.3571428571427), (1978, 2861.8055555555557), (1979, 3055.344827586207), (1980, 2436.655172413793), (1981, 2532.1666666666665), (1982, 2453.548387096774)]"
+  },
+  {
+    "question_id": 58,
+    "db_id": "dog_kennels",
+    "question": "What are the first name and last name of the professionals who have done treatment with cost below average?",
+    "gold_sql": "SELECT DISTINCT T1.first_name ,  T1.last_name FROM Professionals AS T1 JOIN Treatments AS T2 WHERE cost_of_treatment  <  ( SELECT avg(cost_of_treatment) FROM Treatments )",
+    "pred_sql": "with the Professionals table because each treatment is linked to a professional via professional_id. So I'll need a JOIN on Professionals.professional_id = Treatments.professional_id.\n\nThen, I need to filter the treatments where cost_of_treatment < (AVG of cost_of_treatment). But I have to make sure that the average is calculated correctly. Also, I need to make sure that there are no NULL values in the cost_of_treatment, but the problem probably assumes",
+    "pred_error": "near \"Professionals\": syntax error",
+    "gold_result": "[('Taryn', 'Braun'), ('Jayson', 'Ullrich'), ('Olaf', 'Watsica'), ('Vernice', 'Tillman'), ('Danny', 'Considine'), ('Ruben', \"O'Reilly\"), ('Velva', 'Hayes'), ('Karley', 'Hyatt'), ('Monte', 'Kshlerin'), ('Domenica', 'Jacobs'), ('Brady', 'Pouros'), ('Winfield', 'Christiansen'), ('Ericka', 'Murazik'), ('Sigurd', 'Frami'), ('Lesly', 'Walter')]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 59,
+    "db_id": "course_teach",
+    "question": "List the name of teachers whose hometown is not \"Little Lever Urban District\".",
+    "gold_sql": "SELECT Name FROM teacher WHERE Hometown != \"Little Lever Urban Distric\"",
+    "pred_sql": "",
+    "pred_error": null,
+    "gold_result": "[('Joseph Huts',), ('Gustaaf Deloor',), ('Vicente Carretero',), ('John Deloor',), ('Kearsley Brown',), ('Anne Walker',), ('Lucy Wong',)]",
+    "pred_result": "[]"
+  },
+  {
+    "question_id": 60,
+    "db_id": "pets_1",
+    "question": "For students who have pets, how many pets does each student have?",
+    "gold_sql": "SELECT count(*) ,  T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid GROUP BY T1.stuid",
+    "pred_sql": "with Has_Pet on StuID, group by StuID, and then count the number of entries in Has_Pet for each student.\n\nBut wait, each entry in Has_Pet is a pet. So if a student has multiple pets, there will be multiple entries in Has_Pet for that student. So the",
+    "pred_error": "near \"on\": syntax error",
+    "gold_result": "[(1, 1001), (2, 1002)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 61,
+    "db_id": "student_transcripts_tracking",
+    "question": "When is the first transcript released? List the date and details.",
+    "gold_sql": "SELECT transcript_date ,  other_details FROM Transcripts ORDER BY transcript_date ASC LIMIT 1",
+    "pred_sql": "select the transcript_date and other_details from Transcripts where the transcript_date is the earliest. To get the earliest, we can order by transcript_date and limit to 1. But since there could be multiple transcripts, but the first one is the earliest, we can use ORDER BY transcript_date ASC and LIMIT 1.\n\nBut wait, the question says \"the first transcript released,\" which might be the earliest",
+    "pred_error": "near \"and\": syntax error",
+    "gold_result": "[('1975-05-06 12:04:47', None)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 64,
+    "db_id": "tvshow",
+    "question": "find the id of tv channels that do not play any cartoon directed by Ben Jones.",
+    "gold_sql": "SELECT id FROM TV_Channel EXCEPT SELECT channel FROM cartoon WHERE directed_by  =  'Ben Jones'",
+    "pred_sql": "with TV_Channel on Cartoon.Channel",
+    "pred_error": "near \"on\": syntax error",
+    "gold_result": "[('701',), ('703',), ('705',), ('706',), ('708',), ('709',), ('713',), ('714',), ('715',), ('717',), ('719',)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 65,
+    "db_id": "tvshow",
+    "question": "which countries' tv channels are playing some cartoon written by Todd Casey?",
+    "gold_sql": "SELECT T1.country FROM TV_Channel AS T1 JOIN cartoon AS T2 ON T1.id = T2.Channel WHERE T2.written_by  =  'Todd Casey'",
+    "pred_sql": "SELECT TV_Channel.Country\nFROM",
+    "pred_error": "incomplete input",
+    "gold_result": "[('United Kingdom',), ('Italy',)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 66,
+    "db_id": "network_1",
+    "question": "What is the name of the high schooler who has the greatest number of likes?",
+    "gold_sql": "SELECT T2.name FROM Likes AS T1 JOIN Highschooler AS T2 ON T1.student_id  =  T2.id GROUP BY T1.student_id ORDER BY count(*) DESC LIMIT 1",
+    "pred_sql": "with ID, name, grade. Then Friend and Likes tables. The Likes table has student_id and liked_id, which are foreign keys to Highschooler.ID. So each like is a record where the student_id is in Highschooler's ID, and liked_id is another student (maybe the person they like? Or maybe the liked_id is the person they like, but the schema says liked_id is Highschooler.ID, so it's another student.\n\nWait, the Likes table's liked_id is a foreign key to Highschooler.ID. So each like is a student (student_id) liking another student (liked_id). So the Likes table is a many-to-many relationship? Or maybe each like is a record where a student likes another. So for each like, the student_id is the one who likes, and liked_id is the person they like. So the number of likes for a student is the count",
+    "pred_error": "near \",\": syntax error",
+    "gold_result": "[('John',)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 67,
+    "db_id": "network_1",
+    "question": "Show the student IDs and numbers of friends corresponding to each.",
+    "gold_sql": "SELECT student_id ,  count(*) FROM Friend GROUP BY student_id",
+    "pred_sql": "<think>\nOkay, let's see. The user wants to show student IDs and the number of friends corresponding to each. So, the database has three tables: Highschooler, Friend, and Likes. \n\nFirst, I need to figure out which tables are involved. The Highschooler table has the student IDs and their grades. The Friend table links students to their friends, and the Likes table shows who likes whom. But the question is about the number of friends each student has. \n\nWait, the Friend table has student_id and friend_id. So each entry in Friend represents a friendship between two students. But how do we count the number of friends per student? Each student can have multiple friends, so we need to count the number of entries in the Friend table for each student_id.\n\nBut wait, the Friend table's student_id is a foreign key referencing Highschooler.ID. So, for each student, the number of friends would be the count of distinct friend_id entries in the Friend table where the student_id matches. But since each friend relationship is a pair (student A and student B), maybe we need to count the number of friends each student has, considering that each friendship is a pair. However, if we just count the number of entries in Friend",
+    "pred_error": "near \"<\": syntax error",
+    "gold_result": "[(1101, 1), (1247, 2), (1304, 1), (1316, 1), (1381, 1), (1468, 2), (1501, 1), (1510, 2), (1661, 1), (1689, 2), (1709, 1), (1782, 3), (1911, 1), (1934, 1)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 68,
+    "db_id": "cre_Doc_Template_Mgt",
+    "question": "What are the ids and names of each document, as well as the number of paragraphs in each?",
+    "gold_sql": "SELECT T1.document_id ,  T2.document_name ,  count(*) FROM Paragraphs AS T1 JOIN Documents AS T2 ON T1.document_id  =  T2.document_id GROUP BY T1.document_id",
+    "pred_sql": "with the number of paragraphs in each. So, I need to find a way to get the Document_ID, Document_Name, and then count the number of paragraphs per document.\n\nFirst, looking at the tables. The Documents table has Document_ID, Template_ID, Document_Name, and Other_Details. The Paragraphs table has Paragraph_ID, Document_ID, Paragraph_Text, and Other_Details. So, each document can have multiple paragraphs.\n\nThe goal is to get for each document: Document_ID, Document_Name, and the count of paragraphs. So, I need to join the Documents and Paragraphs tables on Document_ID. Then, group by Document_ID and count the number of paragraphs.\n\nBut wait, the count of paragraphs would be the number of rows in the Paragraphs table where the Document_ID matches. So, using a COUNT(*) on the Paragraphs table, grouped by Document_ID.\n\nSo the SQL query would involve selecting Document_ID, Document_Name, and COUNT(Paragraph_ID) as Paragraph_Count. Then joining Documents and Paragraphs on Document_ID.\n\nBut I need to make sure that the join is correct. The foreign key is Document_ID in Paragraphs referencing Documents.Document_ID. So",
+    "pred_error": "near \"number\": syntax error",
+    "gold_result": "[(3, 'Summer Show', 1), (80, 'Welcome to NY', 2), (2394, 'Customer reviews', 3), (3830, 'Do not panic', 1), (33930, 'How Google people work', 1), (50123, 'Learning French', 1), (651512, 'How to write a CV', 2), (3540024, 'Palm reading', 1), (16514113, 'A history of Arts', 2), (385906526, 'About Korea', 1)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 69,
+    "db_id": "tvshow",
+    "question": "list all cartoon titles and their directors ordered by their air date",
+    "gold_sql": "SELECT title ,  Directed_by FROM Cartoon ORDER BY Original_air_date",
+    "pred_sql": "select Title, Directed_by from the Cartoon table, order by Original_air_date. But wait, the Original_air_date is in the Cartoon table. So the query is straightforward.\n\nBut I need to make sure that the columns are correct. Let me check the schema again. Yes, Cartoon has Original_air_date as a",
+    "pred_error": "near \"table\": syntax error",
+    "gold_result": "[('Invasion of the Secret Santas!', 'Brandon Vietti'), ('Evil Under the Sea!', 'Michael Chang'), ('Return of the Fearsome Fangs!', 'Brandon Vietti'), ('Deep Cover for Batman!', 'Michael Chang'), ('The Eyes of Despero!', 'Ben Jones'), ('Dawn of the Dead Man!', 'Ben Jones'), ('Day of the Dark Knight!', 'Ben Jones'), ('Fall of the Blue Beetle!', 'Brandon Vietti'), ('Journey to the Center of the Bat!', 'Michael Chang'), ('Enter the Outsiders!', 'Michael Chang'), ('The Rise of the Blue Beetle!', 'Ben Jones'), ('Terror on Dinosaur Island!', 'Brandon Vietti')]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 72,
+    "db_id": "pets_1",
+    "question": "Find the average and maximum age for each type of pet.",
+    "gold_sql": "SELECT avg(pet_age) ,  max(pet_age) ,  pettype FROM pets GROUP BY pettype",
+    "pred_sql": "<think>\nOkay, let's see. The user wants the average and maximum age for each type of pet. So first, I need to figure out how to get the pet types and their ages.\n\nThe tables involved are Has_Pet and Pets. The Has_Pet table links students to their pets via StuID and PetID. The Pets table has PetType, pet_age, and weight. So, to get the pet types, I need to join these two tables on PetID.\n\nWait, the Pets table has PetType, and the Has_Pet has PetID. So, joining them on PetID would give me the PetType and the pet_age from Pets. But the question is about the average and maximum age for each pet type. So, I need to group by PetType.\n\nBut wait, the PetAge in the Pets table is the age of the pet. So, for each PetType, I need to calculate the average and maximum of pet_age.\n\nSo the steps are: join Has_Pet and Pets on PetID, then group by PetType, and then calculate AVG(pet_age) and MAX(pet_age).\n\nBut wait, the question says \"average and maximum age for each type of pet.\" So, the PetType",
+    "pred_error": "near \"<\": syntax error",
+    "gold_result": "[(3.0, 3, 'cat'), (1.5, 2, 'dog')]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 75,
+    "db_id": "flight_2",
+    "question": "What are airlines that have some flight departing from airport 'AHD'?",
+    "gold_sql": "SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline WHERE T2.SourceAirport  =  \"AHD\"",
+    "pred_sql": "with the airports table on SourceAirport to get the airport's name or code. But the question is about the airport code, not the name. However, the user is asking for airlines that have flights departing from 'AHD",
+    "pred_error": "near \"airports\": syntax error",
+    "gold_result": "[]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 76,
+    "db_id": "world_1",
+    "question": "Give the name, population, and head of state for the country that has the largest area.",
+    "gold_sql": "SELECT Name ,  population ,  HeadOfState FROM country ORDER BY SurfaceArea DESC LIMIT 1",
+    "pred_sql": "with the same maximum area. However, the question says \"the country\", implying one. But maybe there are multiple. But the SQL query should return all of them. However, the user might expect a single row. But the problem says \"the country",
+    "pred_error": "near \"same\": syntax error",
+    "gold_result": "[('Russian Federation', 146934000, 'Vladimir Putin')]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 78,
+    "db_id": "pets_1",
+    "question": "Find the first name and gender of student who have more than one pet.",
+    "gold_sql": "SELECT T1.fname ,  T1.sex FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid GROUP BY T1.stuid HAVING count(*)  >  1",
+    "pred_sql": "with count > 1.\n\nBut wait, the Has_Pet table has StuID and PetID. So, each entry in Has_Pet represents a pet for a student. So, if a student has two pets, there would",
+    "pred_error": "near \">\": syntax error",
+    "gold_result": "[('Tracy', 'F')]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 79,
+    "db_id": "network_1",
+    "question": "Count the number of high schoolers in grades 9 or 10.",
+    "gold_sql": "SELECT count(*) FROM Highschooler WHERE grade  =  9 OR grade  =  10",
+    "pred_sql": "SELECT COUNT(*) FROM Highschooler WHERE grade = 9 OR grade = 10. Or using IN (9,10). Both should work. But maybe the user prefers",
+    "pred_error": "near \"using\": syntax error",
+    "gold_result": "[(8,)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 81,
+    "db_id": "network_1",
+    "question": "Return the name of the high school student with the most friends.",
+    "gold_sql": "SELECT T2.name FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id  =  T2.id GROUP BY T1.student_id ORDER BY count(*) DESC LIMIT 1",
+    "pred_sql": "with student_id B and friend_id A. So to count the number of friends per student, we need to count the number of entries in the Friend table where the student_id is the same as the student in question, but we have to be careful not to double count.\n\nWait, but the Friend table's foreign key is Friend.friend_id = Highschooler.ID. So each friend relationship is stored as a pair. But when counting friends, each student's friends are the ones they are connected to. So for each student, the number of friends is",
+    "pred_error": "near \"B\": syntax error",
+    "gold_result": "[('Andrew',)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 82,
+    "db_id": "car_1",
+    "question": "Which distinct car models are the produced after 1980?",
+    "gold_sql": "SELECT DISTINCT T1.model FROM MODEL_LIST AS T1 JOIN CAR_NAMES AS T2 ON T1.model  =  T2.model JOIN CARS_DATA AS T3 ON T2.MakeId  =  T3.id WHERE T3.year  >  1980;",
+    "pred_sql": "with car_makers on model_list.Maker = car_makers.Id. Then, the car_makers.Country is linked to countries.CountryId, which is linked to continents.ContId. But the question doesn't mention continents, so maybe that's not needed. \n\nBut the problem is that the",
+    "pred_error": "near \"on\": syntax error",
+    "gold_result": "[('plymouth',), ('buick',), ('dodge',), ('chevrolet',), ('toyota',), ('honda',), ('subaru',), ('datsun',), ('mazda',), ('ford',), ('volkswagen',), ('renault',), ('peugeot',), ('saab',), ('volvo',), ('oldsmobile',), ('chrysler',), ('pontiac',), ('amc',), ('mercury',), ('nissan',)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 83,
+    "db_id": "dog_kennels",
+    "question": "What is the age of the oldest dog?",
+    "gold_sql": "SELECT max(age) FROM Dogs",
+    "pred_sql": "<think>\nOkay, let's see. The question is asking for the age of the oldest dog. So I need to find the maximum age from the Dogs table. But wait, the age is stored as a text field. Hmm, that's a problem. Because text can't be compared numerically. Oh right, but maybe the age is stored as a string in a format like '5 years old' or something. But the question is just asking for the age, so maybe the age is stored as a number. Wait, looking at the schema again: the Dogs table has a column called age, which is of type text. So the age is stored as a text string, not a number. So how do I compare it?\n\nWait, but maybe the age is stored as a numeric value. Wait, the question says \"age of the oldest dog\". If the age is stored as text, like '5 years', then comparing them as text would be tricky. But maybe the age is stored as a numeric value. Wait, the schema says age is text. So maybe the age is stored as a string, like '5 years', but the question is just asking for the age, not the numeric value. But how can I get the maximum age?\n\nWait",
+    "pred_error": "near \"<\": syntax error",
+    "gold_result": "[('9',)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 84,
+    "db_id": "dog_kennels",
+    "question": "What are all the possible breed type and size type combinations?",
+    "gold_sql": "SELECT DISTINCT breed_code ,  size_code FROM dogs",
+    "pred_sql": "select a combination of breed_name and size_description from Breeds and Sizes. But since they are separate tables, I need to join them on their primary keys. Wait, the Breeds table's primary key is breed_code, and Sizes' is size_code. So the join",
+    "pred_error": "near \"of\": syntax error",
+    "gold_result": "[('ESK', 'LGE'), ('BUL', 'LGE'), ('BUL', 'MED'), ('HUS', 'MED'), ('ESK', 'SML'), ('HUS', 'SML'), ('ESK', 'MED')]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 85,
+    "db_id": "wta_1",
+    "question": "What is the name of the winner who has won the most matches, and how many rank points does this player have?",
+    "gold_sql": "SELECT winner_name ,  winner_rank_points FROM matches GROUP BY winner_name ORDER BY count(*) DESC LIMIT 1",
+    "pred_sql": "with the players table to get the player's name, and",
+    "pred_error": "near \"players\": syntax error",
+    "gold_result": "[('Angelique Kerber', 3715)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 87,
+    "db_id": "orchestra",
+    "question": "List the names of orchestras that have no performance.",
+    "gold_sql": "SELECT Orchestra FROM orchestra WHERE Orchestra_ID NOT IN (SELECT Orchestra_ID FROM performance)",
+    "pred_sql": "select Orchestra_ID from performance). But wait, the performance table has Orchestra_ID, so the subquery would get all Orchestra_IDs that are in performance. Then,",
+    "pred_error": "near \")\": syntax error",
+    "gold_result": "[('San Francisco Symphony Orchestra',)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 88,
+    "db_id": "cre_Doc_Template_Mgt",
+    "question": "What is the document id and name with greatest number of paragraphs?",
+    "gold_sql": "SELECT T1.document_id ,  T2.document_name FROM Paragraphs AS T1 JOIN Documents AS T2 ON T1.document_id  =  T2.document_id GROUP BY T1.document_id ORDER BY count(*) DESC LIMIT 1",
+    "pred_sql": "with the same maximum count? The question says \"greatest number of paragraphs\", so if there are multiple, they should both be included. But the SQL might need to use LIMIT 1, but maybe the",
+    "pred_error": "near \"same\": syntax error",
+    "gold_result": "[(2394, 'Customer reviews')]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 89,
+    "db_id": "car_1",
+    "question": "For all of the 4 cylinder cars, which model has the most horsepower?",
+    "gold_sql": "SELECT T1.Model FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId  =  T2.Id WHERE T2.Cylinders  =  4 ORDER BY T2.horsepower DESC LIMIT 1;",
+    "pred_sql": "with car_names, and then cars_data.\n\nWait, the car_names table has Make (which is the maker) and Model. So, for each car",
+    "pred_error": "near \",\": syntax error",
+    "gold_result": "[('ford',)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 90,
+    "db_id": "cre_Doc_Template_Mgt",
+    "question": "Show the document id with paragraph text 'Brazil' and 'Ireland'.",
+    "gold_sql": "SELECT document_id FROM Paragraphs WHERE paragraph_text  =  'Brazil' INTERSECT SELECT document_id FROM Paragraphs WHERE paragraph_text  =  'Ireland'",
+    "pred_sql": "select Document_ID from Paragraphs where Paragraph_Text is either of those. \n\nBut maybe the user wants to get",
+    "pred_error": "near \"of\": syntax error",
+    "gold_result": "[(16514113,)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 91,
+    "db_id": "cre_Doc_Template_Mgt",
+    "question": "Show all paragraph ids and texts for the document with name 'Welcome to NY'.",
+    "gold_sql": "SELECT T1.paragraph_id ,   T1.paragraph_text FROM Paragraphs AS T1 JOIN Documents AS T2 ON T1.document_id  =  T2.document_id WHERE T2.Document_Name  =  'Welcome to NY'",
+    "pred_sql": "select Paragraph_ID and Paragraph_Text, and filter where Documents.Document_Name is 'Welcome to NY'.\n\nLet me check the tables again. The Documents table has Document_ID, Template_ID, Document_Name, etc. The Paragraphs have Document_ID, Paragraph_Text. So yes, joining on Document_ID is correct.\n\nSo the query would be:\n\nSELECT",
+    "pred_error": "near \"and\": syntax error",
+    "gold_result": "[(16615, 'Japan'), (608931827, 'Micronesia')]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 92,
+    "db_id": "flight_2",
+    "question": "Give the number of Jetblue Airways flights.",
+    "gold_sql": "SELECT count(*) FROM FLIGHTS AS T1 JOIN AIRLINES AS T2 ON T1.Airline  =  T2.uid WHERE T2.Airline = \"JetBlue Airways\"",
+    "pred_sql": "SELECT uid FROM airlines WHERE Airline = 'Jetblue Airways')",
+    "pred_error": "near \")\": syntax error",
+    "gold_result": "[(100,)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 94,
+    "db_id": "employee_hire_evaluation",
+    "question": "Return the name, location and district of all shops in descending order of number of products.",
+    "gold_sql": "SELECT name ,  LOCATION ,  district FROM shop ORDER BY number_products DESC",
+    "pred_sql": "SELECT Name, Location, District FROM shop ORDER BY Number_products DESC. \n\nLet me check if there are any possible issues. The Number_products is a number, so it's okay. The columns are all present in the shop table. No foreign key issues here since the question doesn't require any joins. \n\nYes, that should do it. The",
+    "pred_error": "near \".\": syntax error",
+    "gold_result": "[('FC Lahti', 'Lahti', 'Lahden Stadion'), ('HJK', 'Helsinki', 'Finnair Stadium'), ('FC Inter', 'Turku', 'Veritas Stadion'), ('FC Honka', 'Espoo', 'Tapiolan Urheilupuisto'), ('FF Jaro', 'Jakobstad', 'Jakobstads Centralplan'), ('FC KooTeePee', 'Kotka', 'Arto Tolsa Areena'), ('FC Haka', 'Valkeakoski', 'Tehtaan kenttä'), ('KuPS', 'Kuopio', 'Magnum Areena'), ('IFK Mariehamn', 'Mariehamn', 'Wiklöf Holding Arena')]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 96,
+    "db_id": "voter_1",
+    "question": "What are the create dates, states, and phone numbers of the votes that were for the contestant named 'Tabatha Gehling'?",
+    "gold_sql": "SELECT T2.created ,  T2.state ,  T2.phone_number FROM contestants AS T1 JOIN votes AS T2 ON T1.contestant_number  =  T2.contestant_number WHERE T1.contestant_name  =  'Tabatha Gehling'",
+    "pred_sql": "with CONTESTANTS on contestant_number where contestant_name is 'Tabatha Gehling'. \n\nI need to make sure the join is correct. The foreign key is VOTES.contestant_number = CONTESTANTS.contestant_number. So the JOIN condition is correct. \n\nAlso, the created column is in the VOTES table, so that's straightforward. The state is from the",
+    "pred_error": "near \"on\": syntax error",
+    "gold_result": "[('2018-03-09 19:03:21', 'NY', 7182887233)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 97,
+    "db_id": "poker_player",
+    "question": "List the names of poker players ordered by the final tables made in ascending order.",
+    "gold_sql": "SELECT T1.Name FROM people AS T1 JOIN poker_player AS T2 ON T1.People_ID  =  T2.People_ID ORDER BY T2.Final_Table_Made",
+    "pred_sql": "SELECT p.Name\nFROM poker_player p\nJOIN people pe ON p.People_ID = pe.People_ID\nORDER BY p.Final_Table_Made ASC",
+    "pred_error": "no such column: p.Name",
+    "gold_result": "[('Teodor Salparov',), ('Maksim Botin',), ('Yevgeni Sivozhelez',), ('Semen Poltavskiy',), ('Aleksey Ostapenko',)]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 98,
+    "db_id": "pets_1",
+    "question": "Find the average weight for each pet type.",
+    "gold_sql": "SELECT avg(weight) ,  pettype FROM pets GROUP BY pettype",
+    "pred_sql": "SELECT PetType, AVG(weight) FROM Pets GROUP BY PetType.\n\nBut let me check the schema again. The Pets table has PetID, PetType, pet_age, weight. The foreign key",
+    "pred_error": "near \"let\": syntax error",
+    "gold_result": "[(12.0, 'cat'), (11.350000000000001, 'dog')]",
+    "pred_result": "None"
+  },
+  {
+    "question_id": 99,
+    "db_id": "tvshow",
+    "question": "What is the TV Channel of TV series with Episode \"A Love of a Lifetime\"? List the TV Channel's series name.",
+    "gold_sql": "SELECT T1.series_name FROM TV_Channel AS T1 JOIN TV_series AS T2 ON T1.id = T2.Channel WHERE T2.Episode = \"A Love of a Lifetime\";",
+    "pred_sql": "with Episode \"A Love of a Lifetime\"? List",
+    "pred_error": "near \"\"A Love of a Lifetime\"\": syntax error",
+    "gold_result": "[('Sky Radio',)]",
+    "pred_result": "None"
+  }
+]

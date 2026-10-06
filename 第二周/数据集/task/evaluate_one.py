@@ -11,12 +11,10 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 from build_schema import db_schemas, build_schema_text
 
 # ============ 配置 ============
-#DATA_DIR = "/Users/xiaotao/PycharmProjects/DataAgentSystem/第二周/数据集"
-DATA_DIR = "/root/fsas/home/xiaotao/xiaotao/spider"
+DATA_DIR = "/Users/xiaotao/PycharmProjects/DataAgentSystem/第二周/数据集"
+#DATA_DIR = "/root/fsas/home/xiaotao/xiaotao/spider"
 MODEL_NAME = "Qwen/Qwen3-0.6B"  # 之后可改成 1.7B
 SAMPLE_INDEX = 0  # 先跑第 0 条，之后可以改
-
-
 # ============ Prompt 构造 ============
 def build_prompt(schema_text, question):
     return f"""You are a SQLite expert. Given a database schema and a question, write a SQL query that answers the question. Only output the SQL query, no explanation, no markdown fences.
