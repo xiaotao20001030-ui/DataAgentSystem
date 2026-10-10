@@ -6,6 +6,28 @@ import sqlite3
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
+
+# # ① 加载（套路固定）
+# tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, trust_remote_code=True)
+# model = AutoModelForCausalLM.from_pretrained(
+#     MODEL_NAME, torch_dtype="auto", device_map="auto", trust_remote_code=True
+# )
+#
+# # ② 构造输入（套路固定）
+# messages = [{"role": "user", "content": prompt}]
+# inputs = tokenizer.apply_chat_template(
+#     messages, add_generation_prompt=True, tokenize=True,
+#     return_dict=True, return_tensors="pt"
+# ).to(model.device)
+#
+# # ③ 生成（套路固定）
+# with torch.no_grad():
+#     outputs = model.generate(**inputs, max_new_tokens=256, do_sample=False)
+#
+# # ④ 解码（套路固定）
+# raw = tokenizer.decode(
+#     outputs[0][inputs["input_ids"].shape[-1]:], skip_special_tokens=True
+# )
 # ============ 配置 ============
 # 强制使用国内镜像下载模型
 os.environ["HF_ENDPOINT"] = "https://hf-mirror.com"
@@ -15,7 +37,7 @@ os.environ["HF_ENDPOINT"] = "https://hf-mirror.com"
 DATA_DIR = "/Users/xiaotao/PycharmProjects/DataAgentSystem/第二周/数据集"
 MODEL_NAME = "Qwen/Qwen3-0.6B"  # 跑完 0.6B 后改成 1.7B 再跑一次
 NUM_SAMPLES = 100  # 抽取 100 条
-RANDOM_SEED = 42   # 固定随机种子，保证每次抽的 100 条是一样的
+RANDOM_SEED = 42  # 固定随机种子，保证每次抽的 100 条是一样的
 
 # 读取tables.json数据
 with open(os.path.join(DATA_DIR, "tables.json"), encoding="utf-8") as f:
@@ -68,6 +90,7 @@ def build_prompt(schema_text, question):
 ### SQL:
 """
 
+
 def clean_sql(text):
     """从模型输出里提取纯 SQL（保持你原有逻辑，略作优化）"""
     text = text.strip()
@@ -96,7 +119,8 @@ def clean_sql(text):
     text = text.split(";")[0].strip()
     return text
 
-#执行sql
+
+# 执行sql
 def execute_sql(db_path, sql):
     try:
         conn = sqlite3.connect(db_path)
@@ -111,8 +135,10 @@ def execute_sql(db_path, sql):
 
 def is_correct(pred_result, gold_result):
     if pred_result is None: return False
+
     def normalize(rows):
         return sorted([tuple(str(c) for c in row) for row in rows])
+
     return normalize(pred_result) == normalize(gold_result)
 
 
@@ -202,6 +228,7 @@ def main():
     with open(error_file, "w", encoding="utf-8") as f:
         json.dump(error_cases, f, ensure_ascii=False, indent=2)
     print(f"\n已将 {len(error_cases)} 个错误案例保存至 {error_file}，请打开进行人工分类。", flush=True)
+
 
 if __name__ == "__main__":
     main()
