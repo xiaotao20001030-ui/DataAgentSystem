@@ -16,3 +16,6 @@ results-*/
 griffith-bigdata/
 models/
 .env
+第四周/minidev/
+*.sqlite
+*.sql
