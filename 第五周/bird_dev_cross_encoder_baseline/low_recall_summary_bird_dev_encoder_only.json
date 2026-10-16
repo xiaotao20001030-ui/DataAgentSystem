@@ -1,0 +1,10 @@
+{
+  "total_samples": 1534,
+  "low_recall_samples": 1282,
+  "low_recall_percentage": 83.57235984354628,
+  "evaluation_mode": "encoder_only",
+  "exclude_foreign_keys": false,
+  "evaluation_type": "threshold",
+  "threshold": 0.0,
+  "k_values": null
+}

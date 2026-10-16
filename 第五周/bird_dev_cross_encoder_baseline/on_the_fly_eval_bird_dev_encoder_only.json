@@ -1,0 +1,23 @@
+{
+  "evaluation_mode": "encoder_only",
+  "exclude_foreign_keys": false,
+  "per_db": {
+    "unknown": {
+      "n_tables": 0,
+      "n_columns": 0,
+      "avg_embed_s": 6.895705254935457e-07,
+      "avg_infer_s": 0.19637364684588932
+    }
+  },
+  "overall_avg_embed_s": 6.895705254935457e-07,
+  "overall_avg_infer_s": 0.19637364684588932,
+  "roc_auc_micro": 0.6236952622870329,
+  "pr_auc_micro": 0.08183760823411607,
+  "threshold": 0.0,
+  "threshold_stats": {
+    "Raw_P": 0.7732833657047554,
+    "Raw_R": 0.26078878748370277,
+    "Steiner_P": 0.7719845366751428,
+    "Steiner_R": 0.2823855052668612
+  }
+}

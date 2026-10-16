@@ -1,0 +1,83 @@
+{
+  "evaluation_mode": "end2end",
+  "exclude_foreign_keys": false,
+  "per_db": {
+    "california_schools": {
+      "n_tables": 3,
+      "n_columns": 89,
+      "avg_embed_s": 0.26644837565385227,
+      "avg_infer_s": 0.01712616468162349
+    },
+    "financial": {
+      "n_tables": 8,
+      "n_columns": 55,
+      "avg_embed_s": 0.16594312110704915,
+      "avg_infer_s": 0.010118441252073026
+    },
+    "toxicology": {
+      "n_tables": 4,
+      "n_columns": 11,
+      "avg_embed_s": 0.053280490566173504,
+      "avg_infer_s": 0.008850830549309994
+    },
+    "card_games": {
+      "n_tables": 7,
+      "n_columns": 117,
+      "avg_embed_s": 0.34503663361014025,
+      "avg_infer_s": 0.00936620025188511
+    },
+    "codebase_community": {
+      "n_tables": 8,
+      "n_columns": 71,
+      "avg_embed_s": 0.20485605841242177,
+      "avg_infer_s": 0.009565531556564633
+    },
+    "superhero": {
+      "n_tables": 10,
+      "n_columns": 31,
+      "avg_embed_s": 0.09836197274830914,
+      "avg_infer_s": 0.008666323909406052
+    },
+    "formula_1": {
+      "n_tables": 14,
+      "n_columns": 96,
+      "avg_embed_s": 0.2488733291807959,
+      "avg_infer_s": 0.008920168172268346
+    },
+    "european_football_2": {
+      "n_tables": 8,
+      "n_columns": 201,
+      "avg_embed_s": 0.5792206742461453,
+      "avg_infer_s": 0.012052574000039767
+    },
+    "thrombosis_prediction": {
+      "n_tables": 3,
+      "n_columns": 64,
+      "avg_embed_s": 0.19216621382036275,
+      "avg_infer_s": 0.00983640628701156
+    },
+    "student_club": {
+      "n_tables": 8,
+      "n_columns": 48,
+      "avg_embed_s": 0.15818711123252405,
+      "avg_infer_s": 0.009700534717898958
+    },
+    "debit_card_specializing": {
+      "n_tables": 6,
+      "n_columns": 23,
+      "avg_embed_s": 0.06938739630277269,
+      "avg_infer_s": 0.008595747800427489
+    }
+  },
+  "overall_avg_embed_s": 0.2245791015759198,
+  "overall_avg_infer_s": 0.01001256886466541,
+  "roc_auc_micro": 0.8622459439751305,
+  "pr_auc_micro": 0.4712573871895741,
+  "threshold": 0.0,
+  "threshold_stats": {
+    "Raw_P": 0.7979546583360142,
+    "Raw_R": 0.4713954595310527,
+    "Steiner_P": 0.784203294255829,
+    "Steiner_R": 0.6704618592330457
+  }
+}
