@@ -1,0 +1,303 @@
+{
+  "definition": "20 unused real schema columns with name similarity >= 0.25 to at least one gold column; no synthetic columns",
+  "source_questions": 500,
+  "generated_variants": 427,
+  "excluded_questions": 73,
+  "minimum_candidates": 4,
+  "maximum_candidates": 181,
+  "sha256": "44fdac4ea1e21fc37682d664cb38153a5f359adeed63a16de12eb4da09e2f36d",
+  "excluded": [
+    {
+      "question_id": 1471,
+      "eligible_candidates": 11
+    },
+    {
+      "question_id": 1472,
+      "eligible_candidates": 16
+    },
+    {
+      "question_id": 1473,
+      "eligible_candidates": 16
+    },
+    {
+      "question_id": 1476,
+      "eligible_candidates": 16
+    },
+    {
+      "question_id": 1479,
+      "eligible_candidates": 16
+    },
+    {
+      "question_id": 1480,
+      "eligible_candidates": 16
+    },
+    {
+      "question_id": 1481,
+      "eligible_candidates": 15
+    },
+    {
+      "question_id": 1482,
+      "eligible_candidates": 16
+    },
+    {
+      "question_id": 1483,
+      "eligible_candidates": 18
+    },
+    {
+      "question_id": 1484,
+      "eligible_candidates": 10
+    },
+    {
+      "question_id": 1486,
+      "eligible_candidates": 11
+    },
+    {
+      "question_id": 1490,
+      "eligible_candidates": 15
+    },
+    {
+      "question_id": 1493,
+      "eligible_candidates": 18
+    },
+    {
+      "question_id": 1498,
+      "eligible_candidates": 18
+    },
+    {
+      "question_id": 1500,
+      "eligible_candidates": 15
+    },
+    {
+      "question_id": 1501,
+      "eligible_candidates": 15
+    },
+    {
+      "question_id": 1505,
+      "eligible_candidates": 15
+    },
+    {
+      "question_id": 1506,
+      "eligible_candidates": 15
+    },
+    {
+      "question_id": 1507,
+      "eligible_candidates": 17
+    },
+    {
+      "question_id": 1509,
+      "eligible_candidates": 15
+    },
+    {
+      "question_id": 1514,
+      "eligible_candidates": 14
+    },
+    {
+      "question_id": 1515,
+      "eligible_candidates": 16
+    },
+    {
+      "question_id": 1521,
+      "eligible_candidates": 15
+    },
+    {
+      "question_id": 1524,
+      "eligible_candidates": 16
+    },
+    {
+      "question_id": 1525,
+      "eligible_candidates": 17
+    },
+    {
+      "question_id": 1526,
+      "eligible_candidates": 13
+    },
+    {
+      "question_id": 1528,
+      "eligible_candidates": 10
+    },
+    {
+      "question_id": 1529,
+      "eligible_candidates": 15
+    },
+    {
+      "question_id": 1531,
+      "eligible_candidates": 14
+    },
+    {
+      "question_id": 1533,
+      "eligible_candidates": 14
+    },
+    {
+      "question_id": 1149,
+      "eligible_candidates": 18
+    },
+    {
+      "question_id": 1152,
+      "eligible_candidates": 17
+    },
+    {
+      "question_id": 790,
+      "eligible_candidates": 13
+    },
+    {
+      "question_id": 195,
+      "eligible_candidates": 8
+    },
+    {
+      "question_id": 197,
+      "eligible_candidates": 7
+    },
+    {
+      "question_id": 198,
+      "eligible_candidates": 6
+    },
+    {
+      "question_id": 200,
+      "eligible_candidates": 7
+    },
+    {
+      "question_id": 201,
+      "eligible_candidates": 6
+    },
+    {
+      "question_id": 206,
+      "eligible_candidates": 7
+    },
+    {
+      "question_id": 207,
+      "eligible_candidates": 5
+    },
+    {
+      "question_id": 208,
+      "eligible_candidates": 7
+    },
+    {
+      "question_id": 212,
+      "eligible_candidates": 7
+    },
+    {
+      "question_id": 213,
+      "eligible_candidates": 5
+    },
+    {
+      "question_id": 215,
+      "eligible_candidates": 5
+    },
+    {
+      "question_id": 218,
+      "eligible_candidates": 7
+    },
+    {
+      "question_id": 219,
+      "eligible_candidates": 6
+    },
+    {
+      "question_id": 220,
+      "eligible_candidates": 9
+    },
+    {
+      "question_id": 226,
+      "eligible_candidates": 8
+    },
+    {
+      "question_id": 227,
+      "eligible_candidates": 9
+    },
+    {
+      "question_id": 228,
+      "eligible_candidates": 8
+    },
+    {
+      "question_id": 230,
+      "eligible_candidates": 7
+    },
+    {
+      "question_id": 231,
+      "eligible_candidates": 9
+    },
+    {
+      "question_id": 232,
+      "eligible_candidates": 7
+    },
+    {
+      "question_id": 234,
+      "eligible_candidates": 6
+    },
+    {
+      "question_id": 236,
+      "eligible_candidates": 5
+    },
+    {
+      "question_id": 239,
+      "eligible_candidates": 7
+    },
+    {
+      "question_id": 240,
+      "eligible_candidates": 9
+    },
+    {
+      "question_id": 242,
+      "eligible_candidates": 7
+    },
+    {
+      "question_id": 243,
+      "eligible_candidates": 7
+    },
+    {
+      "question_id": 244,
+      "eligible_candidates": 7
+    },
+    {
+      "question_id": 245,
+      "eligible_candidates": 7
+    },
+    {
+      "question_id": 247,
+      "eligible_candidates": 8
+    },
+    {
+      "question_id": 248,
+      "eligible_candidates": 4
+    },
+    {
+      "question_id": 249,
+      "eligible_candidates": 7
+    },
+    {
+      "question_id": 253,
+      "eligible_candidates": 5
+    },
+    {
+      "question_id": 255,
+      "eligible_candidates": 6
+    },
+    {
+      "question_id": 260,
+      "eligible_candidates": 5
+    },
+    {
+      "question_id": 263,
+      "eligible_candidates": 5
+    },
+    {
+      "question_id": 268,
+      "eligible_candidates": 7
+    },
+    {
+      "question_id": 273,
+      "eligible_candidates": 7
+    },
+    {
+      "question_id": 281,
+      "eligible_candidates": 6
+    },
+    {
+      "question_id": 282,
+      "eligible_candidates": 6
+    },
+    {
+      "question_id": 327,
+      "eligible_candidates": 7
+    }
+  ]
+}
