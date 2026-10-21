@@ -1,0 +1,322 @@
+{
+  "generated_at_utc": "2026-10-19T08:12:10.158738+00:00",
+  "data_root": "/Users/xiaotao/PycharmProjects/DataAgentSystem/第四周/mini_dev_data",
+  "question_count": 500,
+  "database_count": 11,
+  "difficulty_counts": {
+    "challenging": 102,
+    "moderate": 250,
+    "simple": 148
+  },
+  "database_question_counts": {
+    "california_schools": 30,
+    "card_games": 52,
+    "codebase_community": 49,
+    "debit_card_specializing": 30,
+    "european_football_2": 51,
+    "financial": 32,
+    "formula_1": 66,
+    "student_club": 48,
+    "superhero": 52,
+    "thrombosis_prediction": 50,
+    "toxicology": 40
+  },
+  "verification": {
+    "databases_passed": 11,
+    "databases_failed": 0,
+    "results": [
+      {
+        "status": "passed",
+        "question_id": 5,
+        "question": "How many schools with an average score in Math greater than 400 in the SAT test are exclusively virtual?",
+        "sql": "SELECT COUNT(DISTINCT T2.School) FROM satscores AS T1 INNER JOIN schools AS T2 ON T1.cds = T2.CDSCode WHERE T2.Virtual = 'F' AND T1.AvgScrMath > 400",
+        "exit_code": 0,
+        "elapsed_ms": 7.17,
+        "output_rows": 1,
+        "output_preview": [
+          "4"
+        ],
+        "attempts": [
+          {
+            "question_id": 5,
+            "exit_code": 0,
+            "elapsed_ms": 7.17,
+            "stderr": ""
+          }
+        ],
+        "db_id": "california_schools",
+        "question_count": 30,
+        "database_path": "/Users/xiaotao/PycharmProjects/DataAgentSystem/第四周/mini_dev_data/dev_databases/california_schools/sqlite/california_schools.sqlite",
+        "database_size_bytes": 11116544,
+        "description_file_count": 3,
+        "integrity_check": "ok"
+      },
+      {
+        "status": "passed",
+        "question_id": 340,
+        "question": "Which are the cards that have incredibly powerful foils.",
+        "sql": "SELECT id FROM cards WHERE cardKingdomFoilId IS NOT NULL AND cardKingdomId IS NOT NULL",
+        "exit_code": 0,
+        "elapsed_ms": 28.35,
+        "output_rows": 25061,
+        "output_preview": [
+          "4",
+          "5",
+          "6"
+        ],
+        "attempts": [
+          {
+            "question_id": 340,
+            "exit_code": 0,
+            "elapsed_ms": 28.35,
+            "stderr": ""
+          }
+        ],
+        "db_id": "card_games",
+        "question_count": 52,
+        "database_path": "/Users/xiaotao/PycharmProjects/DataAgentSystem/第四周/mini_dev_data/dev_databases/card_games/sqlite/card_games.sqlite",
+        "database_size_bytes": 261820416,
+        "description_file_count": 6,
+        "integrity_check": "ok"
+      },
+      {
+        "status": "passed",
+        "question_id": 531,
+        "question": "Which user has a higher reputation, Harlan or Jarrod Dixon?",
+        "sql": "SELECT DisplayName FROM users WHERE DisplayName IN ('Harlan', 'Jarrod Dixon') AND Reputation = ( SELECT MAX(Reputation) FROM users WHERE DisplayName IN ('Harlan', 'Jarrod Dixon') )",
+        "exit_code": 0,
+        "elapsed_ms": 15.88,
+        "output_rows": 1,
+        "output_preview": [
+          "Harlan"
+        ],
+        "attempts": [
+          {
+            "question_id": 531,
+            "exit_code": 0,
+            "elapsed_ms": 15.88,
+            "stderr": ""
+          }
+        ],
+        "db_id": "codebase_community",
+        "question_count": 49,
+        "database_path": "/Users/xiaotao/PycharmProjects/DataAgentSystem/第四周/mini_dev_data/dev_databases/codebase_community/sqlite/codebase_community.sqlite",
+        "database_size_bytes": 481419264,
+        "description_file_count": 8,
+        "integrity_check": "ok"
+      },
+      {
+        "status": "passed",
+        "question_id": 1471,
+        "question": "What is the ratio of customers who pay in EUR against customers who pay in CZK?",
+        "sql": "SELECT CAST(SUM(IIF(Currency = 'EUR', 1, 0)) AS FLOAT) / SUM(IIF(Currency = 'CZK', 1, 0)) AS ratio FROM customers",
+        "exit_code": 0,
+        "elapsed_ms": 6.01,
+        "output_rows": 1,
+        "output_preview": [
+          "0.065727699530516437"
+        ],
+        "attempts": [
+          {
+            "question_id": 1471,
+            "exit_code": 0,
+            "elapsed_ms": 6.01,
+            "stderr": ""
+          }
+        ],
+        "db_id": "debit_card_specializing",
+        "question_count": 30,
+        "database_path": "/Users/xiaotao/PycharmProjects/DataAgentSystem/第四周/mini_dev_data/dev_databases/debit_card_specializing/sqlite/debit_card_specializing.sqlite",
+        "database_size_bytes": 34635776,
+        "description_file_count": 5,
+        "integrity_check": "ok"
+      },
+      {
+        "status": "passed",
+        "question_id": 1025,
+        "question": "Give the name of the league had the most goals in the 2016 season?",
+        "sql": "SELECT t2.name FROM Match AS t1 INNER JOIN League AS t2 ON t1.league_id = t2.id WHERE t1.season = '2015/2016' GROUP BY t2.name ORDER BY SUM(t1.home_team_goal + t1.away_team_goal) DESC LIMIT 1",
+        "exit_code": 0,
+        "elapsed_ms": 18.12,
+        "output_rows": 1,
+        "output_preview": [
+          "Spain LIGA BBVA"
+        ],
+        "attempts": [
+          {
+            "question_id": 1025,
+            "exit_code": 0,
+            "elapsed_ms": 18.12,
+            "stderr": ""
+          }
+        ],
+        "db_id": "european_football_2",
+        "question_count": 51,
+        "database_path": "/Users/xiaotao/PycharmProjects/DataAgentSystem/第四周/mini_dev_data/dev_databases/european_football_2/sqlite/european_football_2.sqlite",
+        "database_size_bytes": 597754880,
+        "description_file_count": 7,
+        "integrity_check": "ok"
+      },
+      {
+        "status": "passed",
+        "question_id": 89,
+        "question": "How many accounts who choose issuance after transaction are staying in East Bohemia region?",
+        "sql": "SELECT COUNT(T2.account_id) FROM district AS T1 INNER JOIN account AS T2 ON T1.district_id = T2.district_id WHERE T1.A3 = 'east Bohemia' AND T2.frequency = 'POPLATEK PO OBRATU'",
+        "exit_code": 0,
+        "elapsed_ms": 4.58,
+        "output_rows": 1,
+        "output_preview": [
+          "13"
+        ],
+        "attempts": [
+          {
+            "question_id": 89,
+            "exit_code": 0,
+            "elapsed_ms": 4.58,
+            "stderr": ""
+          }
+        ],
+        "db_id": "financial",
+        "question_count": 32,
+        "database_path": "/Users/xiaotao/PycharmProjects/DataAgentSystem/第四周/mini_dev_data/dev_databases/financial/sqlite/financial.sqlite",
+        "database_size_bytes": 71294976,
+        "description_file_count": 8,
+        "integrity_check": "ok"
+      },
+      {
+        "status": "passed",
+        "question_id": 846,
+        "question": "Please list the reference names of the drivers who are eliminated in the first period in race number 20.",
+        "sql": "SELECT T2.driverRef FROM qualifying AS T1 INNER JOIN drivers AS T2 ON T2.driverId = T1.driverId WHERE T1.raceId = 20 ORDER BY T1.q1 DESC LIMIT 5",
+        "exit_code": 0,
+        "elapsed_ms": 4.32,
+        "output_rows": 5,
+        "output_preview": [
+          "sato",
+          "davidson",
+          "vettel"
+        ],
+        "attempts": [
+          {
+            "question_id": 846,
+            "exit_code": 0,
+            "elapsed_ms": 4.32,
+            "stderr": ""
+          }
+        ],
+        "db_id": "formula_1",
+        "question_count": 66,
+        "database_path": "/Users/xiaotao/PycharmProjects/DataAgentSystem/第四周/mini_dev_data/dev_databases/formula_1/sqlite/formula_1.sqlite",
+        "database_size_bytes": 22360064,
+        "description_file_count": 13,
+        "integrity_check": "ok"
+      },
+      {
+        "status": "passed",
+        "question_id": 1312,
+        "question": "What's Angela Sanders's major?",
+        "sql": "SELECT T2.major_name FROM member AS T1 INNER JOIN major AS T2 ON T1.link_to_major = T2.major_id WHERE T1.first_name = 'Angela' AND T1.last_name = 'Sanders'",
+        "exit_code": 0,
+        "elapsed_ms": 4.04,
+        "output_rows": 1,
+        "output_preview": [
+          "Business"
+        ],
+        "attempts": [
+          {
+            "question_id": 1312,
+            "exit_code": 0,
+            "elapsed_ms": 4.04,
+            "stderr": ""
+          }
+        ],
+        "db_id": "student_club",
+        "question_count": 48,
+        "database_path": "/Users/xiaotao/PycharmProjects/DataAgentSystem/第四周/mini_dev_data/dev_databases/student_club/sqlite/student_club.sqlite",
+        "database_size_bytes": 2641920,
+        "description_file_count": 8,
+        "integrity_check": "ok"
+      },
+      {
+        "status": "passed",
+        "question_id": 717,
+        "question": "Please list all the superpowers of 3-D Man.",
+        "sql": "SELECT T3.power_name FROM superhero AS T1 INNER JOIN hero_power AS T2 ON T1.id = T2.hero_id INNER JOIN superpower AS T3 ON T2.power_id = T3.id WHERE T1.superhero_name = '3-D Man'",
+        "exit_code": 0,
+        "elapsed_ms": 3.44,
+        "output_rows": 4,
+        "output_preview": [
+          "Agility",
+          "Super Strength",
+          "Stamina"
+        ],
+        "attempts": [
+          {
+            "question_id": 717,
+            "exit_code": 0,
+            "elapsed_ms": 3.44,
+            "stderr": ""
+          }
+        ],
+        "db_id": "superhero",
+        "question_count": 52,
+        "database_path": "/Users/xiaotao/PycharmProjects/DataAgentSystem/第四周/mini_dev_data/dev_databases/superhero/sqlite/superhero.sqlite",
+        "database_size_bytes": 237568,
+        "description_file_count": 10,
+        "integrity_check": "ok"
+      },
+      {
+        "status": "passed",
+        "question_id": 1149,
+        "question": "Are there more in-patient or outpatient who were male? What is the deviation in percentage?",
+        "sql": "SELECT CAST(SUM(CASE WHEN Admission = '+' THEN 1 ELSE 0 END) AS REAL) * 100 / SUM(CASE WHEN Admission = '-' THEN 1 ELSE 0 END) FROM Patient WHERE SEX = 'M'",
+        "exit_code": 0,
+        "elapsed_ms": 3.58,
+        "output_rows": 1,
+        "output_preview": [
+          "83.177570093457945"
+        ],
+        "attempts": [
+          {
+            "question_id": 1149,
+            "exit_code": 0,
+            "elapsed_ms": 3.58,
+            "stderr": ""
+          }
+        ],
+        "db_id": "thrombosis_prediction",
+        "question_count": 50,
+        "database_path": "/Users/xiaotao/PycharmProjects/DataAgentSystem/第四周/mini_dev_data/dev_databases/thrombosis_prediction/sqlite/thrombosis_prediction.sqlite",
+        "database_size_bytes": 7327744,
+        "description_file_count": 3,
+        "integrity_check": "ok"
+      },
+      {
+        "status": "passed",
+        "question_id": 195,
+        "question": "What is the most common bond type?",
+        "sql": "SELECT T.bond_type FROM ( SELECT bond_type, COUNT(bond_id) FROM bond GROUP BY bond_type ORDER BY COUNT(bond_id) DESC LIMIT 1 ) AS T",
+        "exit_code": 0,
+        "elapsed_ms": 4.94,
+        "output_rows": 1,
+        "output_preview": [
+          "-"
+        ],
+        "attempts": [
+          {
+            "question_id": 195,
+            "exit_code": 0,
+            "elapsed_ms": 4.94,
+            "stderr": ""
+          }
+        ],
+        "db_id": "toxicology",
+        "question_count": 40,
+        "database_path": "/Users/xiaotao/PycharmProjects/DataAgentSystem/第四周/mini_dev_data/dev_databases/toxicology/sqlite/toxicology.sqlite",
+        "database_size_bytes": 2678784,
+        "description_file_count": 4,
+        "integrity_check": "ok"
+      }
+    ]
+  }
+}

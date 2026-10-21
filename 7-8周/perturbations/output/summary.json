@@ -1,0 +1,68 @@
+{
+  "dataset": "BIRD Mini-Dev SQLite",
+  "question_count": 500,
+  "database_count": 11,
+  "seed": 20261019,
+  "question_types": {
+    "single": 86,
+    "multi": 414
+  },
+  "connected_multi_table_questions": 396,
+  "difficulty_counts": {
+    "challenging": 102,
+    "moderate": 250,
+    "simple": 148
+  },
+  "parse_failures": [],
+  "baseline_schema_qualification_passed": 500,
+  "eligible_questions": {
+    "bridge_table": 91,
+    "foreign_key_column": 391
+  },
+  "variant_counts": {
+    "by_family": {
+      "add_random": 2000,
+      "add_synonym": 2000,
+      "base": 500,
+      "missing_bridge_table": 103,
+      "missing_fk_column": 494
+    },
+    "by_family_and_level": {
+      "add_random_5": 500,
+      "add_random_10": 500,
+      "add_random_20": 500,
+      "add_random_50": 500,
+      "add_synonym_5": 500,
+      "add_synonym_10": 500,
+      "add_synonym_20": 500,
+      "add_synonym_50": 500
+    },
+    "total": 5097,
+    "declared_foreign_key_column_variants": 445,
+    "fallback_join_key_column_variants": 49
+  },
+  "added_column_breakdown": {
+    "add_random_5:random:generated=false": 2499,
+    "add_random_5:random:generated=true": 1,
+    "add_random_10:random:generated=false": 4873,
+    "add_random_10:random:generated=true": 127,
+    "add_random_20:random:generated=false": 9362,
+    "add_random_20:random:generated=true": 638,
+    "add_random_50:random:generated=false": 20613,
+    "add_random_50:random:generated=true": 4387,
+    "add_synonym_5:same_name:generated=true": 1588,
+    "add_synonym_5:synonym:generated=true": 912,
+    "add_synonym_10:same_name:generated=true": 1993,
+    "add_synonym_10:synonym:generated=true": 3007,
+    "add_synonym_20:same_name:generated=true": 2168,
+    "add_synonym_20:synonym:generated=true": 7832,
+    "add_synonym_50:same_name:generated=true": 2181,
+    "add_synonym_50:synonym:generated=true": 22819
+  },
+  "outputs": {
+    "variants": "mini_dev_perturbations.jsonl",
+    "variants_sha256": "b1271267ebb3dcd4af584127422108f9eec304cbfd9ce150f998bbc04eb364e5",
+    "question_structures": "question_structures.jsonl",
+    "validation_report": "validation_report.md"
+  }
+}
