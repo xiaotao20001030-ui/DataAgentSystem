@@ -16,14 +16,24 @@ Use only tables and columns present in the provided schema.
 Return exactly one executable SQLite query and no explanation."""
 
 
+def default_variants_path(project_root):
+    candidates = (
+        project_root / "perturbations" / "output" / "mini_dev_perturbations.jsonl",
+        project_root.parent / "perturbations" / "output" / "mini_dev_perturbations.jsonl",
+    )
+    for candidate in candidates:
+        if candidate.exists():
+            return candidate
+    return candidates[0]
+
+
 def parse_args():
     project_root = Path(__file__).resolve().parents[1]
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--variants",
         type=Path,
-        default=project_root / "perturbations" / "output"
-        / "mini_dev_perturbations.jsonl",
+        default=default_variants_path(project_root),
     )
     parser.add_argument(
         "--config",

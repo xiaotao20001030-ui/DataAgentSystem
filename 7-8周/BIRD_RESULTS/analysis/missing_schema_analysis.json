@@ -1,0 +1,641 @@
+{
+  "method": {
+    "bootstrap_replicates": 10000,
+    "cluster_unit": "question_id",
+    "schema_read_detection": "sqlite3 authorizer during EXPLAIN compilation"
+  },
+  "models": {
+    "qwen3_0_6b": {
+      "families": {
+        "missing_bridge_table": {
+          "summary": {
+            "count": 103,
+            "evaluated": 103,
+            "evaluation_errors": 0,
+            "correct": 0,
+            "accuracy": 0.0,
+            "base_correct": 1,
+            "base_accuracy": 0.009708737864077669,
+            "retained_base_correct": 0,
+            "retention_on_base_correct": 0.0,
+            "matched_absolute_drop_pp": -0.9708737864077669,
+            "removed_item_reads": 0,
+            "removed_item_read_rate": 0.0,
+            "correct_using_removed_item": 0,
+            "correct_without_removed_item": 0,
+            "compliance_evaluated": 103,
+            "compliance_analysis_errors": 0,
+            "compliant_correct": 0,
+            "compliant_accuracy": 0.0,
+            "compliant_retained_base_correct": 0,
+            "compliant_retention_on_base_correct": 0.0
+          },
+          "cluster_bootstrap": {
+            "replicates": 10000,
+            "questions": 91,
+            "intervals": {
+              "accuracy": {
+                "lower_95": 0.0,
+                "upper_95": 0.0
+              },
+              "retention_on_base_correct": {
+                "lower_95": 0.0,
+                "upper_95": 0.0
+              },
+              "compliant_accuracy": {
+                "lower_95": 0.0,
+                "upper_95": 0.0
+              },
+              "compliant_retention_on_base_correct": {
+                "lower_95": 0.0,
+                "upper_95": 0.0
+              }
+            }
+          },
+          "comparison_to_api": {
+            "common_base_correct_variants": 1,
+            "common_base_correct_questions": 1,
+            "model_retention": 0.0,
+            "api_retention": 1.0,
+            "gap_pp": 100.0,
+            "compliant_common_variants": 1,
+            "compliant_common_questions": 1,
+            "model_compliant_retention": 0.0,
+            "api_compliant_retention": 0.0,
+            "compliant_gap_pp": 0.0,
+            "bootstrap": {
+              "replicates": 10000,
+              "lower_95_pp": 100.0,
+              "upper_95_pp": 100.0,
+              "compliant_lower_95_pp": 0.0,
+              "compliant_upper_95_pp": 0.0
+            }
+          }
+        },
+        "missing_fk_column": {
+          "summary": {
+            "count": 494,
+            "evaluated": 494,
+            "evaluation_errors": 0,
+            "correct": 8,
+            "accuracy": 0.016194331983805668,
+            "base_correct": 34,
+            "base_accuracy": 0.06882591093117409,
+            "retained_base_correct": 5,
+            "retention_on_base_correct": 0.14705882352941177,
+            "matched_absolute_drop_pp": -5.263157894736842,
+            "removed_item_reads": 19,
+            "removed_item_read_rate": 0.038461538461538464,
+            "correct_using_removed_item": 6,
+            "correct_without_removed_item": 2,
+            "compliance_evaluated": 494,
+            "compliance_analysis_errors": 0,
+            "compliant_correct": 2,
+            "compliant_accuracy": 0.004048582995951417,
+            "compliant_retained_base_correct": 0,
+            "compliant_retention_on_base_correct": 0.0
+          },
+          "cluster_bootstrap": {
+            "replicates": 10000,
+            "questions": 391,
+            "intervals": {
+              "accuracy": {
+                "lower_95": 0.006048387096774193,
+                "upper_95": 0.028225806451612902
+              },
+              "retention_on_base_correct": {
+                "lower_95": 0.034482758620689655,
+                "upper_95": 0.2777777777777778
+              },
+              "compliant_accuracy": {
+                "lower_95": 0.0,
+                "upper_95": 0.010224948875255624
+              },
+              "compliant_retention_on_base_correct": {
+                "lower_95": 0.0,
+                "upper_95": 0.0
+              }
+            }
+          },
+          "comparison_to_api": {
+            "common_base_correct_variants": 31,
+            "common_base_correct_questions": 30,
+            "model_retention": 0.12903225806451613,
+            "api_retention": 0.7741935483870968,
+            "gap_pp": 64.51612903225806,
+            "compliant_common_variants": 31,
+            "compliant_common_questions": 30,
+            "model_compliant_retention": 0.0,
+            "api_compliant_retention": 0.0,
+            "compliant_gap_pp": 0.0,
+            "bootstrap": {
+              "replicates": 10000,
+              "lower_95_pp": 48.38709677419355,
+              "upper_95_pp": 80.64516129032256,
+              "compliant_lower_95_pp": 0.0,
+              "compliant_upper_95_pp": 0.0
+            }
+          }
+        }
+      }
+    },
+    "qwen3_1_7b": {
+      "families": {
+        "missing_bridge_table": {
+          "summary": {
+            "count": 103,
+            "evaluated": 103,
+            "evaluation_errors": 0,
+            "correct": 3,
+            "accuracy": 0.02912621359223301,
+            "base_correct": 16,
+            "base_accuracy": 0.1553398058252427,
+            "retained_base_correct": 2,
+            "retention_on_base_correct": 0.125,
+            "matched_absolute_drop_pp": -12.62135922330097,
+            "removed_item_reads": 0,
+            "removed_item_read_rate": 0.0,
+            "correct_using_removed_item": 0,
+            "correct_without_removed_item": 3,
+            "compliance_evaluated": 103,
+            "compliance_analysis_errors": 0,
+            "compliant_correct": 3,
+            "compliant_accuracy": 0.02912621359223301,
+            "compliant_retained_base_correct": 2,
+            "compliant_retention_on_base_correct": 0.125
+          },
+          "cluster_bootstrap": {
+            "replicates": 10000,
+            "questions": 91,
+            "intervals": {
+              "accuracy": {
+                "lower_95": 0.0,
+                "upper_95": 0.06542056074766354
+              },
+              "retention_on_base_correct": {
+                "lower_95": 0.0,
+                "upper_95": 0.3
+              },
+              "compliant_accuracy": {
+                "lower_95": 0.0,
+                "upper_95": 0.06542056074766354
+              },
+              "compliant_retention_on_base_correct": {
+                "lower_95": 0.0,
+                "upper_95": 0.3
+              }
+            }
+          },
+          "comparison_to_api": {
+            "common_base_correct_variants": 13,
+            "common_base_correct_questions": 11,
+            "model_retention": 0.15384615384615385,
+            "api_retention": 0.3076923076923077,
+            "gap_pp": 15.384615384615385,
+            "compliant_common_variants": 13,
+            "compliant_common_questions": 11,
+            "model_compliant_retention": 0.15384615384615385,
+            "api_compliant_retention": 0.15384615384615385,
+            "compliant_gap_pp": 0.0,
+            "bootstrap": {
+              "replicates": 10000,
+              "lower_95_pp": 0.0,
+              "upper_95_pp": 38.46153846153846,
+              "compliant_lower_95_pp": 0.0,
+              "compliant_upper_95_pp": 0.0
+            }
+          }
+        },
+        "missing_fk_column": {
+          "summary": {
+            "count": 494,
+            "evaluated": 493,
+            "evaluation_errors": 1,
+            "correct": 33,
+            "accuracy": 0.06693711967545639,
+            "base_correct": 97,
+            "base_accuracy": 0.19675456389452334,
+            "retained_base_correct": 24,
+            "retention_on_base_correct": 0.24742268041237114,
+            "matched_absolute_drop_pp": -12.981744421906694,
+            "removed_item_reads": 70,
+            "removed_item_read_rate": 0.14198782961460446,
+            "correct_using_removed_item": 28,
+            "correct_without_removed_item": 5,
+            "compliance_evaluated": 493,
+            "compliance_analysis_errors": 0,
+            "compliant_correct": 5,
+            "compliant_accuracy": 0.010141987829614604,
+            "compliant_retained_base_correct": 3,
+            "compliant_retention_on_base_correct": 0.030927835051546393
+          },
+          "cluster_bootstrap": {
+            "replicates": 10000,
+            "questions": 391,
+            "intervals": {
+              "accuracy": {
+                "lower_95": 0.045186337909416945,
+                "upper_95": 0.09002317859548933
+              },
+              "retention_on_base_correct": {
+                "lower_95": 0.16304347826086957,
+                "upper_95": 0.3333333333333333
+              },
+              "compliant_accuracy": {
+                "lower_95": 0.002044989775051125,
+                "upper_95": 0.0199203187250996
+              },
+              "compliant_retention_on_base_correct": {
+                "lower_95": 0.0,
+                "upper_95": 0.06862745098039216
+              }
+            }
+          },
+          "comparison_to_api": {
+            "common_base_correct_variants": 85,
+            "common_base_correct_questions": 72,
+            "model_retention": 0.23529411764705882,
+            "api_retention": 0.6705882352941176,
+            "gap_pp": 43.529411764705884,
+            "compliant_common_variants": 85,
+            "compliant_common_questions": 72,
+            "model_compliant_retention": 0.011764705882352941,
+            "api_compliant_retention": 0.0,
+            "compliant_gap_pp": -1.1764705882352942,
+            "bootstrap": {
+              "replicates": 10000,
+              "lower_95_pp": 31.323418674698797,
+              "upper_95_pp": 55.172413793103445,
+              "compliant_lower_95_pp": -3.7037037037037037,
+              "compliant_upper_95_pp": 0.0
+            }
+          }
+        }
+      }
+    },
+    "qwen3_4b": {
+      "families": {
+        "missing_bridge_table": {
+          "summary": {
+            "count": 103,
+            "evaluated": 103,
+            "evaluation_errors": 0,
+            "correct": 2,
+            "accuracy": 0.019417475728155338,
+            "base_correct": 40,
+            "base_accuracy": 0.3883495145631068,
+            "retained_base_correct": 2,
+            "retention_on_base_correct": 0.05,
+            "matched_absolute_drop_pp": -36.89320388349515,
+            "removed_item_reads": 1,
+            "removed_item_read_rate": 0.009708737864077669,
+            "correct_using_removed_item": 0,
+            "correct_without_removed_item": 2,
+            "compliance_evaluated": 103,
+            "compliance_analysis_errors": 0,
+            "compliant_correct": 2,
+            "compliant_accuracy": 0.019417475728155338,
+            "compliant_retained_base_correct": 2,
+            "compliant_retention_on_base_correct": 0.05
+          },
+          "cluster_bootstrap": {
+            "replicates": 10000,
+            "questions": 91,
+            "intervals": {
+              "accuracy": {
+                "lower_95": 0.0,
+                "upper_95": 0.04950495049504951
+              },
+              "retention_on_base_correct": {
+                "lower_95": 0.0,
+                "upper_95": 0.12903225806451613
+              },
+              "compliant_accuracy": {
+                "lower_95": 0.0,
+                "upper_95": 0.04950495049504951
+              },
+              "compliant_retention_on_base_correct": {
+                "lower_95": 0.0,
+                "upper_95": 0.12903225806451613
+              }
+            }
+          },
+          "comparison_to_api": {
+            "common_base_correct_variants": 35,
+            "common_base_correct_questions": 29,
+            "model_retention": 0.05714285714285714,
+            "api_retention": 0.2,
+            "gap_pp": 14.285714285714286,
+            "compliant_common_variants": 35,
+            "compliant_common_questions": 29,
+            "model_compliant_retention": 0.05714285714285714,
+            "api_compliant_retention": 0.08571428571428572,
+            "compliant_gap_pp": 2.857142857142857,
+            "bootstrap": {
+              "replicates": 10000,
+              "lower_95_pp": 2.9411764705882355,
+              "upper_95_pp": 28.125,
+              "compliant_lower_95_pp": 0.0,
+              "compliant_upper_95_pp": 9.375
+            }
+          }
+        },
+        "missing_fk_column": {
+          "summary": {
+            "count": 494,
+            "evaluated": 494,
+            "evaluation_errors": 0,
+            "correct": 81,
+            "accuracy": 0.16396761133603238,
+            "base_correct": 205,
+            "base_accuracy": 0.4149797570850202,
+            "retained_base_correct": 72,
+            "retention_on_base_correct": 0.35121951219512193,
+            "matched_absolute_drop_pp": -25.101214574898783,
+            "removed_item_reads": 160,
+            "removed_item_read_rate": 0.32388663967611336,
+            "correct_using_removed_item": 76,
+            "correct_without_removed_item": 5,
+            "compliance_evaluated": 494,
+            "compliance_analysis_errors": 0,
+            "compliant_correct": 5,
+            "compliant_accuracy": 0.010121457489878543,
+            "compliant_retained_base_correct": 2,
+            "compliant_retention_on_base_correct": 0.00975609756097561
+          },
+          "cluster_bootstrap": {
+            "replicates": 10000,
+            "questions": 391,
+            "intervals": {
+              "accuracy": {
+                "lower_95": 0.13078272539803132,
+                "upper_95": 0.2
+              },
+              "retention_on_base_correct": {
+                "lower_95": 0.2831050228310502,
+                "upper_95": 0.4230769230769231
+              },
+              "compliant_accuracy": {
+                "lower_95": 0.0020325203252032522,
+                "upper_95": 0.020080321285140562
+              },
+              "compliant_retention_on_base_correct": {
+                "lower_95": 0.0,
+                "upper_95": 0.02512562814070352
+              }
+            }
+          },
+          "comparison_to_api": {
+            "common_base_correct_variants": 177,
+            "common_base_correct_questions": 142,
+            "model_retention": 0.3502824858757062,
+            "api_retention": 0.5084745762711864,
+            "gap_pp": 15.819209039548022,
+            "compliant_common_variants": 177,
+            "compliant_common_questions": 142,
+            "model_compliant_retention": 0.005649717514124294,
+            "api_compliant_retention": 0.022598870056497175,
+            "compliant_gap_pp": 1.694915254237288,
+            "bootstrap": {
+              "replicates": 10000,
+              "lower_95_pp": 6.976744186046512,
+              "upper_95_pp": 24.432133838383834,
+              "compliant_lower_95_pp": -0.6173798021624107,
+              "compliant_upper_95_pp": 4.945054945054945
+            }
+          }
+        }
+      }
+    },
+    "qwen2_5_coder_1_5b": {
+      "families": {
+        "missing_bridge_table": {
+          "summary": {
+            "count": 103,
+            "evaluated": 103,
+            "evaluation_errors": 0,
+            "correct": 2,
+            "accuracy": 0.019417475728155338,
+            "base_correct": 6,
+            "base_accuracy": 0.05825242718446602,
+            "retained_base_correct": 1,
+            "retention_on_base_correct": 0.16666666666666666,
+            "matched_absolute_drop_pp": -3.8834951456310685,
+            "removed_item_reads": 0,
+            "removed_item_read_rate": 0.0,
+            "correct_using_removed_item": 0,
+            "correct_without_removed_item": 2,
+            "compliance_evaluated": 103,
+            "compliance_analysis_errors": 0,
+            "compliant_correct": 2,
+            "compliant_accuracy": 0.019417475728155338,
+            "compliant_retained_base_correct": 1,
+            "compliant_retention_on_base_correct": 0.16666666666666666
+          },
+          "cluster_bootstrap": {
+            "replicates": 10000,
+            "questions": 91,
+            "intervals": {
+              "accuracy": {
+                "lower_95": 0.0,
+                "upper_95": 0.04950495049504951
+              },
+              "retention_on_base_correct": {
+                "lower_95": 0.0,
+                "upper_95": 0.6666666666666666
+              },
+              "compliant_accuracy": {
+                "lower_95": 0.0,
+                "upper_95": 0.04950495049504951
+              },
+              "compliant_retention_on_base_correct": {
+                "lower_95": 0.0,
+                "upper_95": 0.6666666666666666
+              }
+            }
+          },
+          "comparison_to_api": {
+            "common_base_correct_variants": 4,
+            "common_base_correct_questions": 4,
+            "model_retention": 0.25,
+            "api_retention": 0.5,
+            "gap_pp": 25.0,
+            "compliant_common_variants": 4,
+            "compliant_common_questions": 4,
+            "model_compliant_retention": 0.25,
+            "api_compliant_retention": 0.25,
+            "compliant_gap_pp": 0.0,
+            "bootstrap": {
+              "replicates": 10000,
+              "lower_95_pp": 0.0,
+              "upper_95_pp": 75.0,
+              "compliant_lower_95_pp": 0.0,
+              "compliant_upper_95_pp": 0.0
+            }
+          }
+        },
+        "missing_fk_column": {
+          "summary": {
+            "count": 494,
+            "evaluated": 494,
+            "evaluation_errors": 0,
+            "correct": 41,
+            "accuracy": 0.08299595141700405,
+            "base_correct": 79,
+            "base_accuracy": 0.15991902834008098,
+            "retained_base_correct": 38,
+            "retention_on_base_correct": 0.4810126582278481,
+            "matched_absolute_drop_pp": -7.6923076923076925,
+            "removed_item_reads": 101,
+            "removed_item_read_rate": 0.20445344129554655,
+            "correct_using_removed_item": 40,
+            "correct_without_removed_item": 1,
+            "compliance_evaluated": 494,
+            "compliance_analysis_errors": 0,
+            "compliant_correct": 1,
+            "compliant_accuracy": 0.0020242914979757085,
+            "compliant_retained_base_correct": 0,
+            "compliant_retention_on_base_correct": 0.0
+          },
+          "cluster_bootstrap": {
+            "replicates": 10000,
+            "questions": 391,
+            "intervals": {
+              "accuracy": {
+                "lower_95": 0.058823529411764705,
+                "upper_95": 0.10950413223140495
+              },
+              "retention_on_base_correct": {
+                "lower_95": 0.36507936507936506,
+                "upper_95": 0.6
+              },
+              "compliant_accuracy": {
+                "lower_95": 0.0,
+                "upper_95": 0.00625
+              },
+              "compliant_retention_on_base_correct": {
+                "lower_95": 0.0,
+                "upper_95": 0.0
+              }
+            }
+          },
+          "comparison_to_api": {
+            "common_base_correct_variants": 65,
+            "common_base_correct_questions": 61,
+            "model_retention": 0.47692307692307695,
+            "api_retention": 0.5076923076923077,
+            "gap_pp": 3.076923076923077,
+            "compliant_common_variants": 65,
+            "compliant_common_questions": 61,
+            "model_compliant_retention": 0.0,
+            "api_compliant_retention": 0.0,
+            "compliant_gap_pp": 0.0,
+            "bootstrap": {
+              "replicates": 10000,
+              "lower_95_pp": -10.76923076923077,
+              "upper_95_pp": 16.923076923076923,
+              "compliant_lower_95_pp": 0.0,
+              "compliant_upper_95_pp": 0.0
+            }
+          }
+        }
+      }
+    },
+    "api_control": {
+      "families": {
+        "missing_bridge_table": {
+          "summary": {
+            "count": 103,
+            "evaluated": 103,
+            "evaluation_errors": 0,
+            "correct": 18,
+            "accuracy": 0.17475728155339806,
+            "base_correct": 62,
+            "base_accuracy": 0.6019417475728155,
+            "retained_base_correct": 17,
+            "retention_on_base_correct": 0.27419354838709675,
+            "matched_absolute_drop_pp": -42.71844660194174,
+            "removed_item_reads": 18,
+            "removed_item_read_rate": 0.17475728155339806,
+            "correct_using_removed_item": 11,
+            "correct_without_removed_item": 7,
+            "compliance_evaluated": 103,
+            "compliance_analysis_errors": 0,
+            "compliant_correct": 7,
+            "compliant_accuracy": 0.06796116504854369,
+            "compliant_retained_base_correct": 7,
+            "compliant_retention_on_base_correct": 0.11290322580645161
+          },
+          "cluster_bootstrap": {
+            "replicates": 10000,
+            "questions": 91,
+            "intervals": {
+              "accuracy": {
+                "lower_95": 0.10476190476190476,
+                "upper_95": 0.25
+              },
+              "retention_on_base_correct": {
+                "lower_95": 0.16666666666666666,
+                "upper_95": 0.3958333333333333
+              },
+              "compliant_accuracy": {
+                "lower_95": 0.020202020202020204,
+                "upper_95": 0.1188118811881188
+              },
+              "compliant_retention_on_base_correct": {
+                "lower_95": 0.03773584905660377,
+                "upper_95": 0.2
+              }
+            }
+          }
+        },
+        "missing_fk_column": {
+          "summary": {
+            "count": 494,
+            "evaluated": 493,
+            "evaluation_errors": 1,
+            "correct": 159,
+            "accuracy": 0.3225152129817444,
+            "base_correct": 292,
+            "base_accuracy": 0.592292089249493,
+            "retained_base_correct": 148,
+            "retention_on_base_correct": 0.5068493150684932,
+            "matched_absolute_drop_pp": -26.977687626774856,
+            "removed_item_reads": 236,
+            "removed_item_read_rate": 0.4787018255578093,
+            "correct_using_removed_item": 150,
+            "correct_without_removed_item": 9,
+            "compliance_evaluated": 493,
+            "compliance_analysis_errors": 0,
+            "compliant_correct": 9,
+            "compliant_accuracy": 0.018255578093306288,
+            "compliant_retained_base_correct": 7,
+            "compliant_retention_on_base_correct": 0.023972602739726026
+          },
+          "cluster_bootstrap": {
+            "replicates": 10000,
+            "questions": 391,
+            "intervals": {
+              "accuracy": {
+                "lower_95": 0.27607361963190186,
+                "upper_95": 0.3697004132231404
+              },
+              "retention_on_base_correct": {
+                "lower_95": 0.44404332129963897,
+                "upper_95": 0.5674740484429066
+              },
+              "compliant_accuracy": {
+                "lower_95": 0.006134969325153374,
+                "upper_95": 0.03258822062429857
+              },
+              "compliant_retention_on_base_correct": {
+                "lower_95": 0.006779088410444343,
+                "upper_95": 0.045778691584133724
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

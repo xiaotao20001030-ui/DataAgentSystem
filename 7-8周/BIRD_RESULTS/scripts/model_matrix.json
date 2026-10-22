@@ -1,0 +1,33 @@
+[
+  {
+    "key": "qwen3_0_6b",
+    "provider": "transformers",
+    "model": "/root/fsas/home/xiaotao/xiaotao/MINIDEV/modules/Qwen3-0.6B",
+    "role": "small"
+  },
+  {
+    "key": "qwen3_1_7b",
+    "provider": "transformers",
+    "model": "/root/fsas/home/xiaotao/xiaotao/MINIDEV/modules/Qwen3-1.7B",
+    "role": "small"
+  },
+  {
+    "key": "qwen3_4b",
+    "provider": "transformers",
+    "model": "/root/fsas/home/xiaotao/xiaotao/MINIDEV/modules/Qwen3-4B",
+    "role": "small"
+  },
+  {
+    "key": "qwen2_5_coder_1_5b",
+    "provider": "transformers",
+    "model": "/root/fsas/home/xiaotao/xiaotao/MINIDEV/modules/Qwen2.5-Coder-1.5B-Instruct",
+    "role": "small"
+  },
+  {
+    "key": "api_control",
+    "provider": "openai_compatible",
+    "model": "deepseek-chat",
+    "api_base": "https://api.deepseek.com/v1",
+    "role": "large"
+  }
+]

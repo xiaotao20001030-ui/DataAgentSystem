@@ -1,0 +1,243 @@
+{
+  "control_model": "api_control",
+  "models": [
+    "api_control",
+    "qwen2_5_coder_1_5b",
+    "qwen3_0_6b",
+    "qwen3_1_7b",
+    "qwen3_4b"
+  ],
+  "scores_dir": "BIRD_RESULTS/scores_official_pure_column",
+  "gate": {
+    "qwen2_5_coder_1_5b": {
+      "add_pure_column_20": {
+        "n_questions": 500,
+        "small_drop": 0.006,
+        "control_drop": 0.044,
+        "difference": -0.038,
+        "ci95": [
+          -0.082,
+          0.004
+        ],
+        "p_one_sided": 0.962003799620038,
+        "p_one_sided_10pp": 1.0,
+        "excludes_10pp": true,
+        "strict_ci_lower_10pp": false
+      }
+    },
+    "qwen3_0_6b": {
+      "add_pure_column_20": {
+        "n_questions": 500,
+        "small_drop": 0.05,
+        "control_drop": 0.044,
+        "difference": 0.006,
+        "ci95": [
+          -0.03,
+          0.042
+        ],
+        "p_one_sided": 0.38716128387161286,
+        "p_one_sided_10pp": 1.0,
+        "excludes_10pp": true,
+        "strict_ci_lower_10pp": false
+      }
+    },
+    "qwen3_1_7b": {
+      "add_pure_column_20": {
+        "n_questions": 500,
+        "small_drop": 0.09,
+        "control_drop": 0.044,
+        "difference": 0.046,
+        "ci95": [
+          0.002,
+          0.09
+        ],
+        "p_one_sided": 0.0212978702129787,
+        "p_one_sided_10pp": 0.9931006899310069,
+        "excludes_10pp": true,
+        "strict_ci_lower_10pp": false
+      }
+    },
+    "qwen3_4b": {
+      "add_pure_column_20": {
+        "n_questions": 500,
+        "small_drop": 0.062,
+        "control_drop": 0.044,
+        "difference": 0.018,
+        "ci95": [
+          -0.024,
+          0.06
+        ],
+        "p_one_sided": 0.21957804219578042,
+        "p_one_sided_10pp": 0.9999000099990001,
+        "excludes_10pp": true,
+        "strict_ci_lower_10pp": false
+      }
+    }
+  },
+  "transitions": {
+    "qwen2_5_coder_1_5b": {
+      "add_pure_column_20": {
+        "n": 500,
+        "base_correct_perturbed_correct": 100,
+        "base_correct_perturbed_wrong": 33,
+        "base_wrong_perturbed_correct": 30,
+        "base_wrong_perturbed_wrong": 337,
+        "net_accuracy_change": -0.006
+      }
+    },
+    "qwen3_0_6b": {
+      "add_pure_column_20": {
+        "n": 500,
+        "base_correct_perturbed_correct": 44,
+        "base_correct_perturbed_wrong": 29,
+        "base_wrong_perturbed_correct": 4,
+        "base_wrong_perturbed_wrong": 423,
+        "net_accuracy_change": -0.05
+      }
+    },
+    "qwen3_1_7b": {
+      "add_pure_column_20": {
+        "n": 500,
+        "base_correct_perturbed_correct": 79,
+        "base_correct_perturbed_wrong": 57,
+        "base_wrong_perturbed_correct": 12,
+        "base_wrong_perturbed_wrong": 352,
+        "net_accuracy_change": -0.09
+      }
+    },
+    "qwen3_4b": {
+      "add_pure_column_20": {
+        "n": 500,
+        "base_correct_perturbed_correct": 204,
+        "base_correct_perturbed_wrong": 49,
+        "base_wrong_perturbed_correct": 18,
+        "base_wrong_perturbed_wrong": 229,
+        "net_accuracy_change": -0.062
+      }
+    }
+  },
+  "baseline_correct": {
+    "qwen2_5_coder_1_5b": {
+      "add_pure_column_20": {
+        "n": 117,
+        "mean": 0.20512820512820512,
+        "ci95": [
+          0.11965811965811966,
+          0.2905982905982906
+        ],
+        "definition": "DeepSeek retention minus small-model retention on questions both answered correctly at baseline"
+      }
+    },
+    "qwen3_0_6b": {
+      "add_pure_column_20": {
+        "n": 68,
+        "mean": 0.3235294117647059,
+        "ci95": [
+          0.20588235294117646,
+          0.4411764705882353
+        ],
+        "definition": "DeepSeek retention minus small-model retention on questions both answered correctly at baseline"
+      }
+    },
+    "qwen3_1_7b": {
+      "add_pure_column_20": {
+        "n": 126,
+        "mean": 0.3412698412698413,
+        "ci95": [
+          0.24603174603174602,
+          0.4365079365079365
+        ],
+        "definition": "DeepSeek retention minus small-model retention on questions both answered correctly at baseline"
+      }
+    },
+    "qwen3_4b": {
+      "add_pure_column_20": {
+        "n": 230,
+        "mean": 0.1,
+        "ci95": [
+          0.04782608695652174,
+          0.1565217391304348
+        ],
+        "definition": "DeepSeek retention minus small-model retention on questions both answered correctly at baseline"
+      }
+    }
+  },
+  "strata": {
+    "api_control": {
+      "synonym_by_same_name_count": {
+        "label": "same_name_count (capped at 5)",
+        "rows": []
+      },
+      "random_by_new_table_count": {
+        "label": "new_table_count (capped at 5)",
+        "rows": []
+      },
+      "real_synonym_by_new_table": {
+        "label": "real synonym table placement",
+        "rows": []
+      }
+    },
+    "qwen2_5_coder_1_5b": {
+      "synonym_by_same_name_count": {
+        "label": "same_name_count (capped at 5)",
+        "rows": []
+      },
+      "random_by_new_table_count": {
+        "label": "new_table_count (capped at 5)",
+        "rows": []
+      },
+      "real_synonym_by_new_table": {
+        "label": "real synonym table placement",
+        "rows": []
+      }
+    },
+    "qwen3_0_6b": {
+      "synonym_by_same_name_count": {
+        "label": "same_name_count (capped at 5)",
+        "rows": []
+      },
+      "random_by_new_table_count": {
+        "label": "new_table_count (capped at 5)",
+        "rows": []
+      },
+      "real_synonym_by_new_table": {
+        "label": "real synonym table placement",
+        "rows": []
+      }
+    },
+    "qwen3_1_7b": {
+      "synonym_by_same_name_count": {
+        "label": "same_name_count (capped at 5)",
+        "rows": []
+      },
+      "random_by_new_table_count": {
+        "label": "new_table_count (capped at 5)",
+        "rows": []
+      },
+      "real_synonym_by_new_table": {
+        "label": "real synonym table placement",
+        "rows": []
+      }
+    },
+    "qwen3_4b": {
+      "synonym_by_same_name_count": {
+        "label": "same_name_count (capped at 5)",
+        "rows": []
+      },
+      "random_by_new_table_count": {
+        "label": "new_table_count (capped at 5)",
+        "rows": []
+      },
+      "real_synonym_by_new_table": {
+        "label": "real synonym table placement",
+        "rows": []
+      }
+    }
+  },
+  "retrieved_vs_base": {
+    "qwen2_5_coder_1_5b": null,
+    "qwen3_0_6b": null,
+    "qwen3_1_7b": null,
+    "qwen3_4b": null
+  }
+}

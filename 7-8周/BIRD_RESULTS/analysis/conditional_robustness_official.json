@@ -1,0 +1,118 @@
+{
+  "definition": "retention on questions where both the local model and control answer the base condition correctly",
+  "control_model": "api_control",
+  "models": {
+    "qwen3_0_6b": {
+      "add_random_20": {
+        "common_base_correct_questions": 69,
+        "local_retention": 0.5942028985507246,
+        "control_retention": 0.9130434782608695,
+        "local_extra_failure": 0.3188405797101449,
+        "local_extra_failure_percentage_points": 31.88405797101449,
+        "ci95_low": 0.18840579710144928,
+        "ci95_high": 0.4492753623188406,
+        "ci95_low_percentage_points": 18.84057971014493,
+        "ci95_high_percentage_points": 44.927536231884055,
+        "p_one_sided": 9.999000099990002e-05,
+        "iterations": 10000
+      },
+      "add_synonym_20": {
+        "common_base_correct_questions": 69,
+        "local_retention": 0.2608695652173913,
+        "control_retention": 0.6231884057971014,
+        "local_extra_failure": 0.36231884057971014,
+        "local_extra_failure_percentage_points": 36.231884057971016,
+        "ci95_low": 0.2463768115942029,
+        "ci95_high": 0.4782608695652174,
+        "ci95_low_percentage_points": 24.637681159420293,
+        "ci95_high_percentage_points": 47.82608695652174,
+        "p_one_sided": 9.999000099990002e-05,
+        "iterations": 10000
+      }
+    },
+    "qwen2_5_coder_1_5b": {
+      "add_random_20": {
+        "common_base_correct_questions": 116,
+        "local_retention": 0.5948275862068966,
+        "control_retention": 0.9396551724137931,
+        "local_extra_failure": 0.3448275862068966,
+        "local_extra_failure_percentage_points": 34.48275862068966,
+        "ci95_low": 0.2413793103448276,
+        "ci95_high": 0.4482758620689655,
+        "ci95_low_percentage_points": 24.137931034482758,
+        "ci95_high_percentage_points": 44.827586206896555,
+        "p_one_sided": 9.999000099990002e-05,
+        "iterations": 10000
+      },
+      "add_synonym_20": {
+        "common_base_correct_questions": 116,
+        "local_retention": 0.4396551724137931,
+        "control_retention": 0.5431034482758621,
+        "local_extra_failure": 0.10344827586206896,
+        "local_extra_failure_percentage_points": 10.344827586206897,
+        "ci95_low": 0.0,
+        "ci95_high": 0.20689655172413793,
+        "ci95_low_percentage_points": 0.0,
+        "ci95_high_percentage_points": 20.689655172413794,
+        "p_one_sided": 0.032896710328967106,
+        "iterations": 10000
+      }
+    },
+    "qwen3_1_7b": {
+      "add_random_20": {
+        "common_base_correct_questions": 127,
+        "local_retention": 0.6692913385826772,
+        "control_retention": 0.9291338582677166,
+        "local_extra_failure": 0.25984251968503935,
+        "local_extra_failure_percentage_points": 25.984251968503933,
+        "ci95_low": 0.1732283464566929,
+        "ci95_high": 0.3464566929133858,
+        "ci95_low_percentage_points": 17.322834645669293,
+        "ci95_high_percentage_points": 34.645669291338585,
+        "p_one_sided": 9.999000099990002e-05,
+        "iterations": 10000
+      },
+      "add_synonym_20": {
+        "common_base_correct_questions": 127,
+        "local_retention": 0.36220472440944884,
+        "control_retention": 0.5039370078740157,
+        "local_extra_failure": 0.14173228346456693,
+        "local_extra_failure_percentage_points": 14.173228346456693,
+        "ci95_low": 0.06299212598425197,
+        "ci95_high": 0.2283464566929134,
+        "ci95_low_percentage_points": 6.299212598425196,
+        "ci95_high_percentage_points": 22.83464566929134,
+        "p_one_sided": 0.0006999300069993001,
+        "iterations": 10000
+      }
+    },
+    "qwen3_4b": {
+      "add_random_20": {
+        "common_base_correct_questions": 229,
+        "local_retention": 0.7903930131004366,
+        "control_retention": 0.9126637554585153,
+        "local_extra_failure": 0.1222707423580786,
+        "local_extra_failure_percentage_points": 12.22707423580786,
+        "ci95_low": 0.06550218340611354,
+        "ci95_high": 0.17903930131004367,
+        "ci95_low_percentage_points": 6.550218340611353,
+        "ci95_high_percentage_points": 17.903930131004365,
+        "p_one_sided": 9.999000099990002e-05,
+        "iterations": 10000
+      },
+      "add_synonym_20": {
+        "common_base_correct_questions": 229,
+        "local_retention": 0.34497816593886466,
+        "control_retention": 0.40611353711790393,
+        "local_extra_failure": 0.0611353711790393,
+        "local_extra_failure_percentage_points": 6.11353711790393,
+        "ci95_low": 0.013100436681222707,
+        "ci95_high": 0.1091703056768559,
+        "ci95_low_percentage_points": 1.3100436681222707,
+        "ci95_high_percentage_points": 10.91703056768559,
+        "p_one_sided": 0.008599140085991401,
+        "iterations": 10000
+      }
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "definition": "retention under 20 real near-synonym columns for questions where local and control are both correct at base",
+  "control_model": "api_control",
+  "models": {
+    "qwen3_0_6b": {
+      "common_base_correct_questions": 60,
+      "local_retention": 0.6666666666666666,
+      "control_retention": 0.95,
+      "local_extra_failure": 0.2833333333333333,
+      "local_extra_failure_percentage_points": 28.333333333333332,
+      "ci95_low_percentage_points": 15.0,
+      "ci95_high_percentage_points": 41.66666666666667,
+      "p_one_sided": 9.999000099990002e-05
+    },
+    "qwen2_5_coder_1_5b": {
+      "common_base_correct_questions": 102,
+      "local_retention": 0.6862745098039216,
+      "control_retention": 0.9313725490196079,
+      "local_extra_failure": 0.24509803921568626,
+      "local_extra_failure_percentage_points": 24.509803921568626,
+      "ci95_low_percentage_points": 14.705882352941178,
+      "ci95_high_percentage_points": 34.31372549019608,
+      "p_one_sided": 9.999000099990002e-05
+    },
+    "qwen3_1_7b": {
+      "common_base_correct_questions": 111,
+      "local_retention": 0.6486486486486487,
+      "control_retention": 0.954954954954955,
+      "local_extra_failure": 0.3063063063063063,
+      "local_extra_failure_percentage_points": 30.630630630630627,
+      "ci95_low_percentage_points": 21.62162162162162,
+      "ci95_high_percentage_points": 39.63963963963964,
+      "p_one_sided": 9.999000099990002e-05
+    },
+    "qwen3_4b": {
+      "common_base_correct_questions": 196,
+      "local_retention": 0.75,
+      "control_retention": 0.923469387755102,
+      "local_extra_failure": 0.17346938775510204,
+      "local_extra_failure_percentage_points": 17.346938775510203,
+      "ci95_low_percentage_points": 11.224489795918368,
+      "ci95_high_percentage_points": 23.97959183673469,
+      "p_one_sided": 9.999000099990002e-05
+    }
+  }
+}

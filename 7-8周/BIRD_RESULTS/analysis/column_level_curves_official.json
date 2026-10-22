@@ -1,0 +1,354 @@
+{
+  "models": {
+    "qwen3_0_6b": {
+      "random": {
+        "common_questions": 500,
+        "base_accuracy": 0.146,
+        "levels": {
+          "5": {
+            "correct": 60,
+            "count": 500,
+            "accuracy": 0.12,
+            "drop": 0.025999999999999995,
+            "drop_percentage_points": 2.5999999999999996
+          },
+          "10": {
+            "correct": 62,
+            "count": 500,
+            "accuracy": 0.124,
+            "drop": 0.021999999999999992,
+            "drop_percentage_points": 2.1999999999999993
+          },
+          "20": {
+            "correct": 50,
+            "count": 500,
+            "accuracy": 0.1,
+            "drop": 0.045999999999999985,
+            "drop_percentage_points": 4.599999999999999
+          },
+          "50": {
+            "correct": 43,
+            "count": 500,
+            "accuracy": 0.086,
+            "drop": 0.06,
+            "drop_percentage_points": 6.0
+          }
+        }
+      },
+      "synonym": {
+        "common_questions": 500,
+        "base_accuracy": 0.146,
+        "levels": {
+          "5": {
+            "correct": 35,
+            "count": 500,
+            "accuracy": 0.07,
+            "drop": 0.07599999999999998,
+            "drop_percentage_points": 7.599999999999999
+          },
+          "10": {
+            "correct": 32,
+            "count": 500,
+            "accuracy": 0.064,
+            "drop": 0.08199999999999999,
+            "drop_percentage_points": 8.2
+          },
+          "20": {
+            "correct": 26,
+            "count": 500,
+            "accuracy": 0.052,
+            "drop": 0.094,
+            "drop_percentage_points": 9.4
+          },
+          "50": {
+            "correct": 21,
+            "count": 500,
+            "accuracy": 0.042,
+            "drop": 0.10399999999999998,
+            "drop_percentage_points": 10.399999999999999
+          }
+        }
+      }
+    },
+    "qwen2_5_coder_1_5b": {
+      "random": {
+        "common_questions": 500,
+        "base_accuracy": 0.264,
+        "levels": {
+          "5": {
+            "correct": 113,
+            "count": 500,
+            "accuracy": 0.226,
+            "drop": 0.038000000000000006,
+            "drop_percentage_points": 3.8000000000000007
+          },
+          "10": {
+            "correct": 115,
+            "count": 500,
+            "accuracy": 0.23,
+            "drop": 0.034,
+            "drop_percentage_points": 3.4000000000000004
+          },
+          "20": {
+            "correct": 111,
+            "count": 500,
+            "accuracy": 0.222,
+            "drop": 0.04200000000000001,
+            "drop_percentage_points": 4.200000000000001
+          },
+          "50": {
+            "correct": 112,
+            "count": 500,
+            "accuracy": 0.224,
+            "drop": 0.04000000000000001,
+            "drop_percentage_points": 4.000000000000001
+          }
+        }
+      },
+      "synonym": {
+        "common_questions": 500,
+        "base_accuracy": 0.264,
+        "levels": {
+          "5": {
+            "correct": 91,
+            "count": 500,
+            "accuracy": 0.182,
+            "drop": 0.08200000000000002,
+            "drop_percentage_points": 8.200000000000001
+          },
+          "10": {
+            "correct": 78,
+            "count": 500,
+            "accuracy": 0.156,
+            "drop": 0.10800000000000001,
+            "drop_percentage_points": 10.8
+          },
+          "20": {
+            "correct": 68,
+            "count": 500,
+            "accuracy": 0.136,
+            "drop": 0.128,
+            "drop_percentage_points": 12.8
+          },
+          "50": {
+            "correct": 75,
+            "count": 500,
+            "accuracy": 0.15,
+            "drop": 0.11400000000000002,
+            "drop_percentage_points": 11.400000000000002
+          }
+        }
+      }
+    },
+    "qwen3_1_7b": {
+      "random": {
+        "common_questions": 500,
+        "base_accuracy": 0.272,
+        "levels": {
+          "5": {
+            "correct": 121,
+            "count": 500,
+            "accuracy": 0.242,
+            "drop": 0.030000000000000027,
+            "drop_percentage_points": 3.0000000000000027
+          },
+          "10": {
+            "correct": 115,
+            "count": 500,
+            "accuracy": 0.23,
+            "drop": 0.04200000000000001,
+            "drop_percentage_points": 4.200000000000001
+          },
+          "20": {
+            "correct": 109,
+            "count": 500,
+            "accuracy": 0.218,
+            "drop": 0.05400000000000002,
+            "drop_percentage_points": 5.400000000000002
+          },
+          "50": {
+            "correct": 99,
+            "count": 500,
+            "accuracy": 0.198,
+            "drop": 0.07400000000000001,
+            "drop_percentage_points": 7.400000000000001
+          }
+        }
+      },
+      "synonym": {
+        "common_questions": 500,
+        "base_accuracy": 0.272,
+        "levels": {
+          "5": {
+            "correct": 71,
+            "count": 500,
+            "accuracy": 0.142,
+            "drop": 0.13000000000000003,
+            "drop_percentage_points": 13.000000000000004
+          },
+          "10": {
+            "correct": 56,
+            "count": 500,
+            "accuracy": 0.112,
+            "drop": 0.16000000000000003,
+            "drop_percentage_points": 16.000000000000004
+          },
+          "20": {
+            "correct": 57,
+            "count": 500,
+            "accuracy": 0.114,
+            "drop": 0.15800000000000003,
+            "drop_percentage_points": 15.800000000000002
+          },
+          "50": {
+            "correct": 46,
+            "count": 500,
+            "accuracy": 0.092,
+            "drop": 0.18000000000000002,
+            "drop_percentage_points": 18.000000000000004
+          }
+        }
+      }
+    },
+    "qwen3_4b": {
+      "random": {
+        "common_questions": 500,
+        "base_accuracy": 0.504,
+        "levels": {
+          "5": {
+            "correct": 236,
+            "count": 500,
+            "accuracy": 0.472,
+            "drop": 0.03200000000000003,
+            "drop_percentage_points": 3.200000000000003
+          },
+          "10": {
+            "correct": 229,
+            "count": 500,
+            "accuracy": 0.458,
+            "drop": 0.045999999999999985,
+            "drop_percentage_points": 4.599999999999999
+          },
+          "20": {
+            "correct": 216,
+            "count": 500,
+            "accuracy": 0.432,
+            "drop": 0.07200000000000001,
+            "drop_percentage_points": 7.200000000000001
+          },
+          "50": {
+            "correct": 199,
+            "count": 500,
+            "accuracy": 0.398,
+            "drop": 0.10599999999999998,
+            "drop_percentage_points": 10.599999999999998
+          }
+        }
+      },
+      "synonym": {
+        "common_questions": 500,
+        "base_accuracy": 0.504,
+        "levels": {
+          "5": {
+            "correct": 97,
+            "count": 500,
+            "accuracy": 0.194,
+            "drop": 0.31,
+            "drop_percentage_points": 31.0
+          },
+          "10": {
+            "correct": 85,
+            "count": 500,
+            "accuracy": 0.17,
+            "drop": 0.33399999999999996,
+            "drop_percentage_points": 33.4
+          },
+          "20": {
+            "correct": 90,
+            "count": 500,
+            "accuracy": 0.18,
+            "drop": 0.324,
+            "drop_percentage_points": 32.4
+          },
+          "50": {
+            "correct": 94,
+            "count": 500,
+            "accuracy": 0.188,
+            "drop": 0.316,
+            "drop_percentage_points": 31.6
+          }
+        }
+      }
+    },
+    "api_control": {
+      "random": {
+        "common_questions": 500,
+        "base_accuracy": 0.682,
+        "levels": {
+          "5": {
+            "correct": 324,
+            "count": 500,
+            "accuracy": 0.648,
+            "drop": 0.03400000000000003,
+            "drop_percentage_points": 3.400000000000003
+          },
+          "10": {
+            "correct": 325,
+            "count": 500,
+            "accuracy": 0.65,
+            "drop": 0.03200000000000003,
+            "drop_percentage_points": 3.200000000000003
+          },
+          "20": {
+            "correct": 309,
+            "count": 500,
+            "accuracy": 0.618,
+            "drop": 0.06400000000000006,
+            "drop_percentage_points": 6.400000000000006
+          },
+          "50": {
+            "correct": 318,
+            "count": 500,
+            "accuracy": 0.636,
+            "drop": 0.04600000000000004,
+            "drop_percentage_points": 4.600000000000004
+          }
+        }
+      },
+      "synonym": {
+        "common_questions": 500,
+        "base_accuracy": 0.682,
+        "levels": {
+          "5": {
+            "correct": 150,
+            "count": 500,
+            "accuracy": 0.3,
+            "drop": 0.38200000000000006,
+            "drop_percentage_points": 38.2
+          },
+          "10": {
+            "correct": 127,
+            "count": 500,
+            "accuracy": 0.254,
+            "drop": 0.42800000000000005,
+            "drop_percentage_points": 42.800000000000004
+          },
+          "20": {
+            "correct": 138,
+            "count": 500,
+            "accuracy": 0.276,
+            "drop": 0.406,
+            "drop_percentage_points": 40.6
+          },
+          "50": {
+            "correct": 135,
+            "count": 500,
+            "accuracy": 0.27,
+            "drop": 0.41200000000000003,
+            "drop_percentage_points": 41.2
+          }
+        }
+      }
+    }
+  }
+}

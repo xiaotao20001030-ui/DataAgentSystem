@@ -1,0 +1,19 @@
+{
+  "gold_queries": 500,
+  "passed": 498,
+  "failed": 2,
+  "failures": [
+    {
+      "question_id": 518,
+      "status": "failed",
+      "error": "OperationalError: interrupted",
+      "elapsed_ms": 30001.07
+    },
+    {
+      "question_id": 701,
+      "status": "failed",
+      "error": "OperationalError: interrupted",
+      "elapsed_ms": 30000.9
+    }
+  ]
+}

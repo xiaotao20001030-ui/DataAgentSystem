@@ -1,0 +1,21 @@
+{
+  "model_key": "qwen3_4b",
+  "prediction_file": "BIRD_RESULTS/predictions_pure_column/qwen3_4b.jsonl",
+  "scoring": "official_mini_dev_set_equality",
+  "prediction_timeout_seconds": 30.0,
+  "gold_timeout_seconds": 30.0,
+  "by_family": {
+    "add_pure_column_20": {
+      "count": 500,
+      "correct": 222,
+      "accuracy": 0.444,
+      "evaluation_errors": 93
+    },
+    "base": {
+      "count": 500,
+      "correct": 253,
+      "accuracy": 0.506,
+      "evaluation_errors": 73
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "model_key": "qwen3_1_7b",
+  "prediction_file": "/root/fsas/home/xiaotao/xiaotao/MINIDEV/BIRD_RESULTS/predictions_pure_column/qwen3_1_7b.jsonl",
+  "scoring": "official_mini_dev_set_equality",
+  "prediction_timeout_seconds": 30.0,
+  "gold_timeout_seconds": 30.0,
+  "by_family": {
+    "add_pure_column_20": {
+      "count": 500,
+      "correct": 91,
+      "accuracy": 0.182,
+      "evaluation_errors": 254
+    },
+    "base": {
+      "count": 500,
+      "correct": 136,
+      "accuracy": 0.272,
+      "evaluation_errors": 212
+    }
+  }
+}

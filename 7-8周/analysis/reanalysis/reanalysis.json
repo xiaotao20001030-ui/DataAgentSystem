@@ -1,0 +1,956 @@
+{
+  "control_model": "api_control",
+  "models": [
+    "api_control",
+    "qwen2_5_coder_1_5b",
+    "qwen3_0_6b",
+    "qwen3_1_7b",
+    "qwen3_4b"
+  ],
+  "scores_dir": "BIRD_RESULTS/scores_official/combined",
+  "gate": {
+    "qwen2_5_coder_1_5b": {
+      "add_random_20": {
+        "n_questions": 500,
+        "small_drop": 0.042,
+        "control_drop": 0.064,
+        "difference": -0.022,
+        "ci95": [
+          -0.07,
+          0.026
+        ],
+        "p_one_sided": 0.821917808219178,
+        "p_one_sided_10pp": 1.0,
+        "excludes_10pp": true,
+        "strict_ci_lower_10pp": false
+      },
+      "add_synonym_20": {
+        "n_questions": 500,
+        "small_drop": 0.128,
+        "control_drop": 0.406,
+        "difference": -0.278,
+        "ci95": [
+          -0.334,
+          -0.224
+        ],
+        "p_one_sided": 1.0,
+        "p_one_sided_10pp": 1.0,
+        "excludes_10pp": true,
+        "strict_ci_lower_10pp": false
+      }
+    },
+    "qwen3_0_6b": {
+      "add_random_20": {
+        "n_questions": 500,
+        "small_drop": 0.046,
+        "control_drop": 0.064,
+        "difference": -0.018,
+        "ci95": [
+          -0.058,
+          0.02
+        ],
+        "p_one_sided": 0.8267173282671733,
+        "p_one_sided_10pp": 1.0,
+        "excludes_10pp": true,
+        "strict_ci_lower_10pp": false
+      },
+      "add_synonym_20": {
+        "n_questions": 500,
+        "small_drop": 0.094,
+        "control_drop": 0.406,
+        "difference": -0.312,
+        "ci95": [
+          -0.366,
+          -0.26
+        ],
+        "p_one_sided": 1.0,
+        "p_one_sided_10pp": 1.0,
+        "excludes_10pp": true,
+        "strict_ci_lower_10pp": false
+      }
+    },
+    "qwen3_1_7b": {
+      "add_random_20": {
+        "n_questions": 500,
+        "small_drop": 0.054,
+        "control_drop": 0.064,
+        "difference": -0.01,
+        "ci95": [
+          -0.054,
+          0.034
+        ],
+        "p_one_sided": 0.6847315268473153,
+        "p_one_sided_10pp": 1.0,
+        "excludes_10pp": true,
+        "strict_ci_lower_10pp": false
+      },
+      "add_synonym_20": {
+        "n_questions": 500,
+        "small_drop": 0.158,
+        "control_drop": 0.406,
+        "difference": -0.248,
+        "ci95": [
+          -0.3,
+          -0.196
+        ],
+        "p_one_sided": 1.0,
+        "p_one_sided_10pp": 1.0,
+        "excludes_10pp": true,
+        "strict_ci_lower_10pp": false
+      }
+    },
+    "qwen3_4b": {
+      "add_random_20": {
+        "n_questions": 500,
+        "small_drop": 0.072,
+        "control_drop": 0.064,
+        "difference": 0.008,
+        "ci95": [
+          -0.036,
+          0.052
+        ],
+        "p_one_sided": 0.3782621737826217,
+        "p_one_sided_10pp": 0.9999000099990001,
+        "excludes_10pp": true,
+        "strict_ci_lower_10pp": false
+      },
+      "add_synonym_20": {
+        "n_questions": 500,
+        "small_drop": 0.324,
+        "control_drop": 0.406,
+        "difference": -0.082,
+        "ci95": [
+          -0.13,
+          -0.034
+        ],
+        "p_one_sided": 0.9997000299970003,
+        "p_one_sided_10pp": 1.0,
+        "excludes_10pp": true,
+        "strict_ci_lower_10pp": false
+      }
+    }
+  },
+  "transitions": {
+    "qwen2_5_coder_1_5b": {
+      "add_random_10": {
+        "n": 500,
+        "base_correct_perturbed_correct": 86,
+        "base_correct_perturbed_wrong": 46,
+        "base_wrong_perturbed_correct": 29,
+        "base_wrong_perturbed_wrong": 339,
+        "net_accuracy_change": -0.034
+      },
+      "add_random_20": {
+        "n": 500,
+        "base_correct_perturbed_correct": 77,
+        "base_correct_perturbed_wrong": 55,
+        "base_wrong_perturbed_correct": 34,
+        "base_wrong_perturbed_wrong": 334,
+        "net_accuracy_change": -0.042
+      },
+      "add_random_5": {
+        "n": 500,
+        "base_correct_perturbed_correct": 91,
+        "base_correct_perturbed_wrong": 41,
+        "base_wrong_perturbed_correct": 22,
+        "base_wrong_perturbed_wrong": 346,
+        "net_accuracy_change": -0.038
+      },
+      "add_random_50": {
+        "n": 500,
+        "base_correct_perturbed_correct": 81,
+        "base_correct_perturbed_wrong": 51,
+        "base_wrong_perturbed_correct": 31,
+        "base_wrong_perturbed_wrong": 337,
+        "net_accuracy_change": -0.04
+      },
+      "add_real_synonym_20": {
+        "n": 427,
+        "base_correct_perturbed_correct": 75,
+        "base_correct_perturbed_wrong": 37,
+        "base_wrong_perturbed_correct": 23,
+        "base_wrong_perturbed_wrong": 292,
+        "net_accuracy_change": -0.03278688524590164
+      },
+      "add_synonym_10": {
+        "n": 500,
+        "base_correct_perturbed_correct": 68,
+        "base_correct_perturbed_wrong": 64,
+        "base_wrong_perturbed_correct": 10,
+        "base_wrong_perturbed_wrong": 358,
+        "net_accuracy_change": -0.108
+      },
+      "add_synonym_20": {
+        "n": 500,
+        "base_correct_perturbed_correct": 56,
+        "base_correct_perturbed_wrong": 76,
+        "base_wrong_perturbed_correct": 12,
+        "base_wrong_perturbed_wrong": 356,
+        "net_accuracy_change": -0.128
+      },
+      "add_synonym_5": {
+        "n": 500,
+        "base_correct_perturbed_correct": 78,
+        "base_correct_perturbed_wrong": 54,
+        "base_wrong_perturbed_correct": 13,
+        "base_wrong_perturbed_wrong": 355,
+        "net_accuracy_change": -0.082
+      },
+      "add_synonym_50": {
+        "n": 500,
+        "base_correct_perturbed_correct": 61,
+        "base_correct_perturbed_wrong": 71,
+        "base_wrong_perturbed_correct": 14,
+        "base_wrong_perturbed_wrong": 354,
+        "net_accuracy_change": -0.114
+      }
+    },
+    "qwen3_0_6b": {
+      "add_random_10": {
+        "n": 500,
+        "base_correct_perturbed_correct": 51,
+        "base_correct_perturbed_wrong": 22,
+        "base_wrong_perturbed_correct": 11,
+        "base_wrong_perturbed_wrong": 416,
+        "net_accuracy_change": -0.022
+      },
+      "add_random_20": {
+        "n": 500,
+        "base_correct_perturbed_correct": 42,
+        "base_correct_perturbed_wrong": 31,
+        "base_wrong_perturbed_correct": 8,
+        "base_wrong_perturbed_wrong": 419,
+        "net_accuracy_change": -0.046
+      },
+      "add_random_5": {
+        "n": 500,
+        "base_correct_perturbed_correct": 51,
+        "base_correct_perturbed_wrong": 22,
+        "base_wrong_perturbed_correct": 9,
+        "base_wrong_perturbed_wrong": 418,
+        "net_accuracy_change": -0.026
+      },
+      "add_random_50": {
+        "n": 500,
+        "base_correct_perturbed_correct": 38,
+        "base_correct_perturbed_wrong": 35,
+        "base_wrong_perturbed_correct": 5,
+        "base_wrong_perturbed_wrong": 422,
+        "net_accuracy_change": -0.06
+      },
+      "add_real_synonym_20": {
+        "n": 427,
+        "base_correct_perturbed_correct": 42,
+        "base_correct_perturbed_wrong": 22,
+        "base_wrong_perturbed_correct": 9,
+        "base_wrong_perturbed_wrong": 354,
+        "net_accuracy_change": -0.03044496487119438
+      },
+      "add_synonym_10": {
+        "n": 500,
+        "base_correct_perturbed_correct": 28,
+        "base_correct_perturbed_wrong": 45,
+        "base_wrong_perturbed_correct": 4,
+        "base_wrong_perturbed_wrong": 423,
+        "net_accuracy_change": -0.082
+      },
+      "add_synonym_20": {
+        "n": 500,
+        "base_correct_perturbed_correct": 21,
+        "base_correct_perturbed_wrong": 52,
+        "base_wrong_perturbed_correct": 5,
+        "base_wrong_perturbed_wrong": 422,
+        "net_accuracy_change": -0.094
+      },
+      "add_synonym_5": {
+        "n": 500,
+        "base_correct_perturbed_correct": 30,
+        "base_correct_perturbed_wrong": 43,
+        "base_wrong_perturbed_correct": 5,
+        "base_wrong_perturbed_wrong": 422,
+        "net_accuracy_change": -0.076
+      },
+      "add_synonym_50": {
+        "n": 500,
+        "base_correct_perturbed_correct": 19,
+        "base_correct_perturbed_wrong": 54,
+        "base_wrong_perturbed_correct": 2,
+        "base_wrong_perturbed_wrong": 425,
+        "net_accuracy_change": -0.104
+      }
+    },
+    "qwen3_1_7b": {
+      "add_random_10": {
+        "n": 500,
+        "base_correct_perturbed_correct": 92,
+        "base_correct_perturbed_wrong": 44,
+        "base_wrong_perturbed_correct": 23,
+        "base_wrong_perturbed_wrong": 341,
+        "net_accuracy_change": -0.042
+      },
+      "add_random_20": {
+        "n": 500,
+        "base_correct_perturbed_correct": 86,
+        "base_correct_perturbed_wrong": 50,
+        "base_wrong_perturbed_correct": 23,
+        "base_wrong_perturbed_wrong": 341,
+        "net_accuracy_change": -0.054
+      },
+      "add_random_5": {
+        "n": 500,
+        "base_correct_perturbed_correct": 105,
+        "base_correct_perturbed_wrong": 31,
+        "base_wrong_perturbed_correct": 16,
+        "base_wrong_perturbed_wrong": 348,
+        "net_accuracy_change": -0.03
+      },
+      "add_random_50": {
+        "n": 500,
+        "base_correct_perturbed_correct": 83,
+        "base_correct_perturbed_wrong": 53,
+        "base_wrong_perturbed_correct": 16,
+        "base_wrong_perturbed_wrong": 348,
+        "net_accuracy_change": -0.074
+      },
+      "add_real_synonym_20": {
+        "n": 427,
+        "base_correct_perturbed_correct": 76,
+        "base_correct_perturbed_wrong": 44,
+        "base_wrong_perturbed_correct": 26,
+        "base_wrong_perturbed_wrong": 281,
+        "net_accuracy_change": -0.04215456674473068
+      },
+      "add_synonym_10": {
+        "n": 500,
+        "base_correct_perturbed_correct": 51,
+        "base_correct_perturbed_wrong": 85,
+        "base_wrong_perturbed_correct": 5,
+        "base_wrong_perturbed_wrong": 359,
+        "net_accuracy_change": -0.16
+      },
+      "add_synonym_20": {
+        "n": 500,
+        "base_correct_perturbed_correct": 51,
+        "base_correct_perturbed_wrong": 85,
+        "base_wrong_perturbed_correct": 6,
+        "base_wrong_perturbed_wrong": 358,
+        "net_accuracy_change": -0.158
+      },
+      "add_synonym_5": {
+        "n": 500,
+        "base_correct_perturbed_correct": 61,
+        "base_correct_perturbed_wrong": 75,
+        "base_wrong_perturbed_correct": 10,
+        "base_wrong_perturbed_wrong": 354,
+        "net_accuracy_change": -0.13
+      },
+      "add_synonym_50": {
+        "n": 500,
+        "base_correct_perturbed_correct": 40,
+        "base_correct_perturbed_wrong": 96,
+        "base_wrong_perturbed_correct": 6,
+        "base_wrong_perturbed_wrong": 358,
+        "net_accuracy_change": -0.18
+      }
+    },
+    "qwen3_4b": {
+      "add_random_10": {
+        "n": 500,
+        "base_correct_perturbed_correct": 207,
+        "base_correct_perturbed_wrong": 45,
+        "base_wrong_perturbed_correct": 22,
+        "base_wrong_perturbed_wrong": 226,
+        "net_accuracy_change": -0.046
+      },
+      "add_random_20": {
+        "n": 500,
+        "base_correct_perturbed_correct": 195,
+        "base_correct_perturbed_wrong": 57,
+        "base_wrong_perturbed_correct": 21,
+        "base_wrong_perturbed_wrong": 227,
+        "net_accuracy_change": -0.072
+      },
+      "add_random_5": {
+        "n": 500,
+        "base_correct_perturbed_correct": 215,
+        "base_correct_perturbed_wrong": 37,
+        "base_wrong_perturbed_correct": 21,
+        "base_wrong_perturbed_wrong": 227,
+        "net_accuracy_change": -0.032
+      },
+      "add_random_50": {
+        "n": 500,
+        "base_correct_perturbed_correct": 180,
+        "base_correct_perturbed_wrong": 72,
+        "base_wrong_perturbed_correct": 19,
+        "base_wrong_perturbed_wrong": 229,
+        "net_accuracy_change": -0.106
+      },
+      "add_real_synonym_20": {
+        "n": 427,
+        "base_correct_perturbed_correct": 157,
+        "base_correct_perturbed_wrong": 58,
+        "base_wrong_perturbed_correct": 17,
+        "base_wrong_perturbed_wrong": 195,
+        "net_accuracy_change": -0.09601873536299765
+      },
+      "add_synonym_10": {
+        "n": 500,
+        "base_correct_perturbed_correct": 81,
+        "base_correct_perturbed_wrong": 171,
+        "base_wrong_perturbed_correct": 4,
+        "base_wrong_perturbed_wrong": 244,
+        "net_accuracy_change": -0.334
+      },
+      "add_synonym_20": {
+        "n": 500,
+        "base_correct_perturbed_correct": 84,
+        "base_correct_perturbed_wrong": 168,
+        "base_wrong_perturbed_correct": 6,
+        "base_wrong_perturbed_wrong": 242,
+        "net_accuracy_change": -0.324
+      },
+      "add_synonym_5": {
+        "n": 500,
+        "base_correct_perturbed_correct": 91,
+        "base_correct_perturbed_wrong": 161,
+        "base_wrong_perturbed_correct": 6,
+        "base_wrong_perturbed_wrong": 242,
+        "net_accuracy_change": -0.31
+      },
+      "add_synonym_50": {
+        "n": 500,
+        "base_correct_perturbed_correct": 88,
+        "base_correct_perturbed_wrong": 164,
+        "base_wrong_perturbed_correct": 6,
+        "base_wrong_perturbed_wrong": 242,
+        "net_accuracy_change": -0.316
+      }
+    }
+  },
+  "baseline_correct": {
+    "qwen2_5_coder_1_5b": {
+      "add_random_20": {
+        "n": 116,
+        "mean": 0.3448275862068966,
+        "ci95": [
+          0.2413793103448276,
+          0.4482758620689655
+        ],
+        "definition": "DeepSeek retention minus small-model retention on questions both answered correctly at baseline"
+      },
+      "add_synonym_20": {
+        "n": 116,
+        "mean": 0.10344827586206896,
+        "ci95": [
+          0.0,
+          0.20689655172413793
+        ],
+        "definition": "DeepSeek retention minus small-model retention on questions both answered correctly at baseline"
+      }
+    },
+    "qwen3_0_6b": {
+      "add_random_20": {
+        "n": 69,
+        "mean": 0.3188405797101449,
+        "ci95": [
+          0.18840579710144928,
+          0.43478260869565216
+        ],
+        "definition": "DeepSeek retention minus small-model retention on questions both answered correctly at baseline"
+      },
+      "add_synonym_20": {
+        "n": 69,
+        "mean": 0.36231884057971014,
+        "ci95": [
+          0.2463768115942029,
+          0.4782608695652174
+        ],
+        "definition": "DeepSeek retention minus small-model retention on questions both answered correctly at baseline"
+      }
+    },
+    "qwen3_1_7b": {
+      "add_random_20": {
+        "n": 127,
+        "mean": 0.25984251968503935,
+        "ci95": [
+          0.1732283464566929,
+          0.3464566929133858
+        ],
+        "definition": "DeepSeek retention minus small-model retention on questions both answered correctly at baseline"
+      },
+      "add_synonym_20": {
+        "n": 127,
+        "mean": 0.14173228346456693,
+        "ci95": [
+          0.06299212598425197,
+          0.2283464566929134
+        ],
+        "definition": "DeepSeek retention minus small-model retention on questions both answered correctly at baseline"
+      }
+    },
+    "qwen3_4b": {
+      "add_random_20": {
+        "n": 229,
+        "mean": 0.1222707423580786,
+        "ci95": [
+          0.06550218340611354,
+          0.17903930131004367
+        ],
+        "definition": "DeepSeek retention minus small-model retention on questions both answered correctly at baseline"
+      },
+      "add_synonym_20": {
+        "n": 229,
+        "mean": 0.0611353711790393,
+        "ci95": [
+          0.013100436681222707,
+          0.11353711790393013
+        ],
+        "definition": "DeepSeek retention minus small-model retention on questions both answered correctly at baseline"
+      }
+    }
+  },
+  "strata": {
+    "api_control": {
+      "synonym_by_same_name_count": {
+        "label": "same_name_count (capped at 5)",
+        "rows": [
+          {
+            "bucket": 0,
+            "n": 344,
+            "accuracy": 0.7412790697674418
+          },
+          {
+            "bucket": 1,
+            "n": 12,
+            "accuracy": 0.0
+          },
+          {
+            "bucket": 2,
+            "n": 248,
+            "accuracy": 0.25806451612903225
+          },
+          {
+            "bucket": 3,
+            "n": 420,
+            "accuracy": 0.16904761904761906
+          },
+          {
+            "bucket": 4,
+            "n": 296,
+            "accuracy": 0.24662162162162163
+          },
+          {
+            "bucket": 5,
+            "n": 680,
+            "accuracy": 0.12794117647058822
+          }
+        ]
+      },
+      "random_by_new_table_count": {
+        "label": "new_table_count (capped at 5)",
+        "rows": [
+          {
+            "bucket": 0,
+            "n": 55,
+            "accuracy": 0.509090909090909
+          },
+          {
+            "bucket": 1,
+            "n": 346,
+            "accuracy": 0.5260115606936416
+          },
+          {
+            "bucket": 2,
+            "n": 371,
+            "accuracy": 0.6630727762803235
+          },
+          {
+            "bucket": 3,
+            "n": 307,
+            "accuracy": 0.6156351791530945
+          },
+          {
+            "bucket": 4,
+            "n": 273,
+            "accuracy": 0.6336996336996337
+          },
+          {
+            "bucket": 5,
+            "n": 648,
+            "accuracy": 0.7067901234567902
+          }
+        ]
+      },
+      "real_synonym_by_new_table": {
+        "label": "real synonym table placement",
+        "rows": [
+          {
+            "bucket": "gold_tables_only",
+            "n": 4,
+            "accuracy": 0.25
+          },
+          {
+            "bucket": "new_table",
+            "n": 423,
+            "accuracy": 0.6335697399527187
+          }
+        ]
+      }
+    },
+    "qwen2_5_coder_1_5b": {
+      "synonym_by_same_name_count": {
+        "label": "same_name_count (capped at 5)",
+        "rows": [
+          {
+            "bucket": 0,
+            "n": 344,
+            "accuracy": 0.4069767441860465
+          },
+          {
+            "bucket": 1,
+            "n": 12,
+            "accuracy": 0.0
+          },
+          {
+            "bucket": 2,
+            "n": 248,
+            "accuracy": 0.17338709677419356
+          },
+          {
+            "bucket": 3,
+            "n": 420,
+            "accuracy": 0.11190476190476191
+          },
+          {
+            "bucket": 4,
+            "n": 296,
+            "accuracy": 0.17905405405405406
+          },
+          {
+            "bucket": 5,
+            "n": 680,
+            "accuracy": 0.04264705882352941
+          }
+        ]
+      },
+      "random_by_new_table_count": {
+        "label": "new_table_count (capped at 5)",
+        "rows": [
+          {
+            "bucket": 0,
+            "n": 55,
+            "accuracy": 0.16363636363636364
+          },
+          {
+            "bucket": 1,
+            "n": 346,
+            "accuracy": 0.13872832369942195
+          },
+          {
+            "bucket": 2,
+            "n": 371,
+            "accuracy": 0.2668463611859838
+          },
+          {
+            "bucket": 3,
+            "n": 307,
+            "accuracy": 0.2768729641693811
+          },
+          {
+            "bucket": 4,
+            "n": 273,
+            "accuracy": 0.2564102564102564
+          },
+          {
+            "bucket": 5,
+            "n": 648,
+            "accuracy": 0.21604938271604937
+          }
+        ]
+      },
+      "real_synonym_by_new_table": {
+        "label": "real synonym table placement",
+        "rows": [
+          {
+            "bucket": "gold_tables_only",
+            "n": 4,
+            "accuracy": 0.25
+          },
+          {
+            "bucket": "new_table",
+            "n": 423,
+            "accuracy": 0.2293144208037825
+          }
+        ]
+      }
+    },
+    "qwen3_0_6b": {
+      "synonym_by_same_name_count": {
+        "label": "same_name_count (capped at 5)",
+        "rows": [
+          {
+            "bucket": 0,
+            "n": 344,
+            "accuracy": 0.22093023255813954
+          },
+          {
+            "bucket": 1,
+            "n": 12,
+            "accuracy": 0.0
+          },
+          {
+            "bucket": 2,
+            "n": 248,
+            "accuracy": 0.024193548387096774
+          },
+          {
+            "bucket": 3,
+            "n": 420,
+            "accuracy": 0.01904761904761905
+          },
+          {
+            "bucket": 4,
+            "n": 296,
+            "accuracy": 0.07094594594594594
+          },
+          {
+            "bucket": 5,
+            "n": 680,
+            "accuracy": 0.004411764705882353
+          }
+        ]
+      },
+      "random_by_new_table_count": {
+        "label": "new_table_count (capped at 5)",
+        "rows": [
+          {
+            "bucket": 0,
+            "n": 55,
+            "accuracy": 0.0
+          },
+          {
+            "bucket": 1,
+            "n": 346,
+            "accuracy": 0.03757225433526012
+          },
+          {
+            "bucket": 2,
+            "n": 371,
+            "accuracy": 0.1320754716981132
+          },
+          {
+            "bucket": 3,
+            "n": 307,
+            "accuracy": 0.0781758957654723
+          },
+          {
+            "bucket": 4,
+            "n": 273,
+            "accuracy": 0.17216117216117216
+          },
+          {
+            "bucket": 5,
+            "n": 648,
+            "accuracy": 0.12654320987654322
+          }
+        ]
+      },
+      "real_synonym_by_new_table": {
+        "label": "real synonym table placement",
+        "rows": [
+          {
+            "bucket": "gold_tables_only",
+            "n": 4,
+            "accuracy": 0.0
+          },
+          {
+            "bucket": "new_table",
+            "n": 423,
+            "accuracy": 0.12056737588652482
+          }
+        ]
+      }
+    },
+    "qwen3_1_7b": {
+      "synonym_by_same_name_count": {
+        "label": "same_name_count (capped at 5)",
+        "rows": [
+          {
+            "bucket": 0,
+            "n": 344,
+            "accuracy": 0.375
+          },
+          {
+            "bucket": 1,
+            "n": 12,
+            "accuracy": 0.0
+          },
+          {
+            "bucket": 2,
+            "n": 248,
+            "accuracy": 0.08870967741935484
+          },
+          {
+            "bucket": 3,
+            "n": 420,
+            "accuracy": 0.06904761904761905
+          },
+          {
+            "bucket": 4,
+            "n": 296,
+            "accuracy": 0.10135135135135136
+          },
+          {
+            "bucket": 5,
+            "n": 680,
+            "accuracy": 0.029411764705882353
+          }
+        ]
+      },
+      "random_by_new_table_count": {
+        "label": "new_table_count (capped at 5)",
+        "rows": [
+          {
+            "bucket": 0,
+            "n": 55,
+            "accuracy": 0.05454545454545454
+          },
+          {
+            "bucket": 1,
+            "n": 346,
+            "accuracy": 0.07803468208092486
+          },
+          {
+            "bucket": 2,
+            "n": 371,
+            "accuracy": 0.24258760107816713
+          },
+          {
+            "bucket": 3,
+            "n": 307,
+            "accuracy": 0.23778501628664495
+          },
+          {
+            "bucket": 4,
+            "n": 273,
+            "accuracy": 0.2783882783882784
+          },
+          {
+            "bucket": 5,
+            "n": 648,
+            "accuracy": 0.2700617283950617
+          }
+        ]
+      },
+      "real_synonym_by_new_table": {
+        "label": "real synonym table placement",
+        "rows": [
+          {
+            "bucket": "gold_tables_only",
+            "n": 4,
+            "accuracy": 0.0
+          },
+          {
+            "bucket": "new_table",
+            "n": 423,
+            "accuracy": 0.24113475177304963
+          }
+        ]
+      }
+    },
+    "qwen3_4b": {
+      "synonym_by_same_name_count": {
+        "label": "same_name_count (capped at 5)",
+        "rows": [
+          {
+            "bucket": 0,
+            "n": 344,
+            "accuracy": 0.5988372093023255
+          },
+          {
+            "bucket": 1,
+            "n": 12,
+            "accuracy": 0.0
+          },
+          {
+            "bucket": 2,
+            "n": 248,
+            "accuracy": 0.08870967741935484
+          },
+          {
+            "bucket": 3,
+            "n": 420,
+            "accuracy": 0.12142857142857143
+          },
+          {
+            "bucket": 4,
+            "n": 296,
+            "accuracy": 0.16554054054054054
+          },
+          {
+            "bucket": 5,
+            "n": 680,
+            "accuracy": 0.05588235294117647
+          }
+        ]
+      },
+      "random_by_new_table_count": {
+        "label": "new_table_count (capped at 5)",
+        "rows": [
+          {
+            "bucket": 0,
+            "n": 55,
+            "accuracy": 0.2909090909090909
+          },
+          {
+            "bucket": 1,
+            "n": 346,
+            "accuracy": 0.26011560693641617
+          },
+          {
+            "bucket": 2,
+            "n": 371,
+            "accuracy": 0.5040431266846361
+          },
+          {
+            "bucket": 3,
+            "n": 307,
+            "accuracy": 0.4788273615635179
+          },
+          {
+            "bucket": 4,
+            "n": 273,
+            "accuracy": 0.46153846153846156
+          },
+          {
+            "bucket": 5,
+            "n": 648,
+            "accuracy": 0.4845679012345679
+          }
+        ]
+      },
+      "real_synonym_by_new_table": {
+        "label": "real synonym table placement",
+        "rows": [
+          {
+            "bucket": "gold_tables_only",
+            "n": 4,
+            "accuracy": 0.25
+          },
+          {
+            "bucket": "new_table",
+            "n": 423,
+            "accuracy": 0.408983451536643
+          }
+        ]
+      }
+    }
+  },
+  "retrieved_vs_base": {
+    "qwen2_5_coder_1_5b": null,
+    "qwen3_0_6b": null,
+    "qwen3_1_7b": null,
+    "qwen3_4b": null
+  }
+}

@@ -100,3 +100,14 @@
 | 当前请求 | 导师确认 A/B/C/D 中的回退方案 |
 
 详细总报告：outputs/BIRD-Experiment/BIRD_MiniDev_Experiment_Report.pdf。全部预测、评分、脚本与审计文件位于服务器 MINIDEV/BIRD_RESULTS。
+
+# 8 事后补充（2026-10-22）
+
+- 纯列 20 补实验（只加列、不加表）已完成：全体准确率门槛仍不通过
+  （四个下降差 +0.60/+4.60/+1.80/-3.80pp，CI 上界均 <10pp）；
+  baseline-correct 额外失败仍为 +32.35/+34.13/+20.51/+10.00pp。
+- 检索匹配基线：控制多表题后，桥接表内列不再更难（-13.91pp），
+  外键/join 列仍显著更难（+13.75pp）。
+- 5 列近义断崖主要由 `same_name` 造成：`same_name=0` 时 Qwen3-4B/
+  DeepSeek 为 59.30%/74.42%，出现 2 个以上同名干扰后降至 8–20%。
+- 详见 `result/POSTHOC_REANALYSIS_2026-10-22.md`。

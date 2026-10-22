@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Execute generated SQL and score exact result accuracy."""
+"""Execute generated SQL and score result accuracy.
+
+The default comparison is the BIRD Mini-Dev official set semantics:
+set(predicted_rows) == set(gold_rows). Use --comparison multiset for the
+old Counter-based behavior, or --comparison ordered for strict row order.
+"""
 
 import argparse
 import hashlib
@@ -15,6 +20,22 @@ from urllib.parse import quote
 MAX_RESULT_ROWS = 200000
 
 
+def default_data_root(project_root):
+    candidate = project_root / "mini_dev_data"
+    return candidate if candidate.is_dir() else project_root
+
+
+def default_variants_path(project_root):
+    candidates = (
+        project_root / "perturbations" / "output" / "mini_dev_perturbations.jsonl",
+        project_root.parent / "perturbations" / "output" / "mini_dev_perturbations.jsonl",
+    )
+    for candidate in candidates:
+        if candidate.exists():
+            return candidate
+    return candidates[0]
+
+
 def parse_args():
     project_root = Path(__file__).resolve().parents[1]
     parser = argparse.ArgumentParser(description=__doc__)
@@ -22,13 +43,12 @@ def parse_args():
     parser.add_argument(
         "--variants",
         type=Path,
-        default=project_root / "perturbations" / "output"
-        / "mini_dev_perturbations.jsonl",
+        default=default_variants_path(project_root),
     )
     parser.add_argument(
         "--data-root",
         type=Path,
-        default=project_root / "mini_dev_data",
+        default=default_data_root(project_root),
     )
     parser.add_argument(
         "--output-dir",
@@ -37,6 +57,12 @@ def parse_args():
     )
     parser.add_argument("--timeout-seconds", type=float, default=30.0)
     parser.add_argument("--max-rows", type=int, default=MAX_RESULT_ROWS)
+    parser.add_argument(
+        "--comparison",
+        choices=("set", "multiset", "ordered"),
+        default="set",
+        help="Row comparison semantics (default: BIRD official set semantics).",
+    )
     return parser.parse_args()
 
 
@@ -64,12 +90,14 @@ def order_sensitive(sql):
     return bool(re.search(r"\border\s+by\b", sql, flags=re.IGNORECASE))
 
 
-def results_equal(predicted_rows, gold_rows, gold_sql):
+def results_equal(predicted_rows, gold_rows, gold_sql, comparison="set"):
     predicted = normalize_rows(predicted_rows)
     gold = normalize_rows(gold_rows)
-    if order_sensitive(gold_sql):
+    if comparison == "ordered":
         return predicted == gold
-    return Counter(predicted) == Counter(gold)
+    if comparison == "multiset":
+        return Counter(predicted) == Counter(gold)
+    return set(predicted) == set(gold)
 
 
 def execute_query(db_path, sql, timeout_seconds, max_rows):
@@ -137,6 +165,7 @@ def main():
                     predicted_meta["rows"],
                     gold_meta["rows"],
                     gold_sql,
+                    args.comparison,
                 )
             except Exception as exception:
                 error = f"{type(exception).__name__}: {exception}"

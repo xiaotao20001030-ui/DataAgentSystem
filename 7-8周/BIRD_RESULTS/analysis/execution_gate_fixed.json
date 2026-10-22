@@ -1,0 +1,171 @@
+{
+  "criterion": "small-model drop at 20 added columns exceeds API control by >= 10 pp",
+  "minimum_drop_gap": 0.1,
+  "bootstrap_iterations": 10000,
+  "control_model": {
+    "key": "api_control",
+    "provider": "openai_compatible",
+    "model": "deepseek-chat",
+    "api_base": "https://api.deepseek.com/v1",
+    "role": "large"
+  },
+  "models": {
+    "qwen3_0_6b": {
+      "status": "complete",
+      "perturbations": {
+        "add_random_20": {
+          "question_count": 498,
+          "difference_in_accuracy_drop": -0.012048192771084338,
+          "difference_in_accuracy_drop_percentage_points": -1.2048192771084338,
+          "ci95_low": -0.04819277108433735,
+          "ci95_high": 0.024096385542168676,
+          "ci95_low_percentage_points": -4.819277108433735,
+          "ci95_high_percentage_points": 2.4096385542168677,
+          "p_one_sided": 0.7653234676532347,
+          "passed": false,
+          "small_baseline_accuracy": 0.12248995983935743,
+          "small_perturbed_accuracy": 0.08032128514056225,
+          "small_accuracy_drop": 0.04216867469879518,
+          "large_baseline_accuracy": 0.6164658634538153,
+          "large_perturbed_accuracy": 0.5622489959839357,
+          "large_accuracy_drop": 0.054216867469879526
+        },
+        "add_synonym_20": {
+          "question_count": 498,
+          "difference_in_accuracy_drop": -0.285140562248996,
+          "difference_in_accuracy_drop_percentage_points": -28.514056224899598,
+          "ci95_low": -0.3353413654618474,
+          "ci95_high": -0.23493975903614459,
+          "ci95_low_percentage_points": -33.53413654618474,
+          "ci95_high_percentage_points": -23.49397590361446,
+          "p_one_sided": 1.0,
+          "passed": false,
+          "small_baseline_accuracy": 0.12248995983935743,
+          "small_perturbed_accuracy": 0.04618473895582329,
+          "small_accuracy_drop": 0.07630522088353414,
+          "large_baseline_accuracy": 0.6164658634538153,
+          "large_perturbed_accuracy": 0.25502008032128515,
+          "large_accuracy_drop": 0.3614457831325301
+        }
+      }
+    },
+    "qwen3_1_7b": {
+      "status": "complete",
+      "perturbations": {
+        "add_random_20": {
+          "question_count": 498,
+          "difference_in_accuracy_drop": -0.010040160642570281,
+          "difference_in_accuracy_drop_percentage_points": -1.0040160642570282,
+          "ci95_low": -0.05421686746987952,
+          "ci95_high": 0.0321285140562249,
+          "ci95_low_percentage_points": -5.421686746987952,
+          "ci95_high_percentage_points": 3.2128514056224895,
+          "p_one_sided": 0.6926307369263074,
+          "passed": false,
+          "small_baseline_accuracy": 0.23493975903614459,
+          "small_perturbed_accuracy": 0.19076305220883535,
+          "small_accuracy_drop": 0.04417670682730923,
+          "large_baseline_accuracy": 0.6164658634538153,
+          "large_perturbed_accuracy": 0.5622489959839357,
+          "large_accuracy_drop": 0.054216867469879526
+        },
+        "add_synonym_20": {
+          "question_count": 498,
+          "difference_in_accuracy_drop": -0.22289156626506024,
+          "difference_in_accuracy_drop_percentage_points": -22.289156626506024,
+          "ci95_low": -0.27710843373493976,
+          "ci95_high": -0.1686746987951807,
+          "ci95_low_percentage_points": -27.710843373493976,
+          "ci95_high_percentage_points": -16.867469879518072,
+          "p_one_sided": 1.0,
+          "passed": false,
+          "small_baseline_accuracy": 0.23493975903614459,
+          "small_perturbed_accuracy": 0.0963855421686747,
+          "small_accuracy_drop": 0.13855421686746988,
+          "large_baseline_accuracy": 0.6164658634538153,
+          "large_perturbed_accuracy": 0.25502008032128515,
+          "large_accuracy_drop": 0.3614457831325301
+        }
+      }
+    },
+    "qwen3_4b": {
+      "status": "complete",
+      "perturbations": {
+        "add_random_20": {
+          "question_count": 498,
+          "difference_in_accuracy_drop": 0.008032128514056224,
+          "difference_in_accuracy_drop_percentage_points": 0.8032128514056224,
+          "ci95_low": -0.03614457831325301,
+          "ci95_high": 0.050200803212851405,
+          "ci95_low_percentage_points": -3.614457831325301,
+          "ci95_high_percentage_points": 5.020080321285141,
+          "p_one_sided": 0.37446255374462556,
+          "passed": false,
+          "small_baseline_accuracy": 0.4357429718875502,
+          "small_perturbed_accuracy": 0.37349397590361444,
+          "small_accuracy_drop": 0.06224899598393574,
+          "large_baseline_accuracy": 0.6164658634538153,
+          "large_perturbed_accuracy": 0.5622489959839357,
+          "large_accuracy_drop": 0.054216867469879526
+        },
+        "add_synonym_20": {
+          "question_count": 498,
+          "difference_in_accuracy_drop": -0.08835341365461848,
+          "difference_in_accuracy_drop_percentage_points": -8.835341365461847,
+          "ci95_low": -0.13654618473895583,
+          "ci95_high": -0.040160642570281124,
+          "ci95_low_percentage_points": -13.654618473895583,
+          "ci95_high_percentage_points": -4.016064257028113,
+          "p_one_sided": 0.9994000599940006,
+          "passed": false,
+          "small_baseline_accuracy": 0.4357429718875502,
+          "small_perturbed_accuracy": 0.16265060240963855,
+          "small_accuracy_drop": 0.2730923694779116,
+          "large_baseline_accuracy": 0.6164658634538153,
+          "large_perturbed_accuracy": 0.25502008032128515,
+          "large_accuracy_drop": 0.3614457831325301
+        }
+      }
+    },
+    "qwen2_5_coder_1_5b": {
+      "status": "complete",
+      "perturbations": {
+        "add_random_20": {
+          "question_count": 498,
+          "difference_in_accuracy_drop": -0.01606425702811245,
+          "difference_in_accuracy_drop_percentage_points": -1.6064257028112447,
+          "ci95_low": -0.06224899598393574,
+          "ci95_high": 0.028112449799196786,
+          "ci95_low_percentage_points": -6.2248995983935735,
+          "ci95_high_percentage_points": 2.8112449799196786,
+          "p_one_sided": 0.7681231876812319,
+          "passed": false,
+          "small_baseline_accuracy": 0.23293172690763053,
+          "small_perturbed_accuracy": 0.19477911646586346,
+          "small_accuracy_drop": 0.03815261044176707,
+          "large_baseline_accuracy": 0.6164658634538153,
+          "large_perturbed_accuracy": 0.5622489959839357,
+          "large_accuracy_drop": 0.054216867469879526
+        },
+        "add_synonym_20": {
+          "question_count": 498,
+          "difference_in_accuracy_drop": -0.25502008032128515,
+          "difference_in_accuracy_drop_percentage_points": -25.502008032128515,
+          "ci95_low": -0.3072289156626506,
+          "ci95_high": -0.20281124497991967,
+          "ci95_low_percentage_points": -30.72289156626506,
+          "ci95_high_percentage_points": -20.281124497991968,
+          "p_one_sided": 1.0,
+          "passed": false,
+          "small_baseline_accuracy": 0.23293172690763053,
+          "small_perturbed_accuracy": 0.12650602409638553,
+          "small_accuracy_drop": 0.106425702811245,
+          "large_baseline_accuracy": 0.6164658634538153,
+          "large_perturbed_accuracy": 0.25502008032128515,
+          "large_accuracy_drop": 0.3614457831325301
+        }
+      }
+    }
+  },
+  "passed": false
+}

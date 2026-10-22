@@ -32,6 +32,11 @@ def parse_args():
         default=project_root / "model_eval" / "execution_gate.json",
     )
     parser.add_argument("--seed", type=int, default=20261019)
+    parser.add_argument(
+        "--families",
+        default="add_random_20,add_synonym_20",
+        help="Comma-separated perturbation families to gate.",
+    )
     return parser.parse_args()
 
 
@@ -64,11 +69,16 @@ def accuracy(values):
 
 
 def bootstrap_paired_difference(small_drop, large_drop, seed):
-    size = min(len(small_drop), len(large_drop))
+    if len(small_drop) != len(large_drop):
+        raise ValueError(
+            "Paired bootstrap requires aligned arrays: "
+            f"{len(small_drop)} != {len(large_drop)}"
+        )
+    size = len(small_drop)
     if size == 0:
         return None
-    small = np.asarray(small_drop[:size], dtype=float)
-    large = np.asarray(large_drop[:size], dtype=float)
+    small = np.asarray(small_drop, dtype=float)
+    large = np.asarray(large_drop, dtype=float)
     paired = small - large
     rng = np.random.default_rng(seed)
     values = np.empty(BOOTSTRAP_ITERATIONS)
@@ -76,21 +86,28 @@ def bootstrap_paired_difference(small_drop, large_drop, seed):
         sample = rng.integers(0, size, size=size)
         values[index] = paired[sample].mean()
     observed = float(paired.mean())
+    ci_low = float(np.quantile(values, 0.025))
+    ci_high = float(np.quantile(values, 0.975))
+    p_zero = float(
+        (np.count_nonzero(values <= 0) + 1) / (BOOTSTRAP_ITERATIONS + 1)
+    )
+    p_10pp = float(
+        (np.count_nonzero(values <= MIN_DROP_GAP) + 1)
+        / (BOOTSTRAP_ITERATIONS + 1)
+    )
     return {
         "question_count": size,
         "difference_in_accuracy_drop": observed,
         "difference_in_accuracy_drop_percentage_points": observed * 100,
-        "ci95_low": float(np.quantile(values, 0.025)),
-        "ci95_high": float(np.quantile(values, 0.975)),
-        "ci95_low_percentage_points": float(np.quantile(values, 0.025) * 100),
-        "ci95_high_percentage_points": float(np.quantile(values, 0.975) * 100),
-        "p_one_sided": float(
-            (np.count_nonzero(values <= 0) + 1) / (BOOTSTRAP_ITERATIONS + 1)
-        ),
-        "passed": (
-            observed >= MIN_DROP_GAP
-            and float(np.quantile(values, 0.025)) > 0
-        ),
+        "ci95_low": ci_low,
+        "ci95_high": ci_high,
+        "ci95_low_percentage_points": ci_low * 100,
+        "ci95_high_percentage_points": ci_high * 100,
+        "p_one_sided": p_zero,
+        "p_one_sided_10pp": p_10pp,
+        "excludes_10pp_gap": ci_high < MIN_DROP_GAP,
+        "passed": observed >= MIN_DROP_GAP and ci_low > 0,
+        "passed_strict_10pp_ci": ci_low >= MIN_DROP_GAP,
     }
 
 
@@ -107,8 +124,17 @@ def main():
         raise SystemExit(f"Missing large-model scores: {control_path}")
     control_records = read_jsonl(control_path)
 
+    families = tuple(
+        item.strip() for item in args.families.split(",") if item.strip()
+    )
+    if not families:
+        raise SystemExit("--families must not be empty")
     result = {
-        "criterion": "small-model drop at 20 added columns exceeds API control by >= 10 pp",
+        "criterion": (
+            "small-model drop at the configured perturbation exceeds API "
+            "control by >= 10 pp"
+        ),
+        "families": list(families),
         "minimum_drop_gap": MIN_DROP_GAP,
         "bootstrap_iterations": BOOTSTRAP_ITERATIONS,
         "control_model": control,
@@ -123,7 +149,7 @@ def main():
             continue
         records = read_jsonl(score_path)
         model_result = {"status": "complete", "perturbations": {}}
-        for family in ("add_random_20", "add_synonym_20"):
+        for family in families:
             small_base = correctness_map(records, "base")
             small_noise = correctness_map(records, family)
             large_base = correctness_map(control_records, "base")
@@ -138,8 +164,14 @@ def main():
             small_noise_values = [small_noise[qid] for qid in common_ids]
             large_base_values = [large_base[qid] for qid in common_ids]
             large_noise_values = [large_noise[qid] for qid in common_ids]
-            small_drop = pair_maps(small_base, small_noise)
-            large_drop = pair_maps(large_base, large_noise)
+            small_drop = [
+                int(small_base[qid]) - int(small_noise[qid])
+                for qid in common_ids
+            ]
+            large_drop = [
+                int(large_base[qid]) - int(large_noise[qid])
+                for qid in common_ids
+            ]
             gate = bootstrap_paired_difference(
                 small_drop,
                 large_drop,
