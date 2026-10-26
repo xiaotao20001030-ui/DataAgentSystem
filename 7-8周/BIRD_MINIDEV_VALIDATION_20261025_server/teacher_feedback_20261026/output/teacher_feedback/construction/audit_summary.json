@@ -1,0 +1,1185 @@
+{
+  "synonym20": {
+    "question_count": 500,
+    "added_columns": 10000,
+    "relation_counts": {
+      "same_name": 2168,
+      "synonym": 7832
+    },
+    "generated_column_count": 10000,
+    "sqlite_modified_by_generator": false,
+    "added_name_entries_matching_existing_physical_columns": 141,
+    "added_name_entries_absent_from_physical_columns": 9859,
+    "explanation": "The perturbation generator only adds generated column metadata to the prompt schema. It neither alters SQLite nor supplies values for those new columns. Some generated names happen to coincide with real columns already in SQLite; generated=True is not proof of physical absence.",
+    "duplicate_added_names_within_question": 616
+  },
+  "relative_drops": {
+    "api_control": {
+      "add_random_20": {
+        "n": 500,
+        "baseline_accuracy": 0.686,
+        "perturbed_accuracy": 0.622,
+        "absolute_drop_percentage_points": 6.400000000000006,
+        "relative_drop_percent": 9.32944606413995,
+        "api_baseline_accuracy": 0.686,
+        "api_perturbed_accuracy": 0.622,
+        "api_absolute_drop_percentage_points": 6.400000000000006,
+        "api_relative_drop_percent": 9.32944606413995,
+        "relative_drop_difference_vs_api_percentage_points": 0.0
+      },
+      "add_synonym_20": {
+        "n": 500,
+        "baseline_accuracy": 0.686,
+        "perturbed_accuracy": 0.274,
+        "absolute_drop_percentage_points": 41.2,
+        "relative_drop_percent": 60.05830903790087,
+        "api_baseline_accuracy": 0.686,
+        "api_perturbed_accuracy": 0.274,
+        "api_absolute_drop_percentage_points": 41.2,
+        "api_relative_drop_percent": 60.05830903790087,
+        "relative_drop_difference_vs_api_percentage_points": 0.0
+      }
+    },
+    "qwen2_5_coder_1_5b": {
+      "add_random_20": {
+        "n": 500,
+        "baseline_accuracy": 0.268,
+        "perturbed_accuracy": 0.242,
+        "absolute_drop_percentage_points": 2.6000000000000023,
+        "relative_drop_percent": 9.701492537313442,
+        "api_baseline_accuracy": 0.686,
+        "api_perturbed_accuracy": 0.622,
+        "api_absolute_drop_percentage_points": 6.400000000000006,
+        "api_relative_drop_percent": 9.32944606413995,
+        "relative_drop_difference_vs_api_percentage_points": 0.3720464731734925
+      },
+      "add_synonym_20": {
+        "n": 500,
+        "baseline_accuracy": 0.268,
+        "perturbed_accuracy": 0.138,
+        "absolute_drop_percentage_points": 13.0,
+        "relative_drop_percent": 48.507462686567166,
+        "api_baseline_accuracy": 0.686,
+        "api_perturbed_accuracy": 0.274,
+        "api_absolute_drop_percentage_points": 41.2,
+        "api_relative_drop_percent": 60.05830903790087,
+        "relative_drop_difference_vs_api_percentage_points": -11.550846351333703
+      }
+    },
+    "qwen3_0_6b": {
+      "add_random_20": {
+        "n": 500,
+        "baseline_accuracy": 0.146,
+        "perturbed_accuracy": 0.1,
+        "absolute_drop_percentage_points": 4.599999999999999,
+        "relative_drop_percent": 31.506849315068486,
+        "api_baseline_accuracy": 0.686,
+        "api_perturbed_accuracy": 0.622,
+        "api_absolute_drop_percentage_points": 6.400000000000006,
+        "api_relative_drop_percent": 9.32944606413995,
+        "relative_drop_difference_vs_api_percentage_points": 22.177403250928535
+      },
+      "add_synonym_20": {
+        "n": 500,
+        "baseline_accuracy": 0.146,
+        "perturbed_accuracy": 0.054,
+        "absolute_drop_percentage_points": 9.2,
+        "relative_drop_percent": 63.01369863013699,
+        "api_baseline_accuracy": 0.686,
+        "api_perturbed_accuracy": 0.274,
+        "api_absolute_drop_percentage_points": 41.2,
+        "api_relative_drop_percent": 60.05830903790087,
+        "relative_drop_difference_vs_api_percentage_points": 2.9553895922361235
+      }
+    },
+    "qwen3_1_7b": {
+      "add_random_20": {
+        "n": 500,
+        "baseline_accuracy": 0.27,
+        "perturbed_accuracy": 0.218,
+        "absolute_drop_percentage_points": 5.200000000000002,
+        "relative_drop_percent": 19.259259259259267,
+        "api_baseline_accuracy": 0.686,
+        "api_perturbed_accuracy": 0.622,
+        "api_absolute_drop_percentage_points": 6.400000000000006,
+        "api_relative_drop_percent": 9.32944606413995,
+        "relative_drop_difference_vs_api_percentage_points": 9.929813195119317
+      },
+      "add_synonym_20": {
+        "n": 500,
+        "baseline_accuracy": 0.27,
+        "perturbed_accuracy": 0.112,
+        "absolute_drop_percentage_points": 15.800000000000002,
+        "relative_drop_percent": 58.518518518518526,
+        "api_baseline_accuracy": 0.686,
+        "api_perturbed_accuracy": 0.274,
+        "api_absolute_drop_percentage_points": 41.2,
+        "api_relative_drop_percent": 60.05830903790087,
+        "relative_drop_difference_vs_api_percentage_points": -1.5397905193823433
+      }
+    },
+    "qwen3_4b": {
+      "add_random_20": {
+        "n": 500,
+        "baseline_accuracy": 0.506,
+        "perturbed_accuracy": 0.436,
+        "absolute_drop_percentage_points": 7.000000000000001,
+        "relative_drop_percent": 13.83399209486166,
+        "api_baseline_accuracy": 0.686,
+        "api_perturbed_accuracy": 0.622,
+        "api_absolute_drop_percentage_points": 6.400000000000006,
+        "api_relative_drop_percent": 9.32944606413995,
+        "relative_drop_difference_vs_api_percentage_points": 4.504546030721711
+      },
+      "add_synonym_20": {
+        "n": 500,
+        "baseline_accuracy": 0.506,
+        "perturbed_accuracy": 0.184,
+        "absolute_drop_percentage_points": 32.2,
+        "relative_drop_percent": 63.63636363636363,
+        "api_baseline_accuracy": 0.686,
+        "api_perturbed_accuracy": 0.274,
+        "api_absolute_drop_percentage_points": 41.2,
+        "api_relative_drop_percent": 60.05830903790087,
+        "relative_drop_difference_vs_api_percentage_points": 3.5780545984627636
+      }
+    }
+  },
+  "bridge_table_sqlite_presence": {
+    "variant_count": 103,
+    "variants_with_removed_table_still_in_sqlite": 103,
+    "all_removed_tables_still_accessible": true,
+    "details": [
+      {
+        "question_id": 1500,
+        "db_id": "debit_card_specializing",
+        "removed_tables": [
+          "transactions_1k"
+        ],
+        "still_in_sqlite": [
+          "transactions_1k"
+        ]
+      },
+      {
+        "question_id": 1501,
+        "db_id": "debit_card_specializing",
+        "removed_tables": [
+          "transactions_1k"
+        ],
+        "still_in_sqlite": [
+          "transactions_1k"
+        ]
+      },
+      {
+        "question_id": 1506,
+        "db_id": "debit_card_specializing",
+        "removed_tables": [
+          "transactions_1k"
+        ],
+        "still_in_sqlite": [
+          "transactions_1k"
+        ]
+      },
+      {
+        "question_id": 1514,
+        "db_id": "debit_card_specializing",
+        "removed_tables": [
+          "transactions_1k"
+        ],
+        "still_in_sqlite": [
+          "transactions_1k"
+        ]
+      },
+      {
+        "question_id": 1529,
+        "db_id": "debit_card_specializing",
+        "removed_tables": [
+          "transactions_1k"
+        ],
+        "still_in_sqlite": [
+          "transactions_1k"
+        ]
+      },
+      {
+        "question_id": 1317,
+        "db_id": "student_club",
+        "removed_tables": [
+          "attendance"
+        ],
+        "still_in_sqlite": [
+          "attendance"
+        ]
+      },
+      {
+        "question_id": 1338,
+        "db_id": "student_club",
+        "removed_tables": [
+          "budget"
+        ],
+        "still_in_sqlite": [
+          "budget"
+        ]
+      },
+      {
+        "question_id": 1387,
+        "db_id": "student_club",
+        "removed_tables": [
+          "budget"
+        ],
+        "still_in_sqlite": [
+          "budget"
+        ]
+      },
+      {
+        "question_id": 1387,
+        "db_id": "student_club",
+        "removed_tables": [
+          "expense"
+        ],
+        "still_in_sqlite": [
+          "expense"
+        ]
+      },
+      {
+        "question_id": 1389,
+        "db_id": "student_club",
+        "removed_tables": [
+          "budget"
+        ],
+        "still_in_sqlite": [
+          "budget"
+        ]
+      },
+      {
+        "question_id": 1390,
+        "db_id": "student_club",
+        "removed_tables": [
+          "budget"
+        ],
+        "still_in_sqlite": [
+          "budget"
+        ]
+      },
+      {
+        "question_id": 1399,
+        "db_id": "student_club",
+        "removed_tables": [
+          "attendance"
+        ],
+        "still_in_sqlite": [
+          "attendance"
+        ]
+      },
+      {
+        "question_id": 1401,
+        "db_id": "student_club",
+        "removed_tables": [
+          "budget"
+        ],
+        "still_in_sqlite": [
+          "budget"
+        ]
+      },
+      {
+        "question_id": 1404,
+        "db_id": "student_club",
+        "removed_tables": [
+          "budget"
+        ],
+        "still_in_sqlite": [
+          "budget"
+        ]
+      },
+      {
+        "question_id": 1457,
+        "db_id": "student_club",
+        "removed_tables": [
+          "expense"
+        ],
+        "still_in_sqlite": [
+          "expense"
+        ]
+      },
+      {
+        "question_id": 1464,
+        "db_id": "student_club",
+        "removed_tables": [
+          "attendance"
+        ],
+        "still_in_sqlite": [
+          "attendance"
+        ]
+      },
+      {
+        "question_id": 1464,
+        "db_id": "student_club",
+        "removed_tables": [
+          "member"
+        ],
+        "still_in_sqlite": [
+          "member"
+        ]
+      },
+      {
+        "question_id": 1251,
+        "db_id": "thrombosis_prediction",
+        "removed_tables": [
+          "Laboratory"
+        ],
+        "still_in_sqlite": [
+          "Laboratory"
+        ]
+      },
+      {
+        "question_id": 1252,
+        "db_id": "thrombosis_prediction",
+        "removed_tables": [
+          "Laboratory"
+        ],
+        "still_in_sqlite": [
+          "Laboratory"
+        ]
+      },
+      {
+        "question_id": 1270,
+        "db_id": "thrombosis_prediction",
+        "removed_tables": [
+          "Laboratory"
+        ],
+        "still_in_sqlite": [
+          "Laboratory"
+        ]
+      },
+      {
+        "question_id": 1302,
+        "db_id": "thrombosis_prediction",
+        "removed_tables": [
+          "Patient"
+        ],
+        "still_in_sqlite": [
+          "Patient"
+        ]
+      },
+      {
+        "question_id": 1028,
+        "db_id": "european_football_2",
+        "removed_tables": [
+          "Match"
+        ],
+        "still_in_sqlite": [
+          "Match"
+        ]
+      },
+      {
+        "question_id": 862,
+        "db_id": "formula_1",
+        "removed_tables": [
+          "results"
+        ],
+        "still_in_sqlite": [
+          "results"
+        ]
+      },
+      {
+        "question_id": 892,
+        "db_id": "formula_1",
+        "removed_tables": [
+          "driverStandings"
+        ],
+        "still_in_sqlite": [
+          "driverStandings"
+        ]
+      },
+      {
+        "question_id": 894,
+        "db_id": "formula_1",
+        "removed_tables": [
+          "lapTimes"
+        ],
+        "still_in_sqlite": [
+          "lapTimes"
+        ]
+      },
+      {
+        "question_id": 895,
+        "db_id": "formula_1",
+        "removed_tables": [
+          "lapTimes"
+        ],
+        "still_in_sqlite": [
+          "lapTimes"
+        ]
+      },
+      {
+        "question_id": 896,
+        "db_id": "formula_1",
+        "removed_tables": [
+          "driverStandings"
+        ],
+        "still_in_sqlite": [
+          "driverStandings"
+        ]
+      },
+      {
+        "question_id": 902,
+        "db_id": "formula_1",
+        "removed_tables": [
+          "driverStandings"
+        ],
+        "still_in_sqlite": [
+          "driverStandings"
+        ]
+      },
+      {
+        "question_id": 904,
+        "db_id": "formula_1",
+        "removed_tables": [
+          "lapTimes"
+        ],
+        "still_in_sqlite": [
+          "lapTimes"
+        ]
+      },
+      {
+        "question_id": 906,
+        "db_id": "formula_1",
+        "removed_tables": [
+          "driverStandings"
+        ],
+        "still_in_sqlite": [
+          "driverStandings"
+        ]
+      },
+      {
+        "question_id": 928,
+        "db_id": "formula_1",
+        "removed_tables": [
+          "results"
+        ],
+        "still_in_sqlite": [
+          "results"
+        ]
+      },
+      {
+        "question_id": 933,
+        "db_id": "formula_1",
+        "removed_tables": [
+          "results"
+        ],
+        "still_in_sqlite": [
+          "results"
+        ]
+      },
+      {
+        "question_id": 954,
+        "db_id": "formula_1",
+        "removed_tables": [
+          "results"
+        ],
+        "still_in_sqlite": [
+          "results"
+        ]
+      },
+      {
+        "question_id": 962,
+        "db_id": "formula_1",
+        "removed_tables": [
+          "results"
+        ],
+        "still_in_sqlite": [
+          "results"
+        ]
+      },
+      {
+        "question_id": 981,
+        "db_id": "formula_1",
+        "removed_tables": [
+          "qualifying"
+        ],
+        "still_in_sqlite": [
+          "qualifying"
+        ]
+      },
+      {
+        "question_id": 990,
+        "db_id": "formula_1",
+        "removed_tables": [
+          "results"
+        ],
+        "still_in_sqlite": [
+          "results"
+        ]
+      },
+      {
+        "question_id": 717,
+        "db_id": "superhero",
+        "removed_tables": [
+          "hero_power"
+        ],
+        "still_in_sqlite": [
+          "hero_power"
+        ]
+      },
+      {
+        "question_id": 994,
+        "db_id": "formula_1",
+        "removed_tables": [
+          "constructorResults"
+        ],
+        "still_in_sqlite": [
+          "constructorResults"
+        ]
+      },
+      {
+        "question_id": 1002,
+        "db_id": "formula_1",
+        "removed_tables": [
+          "driverStandings"
+        ],
+        "still_in_sqlite": [
+          "driverStandings"
+        ]
+      },
+      {
+        "question_id": 1003,
+        "db_id": "formula_1",
+        "removed_tables": [
+          "results"
+        ],
+        "still_in_sqlite": [
+          "results"
+        ]
+      },
+      {
+        "question_id": 1014,
+        "db_id": "formula_1",
+        "removed_tables": [
+          "races"
+        ],
+        "still_in_sqlite": [
+          "races"
+        ]
+      },
+      {
+        "question_id": 719,
+        "db_id": "superhero",
+        "removed_tables": [
+          "hero_power"
+        ],
+        "still_in_sqlite": [
+          "hero_power"
+        ]
+      },
+      {
+        "question_id": 723,
+        "db_id": "superhero",
+        "removed_tables": [
+          "hero_power"
+        ],
+        "still_in_sqlite": [
+          "hero_power"
+        ]
+      },
+      {
+        "question_id": 723,
+        "db_id": "superhero",
+        "removed_tables": [
+          "superhero"
+        ],
+        "still_in_sqlite": [
+          "superhero"
+        ]
+      },
+      {
+        "question_id": 728,
+        "db_id": "superhero",
+        "removed_tables": [
+          "superhero"
+        ],
+        "still_in_sqlite": [
+          "superhero"
+        ]
+      },
+      {
+        "question_id": 732,
+        "db_id": "superhero",
+        "removed_tables": [
+          "hero_attribute"
+        ],
+        "still_in_sqlite": [
+          "hero_attribute"
+        ]
+      },
+      {
+        "question_id": 732,
+        "db_id": "superhero",
+        "removed_tables": [
+          "superhero"
+        ],
+        "still_in_sqlite": [
+          "superhero"
+        ]
+      },
+      {
+        "question_id": 733,
+        "db_id": "superhero",
+        "removed_tables": [
+          "superhero"
+        ],
+        "still_in_sqlite": [
+          "superhero"
+        ]
+      },
+      {
+        "question_id": 736,
+        "db_id": "superhero",
+        "removed_tables": [
+          "hero_attribute"
+        ],
+        "still_in_sqlite": [
+          "hero_attribute"
+        ]
+      },
+      {
+        "question_id": 739,
+        "db_id": "superhero",
+        "removed_tables": [
+          "hero_power"
+        ],
+        "still_in_sqlite": [
+          "hero_power"
+        ]
+      },
+      {
+        "question_id": 740,
+        "db_id": "superhero",
+        "removed_tables": [
+          "hero_attribute"
+        ],
+        "still_in_sqlite": [
+          "hero_attribute"
+        ]
+      },
+      {
+        "question_id": 740,
+        "db_id": "superhero",
+        "removed_tables": [
+          "superhero"
+        ],
+        "still_in_sqlite": [
+          "superhero"
+        ]
+      },
+      {
+        "question_id": 743,
+        "db_id": "superhero",
+        "removed_tables": [
+          "superhero"
+        ],
+        "still_in_sqlite": [
+          "superhero"
+        ]
+      },
+      {
+        "question_id": 751,
+        "db_id": "superhero",
+        "removed_tables": [
+          "hero_power"
+        ],
+        "still_in_sqlite": [
+          "hero_power"
+        ]
+      },
+      {
+        "question_id": 751,
+        "db_id": "superhero",
+        "removed_tables": [
+          "superhero"
+        ],
+        "still_in_sqlite": [
+          "superhero"
+        ]
+      },
+      {
+        "question_id": 758,
+        "db_id": "superhero",
+        "removed_tables": [
+          "superhero"
+        ],
+        "still_in_sqlite": [
+          "superhero"
+        ]
+      },
+      {
+        "question_id": 766,
+        "db_id": "superhero",
+        "removed_tables": [
+          "hero_attribute"
+        ],
+        "still_in_sqlite": [
+          "hero_attribute"
+        ]
+      },
+      {
+        "question_id": 769,
+        "db_id": "superhero",
+        "removed_tables": [
+          "hero_attribute"
+        ],
+        "still_in_sqlite": [
+          "hero_attribute"
+        ]
+      },
+      {
+        "question_id": 769,
+        "db_id": "superhero",
+        "removed_tables": [
+          "superhero"
+        ],
+        "still_in_sqlite": [
+          "superhero"
+        ]
+      },
+      {
+        "question_id": 772,
+        "db_id": "superhero",
+        "removed_tables": [
+          "superhero"
+        ],
+        "still_in_sqlite": [
+          "superhero"
+        ]
+      },
+      {
+        "question_id": 775,
+        "db_id": "superhero",
+        "removed_tables": [
+          "superhero"
+        ],
+        "still_in_sqlite": [
+          "superhero"
+        ]
+      },
+      {
+        "question_id": 788,
+        "db_id": "superhero",
+        "removed_tables": [
+          "superhero"
+        ],
+        "still_in_sqlite": [
+          "superhero"
+        ]
+      },
+      {
+        "question_id": 792,
+        "db_id": "superhero",
+        "removed_tables": [
+          "hero_power"
+        ],
+        "still_in_sqlite": [
+          "hero_power"
+        ]
+      },
+      {
+        "question_id": 794,
+        "db_id": "superhero",
+        "removed_tables": [
+          "hero_attribute"
+        ],
+        "still_in_sqlite": [
+          "hero_attribute"
+        ]
+      },
+      {
+        "question_id": 796,
+        "db_id": "superhero",
+        "removed_tables": [
+          "hero_attribute"
+        ],
+        "still_in_sqlite": [
+          "hero_attribute"
+        ]
+      },
+      {
+        "question_id": 822,
+        "db_id": "superhero",
+        "removed_tables": [
+          "superhero"
+        ],
+        "still_in_sqlite": [
+          "superhero"
+        ]
+      },
+      {
+        "question_id": 824,
+        "db_id": "superhero",
+        "removed_tables": [
+          "hero_power"
+        ],
+        "still_in_sqlite": [
+          "hero_power"
+        ]
+      },
+      {
+        "question_id": 825,
+        "db_id": "superhero",
+        "removed_tables": [
+          "hero_power"
+        ],
+        "still_in_sqlite": [
+          "hero_power"
+        ]
+      },
+      {
+        "question_id": 825,
+        "db_id": "superhero",
+        "removed_tables": [
+          "superhero"
+        ],
+        "still_in_sqlite": [
+          "superhero"
+        ]
+      },
+      {
+        "question_id": 586,
+        "db_id": "codebase_community",
+        "removed_tables": [
+          "votes"
+        ],
+        "still_in_sqlite": [
+          "votes"
+        ]
+      },
+      {
+        "question_id": 595,
+        "db_id": "codebase_community",
+        "removed_tables": [
+          "postHistory"
+        ],
+        "still_in_sqlite": [
+          "postHistory"
+        ]
+      },
+      {
+        "question_id": 633,
+        "db_id": "codebase_community",
+        "removed_tables": [
+          "postHistory"
+        ],
+        "still_in_sqlite": [
+          "postHistory"
+        ]
+      },
+      {
+        "question_id": 634,
+        "db_id": "codebase_community",
+        "removed_tables": [
+          "postHistory"
+        ],
+        "still_in_sqlite": [
+          "postHistory"
+        ]
+      },
+      {
+        "question_id": 637,
+        "db_id": "codebase_community",
+        "removed_tables": [
+          "postHistory"
+        ],
+        "still_in_sqlite": [
+          "postHistory"
+        ]
+      },
+      {
+        "question_id": 639,
+        "db_id": "codebase_community",
+        "removed_tables": [
+          "postHistory"
+        ],
+        "still_in_sqlite": [
+          "postHistory"
+        ]
+      },
+      {
+        "question_id": 640,
+        "db_id": "codebase_community",
+        "removed_tables": [
+          "postHistory"
+        ],
+        "still_in_sqlite": [
+          "postHistory"
+        ]
+      },
+      {
+        "question_id": 685,
+        "db_id": "codebase_community",
+        "removed_tables": [
+          "posts"
+        ],
+        "still_in_sqlite": [
+          "posts"
+        ]
+      },
+      {
+        "question_id": 694,
+        "db_id": "codebase_community",
+        "removed_tables": [
+          "posts"
+        ],
+        "still_in_sqlite": [
+          "posts"
+        ]
+      },
+      {
+        "question_id": 409,
+        "db_id": "card_games",
+        "removed_tables": [
+          "cards"
+        ],
+        "still_in_sqlite": [
+          "cards"
+        ]
+      },
+      {
+        "question_id": 483,
+        "db_id": "card_games",
+        "removed_tables": [
+          "cards"
+        ],
+        "still_in_sqlite": [
+          "cards"
+        ]
+      },
+      {
+        "question_id": 484,
+        "db_id": "card_games",
+        "removed_tables": [
+          "cards"
+        ],
+        "still_in_sqlite": [
+          "cards"
+        ]
+      },
+      {
+        "question_id": 198,
+        "db_id": "toxicology",
+        "removed_tables": [
+          "atom"
+        ],
+        "still_in_sqlite": [
+          "atom"
+        ]
+      },
+      {
+        "question_id": 207,
+        "db_id": "toxicology",
+        "removed_tables": [
+          "atom"
+        ],
+        "still_in_sqlite": [
+          "atom"
+        ]
+      },
+      {
+        "question_id": 215,
+        "db_id": "toxicology",
+        "removed_tables": [
+          "connected"
+        ],
+        "still_in_sqlite": [
+          "connected"
+        ]
+      },
+      {
+        "question_id": 219,
+        "db_id": "toxicology",
+        "removed_tables": [
+          "molecule"
+        ],
+        "still_in_sqlite": [
+          "molecule"
+        ]
+      },
+      {
+        "question_id": 248,
+        "db_id": "toxicology",
+        "removed_tables": [
+          "connected"
+        ],
+        "still_in_sqlite": [
+          "connected"
+        ]
+      },
+      {
+        "question_id": 253,
+        "db_id": "toxicology",
+        "removed_tables": [
+          "connected"
+        ],
+        "still_in_sqlite": [
+          "connected"
+        ]
+      },
+      {
+        "question_id": 260,
+        "db_id": "toxicology",
+        "removed_tables": [
+          "molecule"
+        ],
+        "still_in_sqlite": [
+          "molecule"
+        ]
+      },
+      {
+        "question_id": 263,
+        "db_id": "toxicology",
+        "removed_tables": [
+          "molecule"
+        ],
+        "still_in_sqlite": [
+          "molecule"
+        ]
+      },
+      {
+        "question_id": 94,
+        "db_id": "financial",
+        "removed_tables": [
+          "account"
+        ],
+        "still_in_sqlite": [
+          "account"
+        ]
+      },
+      {
+        "question_id": 94,
+        "db_id": "financial",
+        "removed_tables": [
+          "disp"
+        ],
+        "still_in_sqlite": [
+          "disp"
+        ]
+      },
+      {
+        "question_id": 95,
+        "db_id": "financial",
+        "removed_tables": [
+          "account"
+        ],
+        "still_in_sqlite": [
+          "account"
+        ]
+      },
+      {
+        "question_id": 95,
+        "db_id": "financial",
+        "removed_tables": [
+          "disp"
+        ],
+        "still_in_sqlite": [
+          "disp"
+        ]
+      },
+      {
+        "question_id": 116,
+        "db_id": "financial",
+        "removed_tables": [
+          "account"
+        ],
+        "still_in_sqlite": [
+          "account"
+        ]
+      },
+      {
+        "question_id": 125,
+        "db_id": "financial",
+        "removed_tables": [
+          "account"
+        ],
+        "still_in_sqlite": [
+          "account"
+        ]
+      },
+      {
+        "question_id": 129,
+        "db_id": "financial",
+        "removed_tables": [
+          "account"
+        ],
+        "still_in_sqlite": [
+          "account"
+        ]
+      },
+      {
+        "question_id": 137,
+        "db_id": "financial",
+        "removed_tables": [
+          "account"
+        ],
+        "still_in_sqlite": [
+          "account"
+        ]
+      },
+      {
+        "question_id": 149,
+        "db_id": "financial",
+        "removed_tables": [
+          "account"
+        ],
+        "still_in_sqlite": [
+          "account"
+        ]
+      },
+      {
+        "question_id": 159,
+        "db_id": "financial",
+        "removed_tables": [
+          "account"
+        ],
+        "still_in_sqlite": [
+          "account"
+        ]
+      },
+      {
+        "question_id": 159,
+        "db_id": "financial",
+        "removed_tables": [
+          "disp"
+        ],
+        "still_in_sqlite": [
+          "disp"
+        ]
+      },
+      {
+        "question_id": 169,
+        "db_id": "financial",
+        "removed_tables": [
+          "account"
+        ],
+        "still_in_sqlite": [
+          "account"
+        ]
+      },
+      {
+        "question_id": 169,
+        "db_id": "financial",
+        "removed_tables": [
+          "disp"
+        ],
+        "still_in_sqlite": [
+          "disp"
+        ]
+      },
+      {
+        "question_id": 194,
+        "db_id": "financial",
+        "removed_tables": [
+          "disp"
+        ],
+        "still_in_sqlite": [
+          "disp"
+        ]
+      }
+    ]
+  }
+}

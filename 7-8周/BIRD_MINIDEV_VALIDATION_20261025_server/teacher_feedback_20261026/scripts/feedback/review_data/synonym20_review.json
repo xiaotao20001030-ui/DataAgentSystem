@@ -1,0 +1,708 @@
+{
+  "review_method": "model-assisted SQL review plus read-only SQLite verification; no human sign-off",
+  "seed": 20261026,
+  "original_sample_question_ids": [
+    1036,
+    1076,
+    1145,
+    1155,
+    1157,
+    116,
+    1254,
+    1275,
+    1322,
+    1387,
+    1422,
+    145,
+    1480,
+    219,
+    260,
+    340,
+    341,
+    41,
+    469,
+    5,
+    683,
+    726,
+    728,
+    739,
+    758,
+    761,
+    92,
+    944,
+    955,
+    989
+  ],
+  "excluded_legacy_question_ids": [
+    116,
+    145
+  ],
+  "replacement_question_ids": [
+    1457,
+    1105
+  ],
+  "sampling_note": "Preserve28 eligible cases from original random30, replace2goldtimeouts by Random(20261026).sample(eligible failures outside originalIDs,2), using score-file order. Fixed reviewed IDs are authoritative for replay.",
+  "cases": [
+    {
+      "question_id": 1036,
+      "variant_id": "q0135__add_synonym_20",
+      "db_id": "european_football_2",
+      "category": "generated_nonexistent_column",
+      "excluded_legacy": false,
+      "replacement": false,
+      "predicted_sql_sha256": "e1ba3e05660fd071a6c9dcb4f6667b98e11f74af630922de664c8929b078d42f",
+      "gold_sql_sha256": "4aa9cea24954f7ff1d7fa2b191f6fdc076e4a4b1b548aec859cca889b62ec15e",
+      "referenced_generated_columns": [
+        {
+          "id": "Team.buildUpPlayPassing",
+          "relation": "same_name",
+          "seed_column": "Team_Attributes.buildUpPlayPassing"
+        },
+        {
+          "id": "Team.date",
+          "relation": "same_name",
+          "seed_column": "Team_Attributes.date"
+        }
+      ],
+      "analysis": "预测把 Team_Attributes 的 date、buildUpPlayPassing 当作 Team 的列，二者均由 same_name 干扰生成且在 Team 物理表中不存在；省略所需连接导致编译失败。",
+      "gold_or_question_issue": "gold 的 AVG/分母和 evidence 对非空值的描述可能有细微差别，但本条直接失败原因是不存在列，不是一个可执行且语义合理的近义列答案被判错。",
+      "needs_human_semantic_verification": false
+    },
+    {
+      "question_id": 1076,
+      "variant_id": "q0145__add_synonym_20",
+      "db_id": "european_football_2",
+      "category": "generated_nonexistent_column",
+      "excluded_legacy": false,
+      "replacement": false,
+      "predicted_sql_sha256": "c76558e49f129db3e0e64b7736caa2775874d6f94501406263cf79d3ce78255e",
+      "gold_sql_sha256": "93ecd3764a1527b123056130e0b5176ebf2336adf011cf6d77ad11c6562e4889",
+      "referenced_generated_columns": [
+        {
+          "id": "Player.ball_control",
+          "relation": "same_name",
+          "seed_column": "Player_Attributes.ball_control"
+        }
+      ],
+      "analysis": "预测把 Player_Attributes.ball_control 当作 Player.ball_control，恰好对应生成的 same_name 干扰；物理 Player 没有该列。",
+      "gold_or_question_issue": "预测另有整数除法风险，gold 使用 CAST AS REAL；即便补上连接也需检查算术类型。",
+      "needs_human_semantic_verification": false
+    },
+    {
+      "question_id": 1145,
+      "variant_id": "q0175__add_synonym_20",
+      "db_id": "european_football_2",
+      "category": "output_projection_mismatch",
+      "excluded_legacy": false,
+      "replacement": false,
+      "predicted_sql_sha256": "7de9220fc680bb51c59b20056033a28649e8d7b2ec1fb539c5dfaff220d24893",
+      "gold_sql_sha256": "bd8107adc4e7941e1c6938bb003f48e5f391b12b6d998ba6e5f48c210ffdcaac",
+      "referenced_generated_columns": [],
+      "analysis": "预测只读取真实列并可执行，和 gold 选择相同四个联赛；额外投影 COUNT(m.id) 使两列输出与 gold 的单列输出不匹配。",
+      "gold_or_question_issue": "应归为输出格式/投影错误，不能归为不存在的近义列误选，也未发现 gold 标注错误证据。",
+      "needs_human_semantic_verification": false
+    },
+    {
+      "question_id": 1155,
+      "variant_id": "q0082__add_synonym_20",
+      "db_id": "thrombosis_prediction",
+      "category": "generated_nonexistent_column",
+      "excluded_legacy": false,
+      "replacement": false,
+      "predicted_sql_sha256": "c4516476e66db2bfd0414118697ef3f321f41764556bbc61b2733d97b18bd0f0",
+      "gold_sql_sha256": "ef67c08dafe0dd83967259d8c896bccf7d5cd7fa29cd465da5f9e2678011a30d",
+      "referenced_generated_columns": [
+        {
+          "id": "Patient.LDH",
+          "relation": "same_name",
+          "seed_column": "Laboratory.LDH"
+        }
+      ],
+      "analysis": "Patient.LDH 来自 Laboratory.LDH 的 same_name 干扰，在 Patient 物理表中不存在。预测省略 Laboratory 连接。",
+      "gold_or_question_issue": "gold 按患者去重；预测一旦有真实测量表仍应检查 DISTINCT。",
+      "needs_human_semantic_verification": false
+    },
+    {
+      "question_id": 1157,
+      "variant_id": "q0084__add_synonym_20",
+      "db_id": "thrombosis_prediction",
+      "category": "generated_nonexistent_column",
+      "excluded_legacy": false,
+      "replacement": false,
+      "predicted_sql_sha256": "253551fab50d1a39ef1931b8f5c5c9afef1bb7a0bbdcd61e270e5559c06e035c",
+      "gold_sql_sha256": "13e005392397231ec87c5f2eec01a2c0ca9255e690d6852d0e3f38c2d369ecc1",
+      "referenced_generated_columns": [
+        {
+          "id": "Patient.Thrombosis",
+          "relation": "same_name",
+          "seed_column": "Examination.Thrombosis"
+        }
+      ],
+      "analysis": "Patient.Thrombosis 来自 Examination.Thrombosis 的 same_name 干扰，物理 Patient 不含该列，直接编译失败。",
+      "gold_or_question_issue": "evidence 将 severe 定为 2；本次按 evidence/gold 约定审阅，不在该任务中重新定义临床等级。",
+      "needs_human_semantic_verification": false
+    },
+    {
+      "question_id": 116,
+      "variant_id": "q0478__add_synonym_20",
+      "db_id": "financial",
+      "category": "excluded_gold_unscorable",
+      "excluded_legacy": true,
+      "replacement": false,
+      "predicted_sql_sha256": "c206b85e1668cd32a6256a69e6777ef2f438428e5888cfee7fa66fa4dd44d93d",
+      "gold_sql_sha256": "5363c80475c77d8cd13d9aa8b49e393c59c4e5b4425d89cd75b3f0d09a6e36c3",
+      "referenced_generated_columns": [
+        {
+          "id": "account.balance",
+          "relation": "same_name",
+          "seed_column": "trans.balance"
+        },
+        {
+          "id": "loan.client_identifier",
+          "relation": "synonym",
+          "seed_column": "account.account_id"
+        },
+        {
+          "id": "account.client_identifier",
+          "relation": "synonym",
+          "seed_column": "loan.account_id"
+        }
+      ],
+      "analysis": "原始得分错误为 GoldUnscorable: interrupted，属于 gold 超时，不能计作可评分 API 错误。预测仍含 account.balance 和 client_identifier 等生成列，独立 EXPLAIN 会报不存在列。",
+      "gold_or_question_issue": "保留审计记录但从有效失败样本剔除，以 q1457/q1105 补样；不能用本条证明“模型错”或修正模型准确率。",
+      "needs_human_semantic_verification": false
+    },
+    {
+      "question_id": 1254,
+      "variant_id": "q0118__add_synonym_20",
+      "db_id": "thrombosis_prediction",
+      "category": "generated_nonexistent_column",
+      "excluded_legacy": false,
+      "replacement": false,
+      "predicted_sql_sha256": "d49401a2dcfabe10c12c633a937aeee2eb30fc54780a70011bf4e7e9b14adacd",
+      "gold_sql_sha256": "3acbf751e08af3f171f28bc7e00727e46db28a9eadc766e7d66c91a7ed1d2707",
+      "referenced_generated_columns": [
+        {
+          "id": "Patient.IGA",
+          "relation": "same_name",
+          "seed_column": "Laboratory.IGA"
+        }
+      ],
+      "analysis": "Patient.IGA 是 Laboratory.IGA 的 same_name 干扰，Patient 中不存在，预测首先编译失败。",
+      "gold_or_question_issue": "同时存在金标准/证据边界歧义：evidence 为 IGA>80 且 <500、YEAR>=1990，gold 为 BETWEEN80AND500 且年份>1990，并且 gold 按化验行计数而非 DISTINCT患者。此项需人工复核，不能直接把合理边界解读认定模型推理错误。",
+      "needs_human_semantic_verification": true
+    },
+    {
+      "question_id": 1275,
+      "variant_id": "q0125__add_synonym_20",
+      "db_id": "thrombosis_prediction",
+      "category": "generated_nonexistent_column",
+      "excluded_legacy": false,
+      "replacement": false,
+      "predicted_sql_sha256": "299c778bda289ef49b17035a575c01d9e17d81b63b6d84b88c67d4e26b2c1967",
+      "gold_sql_sha256": "71e5058521e99daae483f65741dda95a44ff7c52811cdc622061caf80e168beb",
+      "referenced_generated_columns": [
+        {
+          "id": "Patient.CENTROMEA",
+          "relation": "same_name",
+          "seed_column": "Laboratory.CENTROMEA"
+        },
+        {
+          "id": "Patient.SSB",
+          "relation": "same_name",
+          "seed_column": "Laboratory.SSB"
+        }
+      ],
+      "analysis": "Patient.CENTROMEA 与 Patient.SSB 均来自 Laboratory 的 same_name 干扰，物理 Patient 中不存在。",
+      "gold_or_question_issue": "evidence 指示 (-,+-) 而 gold 使用 (negative,0)。实际 Laboratory 取值审计会列出原始编码；这一证据与金标准的编码矛盾需要人工确认，不影响当前预测因不存在列而无法执行的事实。",
+      "needs_human_semantic_verification": true
+    },
+    {
+      "question_id": 1322,
+      "variant_id": "q0032__add_synonym_20",
+      "db_id": "student_club",
+      "category": "generated_nonexistent_column",
+      "excluded_legacy": false,
+      "replacement": false,
+      "predicted_sql_sha256": "017ddf049adc91ee91e2b69c72ff77fafad5b5b3a2b08e2e39a7c2bebd6a95fc",
+      "gold_sql_sha256": "3c721c2c24d80107e1ff5783f4685f50f17f1dfd64a39f153e25fcd08e06046e",
+      "referenced_generated_columns": [
+        {
+          "id": "attendance.event_id",
+          "relation": "same_name",
+          "seed_column": "event.event_id"
+        }
+      ],
+      "analysis": "attendance.event_id 是从 event.event_id 生成的 same_name 干扰；真实连接列是 attendance.link_to_event，预测因此编译失败。",
+      "gold_or_question_issue": "另有 gold/题意问题：gold 对每个 Meeting 分组再 COUNT(DISTINCT event_id)，符合条件的每组都返回1；题目问“有多少个”，通常应再外层COUNT。预测外层COUNT的思路合理，修复连接后可用于人工复核，当前不应归为纯 gold 误判。",
+      "needs_human_semantic_verification": true
+    },
+    {
+      "question_id": 1387,
+      "variant_id": "q0056__add_synonym_20",
+      "db_id": "student_club",
+      "category": "generated_nonexistent_column",
+      "excluded_legacy": false,
+      "replacement": false,
+      "predicted_sql_sha256": "a2382b87ac370c4952ce429f048f0eb54eccc0637b4765d812a892986eba5fe8",
+      "gold_sql_sha256": "f9b3c47d5637b923c16cc7b7b601a906c1d908aca9a6e0e366f8bdfcb02de3d6",
+      "referenced_generated_columns": [
+        {
+          "id": "budget.event_name",
+          "relation": "same_name",
+          "seed_column": "event.event_name"
+        },
+        {
+          "id": "budget.link_to_budget",
+          "relation": "same_name",
+          "seed_column": "expense.link_to_budget"
+        },
+        {
+          "id": "member.link_to_budget",
+          "relation": "same_name",
+          "seed_column": "expense.link_to_budget"
+        }
+      ],
+      "analysis": "预测读取生成的 budget.event_name（来自 event.event_name）以及 member.link_to_budget；实际预算通过 expense 链接 member，当前查询首先在 budget.event_name 编译失败。",
+      "gold_or_question_issue": "“管理预算”与 expense 花费成员是否同义，题意本身可能需确认；但当前预测不存在列，不能作为可执行替代答案。",
+      "needs_human_semantic_verification": true
+    },
+    {
+      "question_id": 1422,
+      "variant_id": "q0070__add_synonym_20",
+      "db_id": "student_club",
+      "category": "generated_nonexistent_column",
+      "excluded_legacy": false,
+      "replacement": false,
+      "predicted_sql_sha256": "ce90e9e8a25797c1bdc71c615b764d31354c80e5613d8c07cbfda15f2b3a8093",
+      "gold_sql_sha256": "428a0cf5f757bd1b09298be990a794ad7cfaaed70d70bd44aed19e4860a31f0d",
+      "referenced_generated_columns": [
+        {
+          "id": "event.category",
+          "relation": "same_name",
+          "seed_column": "budget.category"
+        }
+      ],
+      "analysis": "预测将 budget.category 的 same_name 干扰 event.category 当作物理列，省略 budget 连接；event.category 实际不存在。",
+      "gold_or_question_issue": "category 在题目语义上合理，但选择的是合成 schema 列，不能在原库执行。",
+      "needs_human_semantic_verification": false
+    },
+    {
+      "question_id": 145,
+      "variant_id": "q0487__add_synonym_20",
+      "db_id": "financial",
+      "category": "excluded_gold_unscorable",
+      "excluded_legacy": true,
+      "replacement": false,
+      "predicted_sql_sha256": "685ed6cdaee65555f02f79c6d731a389ae2fbd77ad426dfcc3e3baba0e7f65fb",
+      "gold_sql_sha256": "ad719e6e208752834223a81ea85a5feff2132f00d3a8fdf4cfb71cf8a1a93112",
+      "referenced_generated_columns": [
+        {
+          "id": "trans.client_identifier",
+          "relation": "synonym",
+          "seed_column": "account.account_id"
+        }
+      ],
+      "analysis": "原得分为 GoldUnscorable: interrupted，不能计作可评分错误；独立 EXPLAIN 也可发现生成的 trans.client_identifier 不存在。",
+      "gold_or_question_issue": "预测将均值限制到信用卡提现，gold 均值包含所有1998年交易，亦有 DISTINCT差别；但本条原 gold不可评分，应先剔除再讨论逻辑差异。",
+      "needs_human_semantic_verification": false
+    },
+    {
+      "question_id": 1480,
+      "variant_id": "q0005__add_synonym_20",
+      "db_id": "debit_card_specializing",
+      "category": "generated_nonexistent_column",
+      "excluded_legacy": false,
+      "replacement": false,
+      "predicted_sql_sha256": "2e82ea48d797a8208fe107bcfb44c39269bd71defa5dac20ce58d9e809598d41",
+      "gold_sql_sha256": "e0b1571fca84f5117f3a0892b6a05f9c91ec544931e9f9850224f12628bd84a9",
+      "referenced_generated_columns": [
+        {
+          "id": "yearmonth.Segment",
+          "relation": "same_name",
+          "seed_column": "customers.Segment"
+        }
+      ],
+      "analysis": "yearmonth.Segment 是从 customers.Segment 生成的 same_name 干扰，实际不存在；预测省略 customers 连接。",
+      "gold_or_question_issue": "预测还返回 YYYYMM 和总量两列，而 gold 仅返回 MM，另有输出粒度/列数错误。",
+      "needs_human_semantic_verification": false
+    },
+    {
+      "question_id": 219,
+      "variant_id": "q0410__add_synonym_20",
+      "db_id": "toxicology",
+      "category": "generated_nonexistent_column",
+      "excluded_legacy": false,
+      "replacement": false,
+      "predicted_sql_sha256": "9b3f9bf00ee7d637fe7ba8d21ea19cde9443bdd524e90cf0d5b59dbbe946791f",
+      "gold_sql_sha256": "254c717912ff254b14a8a979309f8c5b99c9bd14280d45774cfc4c7da2e40787",
+      "referenced_generated_columns": [
+        {
+          "id": "molecule.bond_type",
+          "relation": "same_name",
+          "seed_column": "bond.bond_type"
+        }
+      ],
+      "analysis": "molecule.bond_type 是从 bond.bond_type 生成的 same_name 干扰，物理 molecule 中不存在，故查询无法执行。",
+      "gold_or_question_issue": "question/gold 计算“含三键分子中致癌分子比例”，但 evidence 给出“致癌分子中的三键比例”且按bond计数，条件方向与统计单位不同。需人工确认题意/evidence，当前预测不具备可执行等价答案资格。",
+      "needs_human_semantic_verification": true
+    },
+    {
+      "question_id": 260,
+      "variant_id": "q0431__add_synonym_20",
+      "db_id": "toxicology",
+      "category": "generated_nonexistent_column",
+      "excluded_legacy": false,
+      "replacement": false,
+      "predicted_sql_sha256": "06a5f9a0e08851687de15c2e3f5a9e8da27059a537931c3aee674df7fde84280",
+      "gold_sql_sha256": "de5a8a4277d334395842dadea00c1b71299cddb21eb6d012cffef46326895453",
+      "referenced_generated_columns": [
+        {
+          "id": "atom.bond_type",
+          "relation": "same_name",
+          "seed_column": "bond.bond_type"
+        }
+      ],
+      "analysis": "atom.bond_type 是从 bond.bond_type 生成的 same_name 干扰，物理 atom 中不存在，预测因此编译失败。",
+      "gold_or_question_issue": "gold 按 atom×bond 连接行数计数，题意也可理解为去重原子；当前数据匹配原子仅对应一个三键，未造成数值差异。",
+      "needs_human_semantic_verification": true
+    },
+    {
+      "question_id": 1457,
+      "variant_id": "q0075__add_synonym_20",
+      "db_id": "student_club",
+      "category": "generated_nonexistent_column",
+      "excluded_legacy": false,
+      "replacement": true,
+      "predicted_sql_sha256": "9c99f77d306d39a50a9285e4166aafecc109546e7193959143b2df0a94739d9e",
+      "gold_sql_sha256": "c3f8adb0af21ee9274c31fca148b281e72d7b8b4812acc8ae017918e952a2397",
+      "referenced_generated_columns": [
+        {
+          "id": "expense.member_id",
+          "relation": "same_name",
+          "seed_column": "member.member_id"
+        }
+      ],
+      "analysis": "补样：expense.member_id 来自 member.member_id 的 same_name 干扰，真实 expense 使用 link_to_member，故 e.member_id 编译失败。",
+      "gold_or_question_issue": "预测还可能因省略DISTINCT而重复输出成员；原 gold可评分，失败原因首先为不存在列。",
+      "needs_human_semantic_verification": false
+    },
+    {
+      "question_id": 1105,
+      "variant_id": "q0158__add_synonym_20",
+      "db_id": "european_football_2",
+      "category": "generated_nonexistent_column",
+      "excluded_legacy": false,
+      "replacement": true,
+      "predicted_sql_sha256": "c20ec3b14f36cbd4c86b662ce166d30451c34a1f72740250ce9c96582bd8a102",
+      "gold_sql_sha256": "47faf20195563941b7a52983253d89bb974caba1edc045353130846c08acea65",
+      "referenced_generated_columns": [
+        {
+          "id": "Player_Attributes.player_name",
+          "relation": "same_name",
+          "seed_column": "Player.player_name"
+        }
+      ],
+      "analysis": "补样：Player_Attributes.player_name 来自 Player.player_name 的 same_name 干扰，在实际 Player_Attributes 不存在；预测省略 Player 连接。",
+      "gold_or_question_issue": "题目和 evidence 指向同一球员与日期，未发现合理可执行替代列被 gold 误判的证据。",
+      "needs_human_semantic_verification": false
+    },
+    {
+      "question_id": 340,
+      "variant_id": "q0346__add_synonym_20",
+      "db_id": "card_games",
+      "category": "output_projection_mismatch",
+      "excluded_legacy": false,
+      "replacement": false,
+      "predicted_sql_sha256": "ebd3a7d81507c9a7427159844b9f112483c873565cc8af6d80b7f49de7be1c8a",
+      "gold_sql_sha256": "793ac6b6130ba18f9422109463a37615d96445bf62b32a721e771e1adb2cd690",
+      "referenced_generated_columns": [],
+      "analysis": "预测 SELECT * 返回 cards 全部 74 列；gold 仅返回 id。原记录 interrupted 是运行时失败，实际筛选谓词与 gold 一致，符合条件 25,061 行。没有证据表明模型选择了某个不存在的生成近义列。",
+      "gold_or_question_issue": "",
+      "needs_human_semantic_verification": false
+    },
+    {
+      "question_id": 341,
+      "variant_id": "q0347__add_synonym_20",
+      "db_id": "card_games",
+      "category": "output_projection_mismatch",
+      "excluded_legacy": false,
+      "replacement": false,
+      "predicted_sql_sha256": "d6977d1c0345691ff6af768cbaa9b15d3fe9aacdbfc6e5bf4c87ba909cc87be6",
+      "gold_sql_sha256": "74899c34ee58d8b793074e1a35ec19880983d3407160da31669e7919d2c7ae97",
+      "referenced_generated_columns": [],
+      "analysis": "预测 SELECT * 有 74 列，gold 只有 id；同时预测检查 foil 或普通 cardKingdomId 为空，比 gold 多 5 张牌。",
+      "gold_or_question_issue": "gold 的 OR 两端重复 cardKingdomId IS NULL，完全未检查 cardKingdomFoilId；结合题意/evidence 是疑似标注笔误。即便修正 gold，预测的 SELECT * 仍有投影不匹配。",
+      "needs_human_semantic_verification": true
+    },
+    {
+      "question_id": 41,
+      "variant_id": "q0454__add_synonym_20",
+      "db_id": "california_schools",
+      "category": "generated_nonexistent_column",
+      "excluded_legacy": false,
+      "replacement": false,
+      "predicted_sql_sha256": "f51f5cd14207589654c77dd2c966eb8319f81940dd2de122425c0506a39ed120",
+      "gold_sql_sha256": "5e237754556b781f09ff7cdcbd9f100918ed7dc07815100c767a7011c11e0ff6",
+      "referenced_generated_columns": [
+        {
+          "id": "schools.AvgScrRead",
+          "relation": "same_name",
+          "seed_column": "satscores.AvgScrRead"
+        }
+      ],
+      "analysis": "把 satscores.AvgScrRead 的生成同名副本当作 schools 的真实列，省略连接，SQLite 编译失败。另有 ROW_NUMBER 替代 RANK、过滤 NULL 的潜在语义差异。",
+      "gold_or_question_issue": "",
+      "needs_human_semantic_verification": false
+    },
+    {
+      "question_id": 469,
+      "variant_id": "q0382__add_synonym_20",
+      "db_id": "card_games",
+      "category": "generated_nonexistent_column",
+      "excluded_legacy": false,
+      "replacement": false,
+      "predicted_sql_sha256": "6ab46f47dcc0647d5497ec10a0c301b67804a48001d6a3544f584e25948a45e0",
+      "gold_sql_sha256": "73283df69e2ba2d48c036aadcab622c436112b517cdf5db3e4e8399c8d671312",
+      "referenced_generated_columns": [
+        {
+          "id": "cards.mtgoCode",
+          "relation": "same_name",
+          "seed_column": "sets.mtgoCode"
+        }
+      ],
+      "analysis": "使用由 sets.mtgoCode 复制而来的 cards.mtgoCode，同名列在真实 cards 表中不存在，编译失败。EXISTS 合并多个版本且 Yes/No 大小写也不同于 gold，修复列仍不保证通过。",
+      "gold_or_question_issue": "",
+      "needs_human_semantic_verification": false
+    },
+    {
+      "question_id": 5,
+      "variant_id": "q0438__add_synonym_20",
+      "db_id": "california_schools",
+      "category": "generated_nonexistent_column",
+      "excluded_legacy": false,
+      "replacement": false,
+      "predicted_sql_sha256": "c69b413ec071c3648ed2d5f3affd4c870cb791d8347ba1e1785c4fd918cd818d",
+      "gold_sql_sha256": "97cab407a6efe7497299d541d670551d4220169fe9bdc9cf276ad7cd6ff62046",
+      "referenced_generated_columns": [
+        {
+          "id": "schools.AvgScrMath",
+          "relation": "same_name",
+          "seed_column": "satscores.AvgScrMath"
+        }
+      ],
+      "analysis": "使用由 satscores.AvgScrMath 复制的 schools.AvgScrMath，省略连接并计数所有行；SQLite 报不存在该列。",
+      "gold_or_question_issue": "",
+      "needs_human_semantic_verification": false
+    },
+    {
+      "question_id": 683,
+      "variant_id": "q0336__add_synonym_20",
+      "db_id": "codebase_community",
+      "category": "generated_nonexistent_column",
+      "excluded_legacy": false,
+      "replacement": false,
+      "predicted_sql_sha256": "9488e2d241ccde67aa3c3fefc465aa141e4f2c55f3be3da1af25ec28152b0215",
+      "gold_sql_sha256": "7a5e4b5542fbb25826b042d5056e724551cc7d2c11e236c20a6f11e0e06e4e11",
+      "referenced_generated_columns": [
+        {
+          "id": "posts.Reputation",
+          "relation": "same_name",
+          "seed_column": "users.Reputation"
+        }
+      ],
+      "analysis": "使用 users.Reputation 的生成副本 posts.Reputation，省略 users 连接；在真实 posts 上无法编译。CreaionDate 是原库真实拼写，不能据此判成拼写错误。",
+      "gold_or_question_issue": "",
+      "needs_human_semantic_verification": false
+    },
+    {
+      "question_id": 726,
+      "variant_id": "q0249__add_synonym_20",
+      "db_id": "superhero",
+      "category": "generated_nonexistent_column",
+      "excluded_legacy": false,
+      "replacement": false,
+      "predicted_sql_sha256": "a1b63808080af6b1ac8ea987b1b9a5f2201467a519861b3e67dceea8749c733f",
+      "gold_sql_sha256": "a4f51c645b8a57b475cf943eca0cb40687e2dc7c1bcd4444f774780b396b370a",
+      "referenced_generated_columns": [
+        {
+          "id": "superhero.publisher_name",
+          "relation": "same_name",
+          "seed_column": "publisher.publisher_name"
+        }
+      ],
+      "analysis": "使用 publisher.publisher_name 的生成副本 superhero.publisher_name，省略 publisher 连接，SQLite 报不存在列；另外只排序，未输出 gold 的 RANK 列。",
+      "gold_or_question_issue": "自然语言 rank 可理解为排序，但 gold 显式返回排名列；这属于可能的输出形状歧义，不能抵消当前不存在列的错误。",
+      "needs_human_semantic_verification": true
+    },
+    {
+      "question_id": 728,
+      "variant_id": "q0250__add_synonym_20",
+      "db_id": "superhero",
+      "category": "generated_nonexistent_column",
+      "excluded_legacy": false,
+      "replacement": false,
+      "predicted_sql_sha256": "ff866b1570cc0f034041c92deadcbbef0d4fc7686e14514a3bf9b1a498dbf76e",
+      "gold_sql_sha256": "2ecbc25b5751f5efb208793888b3cda7c8e12a309ff73df55d260127c983ad3d",
+      "referenced_generated_columns": [
+        {
+          "id": "superhero.publisher_name",
+          "relation": "same_name",
+          "seed_column": "publisher.publisher_name"
+        }
+      ],
+      "analysis": "使用不存在的 superhero.publisher_name；另以 eye_colour_id 分组输出 ID，gold 输出颜色名称、计数和 RANK，存在额外投影差异。",
+      "gold_or_question_issue": "",
+      "needs_human_semantic_verification": false
+    },
+    {
+      "question_id": 739,
+      "variant_id": "q0257__add_synonym_20",
+      "db_id": "superhero",
+      "category": "generated_nonexistent_column",
+      "excluded_legacy": false,
+      "replacement": false,
+      "predicted_sql_sha256": "7ba2140c1117d056519560d5ed57b17041efc3409d8602bca03f3c0856d4b25e",
+      "gold_sql_sha256": "fb785cf1606787ec0c671107cd0e441462009f505be5fd4b2bc4a86530853f51",
+      "referenced_generated_columns": [
+        {
+          "id": "superhero.power_name",
+          "relation": "same_name",
+          "seed_column": "superpower.power_name"
+        },
+        {
+          "id": "hero_power.superhero_name",
+          "relation": "same_name",
+          "seed_column": "superhero.superhero_name"
+        },
+        {
+          "id": "hero_power.power_name",
+          "relation": "same_name",
+          "seed_column": "superpower.power_name"
+        },
+        {
+          "id": "superpower.superhero_name",
+          "relation": "same_name",
+          "seed_column": "superhero.superhero_name"
+        }
+      ],
+      "analysis": "把同名生成列分布在三张表中，再用 UNION 联合三个单表 SELECT；多列均为真实表中不存在的生成副本。SQL 也省略了 hero_power 连接关系。",
+      "gold_or_question_issue": "",
+      "needs_human_semantic_verification": false
+    },
+    {
+      "question_id": 758,
+      "variant_id": "q0266__add_synonym_20",
+      "db_id": "superhero",
+      "category": "generated_nonexistent_column",
+      "excluded_legacy": false,
+      "replacement": false,
+      "predicted_sql_sha256": "5ae529f268ce0b6980d49a2b13fbf75bf547b56861925c0ecce0f28936b24695",
+      "gold_sql_sha256": "9ecab1707ccc083a98d83fc8d142e72de6596eb3417e5b41a0adc04974743848",
+      "referenced_generated_columns": [
+        {
+          "id": "superhero.race",
+          "relation": "same_name",
+          "seed_column": "race.race"
+        }
+      ],
+      "analysis": "使用 race.race 的生成副本 superhero.race，真实 superhero 没有 race 文本列；且 human 与 gold 的 Human 大小写不同。",
+      "gold_or_question_issue": "",
+      "needs_human_semantic_verification": false
+    },
+    {
+      "question_id": 761,
+      "variant_id": "q0268__add_synonym_20",
+      "db_id": "superhero",
+      "category": "generated_nonexistent_column",
+      "excluded_legacy": false,
+      "replacement": false,
+      "predicted_sql_sha256": "de328084d90596b5c6abbe507b114c23559ae1c3c969bd21ab9db1ef71190b36",
+      "gold_sql_sha256": "2c522074d5f642177cba7cd6a5e27dbf50584597754011662e27d4b45e1ef35b",
+      "referenced_generated_columns": [
+        {
+          "id": "superhero.gender",
+          "relation": "same_name",
+          "seed_column": "gender.gender"
+        }
+      ],
+      "analysis": "使用 gender.gender 的生成副本 superhero.gender；权重阈值公式基本对应 gold，但无法在真实表编译。",
+      "gold_or_question_issue": "",
+      "needs_human_semantic_verification": false
+    },
+    {
+      "question_id": 92,
+      "variant_id": "q0469__add_synonym_20",
+      "db_id": "financial",
+      "category": "generated_nonexistent_column",
+      "excluded_legacy": false,
+      "replacement": false,
+      "predicted_sql_sha256": "a0002cb4967ae6c1cdde4ca7824cf2174b93835dbbfe5b32b069881ab87e14ba",
+      "gold_sql_sha256": "dd77cdfa358f11c1e39144177449b1c9192a4136f34948cef4649f36f33e4c09",
+      "referenced_generated_columns": [
+        {
+          "id": "district.gender",
+          "relation": "same_name",
+          "seed_column": "client.gender"
+        }
+      ],
+      "analysis": "使用 client.gender 的生成副本 district.gender，将地区误当含性别字段的实体，真实 district 中无该列。",
+      "gold_or_question_issue": "题目 more than 6000 but less than 10000 对应严格边界，gold 使用闭区间 BETWEEN；需人工确认边界口径，但当前主要失败仍是不存在的列。",
+      "needs_human_semantic_verification": true
+    },
+    {
+      "question_id": 944,
+      "variant_id": "q0218__add_synonym_20",
+      "db_id": "formula_1",
+      "category": "incomplete_sql_generation",
+      "excluded_legacy": false,
+      "replacement": false,
+      "predicted_sql_sha256": "5634e46dc42190d7827472cbe7cbe5567d38106b2aa79ccaf003665082a9f091",
+      "gold_sql_sha256": "eb4ba3b2854d731c9e0769c05e816f8a3b5b786bb5d366244f9f6c724e29f030",
+      "referenced_generated_columns": [],
+      "analysis": "raw_response 与 predicted_sql 均在 ON r_last.race 处终止；该 race 列不是本条件添加的生成列。SQL 输出不完整，SQLite 报 no such column。不能仅凭文本证明是 max_tokens 导致，原记录未保存 finish_reason。时间解析还把增量时间当成完整时刻，存在额外逻辑问题。",
+      "gold_or_question_issue": "",
+      "needs_human_semantic_verification": false
+    },
+    {
+      "question_id": 955,
+      "variant_id": "q0224__add_synonym_20",
+      "db_id": "formula_1",
+      "category": "generated_nonexistent_column",
+      "excluded_legacy": false,
+      "replacement": false,
+      "predicted_sql_sha256": "5a60662238a245f1cb69d917b4033dc6d60af0ce3a81fd95ac24ebf3c814cc01",
+      "gold_sql_sha256": "2c3c411d079dfc43a3c797c8e4fe37a76104d47a455607d624395324c8e1015c",
+      "referenced_generated_columns": [
+        {
+          "id": "results.year",
+          "relation": "same_name",
+          "seed_column": "races.year"
+        }
+      ],
+      "analysis": "把 races.year 的生成同名副本 results.year 用于 WHERE/GROUP BY；真实 results 无 year，省略 races 连接导致编译失败。",
+      "gold_or_question_issue": "",
+      "needs_human_semantic_verification": false
+    },
+    {
+      "question_id": 989,
+      "variant_id": "q0237__add_synonym_20",
+      "db_id": "formula_1",
+      "category": "generated_nonexistent_column",
+      "excluded_legacy": false,
+      "replacement": false,
+      "predicted_sql_sha256": "38568afa235c13fedce429a26fb865d65ac2da7c308e87a200eab3e4550a0d78",
+      "gold_sql_sha256": "20aa0f7906b7e8225d740887f5961a459f658141f871f940bb495c9826c93f17",
+      "referenced_generated_columns": [
+        {
+          "id": "results.name",
+          "relation": "same_name",
+          "seed_column": "races.name"
+        }
+      ],
+      "analysis": "使用 races.name 的生成副本 results.name；真实 results 无 name。即使迁移为真实 races.name，它也是赛事名，不能表示冠军车手姓名。",
+      "gold_or_question_issue": "问题要求冠军是谁并给出时间，gold 仅返回 time，未输出司机姓名，是疑似输出标注不完整。仍不影响预测读取不存在列的直接失败事实。",
+      "needs_human_semantic_verification": true
+    }
+  ]
+}

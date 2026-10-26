@@ -1,0 +1,2539 @@
+{
+  "summary": {
+    "total_bridge_variants": 103,
+    "unscorable_gold": 4,
+    "original_successes": 18,
+    "categories": {
+      "reads_hidden_bridge_table": 11,
+      "alternative_uses_unprovided_schema": 4,
+      "uses_only_visible_schema": 3
+    },
+    "trace_errors": 0,
+    "set_matches_reproduced": 18,
+    "unreproduced_or_errors": [],
+    "multiset_mismatches_among_set_matches": [
+      637,
+      149
+    ],
+    "cases_with_question_hidden_name_token": [
+      981,
+      149
+    ],
+    "cases_with_evidence_hidden_name_token": [
+      981,
+      149
+    ],
+    "hidden_table_denials": 11,
+    "visible_schema_denials": 15,
+    "visible_schema_only_successes": 3
+  },
+  "cases": [
+    {
+      "variant_id": "q0129__missing_bridge_table__Match",
+      "question_id": 1028,
+      "db_id": "european_football_2",
+      "question": "In Scotland Premier League, which away team won the most during the 2010 season?",
+      "evidence": "Final result should return the Team.team_long_name; Scotland Premier League refers to League.name = 'Scotland Premier League'; away team refers to away_team_api_id; away team that won the most refers to MAX(SUBTRACT(away_team_goal, home_team_goal) > 0); 2010 season refers to season = '2009/2010'; won the most refers to MAX(COUNT(*));",
+      "hidden_tables": [
+        "match"
+      ],
+      "visible_schema": [
+        {
+          "table": "League",
+          "columns": [
+            {
+              "name": "id",
+              "type": "integer",
+              "primary_key": true
+            },
+            {
+              "name": "name",
+              "type": "text",
+              "primary_key": false
+            }
+          ]
+        },
+        {
+          "table": "Team",
+          "columns": [
+            {
+              "name": "team_api_id",
+              "type": "integer",
+              "primary_key": false
+            },
+            {
+              "name": "team_long_name",
+              "type": "text",
+              "primary_key": false
+            }
+          ]
+        }
+      ],
+      "gold_sql": "SELECT teamInfo.team_long_name FROM League AS leagueData INNER JOIN Match AS matchData ON leagueData.id = matchData.league_id INNER JOIN Team AS teamInfo ON matchData.away_team_api_id = teamInfo.team_api_id WHERE leagueData.name = 'Scotland Premier League' AND matchData.season = '2009/2010' AND matchData.away_team_goal - matchData.home_team_goal > 0 GROUP BY matchData.away_team_api_id ORDER BY COUNT(*) DESC LIMIT 1",
+      "predicted_sql": "SELECT t.team_long_name\nFROM (\n    SELECT m.away_team_api_id AS team_id, COUNT(*) AS wins\n    FROM Match m\n    JOIN League l ON m.league_id = l.id\n    WHERE l.name = 'Scotland Premier League'\n      AND m.season = '2009/2010'\n      AND m.away_team_goal > m.home_team_goal\n    GROUP BY m.away_team_api_id\n    ORDER BY wins DESC\n    LIMIT 1\n) w\nJOIN Team t ON t.team_api_id = w.team_id;",
+      "category": "reads_hidden_bridge_table",
+      "tables_read": [
+        "league",
+        "match",
+        "team"
+      ],
+      "used_hidden_tables": [
+        "match"
+      ],
+      "outside_visible_schema_reads": [
+        "match.away_team_api_id",
+        "match.away_team_goal",
+        "match.home_team_goal",
+        "match.league_id",
+        "match.season"
+      ],
+      "trace_error": null,
+      "hidden_table_deny_test": {
+        "reads": [
+          "match.away_team_api_id"
+        ],
+        "tables_read": [
+          "match"
+        ],
+        "denied": [
+          "match.away_team_api_id"
+        ],
+        "error": "access to Match.away_team_api_id is prohibited"
+      },
+      "visible_schema_only_test": {
+        "reads": [
+          "match.away_team_api_id"
+        ],
+        "tables_read": [
+          "match"
+        ],
+        "denied": [
+          "match.away_team_api_id"
+        ],
+        "error": "access to Match.away_team_api_id is prohibited"
+      },
+      "question_hidden_name_tokens": [],
+      "evidence_hidden_name_tokens": [],
+      "evidence_removed_column_tokens": [
+        "away_team_api_id",
+        "away_team_goal",
+        "home_team_goal",
+        "season"
+      ],
+      "predicted_execution": {
+        "row_count": 1,
+        "unique_row_count": 1,
+        "sample_rows": [
+          [
+            "Celtic"
+          ]
+        ],
+        "error": null
+      },
+      "gold_execution": {
+        "row_count": 1,
+        "unique_row_count": 1,
+        "sample_rows": [
+          [
+            "Celtic"
+          ]
+        ],
+        "error": null
+      },
+      "reproduced_set_match": true,
+      "reproduced_multiset_match": true,
+      "original_gold_row_count": 1,
+      "original_predicted_row_count": 1,
+      "case_analysis": "读取隐藏 Match 表，按客场胜场数统计球队；evidence 暴露 away_team_api_id、进球及 season 列名。"
+    },
+    {
+      "variant_id": "q0186__missing_bridge_table__results",
+      "question_id": 862,
+      "db_id": "formula_1",
+      "question": "For the Bahrain Grand Prix in 2007, how many drivers not finished the game?",
+      "evidence": "Bahrain Grand Prix refers to races.name = 'Bahrain Grand Prix'; drivers who finished the race refers to time is not empty (i.e. time IS NOT NULL);",
+      "hidden_tables": [
+        "results"
+      ],
+      "visible_schema": [
+        {
+          "table": "drivers",
+          "columns": [
+            {
+              "name": "driverId",
+              "type": "integer",
+              "primary_key": true
+            }
+          ]
+        },
+        {
+          "table": "races",
+          "columns": [
+            {
+              "name": "name",
+              "type": "text",
+              "primary_key": false
+            },
+            {
+              "name": "raceId",
+              "type": "integer",
+              "primary_key": true
+            },
+            {
+              "name": "year",
+              "type": "integer",
+              "primary_key": false
+            }
+          ]
+        }
+      ],
+      "gold_sql": "SELECT COUNT(T3.driverId) FROM races AS T1 INNER JOIN results AS T2 ON T2.raceId = T1.raceId INNER JOIN drivers AS T3 ON T3.driverId = T2.driverId WHERE T1.year = 2007 AND T1.name = 'Bahrain Grand Prix' AND T2.time IS NULL",
+      "predicted_sql": "SELECT COUNT(*) FROM results r JOIN races ra ON r.raceId = ra.raceId WHERE ra.name = 'Bahrain Grand Prix' AND ra.year = 2007 AND r.time IS NULL;",
+      "category": "reads_hidden_bridge_table",
+      "tables_read": [
+        "races",
+        "results"
+      ],
+      "used_hidden_tables": [
+        "results"
+      ],
+      "outside_visible_schema_reads": [
+        "results.raceid",
+        "results.time"
+      ],
+      "trace_error": null,
+      "hidden_table_deny_test": {
+        "reads": [
+          "races.name",
+          "races.year",
+          "results.time"
+        ],
+        "tables_read": [
+          "races",
+          "results"
+        ],
+        "denied": [
+          "results.time"
+        ],
+        "error": "access to results.time is prohibited"
+      },
+      "visible_schema_only_test": {
+        "reads": [
+          "races.name",
+          "races.year",
+          "results.time"
+        ],
+        "tables_read": [
+          "races",
+          "results"
+        ],
+        "denied": [
+          "results.time"
+        ],
+        "error": "access to results.time is prohibited"
+      },
+      "question_hidden_name_tokens": [],
+      "evidence_hidden_name_tokens": [],
+      "evidence_removed_column_tokens": [
+        "time"
+      ],
+      "predicted_execution": {
+        "row_count": 1,
+        "unique_row_count": 1,
+        "sample_rows": [
+          [
+            12
+          ]
+        ],
+        "error": null
+      },
+      "gold_execution": {
+        "row_count": 1,
+        "unique_row_count": 1,
+        "sample_rows": [
+          [
+            12
+          ]
+        ],
+        "error": null
+      },
+      "reproduced_set_match": true,
+      "reproduced_multiset_match": true,
+      "original_gold_row_count": 1,
+      "original_predicted_row_count": 1,
+      "case_analysis": "读取隐藏 results 表；省略 drivers 连接，使用 COUNT(*)，当前结果均为 12。"
+    },
+    {
+      "variant_id": "q0200__missing_bridge_table__lapTimes",
+      "question_id": 895,
+      "db_id": "formula_1",
+      "question": "What is the average lap time for Lewis Hamilton in the 2009 Malaysian Grand Prix?",
+      "evidence": "average lap time = AVG(milliseconds); 'Lewis Hamilton' refers to the full name of the driver; Full name of the driver refers to drivers.forename and drivers.surname; 'Malaysian Grand Prix' refers to races.name = 'Malaysian Grand Prix'",
+      "hidden_tables": [
+        "laptimes"
+      ],
+      "visible_schema": [
+        {
+          "table": "drivers",
+          "columns": [
+            {
+              "name": "driverId",
+              "type": "integer",
+              "primary_key": true
+            },
+            {
+              "name": "forename",
+              "type": "text",
+              "primary_key": false
+            },
+            {
+              "name": "surname",
+              "type": "text",
+              "primary_key": false
+            }
+          ]
+        },
+        {
+          "table": "races",
+          "columns": [
+            {
+              "name": "name",
+              "type": "text",
+              "primary_key": false
+            },
+            {
+              "name": "raceId",
+              "type": "integer",
+              "primary_key": true
+            },
+            {
+              "name": "year",
+              "type": "integer",
+              "primary_key": false
+            }
+          ]
+        }
+      ],
+      "gold_sql": "SELECT AVG(T2.milliseconds) FROM races AS T1 INNER JOIN lapTimes AS T2 ON T2.raceId = T1.raceId INNER JOIN drivers AS T3 ON T3.driverId = T2.driverId WHERE T3.forename = 'Lewis' AND T3.surname = 'Hamilton' AND T1.year = 2009 AND T1.name = 'Malaysian Grand Prix'",
+      "predicted_sql": "SELECT AVG(lapTimes.milliseconds)\nFROM lapTimes\nJOIN drivers ON lapTimes.driverId = drivers.driverId\nJOIN races ON lapTimes.raceId = races.raceId\nWHERE drivers.forename = 'Lewis'\n  AND drivers.surname = 'Hamilton'\n  AND races.name = 'Malaysian Grand Prix'\n  AND races.year = 2009;",
+      "category": "reads_hidden_bridge_table",
+      "tables_read": [
+        "drivers",
+        "laptimes",
+        "races"
+      ],
+      "used_hidden_tables": [
+        "laptimes"
+      ],
+      "outside_visible_schema_reads": [
+        "laptimes.driverid",
+        "laptimes.milliseconds",
+        "laptimes.raceid"
+      ],
+      "trace_error": null,
+      "hidden_table_deny_test": {
+        "reads": [
+          "laptimes.milliseconds"
+        ],
+        "tables_read": [
+          "laptimes"
+        ],
+        "denied": [
+          "laptimes.milliseconds"
+        ],
+        "error": "access to lapTimes.milliseconds is prohibited"
+      },
+      "visible_schema_only_test": {
+        "reads": [
+          "laptimes.milliseconds"
+        ],
+        "tables_read": [
+          "laptimes"
+        ],
+        "denied": [
+          "laptimes.milliseconds"
+        ],
+        "error": "access to lapTimes.milliseconds is prohibited"
+      },
+      "question_hidden_name_tokens": [],
+      "evidence_hidden_name_tokens": [],
+      "evidence_removed_column_tokens": [
+        "milliseconds"
+      ],
+      "predicted_execution": {
+        "row_count": 1,
+        "unique_row_count": 1,
+        "sample_rows": [
+          [
+            109398.54838709677
+          ]
+        ],
+        "error": null
+      },
+      "gold_execution": {
+        "row_count": 1,
+        "unique_row_count": 1,
+        "sample_rows": [
+          [
+            109398.54838709677
+          ]
+        ],
+        "error": null
+      },
+      "reproduced_set_match": true,
+      "reproduced_multiset_match": true,
+      "original_gold_row_count": 1,
+      "original_predicted_row_count": 1,
+      "case_analysis": "直接读取隐藏 lapTimes 表，AVG(milliseconds) 与 gold 相同；evidence 给出 milliseconds。"
+    },
+    {
+      "variant_id": "q0215__missing_bridge_table__results",
+      "question_id": 933,
+      "db_id": "formula_1",
+      "question": "What was Lewis Hamilton's final rank in the 2008 Chinese Grand Prix?",
+      "evidence": "Lewis Hamilton refers to the full name of the driver; Full name of the driver refers to drivers.forename and drivers.surname; final rank refers to positionOrder; Chinese Grand Prix refers to races.name = 'Chinese Grand Prix';",
+      "hidden_tables": [
+        "results"
+      ],
+      "visible_schema": [
+        {
+          "table": "drivers",
+          "columns": [
+            {
+              "name": "driverId",
+              "type": "integer",
+              "primary_key": true
+            },
+            {
+              "name": "forename",
+              "type": "text",
+              "primary_key": false
+            },
+            {
+              "name": "surname",
+              "type": "text",
+              "primary_key": false
+            }
+          ]
+        },
+        {
+          "table": "races",
+          "columns": [
+            {
+              "name": "name",
+              "type": "text",
+              "primary_key": false
+            },
+            {
+              "name": "raceId",
+              "type": "integer",
+              "primary_key": true
+            },
+            {
+              "name": "year",
+              "type": "integer",
+              "primary_key": false
+            }
+          ]
+        }
+      ],
+      "gold_sql": "SELECT T2.positionOrder FROM races AS T1 INNER JOIN results AS T2 ON T2.raceId = T1.raceId INNER JOIN drivers AS T3 ON T3.driverId = T2.driverId WHERE T3.forename = 'Lewis' AND T3.surname = 'Hamilton' AND T1.name = 'Chinese Grand Prix' AND T1.year = 2008",
+      "predicted_sql": "SELECT results.positionOrder\nFROM results\nJOIN drivers ON results.driverId = drivers.driverId\nJOIN races ON results.raceId = races.raceId\nWHERE drivers.forename = 'Lewis'\n  AND drivers.surname = 'Hamilton'\n  AND races.name = 'Chinese Grand Prix'\n  AND races.year = 2008;",
+      "category": "reads_hidden_bridge_table",
+      "tables_read": [
+        "drivers",
+        "races",
+        "results"
+      ],
+      "used_hidden_tables": [
+        "results"
+      ],
+      "outside_visible_schema_reads": [
+        "results.driverid",
+        "results.positionorder",
+        "results.raceid"
+      ],
+      "trace_error": null,
+      "hidden_table_deny_test": {
+        "reads": [
+          "results.positionorder"
+        ],
+        "tables_read": [
+          "results"
+        ],
+        "denied": [
+          "results.positionorder"
+        ],
+        "error": "access to results.positionOrder is prohibited"
+      },
+      "visible_schema_only_test": {
+        "reads": [
+          "results.positionorder"
+        ],
+        "tables_read": [
+          "results"
+        ],
+        "denied": [
+          "results.positionorder"
+        ],
+        "error": "access to results.positionOrder is prohibited"
+      },
+      "question_hidden_name_tokens": [],
+      "evidence_hidden_name_tokens": [],
+      "evidence_removed_column_tokens": [
+        "positionOrder"
+      ],
+      "predicted_execution": {
+        "row_count": 1,
+        "unique_row_count": 1,
+        "sample_rows": [
+          [
+            1
+          ]
+        ],
+        "error": null
+      },
+      "gold_execution": {
+        "row_count": 1,
+        "unique_row_count": 1,
+        "sample_rows": [
+          [
+            1
+          ]
+        ],
+        "error": null
+      },
+      "reproduced_set_match": true,
+      "reproduced_multiset_match": true,
+      "original_gold_row_count": 1,
+      "original_predicted_row_count": 1,
+      "case_analysis": "直接读取隐藏 results 表的 positionOrder；evidence 给出该列名，当前结果为 1。"
+    },
+    {
+      "variant_id": "q0223__missing_bridge_table__results",
+      "question_id": 954,
+      "db_id": "formula_1",
+      "question": "Please calculate the race completion percentage of Japanese drivers from 2007 to 2009.",
+      "evidence": "from 2007 to 2009 refers to year between 2007 and 2009; race completion refers to time is not null; percentage = Divide(COUNT(DriverID where time is not null and year between 2007 and 2009),Count (DriverID where year between 2007 and 2009))*100; ",
+      "hidden_tables": [
+        "results"
+      ],
+      "visible_schema": [
+        {
+          "table": "drivers",
+          "columns": [
+            {
+              "name": "driverId",
+              "type": "integer",
+              "primary_key": true
+            },
+            {
+              "name": "nationality",
+              "type": "text",
+              "primary_key": false
+            }
+          ]
+        },
+        {
+          "table": "races",
+          "columns": [
+            {
+              "name": "raceId",
+              "type": "integer",
+              "primary_key": true
+            },
+            {
+              "name": "year",
+              "type": "integer",
+              "primary_key": false
+            }
+          ]
+        }
+      ],
+      "gold_sql": "SELECT CAST(SUM(IIF(T1.time IS NOT NULL, 1, 0)) AS REAL) * 100 / COUNT(T1.raceId) FROM results AS T1 INNER JOIN races AS T2 on T1.raceId = T2.raceId INNER JOIN drivers AS T3 on T1.driverId = T3.driverId WHERE T3.nationality = 'Japanese' AND T2.year BETWEEN 2007 AND 2009",
+      "predicted_sql": "SELECT CAST(COUNT(CASE WHEN r.time IS NOT NULL THEN 1 END) AS REAL) * 100 / COUNT(*) AS completion_percentage\nFROM results r\nJOIN drivers d ON r.driverId = d.driverId\nJOIN races ra ON r.raceId = ra.raceId\nWHERE d.nationality = 'Japanese'\n  AND ra.year BETWEEN 2007 AND 2009;",
+      "category": "reads_hidden_bridge_table",
+      "tables_read": [
+        "drivers",
+        "races",
+        "results"
+      ],
+      "used_hidden_tables": [
+        "results"
+      ],
+      "outside_visible_schema_reads": [
+        "results.driverid",
+        "results.raceid",
+        "results.time"
+      ],
+      "trace_error": null,
+      "hidden_table_deny_test": {
+        "reads": [
+          "results.time"
+        ],
+        "tables_read": [
+          "results"
+        ],
+        "denied": [
+          "results.time"
+        ],
+        "error": "access to results.time is prohibited"
+      },
+      "visible_schema_only_test": {
+        "reads": [
+          "results.time"
+        ],
+        "tables_read": [
+          "results"
+        ],
+        "denied": [
+          "results.time"
+        ],
+        "error": "access to results.time is prohibited"
+      },
+      "question_hidden_name_tokens": [],
+      "evidence_hidden_name_tokens": [],
+      "evidence_removed_column_tokens": [
+        "driverId",
+        "time"
+      ],
+      "predicted_execution": {
+        "row_count": 1,
+        "unique_row_count": 1,
+        "sample_rows": [
+          [
+            29.032258064516128
+          ]
+        ],
+        "error": null
+      },
+      "gold_execution": {
+        "row_count": 1,
+        "unique_row_count": 1,
+        "sample_rows": [
+          [
+            29.032258064516128
+          ]
+        ],
+        "error": null
+      },
+      "reproduced_set_match": true,
+      "reproduced_multiset_match": true,
+      "original_gold_row_count": 1,
+      "original_predicted_row_count": 1,
+      "case_analysis": "读取隐藏 results 表，以 COUNT(CASE...) 改写 SUM(IIF...)，当前结果相同。"
+    },
+    {
+      "variant_id": "q0235__missing_bridge_table__qualifying",
+      "question_id": 981,
+      "db_id": "formula_1",
+      "question": "On what year did the youngest driver had his first qualifying race? Also state the name, date and time of the race.",
+      "evidence": "date of birth refers to drivers.dob; The larger the birthday value, the younger the person is, and vice versa; first qualifying race refers to MIN(races.date);",
+      "hidden_tables": [
+        "qualifying"
+      ],
+      "visible_schema": [
+        {
+          "table": "drivers",
+          "columns": [
+            {
+              "name": "dob",
+              "type": "date",
+              "primary_key": false
+            },
+            {
+              "name": "driverId",
+              "type": "integer",
+              "primary_key": true
+            }
+          ]
+        },
+        {
+          "table": "races",
+          "columns": [
+            {
+              "name": "date",
+              "type": "date",
+              "primary_key": false
+            },
+            {
+              "name": "name",
+              "type": "text",
+              "primary_key": false
+            },
+            {
+              "name": "raceId",
+              "type": "integer",
+              "primary_key": true
+            },
+            {
+              "name": "time",
+              "type": "text",
+              "primary_key": false
+            },
+            {
+              "name": "year",
+              "type": "integer",
+              "primary_key": false
+            }
+          ]
+        }
+      ],
+      "gold_sql": "SELECT T3.year, T3.name, T3.date, T3.time FROM qualifying AS T1 INNER JOIN drivers AS T2 on T1.driverId = T2.driverId INNER JOIN races AS T3 on T1.raceId = T3.raceId WHERE T1.driverId = ( SELECT driverId FROM drivers ORDER BY dob DESC LIMIT 1 ) ORDER BY T3.date ASC LIMIT 1",
+      "predicted_sql": "SELECT r.year, r.name, r.date, r.time\nFROM races r\nJOIN results res ON res.raceId = r.raceId\nJOIN drivers d ON d.driverId = res.driverId\nWHERE d.driverId = (SELECT driverId FROM drivers ORDER BY dob DESC LIMIT 1)\nORDER BY r.date ASC\nLIMIT 1;",
+      "category": "alternative_uses_unprovided_schema",
+      "tables_read": [
+        "drivers",
+        "races",
+        "results"
+      ],
+      "used_hidden_tables": [],
+      "outside_visible_schema_reads": [
+        "results.driverid",
+        "results.raceid"
+      ],
+      "trace_error": null,
+      "hidden_table_deny_test": {
+        "reads": [
+          "drivers.",
+          "drivers.dob",
+          "drivers.driverid",
+          "races.date",
+          "races.name",
+          "races.raceid",
+          "races.time",
+          "races.year",
+          "results.driverid",
+          "results.raceid"
+        ],
+        "tables_read": [
+          "drivers",
+          "races",
+          "results"
+        ],
+        "denied": [],
+        "error": null
+      },
+      "visible_schema_only_test": {
+        "reads": [
+          "drivers.dob",
+          "drivers.driverid",
+          "races.date",
+          "races.name",
+          "races.raceid",
+          "races.time",
+          "races.year",
+          "results.raceid"
+        ],
+        "tables_read": [
+          "drivers",
+          "races",
+          "results"
+        ],
+        "denied": [
+          "results.raceid"
+        ],
+        "error": "access to results.raceId is prohibited"
+      },
+      "question_hidden_name_tokens": [
+        "qualifying"
+      ],
+      "evidence_hidden_name_tokens": [
+        "qualifying"
+      ],
+      "evidence_removed_column_tokens": [],
+      "predicted_execution": {
+        "row_count": 1,
+        "unique_row_count": 1,
+        "sample_rows": [
+          [
+            2017,
+            "Chinese Grand Prix",
+            "2017-04-09",
+            "06:00:00"
+          ]
+        ],
+        "error": null
+      },
+      "gold_execution": {
+        "row_count": 1,
+        "unique_row_count": 1,
+        "sample_rows": [
+          [
+            2017,
+            "Chinese Grand Prix",
+            "2017-04-09",
+            "06:00:00"
+          ]
+        ],
+        "error": null
+      },
+      "reproduced_set_match": true,
+      "reproduced_multiset_match": true,
+      "original_gold_row_count": 1,
+      "original_predicted_row_count": 1,
+      "case_analysis": "以未提供的 results 表替代隐藏 qualifying；把首次参加比赛当作首次排位赛，当前两者恰好都是 2017 中国站，不构成普遍等价。qualifying 在题目/evidence 中是自然语言词。"
+    },
+    {
+      "variant_id": "q0238__missing_bridge_table__results",
+      "question_id": 990,
+      "db_id": "formula_1",
+      "question": "What is the constructor reference name of the champion in the 2009 Singapore Grand Prix? Please give its website.",
+      "evidence": "the time of the champion shows in the format of \"minutes: seconds.millionsecond\" in which Max(time); constructor reference name refers to constructorRef; website refers to url",
+      "hidden_tables": [
+        "results"
+      ],
+      "visible_schema": [
+        {
+          "table": "constructors",
+          "columns": [
+            {
+              "name": "constructorId",
+              "type": "integer",
+              "primary_key": true
+            },
+            {
+              "name": "constructorRef",
+              "type": "text",
+              "primary_key": false
+            },
+            {
+              "name": "url",
+              "type": "text",
+              "primary_key": false
+            }
+          ]
+        },
+        {
+          "table": "races",
+          "columns": [
+            {
+              "name": "name",
+              "type": "text",
+              "primary_key": false
+            },
+            {
+              "name": "raceId",
+              "type": "integer",
+              "primary_key": true
+            },
+            {
+              "name": "year",
+              "type": "integer",
+              "primary_key": false
+            }
+          ]
+        }
+      ],
+      "gold_sql": "SELECT T3.constructorRef, T3.url FROM results AS T1 INNER JOIN races AS T2 on T1.raceId = T2.raceId INNER JOIN constructors AS T3 on T1.constructorId = T3.constructorId WHERE T2.name = 'Singapore Grand Prix' AND T2.year = 2009 AND T1.time LIKE '_:%:__.___'",
+      "predicted_sql": "SELECT c.constructorRef, c.url\nFROM constructors c\nJOIN results r ON r.constructorId = c.constructorId\nJOIN races ra ON ra.raceId = r.raceId\nWHERE ra.year = 2009\n  AND ra.name = 'Singapore Grand Prix'\n  AND r.positionOrder = 1;",
+      "category": "reads_hidden_bridge_table",
+      "tables_read": [
+        "constructors",
+        "races",
+        "results"
+      ],
+      "used_hidden_tables": [
+        "results"
+      ],
+      "outside_visible_schema_reads": [
+        "results.constructorid",
+        "results.positionorder",
+        "results.raceid"
+      ],
+      "trace_error": null,
+      "hidden_table_deny_test": {
+        "reads": [
+          "constructors.constructorref",
+          "constructors.url",
+          "races.name",
+          "races.year",
+          "results.positionorder"
+        ],
+        "tables_read": [
+          "constructors",
+          "races",
+          "results"
+        ],
+        "denied": [
+          "results.positionorder"
+        ],
+        "error": "access to results.positionOrder is prohibited"
+      },
+      "visible_schema_only_test": {
+        "reads": [
+          "constructors.constructorref",
+          "constructors.url",
+          "races.name",
+          "races.year",
+          "results.positionorder"
+        ],
+        "tables_read": [
+          "constructors",
+          "races",
+          "results"
+        ],
+        "denied": [
+          "results.positionorder"
+        ],
+        "error": "access to results.positionOrder is prohibited"
+      },
+      "question_hidden_name_tokens": [],
+      "evidence_hidden_name_tokens": [],
+      "evidence_removed_column_tokens": [
+        "time"
+      ],
+      "predicted_execution": {
+        "row_count": 1,
+        "unique_row_count": 1,
+        "sample_rows": [
+          [
+            "mclaren",
+            "http://en.wikipedia.org/wiki/McLaren"
+          ]
+        ],
+        "error": null
+      },
+      "gold_execution": {
+        "row_count": 1,
+        "unique_row_count": 1,
+        "sample_rows": [
+          [
+            "mclaren",
+            "http://en.wikipedia.org/wiki/McLaren"
+          ]
+        ],
+        "error": null
+      },
+      "reproduced_set_match": true,
+      "reproduced_multiset_match": true,
+      "original_gold_row_count": 1,
+      "original_predicted_row_count": 1,
+      "case_analysis": "读取隐藏 results，使用未给出的 positionOrder=1 替代 gold 的冠军时间格式条件，当前都得到 McLaren。"
+    },
+    {
+      "variant_id": "q0240__missing_bridge_table__constructorResults",
+      "question_id": 994,
+      "db_id": "formula_1",
+      "question": "Which constructor scored most points from Monaco Grand Prix between 1980 and 2010? List the score, name and nationality of this team.",
+      "evidence": "Monaco Grand Priz refers to the race; race in year between 1980 and 2010",
+      "hidden_tables": [
+        "constructorresults"
+      ],
+      "visible_schema": [
+        {
+          "table": "constructors",
+          "columns": [
+            {
+              "name": "constructorId",
+              "type": "integer",
+              "primary_key": true
+            },
+            {
+              "name": "name",
+              "type": "text",
+              "primary_key": false
+            },
+            {
+              "name": "nationality",
+              "type": "text",
+              "primary_key": false
+            }
+          ]
+        },
+        {
+          "table": "races",
+          "columns": [
+            {
+              "name": "name",
+              "type": "text",
+              "primary_key": false
+            },
+            {
+              "name": "raceId",
+              "type": "integer",
+              "primary_key": true
+            },
+            {
+              "name": "year",
+              "type": "integer",
+              "primary_key": false
+            }
+          ]
+        }
+      ],
+      "gold_sql": "SELECT SUM(T1.points), T2.name, T2.nationality FROM constructorResults AS T1 INNER JOIN constructors AS T2 ON T1.constructorId = T2.constructorId INNER JOIN races AS T3 ON T3.raceid = T1.raceid WHERE T3.name = 'Monaco Grand Prix' AND T3.year BETWEEN 1980 AND 2010 GROUP BY T2.name ORDER BY SUM(T1.points) DESC LIMIT 1",
+      "predicted_sql": "SELECT SUM(r.points) AS score, c.name, c.nationality\nFROM results r\nJOIN races ra ON r.raceId = ra.raceId\nJOIN constructors c ON r.constructorId = c.constructorId\nWHERE ra.name = 'Monaco Grand Prix'\n  AND ra.year BETWEEN 1980 AND 2010\nGROUP BY c.constructorId\nORDER BY score DESC\nLIMIT 1;",
+      "category": "alternative_uses_unprovided_schema",
+      "tables_read": [
+        "constructors",
+        "races",
+        "results"
+      ],
+      "used_hidden_tables": [],
+      "outside_visible_schema_reads": [
+        "results.constructorid",
+        "results.points",
+        "results.raceid"
+      ],
+      "trace_error": null,
+      "hidden_table_deny_test": {
+        "reads": [
+          "constructors.constructorid",
+          "constructors.name",
+          "constructors.nationality",
+          "races.name",
+          "races.raceid",
+          "races.year",
+          "results.constructorid",
+          "results.points",
+          "results.raceid"
+        ],
+        "tables_read": [
+          "constructors",
+          "races",
+          "results"
+        ],
+        "denied": [],
+        "error": null
+      },
+      "visible_schema_only_test": {
+        "reads": [
+          "results.points"
+        ],
+        "tables_read": [
+          "results"
+        ],
+        "denied": [
+          "results.points"
+        ],
+        "error": "access to results.points is prohibited"
+      },
+      "question_hidden_name_tokens": [],
+      "evidence_hidden_name_tokens": [],
+      "evidence_removed_column_tokens": [],
+      "predicted_execution": {
+        "row_count": 1,
+        "unique_row_count": 1,
+        "sample_rows": [
+          [
+            218.5,
+            "McLaren",
+            "British"
+          ]
+        ],
+        "error": null
+      },
+      "gold_execution": {
+        "row_count": 1,
+        "unique_row_count": 1,
+        "sample_rows": [
+          [
+            218.5,
+            "McLaren",
+            "British"
+          ]
+        ],
+        "error": null
+      },
+      "reproduced_set_match": true,
+      "reproduced_multiset_match": true,
+      "original_gold_row_count": 1,
+      "original_predicted_row_count": 1,
+      "case_analysis": "以未提供的 results 表替代 constructorResults，按车手比赛积分汇总车队积分，当前都得到 McLaren 218.5 分；未证明所有年份/车队均等价。"
+    },
+    {
+      "variant_id": "q0243__missing_bridge_table__results",
+      "question_id": 1003,
+      "db_id": "formula_1",
+      "question": "How many accidents did the driver who had the highest number accidents in the Canadian Grand Prix have?",
+      "evidence": "number of accidents refers to the number where statusid = 3; Canadian Grand Prix refers to the race of name\n",
+      "hidden_tables": [
+        "results"
+      ],
+      "visible_schema": [
+        {
+          "table": "races",
+          "columns": [
+            {
+              "name": "name",
+              "type": "text",
+              "primary_key": false
+            },
+            {
+              "name": "raceId",
+              "type": "integer",
+              "primary_key": true
+            }
+          ]
+        },
+        {
+          "table": "status",
+          "columns": [
+            {
+              "name": "statusId",
+              "type": "integer",
+              "primary_key": true
+            }
+          ]
+        }
+      ],
+      "gold_sql": "SELECT COUNT(T1.driverId) FROM results AS T1 INNER JOIN races AS T2 on T1.raceId = T2.raceId INNER JOIN status AS T3 on T1.statusId = T3.statusId WHERE T3.statusId = 3 AND T2.name = 'Canadian Grand Prix' GROUP BY T1.driverId ORDER BY COUNT(T1.driverId) DESC LIMIT 1",
+      "predicted_sql": "SELECT COUNT(*) FROM results r JOIN races ra ON r.raceId = ra.raceId WHERE ra.name = 'Canadian Grand Prix' AND r.statusId = 3 GROUP BY r.driverId ORDER BY COUNT(*) DESC LIMIT 1;",
+      "category": "reads_hidden_bridge_table",
+      "tables_read": [
+        "races",
+        "results"
+      ],
+      "used_hidden_tables": [
+        "results"
+      ],
+      "outside_visible_schema_reads": [
+        "results.driverid",
+        "results.raceid",
+        "results.statusid"
+      ],
+      "trace_error": null,
+      "hidden_table_deny_test": {
+        "reads": [
+          "races.name",
+          "results.statusid"
+        ],
+        "tables_read": [
+          "races",
+          "results"
+        ],
+        "denied": [
+          "results.statusid"
+        ],
+        "error": "access to results.statusId is prohibited"
+      },
+      "visible_schema_only_test": {
+        "reads": [
+          "races.name",
+          "results.statusid"
+        ],
+        "tables_read": [
+          "races",
+          "results"
+        ],
+        "denied": [
+          "results.statusid"
+        ],
+        "error": "access to results.statusId is prohibited"
+      },
+      "question_hidden_name_tokens": [],
+      "evidence_hidden_name_tokens": [],
+      "evidence_removed_column_tokens": [
+        "statusId"
+      ],
+      "predicted_execution": {
+        "row_count": 1,
+        "unique_row_count": 1,
+        "sample_rows": [
+          [
+            2
+          ]
+        ],
+        "error": null
+      },
+      "gold_execution": {
+        "row_count": 1,
+        "unique_row_count": 1,
+        "sample_rows": [
+          [
+            2
+          ]
+        ],
+        "error": null
+      },
+      "reproduced_set_match": true,
+      "reproduced_multiset_match": true,
+      "original_gold_row_count": 1,
+      "original_predicted_row_count": 1,
+      "case_analysis": "读取隐藏 results，以 statusId=3 筛事故并按司机分组，当前最大事故数为 2。"
+    },
+    {
+      "variant_id": "q0247__missing_bridge_table__superhero",
+      "question_id": 723,
+      "db_id": "superhero",
+      "question": "Among the superheroes with blue eyes, how many of them have the super power of \"Agility\"?",
+      "evidence": "blue eyes refers to colour = 'Blue' and eye_colour_id = colour.id; super power of \"Agility\" refers to power_name = 'Agility'",
+      "hidden_tables": [
+        "superhero"
+      ],
+      "visible_schema": [
+        {
+          "table": "colour",
+          "columns": [
+            {
+              "name": "colour",
+              "type": "text",
+              "primary_key": false
+            },
+            {
+              "name": "id",
+              "type": "integer",
+              "primary_key": true
+            }
+          ]
+        },
+        {
+          "table": "hero_power",
+          "columns": [
+            {
+              "name": "hero_id",
+              "type": "integer",
+              "primary_key": false
+            },
+            {
+              "name": "power_id",
+              "type": "integer",
+              "primary_key": false
+            }
+          ]
+        },
+        {
+          "table": "superpower",
+          "columns": [
+            {
+              "name": "id",
+              "type": "integer",
+              "primary_key": true
+            },
+            {
+              "name": "power_name",
+              "type": "text",
+              "primary_key": false
+            }
+          ]
+        }
+      ],
+      "gold_sql": "SELECT COUNT(T1.id) FROM superhero AS T1 INNER JOIN hero_power AS T2 ON T1.id = T2.hero_id INNER JOIN superpower AS T3 ON T2.power_id = T3.id INNER JOIN colour AS T4 ON T1.eye_colour_id = T4.id WHERE T3.power_name = 'Agility' AND T4.colour = 'Blue'",
+      "predicted_sql": "SELECT COUNT(*) FROM hero_power hp JOIN superpower sp ON hp.power_id = sp.id WHERE sp.power_name = 'Agility' AND hp.hero_id IN (SELECT id FROM superhero WHERE eye_colour_id = (SELECT id FROM colour WHERE colour = 'Blue'));",
+      "category": "reads_hidden_bridge_table",
+      "tables_read": [
+        "colour",
+        "hero_power",
+        "superhero",
+        "superpower"
+      ],
+      "used_hidden_tables": [
+        "superhero"
+      ],
+      "outside_visible_schema_reads": [
+        "superhero.eye_colour_id",
+        "superhero.id"
+      ],
+      "trace_error": null,
+      "hidden_table_deny_test": {
+        "reads": [
+          "superhero.id",
+          "superpower.power_name"
+        ],
+        "tables_read": [
+          "superhero",
+          "superpower"
+        ],
+        "denied": [
+          "superhero.id"
+        ],
+        "error": "access to superhero.id is prohibited"
+      },
+      "visible_schema_only_test": {
+        "reads": [
+          "superhero.id",
+          "superpower.power_name"
+        ],
+        "tables_read": [
+          "superhero",
+          "superpower"
+        ],
+        "denied": [
+          "superhero.id"
+        ],
+        "error": "access to superhero.id is prohibited"
+      },
+      "question_hidden_name_tokens": [],
+      "evidence_hidden_name_tokens": [],
+      "evidence_removed_column_tokens": [
+        "eye_colour_id",
+        "id"
+      ],
+      "predicted_execution": {
+        "row_count": 1,
+        "unique_row_count": 1,
+        "sample_rows": [
+          [
+            83
+          ]
+        ],
+        "error": null
+      },
+      "gold_execution": {
+        "row_count": 1,
+        "unique_row_count": 1,
+        "sample_rows": [
+          [
+            83
+          ]
+        ],
+        "error": null
+      },
+      "reproduced_set_match": true,
+      "reproduced_multiset_match": true,
+      "original_gold_row_count": 1,
+      "original_predicted_row_count": 1,
+      "case_analysis": "在子查询中读取隐藏 superhero 表的眼色信息，当前计数为 83；evidence 给出 eye_colour_id。"
+    },
+    {
+      "variant_id": "q0253__missing_bridge_table__superhero",
+      "question_id": 733,
+      "db_id": "superhero",
+      "question": "How many gold-eyed superheroes did Marvel Comics publish?",
+      "evidence": "gold-eyed refers to colour = 'Gold' where eye_colour_id = colour.id; superheroes that Marvel Comics published refers to publisher_name = 'Marvel Comics'",
+      "hidden_tables": [
+        "superhero"
+      ],
+      "visible_schema": [
+        {
+          "table": "colour",
+          "columns": [
+            {
+              "name": "colour",
+              "type": "text",
+              "primary_key": false
+            },
+            {
+              "name": "id",
+              "type": "integer",
+              "primary_key": true
+            }
+          ]
+        },
+        {
+          "table": "publisher",
+          "columns": [
+            {
+              "name": "id",
+              "type": "integer",
+              "primary_key": true
+            },
+            {
+              "name": "publisher_name",
+              "type": "text",
+              "primary_key": false
+            }
+          ]
+        }
+      ],
+      "gold_sql": "SELECT COUNT(T1.id) FROM superhero AS T1 INNER JOIN publisher AS T2 ON T1.publisher_id = T2.id INNER JOIN colour AS T3 ON T1.eye_colour_id = T3.id WHERE T2.publisher_name = 'Marvel Comics' AND T3.colour = 'Gold'",
+      "predicted_sql": "SELECT COUNT(*) FROM superhero WHERE eye_colour_id = (SELECT id FROM colour WHERE colour = 'Gold') AND publisher_id = (SELECT id FROM publisher WHERE publisher_name = 'Marvel Comics');",
+      "category": "reads_hidden_bridge_table",
+      "tables_read": [
+        "colour",
+        "publisher",
+        "superhero"
+      ],
+      "used_hidden_tables": [
+        "superhero"
+      ],
+      "outside_visible_schema_reads": [
+        "superhero.eye_colour_id",
+        "superhero.publisher_id"
+      ],
+      "trace_error": null,
+      "hidden_table_deny_test": {
+        "reads": [
+          "colour.id",
+          "superhero.eye_colour_id"
+        ],
+        "tables_read": [
+          "colour",
+          "superhero"
+        ],
+        "denied": [
+          "superhero.eye_colour_id"
+        ],
+        "error": "access to superhero.eye_colour_id is prohibited"
+      },
+      "visible_schema_only_test": {
+        "reads": [
+          "colour.id",
+          "superhero.eye_colour_id"
+        ],
+        "tables_read": [
+          "colour",
+          "superhero"
+        ],
+        "denied": [
+          "superhero.eye_colour_id"
+        ],
+        "error": "access to superhero.eye_colour_id is prohibited"
+      },
+      "question_hidden_name_tokens": [],
+      "evidence_hidden_name_tokens": [],
+      "evidence_removed_column_tokens": [
+        "eye_colour_id",
+        "id"
+      ],
+      "predicted_execution": {
+        "row_count": 1,
+        "unique_row_count": 1,
+        "sample_rows": [
+          [
+            2
+          ]
+        ],
+        "error": null
+      },
+      "gold_execution": {
+        "row_count": 1,
+        "unique_row_count": 1,
+        "sample_rows": [
+          [
+            2
+          ]
+        ],
+        "error": null
+      },
+      "reproduced_set_match": true,
+      "reproduced_multiset_match": true,
+      "original_gold_row_count": 1,
+      "original_predicted_row_count": 1,
+      "case_analysis": "读取隐藏 superhero 表并用子查询筛颜色和出版社，当前计数为 2。"
+    },
+    {
+      "variant_id": "q0273__missing_bridge_table__superhero",
+      "question_id": 772,
+      "db_id": "superhero",
+      "question": "List the eyes, hair and skin colour of all female superheroes published by Dark Horse Comics.",
+      "evidence": "eyes refers to eye_colour_id; hair refers to hair_colour_id; skin colour refers to skin_colour_id; female superheroes refers to gender = 'Female'; published by Dark Horse Comics refers to publisher_name = 'Dark Horse Comics';",
+      "hidden_tables": [
+        "superhero"
+      ],
+      "visible_schema": [
+        {
+          "table": "gender",
+          "columns": [
+            {
+              "name": "gender",
+              "type": "text",
+              "primary_key": false
+            },
+            {
+              "name": "id",
+              "type": "integer",
+              "primary_key": true
+            }
+          ]
+        },
+        {
+          "table": "publisher",
+          "columns": [
+            {
+              "name": "id",
+              "type": "integer",
+              "primary_key": true
+            },
+            {
+              "name": "publisher_name",
+              "type": "text",
+              "primary_key": false
+            }
+          ]
+        }
+      ],
+      "gold_sql": "SELECT T1.eye_colour_id, T1.hair_colour_id, T1.skin_colour_id FROM superhero AS T1 INNER JOIN publisher AS T2 ON T2.id = T1.publisher_id INNER JOIN gender AS T3 ON T3.id = T1.gender_id WHERE T2.publisher_name = 'Dark Horse Comics' AND T3.gender = 'Female'",
+      "predicted_sql": "SELECT superhero.eye_colour_id, superhero.hair_colour_id, superhero.skin_colour_id\nFROM superhero\nJOIN gender ON superhero.gender_id = gender.id\nJOIN publisher ON superhero.publisher_id = publisher.id\nWHERE gender.gender = 'Female'\n  AND publisher.publisher_name = 'Dark Horse Comics';",
+      "category": "reads_hidden_bridge_table",
+      "tables_read": [
+        "gender",
+        "publisher",
+        "superhero"
+      ],
+      "used_hidden_tables": [
+        "superhero"
+      ],
+      "outside_visible_schema_reads": [
+        "superhero.eye_colour_id",
+        "superhero.gender_id",
+        "superhero.hair_colour_id",
+        "superhero.publisher_id",
+        "superhero.skin_colour_id"
+      ],
+      "trace_error": null,
+      "hidden_table_deny_test": {
+        "reads": [
+          "superhero.eye_colour_id"
+        ],
+        "tables_read": [
+          "superhero"
+        ],
+        "denied": [
+          "superhero.eye_colour_id"
+        ],
+        "error": "access to superhero.eye_colour_id is prohibited"
+      },
+      "visible_schema_only_test": {
+        "reads": [
+          "superhero.eye_colour_id"
+        ],
+        "tables_read": [
+          "superhero"
+        ],
+        "denied": [
+          "superhero.eye_colour_id"
+        ],
+        "error": "access to superhero.eye_colour_id is prohibited"
+      },
+      "question_hidden_name_tokens": [],
+      "evidence_hidden_name_tokens": [],
+      "evidence_removed_column_tokens": [
+        "eye_colour_id",
+        "hair_colour_id",
+        "skin_colour_id"
+      ],
+      "predicted_execution": {
+        "row_count": 5,
+        "unique_row_count": 5,
+        "sample_rows": [
+          [
+            14,
+            6,
+            1
+          ],
+          [
+            9,
+            9,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            28
+          ],
+          [
+            30,
+            4,
+            1
+          ]
+        ],
+        "error": null
+      },
+      "gold_execution": {
+        "row_count": 5,
+        "unique_row_count": 5,
+        "sample_rows": [
+          [
+            14,
+            6,
+            1
+          ],
+          [
+            9,
+            9,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            28
+          ],
+          [
+            30,
+            4,
+            1
+          ]
+        ],
+        "error": null
+      },
+      "reproduced_set_match": true,
+      "reproduced_multiset_match": true,
+      "original_gold_row_count": 5,
+      "original_predicted_row_count": 5,
+      "case_analysis": "直接读取隐藏 superhero 表，返回五行颜色 ID；evidence 给出三种颜色列名。"
+    },
+    {
+      "variant_id": "q0275__missing_bridge_table__superhero",
+      "question_id": 775,
+      "db_id": "superhero",
+      "question": "What is the percentage of blue female superheroes among all female superheroes?",
+      "evidence": "percentage = MULTIPLY(DIVIDE(SUM(colour = 'Blue' WHERE gender = 'Female'), COUNT(gender = 'Female')), 100); blue refers to the color = 'Blue' WHERE skin_colour_id = colour.id; female refers to gender = 'Female';",
+      "hidden_tables": [
+        "superhero"
+      ],
+      "visible_schema": [
+        {
+          "table": "colour",
+          "columns": [
+            {
+              "name": "colour",
+              "type": "text",
+              "primary_key": false
+            },
+            {
+              "name": "id",
+              "type": "integer",
+              "primary_key": true
+            }
+          ]
+        },
+        {
+          "table": "gender",
+          "columns": [
+            {
+              "name": "gender",
+              "type": "text",
+              "primary_key": false
+            },
+            {
+              "name": "id",
+              "type": "integer",
+              "primary_key": true
+            }
+          ]
+        }
+      ],
+      "gold_sql": "SELECT CAST(COUNT(CASE WHEN T3.colour = 'Blue' THEN T1.id ELSE NULL END) AS REAL) * 100 / COUNT(T1.id) FROM superhero AS T1 INNER JOIN gender AS T2 ON T1.gender_id = T2.id INNER JOIN colour AS T3 ON T1.skin_colour_id = T3.id WHERE T2.gender = 'Female'",
+      "predicted_sql": "SELECT (SUM(CASE WHEN colour.colour = 'Blue' AND gender.gender = 'Female' THEN 1 ELSE 0 END) * 100.0) / NULLIF(SUM(CASE WHEN gender.gender = 'Female' THEN 1 ELSE 0 END), 0) FROM superhero LEFT JOIN colour ON superhero.skin_colour_id = colour.id LEFT JOIN gender ON superhero.gender_id = gender.id;",
+      "category": "reads_hidden_bridge_table",
+      "tables_read": [
+        "colour",
+        "gender",
+        "superhero"
+      ],
+      "used_hidden_tables": [
+        "superhero"
+      ],
+      "outside_visible_schema_reads": [
+        "superhero.gender_id",
+        "superhero.skin_colour_id"
+      ],
+      "trace_error": null,
+      "hidden_table_deny_test": {
+        "reads": [
+          "colour.colour",
+          "colour.id",
+          "gender.gender",
+          "superhero.skin_colour_id"
+        ],
+        "tables_read": [
+          "colour",
+          "gender",
+          "superhero"
+        ],
+        "denied": [
+          "superhero.skin_colour_id"
+        ],
+        "error": "access to superhero.skin_colour_id is prohibited"
+      },
+      "visible_schema_only_test": {
+        "reads": [
+          "colour.colour",
+          "colour.id",
+          "gender.gender",
+          "superhero.skin_colour_id"
+        ],
+        "tables_read": [
+          "colour",
+          "gender",
+          "superhero"
+        ],
+        "denied": [
+          "superhero.skin_colour_id"
+        ],
+        "error": "access to superhero.skin_colour_id is prohibited"
+      },
+      "question_hidden_name_tokens": [],
+      "evidence_hidden_name_tokens": [],
+      "evidence_removed_column_tokens": [
+        "id",
+        "skin_colour_id"
+      ],
+      "predicted_execution": {
+        "row_count": 1,
+        "unique_row_count": 1,
+        "sample_rows": [
+          [
+            2.4630541871921183
+          ]
+        ],
+        "error": null
+      },
+      "gold_execution": {
+        "row_count": 1,
+        "unique_row_count": 1,
+        "sample_rows": [
+          [
+            2.4630541871921183
+          ]
+        ],
+        "error": null
+      },
+      "reproduced_set_match": true,
+      "reproduced_multiset_match": true,
+      "original_gold_row_count": 1,
+      "original_predicted_row_count": 1,
+      "case_analysis": "读取隐藏 superhero 表，LEFT JOIN 改写 gold 的 INNER JOIN，当前比例相同；未证明空值/缺失关联下普遍等价。"
+    },
+    {
+      "variant_id": "q0325__missing_bridge_table__postHistory",
+      "question_id": 633,
+      "db_id": "codebase_community",
+      "question": "Which post by slashnick has the most answers count? State the post ID.",
+      "evidence": "most answers count refers to MAX(AnswerCount); post by slashnick refers to DisplayName = 'slashnick';",
+      "hidden_tables": [
+        "posthistory"
+      ],
+      "visible_schema": [
+        {
+          "table": "posts",
+          "columns": [
+            {
+              "name": "AnswerCount",
+              "type": "integer",
+              "primary_key": false
+            },
+            {
+              "name": "Id",
+              "type": "integer",
+              "primary_key": true
+            }
+          ]
+        },
+        {
+          "table": "users",
+          "columns": [
+            {
+              "name": "DisplayName",
+              "type": "text",
+              "primary_key": false
+            },
+            {
+              "name": "Id",
+              "type": "integer",
+              "primary_key": true
+            }
+          ]
+        }
+      ],
+      "gold_sql": "SELECT T2.PostId FROM users AS T1 INNER JOIN postHistory AS T2 ON T1.Id = T2.UserId INNER JOIN posts AS T3 ON T2.PostId = T3.Id WHERE T1.DisplayName = 'slashnick' ORDER BY T3.AnswerCount DESC LIMIT 1",
+      "predicted_sql": "SELECT p.Id\nFROM posts p\nJOIN users u ON p.OwnerUserId = u.Id\nWHERE u.DisplayName = 'slashnick'\nORDER BY p.AnswerCount DESC\nLIMIT 1;",
+      "category": "alternative_uses_unprovided_schema",
+      "tables_read": [
+        "posts",
+        "users"
+      ],
+      "used_hidden_tables": [],
+      "outside_visible_schema_reads": [
+        "posts.owneruserid"
+      ],
+      "trace_error": null,
+      "hidden_table_deny_test": {
+        "reads": [
+          "posts.answercount",
+          "posts.id",
+          "posts.owneruserid",
+          "users.displayname",
+          "users.id"
+        ],
+        "tables_read": [
+          "posts",
+          "users"
+        ],
+        "denied": [],
+        "error": null
+      },
+      "visible_schema_only_test": {
+        "reads": [
+          "posts.id",
+          "posts.owneruserid",
+          "users.displayname",
+          "users.id"
+        ],
+        "tables_read": [
+          "posts",
+          "users"
+        ],
+        "denied": [
+          "posts.owneruserid"
+        ],
+        "error": "access to posts.OwnerUserId is prohibited"
+      },
+      "question_hidden_name_tokens": [],
+      "evidence_hidden_name_tokens": [],
+      "evidence_removed_column_tokens": [],
+      "predicted_execution": {
+        "row_count": 1,
+        "unique_row_count": 1,
+        "sample_rows": [
+          [
+            351
+          ]
+        ],
+        "error": null
+      },
+      "gold_execution": {
+        "row_count": 1,
+        "unique_row_count": 1,
+        "sample_rows": [
+          [
+            351
+          ]
+        ],
+        "error": null
+      },
+      "reproduced_set_match": true,
+      "reproduced_multiset_match": true,
+      "original_gold_row_count": 1,
+      "original_predicted_row_count": 1,
+      "case_analysis": "使用未给出的 posts.OwnerUserId 直接连接 users，绕过 postHistory。发帖者与历史操作人并非同一关系，当前都返回帖子 351。"
+    },
+    {
+      "variant_id": "q0327__missing_bridge_table__postHistory",
+      "question_id": 637,
+      "db_id": "codebase_community",
+      "question": "State all the tags used by Mark Meckes in his posts that doesn't have comments.",
+      "evidence": "used by Mark Meckes refers to DisplayName = 'Mark Meckes'; Doen't have comments refers to CommentCount = 0;",
+      "hidden_tables": [
+        "posthistory"
+      ],
+      "visible_schema": [
+        {
+          "table": "posts",
+          "columns": [
+            {
+              "name": "CommentCount",
+              "type": "integer",
+              "primary_key": false
+            },
+            {
+              "name": "Id",
+              "type": "integer",
+              "primary_key": true
+            },
+            {
+              "name": "Tags",
+              "type": "text",
+              "primary_key": false
+            }
+          ]
+        },
+        {
+          "table": "users",
+          "columns": [
+            {
+              "name": "DisplayName",
+              "type": "text",
+              "primary_key": false
+            },
+            {
+              "name": "Id",
+              "type": "integer",
+              "primary_key": true
+            }
+          ]
+        }
+      ],
+      "gold_sql": "SELECT T3.Tags FROM users AS T1 INNER JOIN postHistory AS T2 ON T1.Id = T2.UserId INNER JOIN posts AS T3 ON T3.Id = T2.PostId WHERE T1.DisplayName = 'Mark Meckes' AND T3.CommentCount = 0",
+      "predicted_sql": "SELECT p.Tags\nFROM posts AS p\nJOIN users AS u ON p.OwnerUserId = u.Id\nWHERE u.DisplayName = 'Mark Meckes'\n  AND p.CommentCount = 0;",
+      "category": "alternative_uses_unprovided_schema",
+      "tables_read": [
+        "posts",
+        "users"
+      ],
+      "used_hidden_tables": [],
+      "outside_visible_schema_reads": [
+        "posts.owneruserid"
+      ],
+      "trace_error": null,
+      "hidden_table_deny_test": {
+        "reads": [
+          "posts.commentcount",
+          "posts.owneruserid",
+          "posts.tags",
+          "users.displayname",
+          "users.id"
+        ],
+        "tables_read": [
+          "posts",
+          "users"
+        ],
+        "denied": [],
+        "error": null
+      },
+      "visible_schema_only_test": {
+        "reads": [
+          "posts.commentcount",
+          "posts.owneruserid",
+          "posts.tags",
+          "users.displayname",
+          "users.id"
+        ],
+        "tables_read": [
+          "posts",
+          "users"
+        ],
+        "denied": [
+          "posts.owneruserid"
+        ],
+        "error": "access to posts.OwnerUserId is prohibited"
+      },
+      "question_hidden_name_tokens": [],
+      "evidence_hidden_name_tokens": [],
+      "evidence_removed_column_tokens": [],
+      "predicted_execution": {
+        "row_count": 2,
+        "unique_row_count": 2,
+        "sample_rows": [
+          [
+            "<books>"
+          ],
+          [
+            null
+          ]
+        ],
+        "error": null
+      },
+      "gold_execution": {
+        "row_count": 5,
+        "unique_row_count": 2,
+        "sample_rows": [
+          [
+            "<books>"
+          ],
+          [
+            "<books>"
+          ],
+          [
+            "<books>"
+          ],
+          [
+            "<books>"
+          ],
+          [
+            null
+          ]
+        ],
+        "error": null
+      },
+      "reproduced_set_match": true,
+      "reproduced_multiset_match": false,
+      "original_gold_row_count": 5,
+      "original_predicted_row_count": 2,
+      "case_analysis": "使用未给出的 posts.OwnerUserId；预测 2 行、gold 5 行，去重后同为两个值，符合现有集合评分，但不满足多重集合一致。"
+    },
+    {
+      "variant_id": "q0431__missing_bridge_table__molecule",
+      "question_id": 260,
+      "db_id": "toxicology",
+      "question": "Calculate the total atoms with triple-bond molecules containing the element phosphorus or bromine.",
+      "evidence": "triple bond refers to bond_type = '#'; phosphorus refers to element = 'p'; bromine refers to element = 'br'",
+      "hidden_tables": [
+        "molecule"
+      ],
+      "visible_schema": [
+        {
+          "table": "atom",
+          "columns": [
+            {
+              "name": "atom_id",
+              "type": "text",
+              "primary_key": true
+            },
+            {
+              "name": "element",
+              "type": "text",
+              "primary_key": false
+            },
+            {
+              "name": "molecule_id",
+              "type": "text",
+              "primary_key": false
+            }
+          ]
+        },
+        {
+          "table": "bond",
+          "columns": [
+            {
+              "name": "bond_type",
+              "type": "text",
+              "primary_key": false
+            },
+            {
+              "name": "molecule_id",
+              "type": "text",
+              "primary_key": false
+            }
+          ]
+        }
+      ],
+      "gold_sql": "SELECT COUNT(T1.atom_id) FROM atom AS T1 INNER JOIN molecule AS T2 ON T1.molecule_id = T2.molecule_id INNER JOIN bond AS T3 ON T2.molecule_id = T3.molecule_id WHERE T3.bond_type = '#' AND T1.element IN ('p', 'br')",
+      "predicted_sql": "SELECT COUNT(*) FROM atom WHERE element IN ('p', 'br') AND molecule_id IN (SELECT molecule_id FROM bond WHERE bond_type = '#');",
+      "category": "uses_only_visible_schema",
+      "tables_read": [
+        "atom",
+        "bond"
+      ],
+      "used_hidden_tables": [],
+      "outside_visible_schema_reads": [],
+      "trace_error": null,
+      "hidden_table_deny_test": {
+        "reads": [
+          "atom.element",
+          "atom.molecule_id",
+          "bond.bond_type",
+          "bond.molecule_id"
+        ],
+        "tables_read": [
+          "atom",
+          "bond"
+        ],
+        "denied": [],
+        "error": null
+      },
+      "visible_schema_only_test": {
+        "reads": [
+          "atom.element",
+          "atom.molecule_id",
+          "bond.bond_type",
+          "bond.molecule_id"
+        ],
+        "tables_read": [
+          "atom",
+          "bond"
+        ],
+        "denied": [],
+        "error": null
+      },
+      "question_hidden_name_tokens": [],
+      "evidence_hidden_name_tokens": [],
+      "evidence_removed_column_tokens": [],
+      "predicted_execution": {
+        "row_count": 1,
+        "unique_row_count": 1,
+        "sample_rows": [
+          [
+            1
+          ]
+        ],
+        "error": null
+      },
+      "gold_execution": {
+        "row_count": 1,
+        "unique_row_count": 1,
+        "sample_rows": [
+          [
+            1
+          ]
+        ],
+        "error": null
+      },
+      "reproduced_set_match": true,
+      "reproduced_multiset_match": true,
+      "original_gold_row_count": 1,
+      "original_predicted_row_count": 1,
+      "case_analysis": "只用可见列，以 atom.molecule_id 和 bond.molecule_id 关联，省去 molecule；IN 消除 bond 重复，当前唯一匹配原子 TR499_2 也仅对应一个三键，所以都计为 1，额外三键会改变 gold 的重复计数。"
+    },
+    {
+      "variant_id": "q0432__missing_bridge_table__molecule",
+      "question_id": 263,
+      "db_id": "toxicology",
+      "question": "What is the composition of element chlorine in percentage among the single bond molecules?",
+      "evidence": "element chlorine refers to element = 'cl'; single bond refers to bond_type = '-'; percentage = DIVIDE(SUM(element = 'cl'), COUNT(atom_id)) as percent where bond_type = '-'",
+      "hidden_tables": [
+        "molecule"
+      ],
+      "visible_schema": [
+        {
+          "table": "atom",
+          "columns": [
+            {
+              "name": "atom_id",
+              "type": "text",
+              "primary_key": true
+            },
+            {
+              "name": "element",
+              "type": "text",
+              "primary_key": false
+            },
+            {
+              "name": "molecule_id",
+              "type": "text",
+              "primary_key": false
+            }
+          ]
+        },
+        {
+          "table": "bond",
+          "columns": [
+            {
+              "name": "bond_type",
+              "type": "text",
+              "primary_key": false
+            },
+            {
+              "name": "molecule_id",
+              "type": "text",
+              "primary_key": false
+            }
+          ]
+        }
+      ],
+      "gold_sql": "SELECT CAST(COUNT(CASE WHEN T.element = 'cl' THEN T.atom_id ELSE NULL END) AS REAL) * 100 / COUNT(T.atom_id) FROM ( SELECT T1.atom_id, T1.element FROM atom AS T1 INNER JOIN molecule AS T2 ON T1.molecule_id = T2.molecule_id INNER JOIN bond AS T3 ON T2.molecule_id = T3.molecule_id WHERE T3.bond_type = '-' ) AS T",
+      "predicted_sql": "SELECT SUM(CASE WHEN T1.element = 'cl' THEN 1 ELSE 0 END) * 100.0 / COUNT(T1.atom_id) AS percent FROM atom AS T1 INNER JOIN bond AS T2 ON T1.molecule_id = T2.molecule_id WHERE T2.bond_type = '-';",
+      "category": "uses_only_visible_schema",
+      "tables_read": [
+        "atom",
+        "bond"
+      ],
+      "used_hidden_tables": [],
+      "outside_visible_schema_reads": [],
+      "trace_error": null,
+      "hidden_table_deny_test": {
+        "reads": [
+          "atom.atom_id",
+          "atom.element",
+          "atom.molecule_id",
+          "bond.bond_type",
+          "bond.molecule_id"
+        ],
+        "tables_read": [
+          "atom",
+          "bond"
+        ],
+        "denied": [],
+        "error": null
+      },
+      "visible_schema_only_test": {
+        "reads": [
+          "atom.atom_id",
+          "atom.element",
+          "atom.molecule_id",
+          "bond.bond_type",
+          "bond.molecule_id"
+        ],
+        "tables_read": [
+          "atom",
+          "bond"
+        ],
+        "denied": [],
+        "error": null
+      },
+      "question_hidden_name_tokens": [],
+      "evidence_hidden_name_tokens": [],
+      "evidence_removed_column_tokens": [],
+      "predicted_execution": {
+        "row_count": 1,
+        "unique_row_count": 1,
+        "sample_rows": [
+          [
+            2.6840451814272206
+          ]
+        ],
+        "error": null
+      },
+      "gold_execution": {
+        "row_count": 1,
+        "unique_row_count": 1,
+        "sample_rows": [
+          [
+            2.6840451814272206
+          ]
+        ],
+        "error": null
+      },
+      "reproduced_set_match": true,
+      "reproduced_multiset_match": true,
+      "original_gold_row_count": 1,
+      "original_predicted_row_count": 1,
+      "case_analysis": "只用可见列，直接连接 atom 与 bond，省去 molecule；当前 molecule_id 唯一且无孤儿记录，因此冗余桥接表可被省去，比例均为约 2.684%。"
+    },
+    {
+      "variant_id": "q0488__missing_bridge_table__account",
+      "question_id": 149,
+      "db_id": "financial",
+      "question": "Please list the account types that are not eligible for loans, and the average income of residents in the district where the account is located exceeds $8000 but is no more than $9000.",
+      "evidence": "A11 represents the average salary; Salary and income share the similar meanings; when the account type = 'OWNER', it's eligible for loans",
+      "hidden_tables": [
+        "account"
+      ],
+      "visible_schema": [
+        {
+          "table": "disp",
+          "columns": [
+            {
+              "name": "account_id",
+              "type": "integer",
+              "primary_key": false
+            },
+            {
+              "name": "type",
+              "type": "text",
+              "primary_key": false
+            }
+          ]
+        },
+        {
+          "table": "district",
+          "columns": [
+            {
+              "name": "A11",
+              "type": "integer",
+              "primary_key": false
+            },
+            {
+              "name": "district_id",
+              "type": "integer",
+              "primary_key": true
+            }
+          ]
+        }
+      ],
+      "gold_sql": "SELECT T3.type FROM district AS T1 INNER JOIN account AS T2 ON T1.district_id = T2.district_id INNER JOIN disp AS T3 ON T2.account_id = T3.account_id WHERE T3.type != 'OWNER' AND T1.A11 BETWEEN 8000 AND 9000",
+      "predicted_sql": "SELECT DISTINCT d.type\nFROM disp AS d\nJOIN district AS di ON d.account_id = di.district_id\nWHERE d.type <> 'OWNER'\n  AND di.A11 > 8000\n  AND di.A11 <= 9000;",
+      "category": "uses_only_visible_schema",
+      "tables_read": [
+        "disp",
+        "district"
+      ],
+      "used_hidden_tables": [],
+      "outside_visible_schema_reads": [],
+      "trace_error": null,
+      "hidden_table_deny_test": {
+        "reads": [
+          "disp.account_id",
+          "disp.type",
+          "district.a11",
+          "district.district_id"
+        ],
+        "tables_read": [
+          "disp",
+          "district"
+        ],
+        "denied": [],
+        "error": null
+      },
+      "visible_schema_only_test": {
+        "reads": [
+          "disp.account_id",
+          "disp.type",
+          "district.a11",
+          "district.district_id"
+        ],
+        "tables_read": [
+          "disp",
+          "district"
+        ],
+        "denied": [],
+        "error": null
+      },
+      "question_hidden_name_tokens": [
+        "account"
+      ],
+      "evidence_hidden_name_tokens": [
+        "account"
+      ],
+      "evidence_removed_column_tokens": [],
+      "predicted_execution": {
+        "row_count": 1,
+        "unique_row_count": 1,
+        "sample_rows": [
+          [
+            "DISPONENT"
+          ]
+        ],
+        "error": null
+      },
+      "gold_execution": {
+        "row_count": 461,
+        "unique_row_count": 1,
+        "sample_rows": [
+          [
+            "DISPONENT"
+          ],
+          [
+            "DISPONENT"
+          ],
+          [
+            "DISPONENT"
+          ],
+          [
+            "DISPONENT"
+          ],
+          [
+            "DISPONENT"
+          ],
+          [
+            "DISPONENT"
+          ],
+          [
+            "DISPONENT"
+          ],
+          [
+            "DISPONENT"
+          ]
+        ],
+        "error": null
+      },
+      "reproduced_set_match": true,
+      "reproduced_multiset_match": false,
+      "original_gold_row_count": 461,
+      "original_predicted_row_count": 1,
+      "case_analysis": "只用可见列，但错误地令 disp.account_id=district.district_id，跳过实际账户所属地区。预测 DISTINCT 仅返回 DISPONENT；gold 461 行也全为 DISPONENT，因此集合评分判对。"
+    }
+  ],
+  "targeted_diagnostics": {
+    "toxicology": {
+      "molecule_key_duplicates": {
+        "sql": "SELECT COUNT(*)-COUNT(DISTINCT molecule_id) FROM molecule",
+        "execution": {
+          "row_count": 1,
+          "unique_row_count": 1,
+          "sample_rows": [
+            [
+              0
+            ]
+          ],
+          "normalized": [
+            [
+              0
+            ]
+          ],
+          "error": null
+        }
+      },
+      "atom_orphan_molecules": {
+        "sql": "SELECT COUNT(*) FROM atom a WHERE NOT EXISTS (SELECT 1 FROM molecule m WHERE m.molecule_id=a.molecule_id)",
+        "execution": {
+          "row_count": 1,
+          "unique_row_count": 1,
+          "sample_rows": [
+            [
+              0
+            ]
+          ],
+          "normalized": [
+            [
+              0
+            ]
+          ],
+          "error": null
+        }
+      },
+      "bond_orphan_molecules": {
+        "sql": "SELECT COUNT(*) FROM bond b WHERE NOT EXISTS (SELECT 1 FROM molecule m WHERE m.molecule_id=b.molecule_id)",
+        "execution": {
+          "row_count": 1,
+          "unique_row_count": 1,
+          "sample_rows": [
+            [
+              0
+            ]
+          ],
+          "normalized": [
+            [
+              0
+            ]
+          ],
+          "error": null
+        }
+      },
+      "q260_matching_atoms_and_triple_bonds": {
+        "sql": "SELECT a.atom_id,a.molecule_id,COUNT(*) FROM atom a JOIN bond b ON a.molecule_id=b.molecule_id WHERE b.bond_type='#' AND a.element IN ('p','br') GROUP BY a.atom_id,a.molecule_id",
+        "execution": {
+          "row_count": 1,
+          "unique_row_count": 1,
+          "sample_rows": [
+            [
+              "TR499_2",
+              "TR499",
+              1
+            ]
+          ],
+          "normalized": [
+            [
+              "TR499_2",
+              "TR499",
+              1
+            ]
+          ],
+          "error": null
+        }
+      }
+    },
+    "financial": {
+      "q149_correct_join_counts": {
+        "sql": "SELECT COUNT(*),COUNT(DISTINCT d.account_id) FROM disp d JOIN account a ON d.account_id=a.account_id JOIN district di ON a.district_id=di.district_id WHERE d.type<>'OWNER' AND di.A11 BETWEEN 8000 AND 9000",
+        "execution": {
+          "row_count": 1,
+          "unique_row_count": 1,
+          "sample_rows": [
+            [
+              461,
+              461
+            ]
+          ],
+          "normalized": [
+            [
+              461,
+              461
+            ]
+          ],
+          "error": null
+        }
+      },
+      "q149_wrong_join_with_actual_district": {
+        "sql": "SELECT d.account_id,di.district_id,di.A11,a.district_id,actual.A11 FROM disp d JOIN district di ON d.account_id=di.district_id JOIN account a ON a.account_id=d.account_id JOIN district actual ON a.district_id=actual.district_id WHERE d.type<>'OWNER' AND di.A11>8000 AND di.A11<=9000",
+        "execution": {
+          "row_count": 10,
+          "unique_row_count": 10,
+          "sample_rows": [
+            [
+              2,
+              2,
+              8507,
+              1,
+              12541
+            ],
+            [
+              3,
+              3,
+              8980,
+              5,
+              9307
+            ],
+            [
+              12,
+              12,
+              8754,
+              21,
+              9104
+            ],
+            [
+              13,
+              13,
+              8598,
+              76,
+              8369
+            ],
+            [
+              17,
+              17,
+              8114,
+              1,
+              12541
+            ],
+            [
+              29,
+              29,
+              8843,
+              7,
+              9920
+            ],
+            [
+              61,
+              61,
+              8814,
+              70,
+              10177
+            ],
+            [
+              63,
+              63,
+              8288,
+              22,
+              8620
+            ]
+          ],
+          "normalized": [
+            [
+              2,
+              2,
+              8507,
+              1,
+              12541
+            ],
+            [
+              3,
+              3,
+              8980,
+              5,
+              9307
+            ],
+            [
+              12,
+              12,
+              8754,
+              21,
+              9104
+            ],
+            [
+              13,
+              13,
+              8598,
+              76,
+              8369
+            ],
+            [
+              17,
+              17,
+              8114,
+              1,
+              12541
+            ],
+            [
+              29,
+              29,
+              8843,
+              7,
+              9920
+            ],
+            [
+              61,
+              61,
+              8814,
+              70,
+              10177
+            ],
+            [
+              63,
+              63,
+              8288,
+              22,
+              8620
+            ],
+            [
+              71,
+              71,
+              8678,
+              1,
+              12541
+            ],
+            [
+              72,
+              72,
+              8994,
+              1,
+              12541
+            ]
+          ],
+          "error": null
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,364 @@
+{
+  "/root/fsas/home/xiaotao/xiaotao/models/all-MiniLM-L6-v2": {
+    "query_instruction": "",
+    "question_count": 391,
+    "schema_tokenizer": "/root/fsas/home/xiaotao/xiaotao/MINIDEV/modules/Qwen3-0.6B",
+    "top10_paired_improvement": {
+      "miss_rate_reduction_percentage_points": 19.089147286821706,
+      "ci95_low_percentage_points": 16.891839702730536,
+      "ci95_high_percentage_points": 21.28481484294163,
+      "question_cluster_bootstrap_iterations": 10000
+    },
+    "original_hypothesis": {
+      "5": {
+        "single_target_columns": {
+          "misses": 87,
+          "total": 209,
+          "miss_rate": 0.41626794258373206,
+          "question_count": 86
+        },
+        "foreign_key_columns": {
+          "misses": 729,
+          "total": 975,
+          "miss_rate": 0.7476923076923077,
+          "question_count": 391
+        },
+        "bridge_table_columns": {
+          "misses": 169,
+          "total": 250,
+          "miss_rate": 0.676,
+          "question_count": 91
+        },
+        "foreign_key_columns_vs_single": {
+          "difference_percentage_points": 33.14243651085756,
+          "ci95_low_percentage_points": 26.024296792633823,
+          "ci95_high_percentage_points": 40.32725095269999,
+          "bootstrap_iterations": 10000,
+          "bootstrap_fraction_nonpositive": 0.0
+        }
+      },
+      "10": {
+        "single_target_columns": {
+          "misses": 60,
+          "total": 209,
+          "miss_rate": 0.28708133971291866,
+          "question_count": 86
+        },
+        "foreign_key_columns": {
+          "misses": 564,
+          "total": 975,
+          "miss_rate": 0.5784615384615385,
+          "question_count": 391
+        },
+        "bridge_table_columns": {
+          "misses": 104,
+          "total": 250,
+          "miss_rate": 0.416,
+          "question_count": 91
+        },
+        "foreign_key_columns_vs_single": {
+          "difference_percentage_points": 29.138019874861982,
+          "ci95_low_percentage_points": 21.422809410869746,
+          "ci95_high_percentage_points": 36.703115634499405,
+          "bootstrap_iterations": 10000,
+          "bootstrap_fraction_nonpositive": 0.0
+        }
+      },
+      "20": {
+        "single_target_columns": {
+          "misses": 36,
+          "total": 209,
+          "miss_rate": 0.1722488038277512,
+          "question_count": 86
+        },
+        "foreign_key_columns": {
+          "misses": 387,
+          "total": 975,
+          "miss_rate": 0.39692307692307693,
+          "question_count": 391
+        },
+        "bridge_table_columns": {
+          "misses": 57,
+          "total": 250,
+          "miss_rate": 0.228,
+          "question_count": 91
+        },
+        "foreign_key_columns_vs_single": {
+          "difference_percentage_points": 22.467427309532574,
+          "ci95_low_percentage_points": 15.525265431494162,
+          "ci95_high_percentage_points": 29.246968609467288,
+          "bootstrap_iterations": 10000,
+          "bootstrap_fraction_nonpositive": 0.0
+        }
+      },
+      "50": {
+        "single_target_columns": {
+          "misses": 18,
+          "total": 209,
+          "miss_rate": 0.0861244019138756,
+          "question_count": 86
+        },
+        "foreign_key_columns": {
+          "misses": 167,
+          "total": 975,
+          "miss_rate": 0.1712820512820513,
+          "question_count": 391
+        },
+        "bridge_table_columns": {
+          "misses": 15,
+          "total": 250,
+          "miss_rate": 0.06,
+          "question_count": 91
+        },
+        "foreign_key_columns_vs_single": {
+          "difference_percentage_points": 8.515764936817568,
+          "ci95_low_percentage_points": 3.4815422248614967,
+          "ci95_high_percentage_points": 13.422380226115669,
+          "bootstrap_iterations": 10000,
+          "bootstrap_fraction_nonpositive": 0.0005
+        }
+      }
+    },
+    "plain": {
+      "5": {
+        "target_columns": 1032,
+        "hits": 269,
+        "recall": 0.2606589147286822,
+        "miss_rate": 0.7393410852713178,
+        "mean_schema_token_proxy": 53.332480818414325
+      },
+      "10": {
+        "target_columns": 1032,
+        "hits": 445,
+        "recall": 0.4312015503875969,
+        "miss_rate": 0.5687984496124031,
+        "mean_schema_token_proxy": 107.60358056265984
+      },
+      "20": {
+        "target_columns": 1032,
+        "hits": 630,
+        "recall": 0.6104651162790697,
+        "miss_rate": 0.38953488372093026,
+        "mean_schema_token_proxy": 207.71099744245524
+      },
+      "50": {
+        "target_columns": 1032,
+        "hits": 861,
+        "recall": 0.8343023255813954,
+        "miss_rate": 0.1656976744186046,
+        "mean_schema_token_proxy": 462.12531969309464
+      }
+    },
+    "expanded": {
+      "5": {
+        "target_columns": 1032,
+        "hits": 444,
+        "recall": 0.43023255813953487,
+        "miss_rate": 0.5697674418604651,
+        "mean_schema_token_proxy": 66.76726342710998
+      },
+      "10": {
+        "target_columns": 1032,
+        "hits": 642,
+        "recall": 0.622093023255814,
+        "miss_rate": 0.37790697674418605,
+        "mean_schema_token_proxy": 128.52685421994886
+      },
+      "20": {
+        "target_columns": 1032,
+        "hits": 815,
+        "recall": 0.7897286821705426,
+        "miss_rate": 0.2102713178294574,
+        "mean_schema_token_proxy": 233.43222506393863
+      },
+      "50": {
+        "target_columns": 1032,
+        "hits": 946,
+        "recall": 0.9166666666666666,
+        "miss_rate": 0.08333333333333337,
+        "mean_schema_token_proxy": 480.16368286445015
+      }
+    }
+  },
+  "/root/fsas/home/xiaotao/xiaotao/MINIDEV/modules/bge-base-en-v1.5": {
+    "query_instruction": "Represent this sentence for searching relevant passages: ",
+    "question_count": 391,
+    "schema_tokenizer": "/root/fsas/home/xiaotao/xiaotao/MINIDEV/modules/Qwen3-0.6B",
+    "top10_paired_improvement": {
+      "miss_rate_reduction_percentage_points": 24.031007751937985,
+      "ci95_low_percentage_points": 21.777302679614486,
+      "ci95_high_percentage_points": 26.260801275050255,
+      "question_cluster_bootstrap_iterations": 10000
+    },
+    "original_hypothesis": {
+      "5": {
+        "single_target_columns": {
+          "misses": 89,
+          "total": 209,
+          "miss_rate": 0.4258373205741627,
+          "question_count": 86
+        },
+        "foreign_key_columns": {
+          "misses": 735,
+          "total": 975,
+          "miss_rate": 0.7538461538461538,
+          "question_count": 391
+        },
+        "bridge_table_columns": {
+          "misses": 165,
+          "total": 250,
+          "miss_rate": 0.66,
+          "question_count": 91
+        },
+        "foreign_key_columns_vs_single": {
+          "difference_percentage_points": 32.80088332719912,
+          "ci95_low_percentage_points": 25.26292027770652,
+          "ci95_high_percentage_points": 40.48435080104779,
+          "bootstrap_iterations": 10000,
+          "bootstrap_fraction_nonpositive": 0.0
+        }
+      },
+      "10": {
+        "single_target_columns": {
+          "misses": 65,
+          "total": 209,
+          "miss_rate": 0.31100478468899523,
+          "question_count": 86
+        },
+        "foreign_key_columns": {
+          "misses": 600,
+          "total": 975,
+          "miss_rate": 0.6153846153846154,
+          "question_count": 391
+        },
+        "bridge_table_columns": {
+          "misses": 116,
+          "total": 250,
+          "miss_rate": 0.464,
+          "question_count": 91
+        },
+        "foreign_key_columns_vs_single": {
+          "difference_percentage_points": 30.43798306956202,
+          "ci95_low_percentage_points": 23.152710399503245,
+          "ci95_high_percentage_points": 37.679691680341456,
+          "bootstrap_iterations": 10000,
+          "bootstrap_fraction_nonpositive": 0.0
+        }
+      },
+      "20": {
+        "single_target_columns": {
+          "misses": 43,
+          "total": 209,
+          "miss_rate": 0.20574162679425836,
+          "question_count": 86
+        },
+        "foreign_key_columns": {
+          "misses": 419,
+          "total": 975,
+          "miss_rate": 0.4297435897435897,
+          "question_count": 391
+        },
+        "bridge_table_columns": {
+          "misses": 61,
+          "total": 250,
+          "miss_rate": 0.244,
+          "question_count": 91
+        },
+        "foreign_key_columns_vs_single": {
+          "difference_percentage_points": 22.400196294933135,
+          "ci95_low_percentage_points": 15.19105145311919,
+          "ci95_high_percentage_points": 29.58985817345827,
+          "bootstrap_iterations": 10000,
+          "bootstrap_fraction_nonpositive": 0.0
+        }
+      },
+      "50": {
+        "single_target_columns": {
+          "misses": 20,
+          "total": 209,
+          "miss_rate": 0.09569377990430622,
+          "question_count": 86
+        },
+        "foreign_key_columns": {
+          "misses": 193,
+          "total": 975,
+          "miss_rate": 0.19794871794871796,
+          "question_count": 391
+        },
+        "bridge_table_columns": {
+          "misses": 13,
+          "total": 250,
+          "miss_rate": 0.052,
+          "question_count": 91
+        },
+        "foreign_key_columns_vs_single": {
+          "difference_percentage_points": 10.225493804441173,
+          "ci95_low_percentage_points": 3.9842903886606758,
+          "ci95_high_percentage_points": 15.898330817882822,
+          "bootstrap_iterations": 10000,
+          "bootstrap_fraction_nonpositive": 0.0008
+        }
+      }
+    },
+    "plain": {
+      "5": {
+        "target_columns": 1032,
+        "hits": 260,
+        "recall": 0.25193798449612403,
+        "miss_rate": 0.748062015503876,
+        "mean_schema_token_proxy": 54.9923273657289
+      },
+      "10": {
+        "target_columns": 1032,
+        "hits": 402,
+        "recall": 0.38953488372093026,
+        "miss_rate": 0.6104651162790697,
+        "mean_schema_token_proxy": 110.38618925831202
+      },
+      "20": {
+        "target_columns": 1032,
+        "hits": 592,
+        "recall": 0.5736434108527132,
+        "miss_rate": 0.4263565891472868,
+        "mean_schema_token_proxy": 212.230179028133
+      },
+      "50": {
+        "target_columns": 1032,
+        "hits": 832,
+        "recall": 0.8062015503875969,
+        "miss_rate": 0.1937984496124031,
+        "mean_schema_token_proxy": 467.1150895140665
+      }
+    },
+    "expanded": {
+      "5": {
+        "target_columns": 1032,
+        "hits": 462,
+        "recall": 0.4476744186046512,
+        "miss_rate": 0.5523255813953488,
+        "mean_schema_token_proxy": 67.58823529411765
+      },
+      "10": {
+        "target_columns": 1032,
+        "hits": 650,
+        "recall": 0.6298449612403101,
+        "miss_rate": 0.3701550387596899,
+        "mean_schema_token_proxy": 127.63938618925832
+      },
+      "20": {
+        "target_columns": 1032,
+        "hits": 789,
+        "recall": 0.7645348837209303,
+        "miss_rate": 0.23546511627906974,
+        "mean_schema_token_proxy": 235.9462915601023
+      },
+      "50": {
+        "target_columns": 1032,
+        "hits": 924,
+        "recall": 0.8953488372093024,
+        "miss_rate": 0.10465116279069764,
+        "mean_schema_token_proxy": 481.45012787723783
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "checks": {
+    "server_baseline_files_unchanged": 85,
+    "main_experiment_variants": 5097,
+    "execution_models": 5,
+    "valid_synonym_cases": 30,
+    "bridge_successes_reproduced": 18,
+    "relative_analysis_has_no_new_gate": true,
+    "retrieval_models_with_500_rankings": 2
+  }
+}

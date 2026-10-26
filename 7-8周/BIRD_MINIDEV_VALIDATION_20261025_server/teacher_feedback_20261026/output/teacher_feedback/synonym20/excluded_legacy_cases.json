@@ -1,0 +1,407 @@
+{
+  "reason": "original gold queries unscorable; excluded from valid failure sample",
+  "cases": [
+    {
+      "question_id": 116,
+      "variant_id": "q0478__add_synonym_20",
+      "db_id": "financial",
+      "category": "excluded_gold_unscorable",
+      "excluded_legacy": true,
+      "replacement": false,
+      "predicted_sql_sha256": "c206b85e1668cd32a6256a69e6777ef2f438428e5888cfee7fa66fa4dd44d93d",
+      "gold_sql_sha256": "5363c80475c77d8cd13d9aa8b49e393c59c4e5b4425d89cd75b3f0d09a6e36c3",
+      "referenced_generated_columns": [
+        {
+          "id": "account.balance",
+          "relation": "same_name",
+          "seed_column": "trans.balance"
+        },
+        {
+          "id": "loan.client_identifier",
+          "relation": "synonym",
+          "seed_column": "account.account_id"
+        },
+        {
+          "id": "account.client_identifier",
+          "relation": "synonym",
+          "seed_column": "loan.account_id"
+        }
+      ],
+      "analysis": "原始得分错误为 GoldUnscorable: interrupted，属于 gold 超时，不能计作可评分 API 错误。预测仍含 account.balance 和 client_identifier 等生成列，独立 EXPLAIN 会报不存在列。",
+      "gold_or_question_issue": "保留审计记录但从有效失败样本剔除，以 q1457/q1105 补样；不能用本条证明“模型错”或修正模型准确率。",
+      "needs_human_semantic_verification": false,
+      "question": "For the client whose loan was approved first in 1993/7/5, what is the increase rate of his/her account balance from 1993/3/22 to 1998/12/27?",
+      "evidence": "Increase rate of his/her account balance = [(balance of date A - balance of date B) / balance of Date B] * 100%",
+      "predicted_sql": "SELECT\n  ((a_later.balance - a_earlier.balance) * 100.0 / a_earlier.balance) AS increase_rate\nFROM loan AS l\nJOIN account AS a_earlier\n  ON a_earlier.client_identifier = l.client_identifier\n AND a_earlier.date = '1993-03-22'\nJOIN account AS a_later\n  ON a_later.client_identifier = l.client_identifier\n AND a_later.date = '1998-12-27'\nWHERE l.date = '1993-07-05'\nORDER BY l.account_id\nLIMIT 1;",
+      "gold_sql": "SELECT CAST((SUM(IIF(T3.date = '1998-12-27', T3.balance, 0)) - SUM(IIF(T3.date = '1993-03-22', T3.balance, 0))) AS REAL) * 100 / SUM(IIF(T3.date = '1993-03-22', T3.balance, 0)) FROM loan AS T1 INNER JOIN account AS T2 ON T1.account_id = T2.account_id INNER JOIN trans AS T3 ON T3.account_id = T2.account_id WHERE T1.date = '1993-07-05'",
+      "original_score_error": "GoldUnscorable: OperationalError: interrupted",
+      "original_gold_unscorable": true,
+      "predicted_explain": {
+        "error": "OperationalError: no such column: a_later.balance",
+        "reads": []
+      },
+      "predicted_execution": {
+        "error": "OperationalError: no such column: a_later.balance",
+        "reads": []
+      },
+      "gold_execution": {
+        "skipped": "Legacy gold timeout; excluded from valid failure sample"
+      },
+      "added_column_physical_audit": [
+        {
+          "id": "account.date",
+          "relation": "same_name",
+          "seed_column": "loan.date",
+          "generated": true,
+          "exists_in_sqlite": true
+        },
+        {
+          "id": "loan.balance",
+          "relation": "same_name",
+          "seed_column": "trans.balance",
+          "generated": true,
+          "exists_in_sqlite": false
+        },
+        {
+          "id": "account.balance",
+          "relation": "same_name",
+          "seed_column": "trans.balance",
+          "generated": true,
+          "exists_in_sqlite": false
+        },
+        {
+          "id": "loan.client_identifier",
+          "relation": "synonym",
+          "seed_column": "account.account_id",
+          "generated": true,
+          "exists_in_sqlite": false
+        },
+        {
+          "id": "trans.client_identifier_ref",
+          "relation": "synonym",
+          "seed_column": "account.account_id",
+          "generated": true,
+          "exists_in_sqlite": false
+        },
+        {
+          "id": "account.client_identifier_key",
+          "relation": "synonym",
+          "seed_column": "account.account_id",
+          "generated": true,
+          "exists_in_sqlite": false
+        },
+        {
+          "id": "loan.client_identifier_identifier",
+          "relation": "synonym",
+          "seed_column": "account.account_id",
+          "generated": true,
+          "exists_in_sqlite": false
+        },
+        {
+          "id": "trans.client_identifier_value",
+          "relation": "synonym",
+          "seed_column": "account.account_id",
+          "generated": true,
+          "exists_in_sqlite": false
+        },
+        {
+          "id": "account.related_account_id",
+          "relation": "synonym",
+          "seed_column": "account.account_id",
+          "generated": true,
+          "exists_in_sqlite": false
+        },
+        {
+          "id": "loan.account_id_related",
+          "relation": "synonym",
+          "seed_column": "account.account_id",
+          "generated": true,
+          "exists_in_sqlite": false
+        },
+        {
+          "id": "trans.account_id_alt",
+          "relation": "synonym",
+          "seed_column": "account.account_id",
+          "generated": true,
+          "exists_in_sqlite": false
+        },
+        {
+          "id": "account.client_identifier",
+          "relation": "synonym",
+          "seed_column": "loan.account_id",
+          "generated": true,
+          "exists_in_sqlite": false
+        },
+        {
+          "id": "loan.client_identifier_ref",
+          "relation": "synonym",
+          "seed_column": "loan.account_id",
+          "generated": true,
+          "exists_in_sqlite": false
+        },
+        {
+          "id": "trans.client_identifier_key",
+          "relation": "synonym",
+          "seed_column": "loan.account_id",
+          "generated": true,
+          "exists_in_sqlite": false
+        },
+        {
+          "id": "account.client_identifier_identifier",
+          "relation": "synonym",
+          "seed_column": "loan.account_id",
+          "generated": true,
+          "exists_in_sqlite": false
+        },
+        {
+          "id": "loan.client_identifier_value",
+          "relation": "synonym",
+          "seed_column": "loan.account_id",
+          "generated": true,
+          "exists_in_sqlite": false
+        },
+        {
+          "id": "trans.related_account_id",
+          "relation": "synonym",
+          "seed_column": "loan.account_id",
+          "generated": true,
+          "exists_in_sqlite": false
+        },
+        {
+          "id": "account.account_id_related",
+          "relation": "synonym",
+          "seed_column": "loan.account_id",
+          "generated": true,
+          "exists_in_sqlite": false
+        },
+        {
+          "id": "loan.account_id_alt",
+          "relation": "synonym",
+          "seed_column": "loan.account_id",
+          "generated": true,
+          "exists_in_sqlite": false
+        },
+        {
+          "id": "trans.day",
+          "relation": "synonym",
+          "seed_column": "loan.date",
+          "generated": true,
+          "exists_in_sqlite": false
+        }
+      ],
+      "selected_generated_absent_columns": [
+        {
+          "id": "account.balance",
+          "relation": "same_name",
+          "seed_column": "trans.balance",
+          "generated": true,
+          "exists_in_sqlite": false
+        },
+        {
+          "id": "loan.client_identifier",
+          "relation": "synonym",
+          "seed_column": "account.account_id",
+          "generated": true,
+          "exists_in_sqlite": false
+        },
+        {
+          "id": "account.client_identifier",
+          "relation": "synonym",
+          "seed_column": "loan.account_id",
+          "generated": true,
+          "exists_in_sqlite": false
+        }
+      ],
+      "human_reviewed": false
+    },
+    {
+      "question_id": 145,
+      "variant_id": "q0487__add_synonym_20",
+      "db_id": "financial",
+      "category": "excluded_gold_unscorable",
+      "excluded_legacy": true,
+      "replacement": false,
+      "predicted_sql_sha256": "685ed6cdaee65555f02f79c6d731a389ae2fbd77ad426dfcc3e3baba0e7f65fb",
+      "gold_sql_sha256": "ad719e6e208752834223a81ea85a5feff2132f00d3a8fdf4cfb71cf8a1a93112",
+      "referenced_generated_columns": [
+        {
+          "id": "trans.client_identifier",
+          "relation": "synonym",
+          "seed_column": "account.account_id"
+        }
+      ],
+      "analysis": "原得分为 GoldUnscorable: interrupted，不能计作可评分错误；独立 EXPLAIN 也可发现生成的 trans.client_identifier 不存在。",
+      "gold_or_question_issue": "预测将均值限制到信用卡提现，gold 均值包含所有1998年交易，亦有 DISTINCT差别；但本条原 gold不可评分，应先剔除再讨论逻辑差异。",
+      "needs_human_semantic_verification": false,
+      "question": "Who are the account holder identification numbers whose who have transactions on the credit card with the amount is less than the average, in 1998?",
+      "evidence": "Operation = 'VYBER KARTOU' refers to credit card withdrawal",
+      "predicted_sql": "SELECT DISTINCT t.client_identifier\nFROM trans AS t\nWHERE t.operation = 'VYBER KARTOU'\n  AND t.amount < (\n      SELECT AVG(t2.amount)\n      FROM trans AS t2\n      WHERE t2.operation = 'VYBER KARTOU'\n        AND strftime('%Y', t2.date) = '1998'\n  )\n  AND strftime('%Y', t.date) = '1998';",
+      "gold_sql": "SELECT T1.account_id FROM trans AS T1 INNER JOIN account AS T2 ON T1.account_id = T2.account_id WHERE STRFTIME('%Y', T1.date) = '1998' AND T1.operation = 'VYBER KARTOU' AND T1.amount < (SELECT AVG(amount) FROM trans WHERE STRFTIME('%Y', date) = '1998')",
+      "original_score_error": "GoldUnscorable: OperationalError: interrupted",
+      "original_gold_unscorable": true,
+      "predicted_explain": {
+        "error": "OperationalError: no such column: t.client_identifier",
+        "reads": []
+      },
+      "predicted_execution": {
+        "error": "OperationalError: no such column: t.client_identifier",
+        "reads": []
+      },
+      "gold_execution": {
+        "skipped": "Legacy gold timeout; excluded from valid failure sample"
+      },
+      "added_column_physical_audit": [
+        {
+          "id": "account.amount",
+          "relation": "same_name",
+          "seed_column": "trans.amount",
+          "generated": true,
+          "exists_in_sqlite": false
+        },
+        {
+          "id": "account.date",
+          "relation": "same_name",
+          "seed_column": "trans.date",
+          "generated": true,
+          "exists_in_sqlite": true
+        },
+        {
+          "id": "account.operation",
+          "relation": "same_name",
+          "seed_column": "trans.operation",
+          "generated": true,
+          "exists_in_sqlite": false
+        },
+        {
+          "id": "trans.client_identifier",
+          "relation": "synonym",
+          "seed_column": "account.account_id",
+          "generated": true,
+          "exists_in_sqlite": false
+        },
+        {
+          "id": "account.client_identifier_ref",
+          "relation": "synonym",
+          "seed_column": "account.account_id",
+          "generated": true,
+          "exists_in_sqlite": false
+        },
+        {
+          "id": "trans.client_identifier_key",
+          "relation": "synonym",
+          "seed_column": "account.account_id",
+          "generated": true,
+          "exists_in_sqlite": false
+        },
+        {
+          "id": "account.client_identifier_identifier",
+          "relation": "synonym",
+          "seed_column": "account.account_id",
+          "generated": true,
+          "exists_in_sqlite": false
+        },
+        {
+          "id": "trans.client_identifier_value",
+          "relation": "synonym",
+          "seed_column": "account.account_id",
+          "generated": true,
+          "exists_in_sqlite": false
+        },
+        {
+          "id": "account.related_account_id",
+          "relation": "synonym",
+          "seed_column": "account.account_id",
+          "generated": true,
+          "exists_in_sqlite": false
+        },
+        {
+          "id": "trans.account_id_related",
+          "relation": "synonym",
+          "seed_column": "account.account_id",
+          "generated": true,
+          "exists_in_sqlite": false
+        },
+        {
+          "id": "account.account_id_alt",
+          "relation": "synonym",
+          "seed_column": "account.account_id",
+          "generated": true,
+          "exists_in_sqlite": false
+        },
+        {
+          "id": "account.client_identifier",
+          "relation": "synonym",
+          "seed_column": "trans.account_id",
+          "generated": true,
+          "exists_in_sqlite": false
+        },
+        {
+          "id": "trans.client_identifier_ref",
+          "relation": "synonym",
+          "seed_column": "trans.account_id",
+          "generated": true,
+          "exists_in_sqlite": false
+        },
+        {
+          "id": "account.client_identifier_key",
+          "relation": "synonym",
+          "seed_column": "trans.account_id",
+          "generated": true,
+          "exists_in_sqlite": false
+        },
+        {
+          "id": "trans.client_identifier_identifier",
+          "relation": "synonym",
+          "seed_column": "trans.account_id",
+          "generated": true,
+          "exists_in_sqlite": false
+        },
+        {
+          "id": "account.client_identifier_value",
+          "relation": "synonym",
+          "seed_column": "trans.account_id",
+          "generated": true,
+          "exists_in_sqlite": false
+        },
+        {
+          "id": "trans.related_account_id",
+          "relation": "synonym",
+          "seed_column": "trans.account_id",
+          "generated": true,
+          "exists_in_sqlite": false
+        },
+        {
+          "id": "account.account_id_related",
+          "relation": "synonym",
+          "seed_column": "trans.account_id",
+          "generated": true,
+          "exists_in_sqlite": false
+        },
+        {
+          "id": "trans.account_id_alt",
+          "relation": "synonym",
+          "seed_column": "trans.account_id",
+          "generated": true,
+          "exists_in_sqlite": false
+        },
+        {
+          "id": "account.value",
+          "relation": "synonym",
+          "seed_column": "trans.amount",
+          "generated": true,
+          "exists_in_sqlite": false
+        }
+      ],
+      "selected_generated_absent_columns": [
+        {
+          "id": "trans.client_identifier",
+          "relation": "synonym",
+          "seed_column": "account.account_id",
+          "generated": true,
+          "exists_in_sqlite": false
+        }
+      ],
+      "human_reviewed": false
+    }
+  ]
+}
