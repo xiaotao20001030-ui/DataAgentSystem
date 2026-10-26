@@ -1,0 +1,94 @@
+{
+  "model_key": "qwen2_5_coder_1_5b",
+  "prediction_file": "/root/fsas/home/xiaotao/xiaotao/BIRD_MINIDEV_VALIDATION_20261025/model_eval/predictions/qwen2_5_coder_1_5b.jsonl",
+  "prediction_sha256": "72868478e1808a748493fc44c2a2f6d65bad73a6622b5f1869c7a39b48e7941f",
+  "comparison": "set",
+  "gold_cache_questions": 500,
+  "gold_unscorable_questions": {
+    "701": "OperationalError: interrupted",
+    "518": "OperationalError: interrupted",
+    "116": "OperationalError: interrupted",
+    "129": "OperationalError: interrupted",
+    "145": "OperationalError: interrupted",
+    "159": "OperationalError: interrupted"
+  },
+  "by_family": {
+    "add_random_10": {
+      "count": 500,
+      "scorable_count": 494,
+      "gold_unscorable_count": 6,
+      "correct": 131,
+      "accuracy": 0.2651821862348178
+    },
+    "add_random_20": {
+      "count": 500,
+      "scorable_count": 494,
+      "gold_unscorable_count": 6,
+      "correct": 121,
+      "accuracy": 0.24493927125506074
+    },
+    "add_random_5": {
+      "count": 500,
+      "scorable_count": 494,
+      "gold_unscorable_count": 6,
+      "correct": 129,
+      "accuracy": 0.2611336032388664
+    },
+    "add_random_50": {
+      "count": 500,
+      "scorable_count": 494,
+      "gold_unscorable_count": 6,
+      "correct": 124,
+      "accuracy": 0.25101214574898784
+    },
+    "add_synonym_10": {
+      "count": 500,
+      "scorable_count": 494,
+      "gold_unscorable_count": 6,
+      "correct": 73,
+      "accuracy": 0.14777327935222673
+    },
+    "add_synonym_20": {
+      "count": 500,
+      "scorable_count": 494,
+      "gold_unscorable_count": 6,
+      "correct": 69,
+      "accuracy": 0.1396761133603239
+    },
+    "add_synonym_5": {
+      "count": 500,
+      "scorable_count": 494,
+      "gold_unscorable_count": 6,
+      "correct": 86,
+      "accuracy": 0.17408906882591094
+    },
+    "add_synonym_50": {
+      "count": 500,
+      "scorable_count": 494,
+      "gold_unscorable_count": 6,
+      "correct": 73,
+      "accuracy": 0.14777327935222673
+    },
+    "base": {
+      "count": 500,
+      "scorable_count": 494,
+      "gold_unscorable_count": 6,
+      "correct": 134,
+      "accuracy": 0.27125506072874495
+    },
+    "missing_bridge_table": {
+      "count": 103,
+      "scorable_count": 99,
+      "gold_unscorable_count": 4,
+      "correct": 3,
+      "accuracy": 0.030303030303030304
+    },
+    "missing_fk_column": {
+      "count": 494,
+      "scorable_count": 484,
+      "gold_unscorable_count": 10,
+      "correct": 45,
+      "accuracy": 0.09297520661157024
+    }
+  }
+}

@@ -1,0 +1,199 @@
+{
+  "criterion": "small-model drop at the configured perturbation exceeds API control by >= 10 pp",
+  "families": [
+    "add_random_20",
+    "add_synonym_20"
+  ],
+  "minimum_drop_gap": 0.1,
+  "bootstrap_iterations": 10000,
+  "control_model": {
+    "key": "api_control",
+    "provider": "openai_compatible",
+    "model": "deepseek-chat",
+    "api_base": "https://api.deepseek.com/v1",
+    "role": "large"
+  },
+  "models": {
+    "qwen3_0_6b": {
+      "status": "complete",
+      "perturbations": {
+        "add_random_20": {
+          "question_count": 500,
+          "difference_in_accuracy_drop": -0.018,
+          "difference_in_accuracy_drop_percentage_points": -1.7999999999999998,
+          "ci95_low": -0.058,
+          "ci95_high": 0.02,
+          "ci95_low_percentage_points": -5.800000000000001,
+          "ci95_high_percentage_points": 2.0,
+          "p_one_sided": 0.8285171482851715,
+          "p_one_sided_10pp": 1.0,
+          "excludes_10pp_gap": true,
+          "passed": false,
+          "passed_strict_10pp_ci": false,
+          "small_baseline_accuracy": 0.146,
+          "small_perturbed_accuracy": 0.1,
+          "small_accuracy_drop": 0.045999999999999985,
+          "large_baseline_accuracy": 0.686,
+          "large_perturbed_accuracy": 0.622,
+          "large_accuracy_drop": 0.06400000000000006
+        },
+        "add_synonym_20": {
+          "question_count": 500,
+          "difference_in_accuracy_drop": -0.32,
+          "difference_in_accuracy_drop_percentage_points": -32.0,
+          "ci95_low": -0.374,
+          "ci95_high": -0.268,
+          "ci95_low_percentage_points": -37.4,
+          "ci95_high_percentage_points": -26.8,
+          "p_one_sided": 1.0,
+          "p_one_sided_10pp": 1.0,
+          "excludes_10pp_gap": true,
+          "passed": false,
+          "passed_strict_10pp_ci": false,
+          "small_baseline_accuracy": 0.146,
+          "small_perturbed_accuracy": 0.054,
+          "small_accuracy_drop": 0.092,
+          "large_baseline_accuracy": 0.686,
+          "large_perturbed_accuracy": 0.274,
+          "large_accuracy_drop": 0.41200000000000003
+        }
+      }
+    },
+    "qwen3_1_7b": {
+      "status": "complete",
+      "perturbations": {
+        "add_random_20": {
+          "question_count": 500,
+          "difference_in_accuracy_drop": -0.012,
+          "difference_in_accuracy_drop_percentage_points": -1.2,
+          "ci95_low": -0.058,
+          "ci95_high": 0.032,
+          "ci95_low_percentage_points": -5.800000000000001,
+          "ci95_high_percentage_points": 3.2,
+          "p_one_sided": 0.7163283671632836,
+          "p_one_sided_10pp": 1.0,
+          "excludes_10pp_gap": true,
+          "passed": false,
+          "passed_strict_10pp_ci": false,
+          "small_baseline_accuracy": 0.27,
+          "small_perturbed_accuracy": 0.218,
+          "small_accuracy_drop": 0.05200000000000002,
+          "large_baseline_accuracy": 0.686,
+          "large_perturbed_accuracy": 0.622,
+          "large_accuracy_drop": 0.06400000000000006
+        },
+        "add_synonym_20": {
+          "question_count": 500,
+          "difference_in_accuracy_drop": -0.254,
+          "difference_in_accuracy_drop_percentage_points": -25.4,
+          "ci95_low": -0.306,
+          "ci95_high": -0.202,
+          "ci95_low_percentage_points": -30.599999999999998,
+          "ci95_high_percentage_points": -20.200000000000003,
+          "p_one_sided": 1.0,
+          "p_one_sided_10pp": 1.0,
+          "excludes_10pp_gap": true,
+          "passed": false,
+          "passed_strict_10pp_ci": false,
+          "small_baseline_accuracy": 0.27,
+          "small_perturbed_accuracy": 0.112,
+          "small_accuracy_drop": 0.15800000000000003,
+          "large_baseline_accuracy": 0.686,
+          "large_perturbed_accuracy": 0.274,
+          "large_accuracy_drop": 0.41200000000000003
+        }
+      }
+    },
+    "qwen3_4b": {
+      "status": "complete",
+      "perturbations": {
+        "add_random_20": {
+          "question_count": 500,
+          "difference_in_accuracy_drop": 0.006,
+          "difference_in_accuracy_drop_percentage_points": 0.6,
+          "ci95_low": -0.038,
+          "ci95_high": 0.05,
+          "ci95_low_percentage_points": -3.8,
+          "ci95_high_percentage_points": 5.0,
+          "p_one_sided": 0.417958204179582,
+          "p_one_sided_10pp": 1.0,
+          "excludes_10pp_gap": true,
+          "passed": false,
+          "passed_strict_10pp_ci": false,
+          "small_baseline_accuracy": 0.506,
+          "small_perturbed_accuracy": 0.436,
+          "small_accuracy_drop": 0.07,
+          "large_baseline_accuracy": 0.686,
+          "large_perturbed_accuracy": 0.622,
+          "large_accuracy_drop": 0.06400000000000006
+        },
+        "add_synonym_20": {
+          "question_count": 500,
+          "difference_in_accuracy_drop": -0.09,
+          "difference_in_accuracy_drop_percentage_points": -9.0,
+          "ci95_low": -0.138,
+          "ci95_high": -0.044,
+          "ci95_low_percentage_points": -13.8,
+          "ci95_high_percentage_points": -4.3999999999999995,
+          "p_one_sided": 0.9999000099990001,
+          "p_one_sided_10pp": 1.0,
+          "excludes_10pp_gap": true,
+          "passed": false,
+          "passed_strict_10pp_ci": false,
+          "small_baseline_accuracy": 0.506,
+          "small_perturbed_accuracy": 0.184,
+          "small_accuracy_drop": 0.322,
+          "large_baseline_accuracy": 0.686,
+          "large_perturbed_accuracy": 0.274,
+          "large_accuracy_drop": 0.41200000000000003
+        }
+      }
+    },
+    "qwen2_5_coder_1_5b": {
+      "status": "complete",
+      "perturbations": {
+        "add_random_20": {
+          "question_count": 500,
+          "difference_in_accuracy_drop": -0.038,
+          "difference_in_accuracy_drop_percentage_points": -3.8,
+          "ci95_low": -0.082,
+          "ci95_high": 0.008,
+          "ci95_low_percentage_points": -8.200000000000001,
+          "ci95_high_percentage_points": 0.8,
+          "p_one_sided": 0.9538046195380462,
+          "p_one_sided_10pp": 1.0,
+          "excludes_10pp_gap": true,
+          "passed": false,
+          "passed_strict_10pp_ci": false,
+          "small_baseline_accuracy": 0.268,
+          "small_perturbed_accuracy": 0.242,
+          "small_accuracy_drop": 0.026000000000000023,
+          "large_baseline_accuracy": 0.686,
+          "large_perturbed_accuracy": 0.622,
+          "large_accuracy_drop": 0.06400000000000006
+        },
+        "add_synonym_20": {
+          "question_count": 500,
+          "difference_in_accuracy_drop": -0.282,
+          "difference_in_accuracy_drop_percentage_points": -28.199999999999996,
+          "ci95_low": -0.336,
+          "ci95_high": -0.23,
+          "ci95_low_percentage_points": -33.6,
+          "ci95_high_percentage_points": -23.0,
+          "p_one_sided": 1.0,
+          "p_one_sided_10pp": 1.0,
+          "excludes_10pp_gap": true,
+          "passed": false,
+          "passed_strict_10pp_ci": false,
+          "small_baseline_accuracy": 0.268,
+          "small_perturbed_accuracy": 0.138,
+          "small_accuracy_drop": 0.13,
+          "large_baseline_accuracy": 0.686,
+          "large_perturbed_accuracy": 0.274,
+          "large_accuracy_drop": 0.41200000000000003
+        }
+      }
+    }
+  },
+  "passed": false
+}

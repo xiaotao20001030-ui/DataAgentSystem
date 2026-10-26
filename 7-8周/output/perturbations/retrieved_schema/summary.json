@@ -1,0 +1,15 @@
+{
+  "dataset": "BIRD Mini-Dev SQLite",
+  "question_count": 500,
+  "base_variant_count": 500,
+  "k": 10,
+  "query": "question",
+  "model": "sentence-transformers/all-MiniLM-L6-v2",
+  "retrieved_column_counts": {
+    "10": 500
+  },
+  "retrieved_table_count_mean": 2.978,
+  "gold_column_recall_mean": 0.5461820346320346,
+  "sha256": "5f48363d8c919c9b23ee7a0a7dfcb612fbe2683dd3524d365805a1b804e93533",
+  "output": "mini_dev_retrieved_schema.jsonl"
+}

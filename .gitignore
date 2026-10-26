@@ -25,3 +25,4 @@ models/
 第五周/bird_dev_samples.json
 第五周/bird_dev_cross_encoder_baseline.zip
 第五周/bird_dev_qwen_end2end.zip
+**/*.sqlite

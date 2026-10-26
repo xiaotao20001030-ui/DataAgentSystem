@@ -1,0 +1,27 @@
+{
+  "dataset": "BIRD Mini-Dev SQLite",
+  "question_count": 500,
+  "levels": [
+    5,
+    10,
+    20
+  ],
+  "seed": 20261019,
+  "families": [
+    "add_pure_column",
+    "base"
+  ],
+  "variant_count": 2000,
+  "base_variant_count": 500,
+  "table_scope": "gold tables only; no new tables",
+  "added_column_breakdown": {
+    "add_pure_column_5:within_table_filler:generated=true": 250,
+    "add_pure_column_5:within_table_random:generated=false": 2250,
+    "add_pure_column_10:within_table_filler:generated=true": 869,
+    "add_pure_column_10:within_table_random:generated=false": 4131,
+    "add_pure_column_20:within_table_filler:generated=true": 3311,
+    "add_pure_column_20:within_table_random:generated=false": 6689
+  },
+  "sha256": "ff0afd8687fc08349ceff3f6523e8a0f1be7a7f9740fd9246544eb4119e9cb18",
+  "output": "mini_dev_pure_column.jsonl"
+}
