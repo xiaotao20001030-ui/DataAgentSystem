@@ -1,0 +1,201 @@
+{
+  "source": "Spider2-Lite native gold SQL only",
+  "total": 24,
+  "parse_ok": 24,
+  "execute_ok": 24,
+  "official_match": 16,
+  "rows": [
+    {
+      "instance_id": "local003",
+      "db": "E_commerce",
+      "parse_ok": true,
+      "execute_ok": true,
+      "official_match": false,
+      "error": null
+    },
+    {
+      "instance_id": "local004",
+      "db": "E_commerce",
+      "parse_ok": true,
+      "execute_ok": true,
+      "official_match": true,
+      "error": null
+    },
+    {
+      "instance_id": "local008",
+      "db": "Baseball",
+      "parse_ok": true,
+      "execute_ok": true,
+      "official_match": true,
+      "error": null
+    },
+    {
+      "instance_id": "local017",
+      "db": "California_Traffic_Collision",
+      "parse_ok": true,
+      "execute_ok": true,
+      "official_match": true,
+      "error": null
+    },
+    {
+      "instance_id": "local019",
+      "db": "WWE",
+      "parse_ok": true,
+      "execute_ok": true,
+      "official_match": true,
+      "error": null
+    },
+    {
+      "instance_id": "local022",
+      "db": "IPL",
+      "parse_ok": true,
+      "execute_ok": true,
+      "official_match": true,
+      "error": null
+    },
+    {
+      "instance_id": "local023",
+      "db": "IPL",
+      "parse_ok": true,
+      "execute_ok": true,
+      "official_match": false,
+      "error": null
+    },
+    {
+      "instance_id": "local029",
+      "db": "Brazilian_E_Commerce",
+      "parse_ok": true,
+      "execute_ok": true,
+      "official_match": false,
+      "error": null
+    },
+    {
+      "instance_id": "local038",
+      "db": "Pagila",
+      "parse_ok": true,
+      "execute_ok": true,
+      "official_match": true,
+      "error": null
+    },
+    {
+      "instance_id": "local039",
+      "db": "Pagila",
+      "parse_ok": true,
+      "execute_ok": true,
+      "official_match": true,
+      "error": null
+    },
+    {
+      "instance_id": "local058",
+      "db": "education_business",
+      "parse_ok": true,
+      "execute_ok": true,
+      "official_match": true,
+      "error": null
+    },
+    {
+      "instance_id": "local065",
+      "db": "modern_data",
+      "parse_ok": true,
+      "execute_ok": true,
+      "official_match": true,
+      "error": null
+    },
+    {
+      "instance_id": "local066",
+      "db": "modern_data",
+      "parse_ok": true,
+      "execute_ok": true,
+      "official_match": false,
+      "error": null
+    },
+    {
+      "instance_id": "local075",
+      "db": "bank_sales_trading",
+      "parse_ok": true,
+      "execute_ok": true,
+      "official_match": true,
+      "error": null
+    },
+    {
+      "instance_id": "local078",
+      "db": "bank_sales_trading",
+      "parse_ok": true,
+      "execute_ok": true,
+      "official_match": true,
+      "error": null
+    },
+    {
+      "instance_id": "local099",
+      "db": "Db-IMDB",
+      "parse_ok": true,
+      "execute_ok": true,
+      "official_match": true,
+      "error": null
+    },
+    {
+      "instance_id": "local131",
+      "db": "EntertainmentAgency",
+      "parse_ok": true,
+      "execute_ok": true,
+      "official_match": false,
+      "error": null
+    },
+    {
+      "instance_id": "local163",
+      "db": "education_business",
+      "parse_ok": true,
+      "execute_ok": true,
+      "official_match": true,
+      "error": null
+    },
+    {
+      "instance_id": "local197",
+      "db": "sqlite-sakila",
+      "parse_ok": true,
+      "execute_ok": true,
+      "official_match": true,
+      "error": null
+    },
+    {
+      "instance_id": "local199",
+      "db": "sqlite-sakila",
+      "parse_ok": true,
+      "execute_ok": true,
+      "official_match": true,
+      "error": null
+    },
+    {
+      "instance_id": "local210",
+      "db": "delivery_center",
+      "parse_ok": true,
+      "execute_ok": true,
+      "official_match": false,
+      "error": null
+    },
+    {
+      "instance_id": "local219",
+      "db": "EU_soccer",
+      "parse_ok": true,
+      "execute_ok": true,
+      "official_match": false,
+      "error": null
+    },
+    {
+      "instance_id": "local301",
+      "db": "bank_sales_trading",
+      "parse_ok": true,
+      "execute_ok": true,
+      "official_match": true,
+      "error": null
+    },
+    {
+      "instance_id": "local309",
+      "db": "f1",
+      "parse_ok": true,
+      "execute_ok": true,
+      "official_match": false,
+      "error": null
+    }
+  ]
+}

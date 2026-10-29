@@ -1,0 +1,595 @@
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:05<00:11,  5.70s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:10<00:04,  4.96s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:10<00:00,  3.39s/it]
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local002__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local002__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local002__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local004__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local004__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local004__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local008__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local008__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local008__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local017__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local017__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local017__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local018__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local018__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local018__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local020__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local020__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local020__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local022__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local022__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local022__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local025__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local025__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local025__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local028__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local028__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local028__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local031__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local031__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local031__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local035__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local035__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local035__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local038__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local038__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local038__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local039__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local039__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local039__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local040__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local040__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local040__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local041__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local041__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local041__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local049__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local049__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local049__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local054__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local054__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local054__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local055__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local055__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local055__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local056__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local056__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local056__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local058__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local058__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local058__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local062__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local062__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local062__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local065__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local065__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local065__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local068__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local068__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local068__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local071__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local071__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local071__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local072__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local072__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local072__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local073__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local073__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local073__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local074__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local074__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local074__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local075__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local075__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local075__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local077__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local077__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local077__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local078__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local078__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local078__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local081__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local081__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local081__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local085__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local085__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local085__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local099__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local099__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local099__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local114__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local114__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local114__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local132__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local132__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local132__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local133__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local133__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local133__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local163__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local163__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local163__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local170__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local170__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local170__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local193__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local193__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local193__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local195__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local195__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local195__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local196__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local196__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local196__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local197__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local197__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local197__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local198__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local198__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local198__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local199__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local199__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local199__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local202__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local202__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local202__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local218__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local218__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local218__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local220__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local220__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local220__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local228__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local228__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local228__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local230__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local230__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local230__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local244__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local244__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local244__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local264__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local264__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local264__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local274__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local274__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local274__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local275__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local275__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local275__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local283__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local283__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local283__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local284__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local284__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local284__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local297__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local297__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local297__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local298__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local298__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local298__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local300__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local300__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local300__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local301__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local301__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local301__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local302__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local302__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local302__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local310__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local310__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local310__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local311__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local311__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local311__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local330__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local330__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local330__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local354__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local354__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local354__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local355__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local355__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local355__synonym20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local358__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local358__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_4b local358__synonym20 ok
+local002__base correct=0 scorable=1
+local002__random20 correct=0 scorable=1
+local002__synonym20 correct=0 scorable=1
+local004__base correct=0 scorable=1
+local004__random20 correct=0 scorable=1
+local004__synonym20 correct=0 scorable=1
+local008__base correct=0 scorable=1
+local008__random20 correct=0 scorable=1
+local008__synonym20 correct=0 scorable=1
+local017__base correct=0 scorable=1
+local017__random20 correct=0 scorable=1
+local017__synonym20 correct=0 scorable=1
+local018__base correct=0 scorable=1
+local018__random20 correct=0 scorable=1
+local018__synonym20 correct=0 scorable=1
+local020__base correct=0 scorable=1
+local020__random20 correct=0 scorable=1
+local020__synonym20 correct=0 scorable=1
+local022__base correct=0 scorable=1
+local022__random20 correct=0 scorable=1
+local022__synonym20 correct=0 scorable=1
+local025__base correct=0 scorable=1
+local025__random20 correct=0 scorable=1
+local025__synonym20 correct=0 scorable=1
+local028__base correct=0 scorable=1
+local028__random20 correct=0 scorable=1
+local028__synonym20 correct=0 scorable=1
+local031__base correct=0 scorable=1
+local031__random20 correct=0 scorable=1
+local031__synonym20 correct=0 scorable=1
+local035__base correct=0 scorable=1
+local035__random20 correct=0 scorable=1
+local035__synonym20 correct=0 scorable=1
+local038__base correct=0 scorable=1
+local038__random20 correct=1 scorable=1
+local038__synonym20 correct=0 scorable=1
+local039__base correct=0 scorable=1
+local039__random20 correct=0 scorable=1
+local039__synonym20 correct=0 scorable=1
+local040__base correct=1 scorable=1
+local040__random20 correct=1 scorable=1
+local040__synonym20 correct=1 scorable=1
+local041__base correct=1 scorable=1
+local041__random20 correct=1 scorable=1
+local041__synonym20 correct=0 scorable=1
+local049__base correct=0 scorable=1
+local049__random20 correct=0 scorable=1
+local049__synonym20 correct=0 scorable=1
+local054__base correct=0 scorable=1
+local054__random20 correct=0 scorable=1
+local054__synonym20 correct=0 scorable=1
+local055__base correct=0 scorable=1
+local055__random20 correct=0 scorable=1
+local055__synonym20 correct=0 scorable=1
+local056__base correct=0 scorable=1
+local056__random20 correct=0 scorable=1
+local056__synonym20 correct=0 scorable=1
+local058__base correct=0 scorable=1
+local058__random20 correct=0 scorable=1
+local058__synonym20 correct=0 scorable=1
+local062__base correct=0 scorable=1
+local062__random20 correct=0 scorable=1
+local062__synonym20 correct=0 scorable=1
+local065__base correct=0 scorable=1
+local065__random20 correct=0 scorable=1
+local065__synonym20 correct=0 scorable=1
+local068__base correct=0 scorable=1
+local068__random20 correct=0 scorable=1
+local068__synonym20 correct=0 scorable=1
+local071__base correct=0 scorable=1
+local071__random20 correct=0 scorable=1
+local071__synonym20 correct=0 scorable=1
+local072__base correct=0 scorable=1
+local072__random20 correct=0 scorable=1
+local072__synonym20 correct=0 scorable=1
+local073__base correct=0 scorable=1
+local073__random20 correct=0 scorable=1
+local073__synonym20 correct=0 scorable=1
+local074__base correct=0 scorable=1
+local074__random20 correct=0 scorable=1
+local074__synonym20 correct=0 scorable=1
+local075__base correct=0 scorable=1
+local075__random20 correct=0 scorable=1
+local075__synonym20 correct=0 scorable=1
+local077__base correct=0 scorable=1
+local077__random20 correct=0 scorable=1
+local077__synonym20 correct=0 scorable=1
+local078__base correct=0 scorable=1
+local078__random20 correct=0 scorable=1
+local078__synonym20 correct=0 scorable=1
+local081__base correct=0 scorable=1
+local081__random20 correct=0 scorable=1
+local081__synonym20 correct=0 scorable=1
+local085__base correct=1 scorable=1
+local085__random20 correct=0 scorable=1
+local085__synonym20 correct=1 scorable=1
+local099__base correct=0 scorable=1
+local099__random20 correct=0 scorable=1
+local099__synonym20 correct=0 scorable=1
+local114__base correct=0 scorable=1
+local114__random20 correct=0 scorable=1
+local114__synonym20 correct=0 scorable=1
+local132__base correct=0 scorable=1
+local132__random20 correct=0 scorable=1
+local132__synonym20 correct=0 scorable=1
+local133__base correct=1 scorable=1
+local133__random20 correct=1 scorable=1
+local133__synonym20 correct=1 scorable=1
+local163__base correct=0 scorable=1
+local163__random20 correct=0 scorable=1
+local163__synonym20 correct=0 scorable=1
+local170__base correct=0 scorable=1
+local170__random20 correct=0 scorable=1
+local170__synonym20 correct=0 scorable=1
+local193__base correct=0 scorable=1
+local193__random20 correct=0 scorable=1
+local193__synonym20 correct=0 scorable=1
+local195__base correct=1 scorable=1
+local195__random20 correct=0 scorable=1
+local195__synonym20 correct=0 scorable=1
+local196__base correct=0 scorable=1
+local196__random20 correct=0 scorable=1
+local196__synonym20 correct=0 scorable=1
+local197__base correct=0 scorable=1
+local197__random20 correct=0 scorable=1
+local197__synonym20 correct=0 scorable=1
+local198__base correct=0 scorable=1
+local198__random20 correct=0 scorable=1
+local198__synonym20 correct=0 scorable=1
+local199__base correct=0 scorable=1
+local199__random20 correct=0 scorable=1
+local199__synonym20 correct=0 scorable=1
+local202__base correct=0 scorable=1
+local202__random20 correct=0 scorable=1
+local202__synonym20 correct=0 scorable=1
+local218__base correct=0 scorable=1
+local218__random20 correct=0 scorable=1
+local218__synonym20 correct=0 scorable=1
+local220__base correct=0 scorable=1
+local220__random20 correct=0 scorable=1
+local220__synonym20 correct=0 scorable=1
+local228__base correct=0 scorable=1
+local228__random20 correct=0 scorable=1
+local228__synonym20 correct=0 scorable=1
+local230__base correct=0 scorable=1
+local230__random20 correct=0 scorable=1
+local230__synonym20 correct=0 scorable=1
+local244__base correct=0 scorable=1
+local244__random20 correct=0 scorable=1
+local244__synonym20 correct=0 scorable=1
+local264__base correct=0 scorable=1
+local264__random20 correct=0 scorable=1
+local264__synonym20 correct=0 scorable=1
+local274__base correct=1 scorable=1
+local274__random20 correct=0 scorable=1
+local274__synonym20 correct=1 scorable=1
+local275__base correct=0 scorable=1
+local275__random20 correct=0 scorable=1
+local275__synonym20 correct=1 scorable=1
+local283__base correct=0 scorable=1
+local283__random20 correct=0 scorable=1
+local283__synonym20 correct=0 scorable=1
+local284__base correct=0 scorable=1
+local284__random20 correct=0 scorable=1
+local284__synonym20 correct=0 scorable=1
+local297__base correct=0 scorable=1
+local297__random20 correct=0 scorable=1
+local297__synonym20 correct=0 scorable=1
+local298__base correct=0 scorable=1
+local298__random20 correct=0 scorable=1
+local298__synonym20 correct=0 scorable=1
+local300__base correct=0 scorable=1
+local300__random20 correct=0 scorable=1
+local300__synonym20 correct=0 scorable=1
+local301__base correct=0 scorable=1
+local301__random20 correct=0 scorable=1
+local301__synonym20 correct=0 scorable=1
+local302__base correct=0 scorable=1
+local302__random20 correct=0 scorable=1
+local302__synonym20 correct=0 scorable=1
+local310__base correct=0 scorable=1
+local310__random20 correct=0 scorable=1
+local310__synonym20 correct=0 scorable=1
+local311__base correct=0 scorable=1
+local311__random20 correct=0 scorable=1
+local311__synonym20 correct=0 scorable=1
+local330__base correct=0 scorable=1
+local330__random20 correct=0 scorable=1
+local330__synonym20 correct=0 scorable=1
+local354__base correct=0 scorable=1
+local354__random20 correct=0 scorable=1
+local354__synonym20 correct=0 scorable=1
+local355__base correct=0 scorable=1
+local355__random20 correct=0 scorable=1
+local355__synonym20 correct=0 scorable=1
+local358__base correct=0 scorable=1
+local358__random20 correct=0 scorable=1
+local358__synonym20 correct=0 scorable=1

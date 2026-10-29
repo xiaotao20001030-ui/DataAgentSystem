@@ -1,0 +1,11 @@
+api_control: scoring pid=3212465
+qwen2_5_coder_1_5b: scoring pid=3214643
+qwen3_0_6b: scoring pid=3214878
+qwen3_1_7b: scoring pid=3215111
+qwen3_4b: scoring pid=3215678
+qwen2_5_coder_1_5b: scoring complete
+qwen3_0_6b: scoring complete
+qwen3_1_7b: scoring complete
+api_control: scoring complete
+qwen3_4b: scoring complete
+complete

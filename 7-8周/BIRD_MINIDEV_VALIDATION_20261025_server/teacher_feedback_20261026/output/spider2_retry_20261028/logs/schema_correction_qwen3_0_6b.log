@@ -1,0 +1,9 @@
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_0_6b local195__base ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_0_6b local195__random20 ok
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+qwen3_0_6b local195__synonym20 ok
+local195__base correct=0 scorable=1
+local195__random20 correct=0 scorable=1
+local195__synonym20 correct=0 scorable=1

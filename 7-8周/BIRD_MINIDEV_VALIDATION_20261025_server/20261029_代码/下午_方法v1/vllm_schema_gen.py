@@ -1,0 +1,83 @@
+#!/usr/bin/env python3
+"""vLLM runner that honours the flat `schema_text` prompt used by the method runs."""
+
+import argparse
+import json
+import sys
+from pathlib import Path
+
+BASE = Path("/root/fsas/home/xiaotao/xiaotao/BIRD_MINIDEV_VALIDATION_20261025")
+sys.path.insert(0, str(Path("/root/fsas/home/xiaotao/xiaotao/MINIDEV/model_eval")))
+import generate_predictions as common  # noqa: E402
+from vllm import LLM, SamplingParams  # noqa: E402
+
+
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--variants", type=Path, required=True)
+    parser.add_argument("--config", type=Path, default=Path("/root/fsas/home/xiaotao/xiaotao/MINIDEV/model_eval/model_matrix.json"))
+    parser.add_argument("--model-key", required=True)
+    parser.add_argument("--families", required=True)
+    parser.add_argument("--output-dir", type=Path, required=True)
+    parser.add_argument("--max-new-tokens", type=int, default=256)
+    parser.add_argument("--max-model-len", type=int, default=8192)
+    parser.add_argument("--gpu-memory-utilization", type=float, default=0.75)
+    parser.add_argument("--seed", type=int, default=20261019)
+    return parser.parse_args()
+
+
+def messages_for(record):
+    if "schema_text" not in record:
+        return common.build_prompt(record)
+    user = "SQLite schema:\n" + record["schema_text"]
+    user += "\n\nQuestion:\n" + record["question"]
+    if record.get("evidence"):
+        user += "\n\nEvidence:\n" + record["evidence"]
+    user += "\n\nReturn one SQLite query."
+    return [{"role": "system", "content": common.SYSTEM_PROMPT},
+            {"role": "user", "content": user}]
+
+
+def render(tokenizer, record):
+    messages = messages_for(record)
+    kwargs = {"tokenize": False, "add_generation_prompt": True}
+    try:
+        return tokenizer.apply_chat_template(messages, enable_thinking=False, **kwargs)
+    except TypeError:
+        return tokenizer.apply_chat_template(messages, **kwargs)
+
+
+def main():
+    args = parse_args()
+    configs = json.loads(args.config.read_text())
+    config = {item["key"]: item for item in configs}[args.model_key]
+    if config["provider"] != "transformers":
+        raise SystemExit("local models only")
+    records = common.load_variants(args.variants, common.parse_family_filter(args.families), None)
+    args.output_dir.mkdir(parents=True, exist_ok=True)
+    output_path = args.output_dir / f"{args.model_key}.jsonl"
+    existing = common.load_existing_ids(output_path)
+    pending = [r for r in records if r["variant_id"] not in existing]
+    if not pending:
+        print("nothing pending")
+        return
+    engine = LLM(model=config["model"], tokenizer=config["model"], dtype="float16",
+                 seed=args.seed, trust_remote_code=True, max_model_len=args.max_model_len,
+                 gpu_memory_utilization=args.gpu_memory_utilization, enforce_eager=False)
+    tokenizer = engine.get_tokenizer()
+    prompts = [render(tokenizer, record) for record in pending]
+    sampling = SamplingParams(temperature=0.0, max_tokens=args.max_new_tokens, seed=args.seed)
+    generations = engine.generate(prompts, sampling, use_tqdm=True)
+    with output_path.open("a", encoding="utf-8") as output:
+        for record, generation in zip(pending, generations):
+            raw = generation.outputs[0].text if generation.outputs else ""
+            row = {"variant_id": record["variant_id"], "question_id": record["question_id"],
+                   "db_id": record["db_id"], "family": common.family_name(record),
+                   "model_key": args.model_key, "model": config["model"],
+                   "raw_response": raw, "predicted_sql": common.extract_sql(raw),
+                   "error": None if generation.outputs else "NoGenerationOutput"}
+            output.write(json.dumps(row, ensure_ascii=False, separators=(",", ":")) + "\n")
+
+
+if __name__ == "__main__":
+    main()

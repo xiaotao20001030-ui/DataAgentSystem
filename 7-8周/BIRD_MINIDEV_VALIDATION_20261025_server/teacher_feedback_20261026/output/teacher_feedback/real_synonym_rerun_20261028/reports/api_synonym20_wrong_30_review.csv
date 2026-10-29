@@ -1,0 +1,170 @@
+﻿question_id,db_id,question,gold_columns,added_real_columns,gold_sql,predicted_sql,prediction_error,human_reason,human_notes
+72,california_schools,How many students from the ages of 5 to 17 are enrolled at the State Special School school in Fremont for the 2014-2015 academic year?,frpm.Academic Year; frpm.CDSCode; frpm.Enrollment (Ages 5-17); schools.CDSCode; schools.City; schools.EdOpsCode,frpm.Enrollment (K-12); frpm.FRPM Count (Ages 5-17); frpm.Free Meal Count (Ages 5-17); schools.EdOpsName; schools.MailCity; schools.EILCode; satscores.cds; schools.County; frpm.Percent (%) Eligible Free (Ages 5-17); frpm.Percent (%) Eligible FRPM (Ages 5-17); frpm.District Code; frpm.County Code; frpm.School Code; schools.DOCType; schools.SOCType; schools.DOC; schools.NCESDist; schools.NCESSchool; frpm.District Type; frpm.FRPM Count (K-12),SELECT T1.`Enrollment (Ages 5-17)` FROM frpm AS T1 INNER JOIN schools AS T2 ON T1.CDSCode = T2.CDSCode WHERE T2.EdOpsCode = 'SSS' AND T2.City = 'Fremont' AND T1.`Academic Year` BETWEEN 2014 AND 2015,"SELECT SUM(f.""Enrollment (Ages 5-17)"")
+FROM frpm f
+JOIN schools s ON f.CDSCode = s.CDSCode
+WHERE s.EdOpsCode = 'SSS'
+  AND s.City = 'Fremont'
+  AND f.""Academic Year"" = '2014-2015';",,,
+522,card_games,Which cards are ranked 1st on EDHRec? List all of the cards name and its banned play format.,cards.edhrecRank; cards.name; cards.uuid; legalities.format; legalities.status; legalities.uuid,foreign_data.name; foreign_data.uuid; rulings.uuid; sets.name; sets.mcmName; cards.faceName; cards.id; foreign_data.id; legalities.id; rulings.id; set_translations.id; sets.id; cards.asciiName; cards.number; cards.flavorName; cards.isStarter; cards.flavorText; cards.rarity; cards.side; foreign_data.flavorText,"SELECT T1.name, T2.format FROM cards AS T1 INNER JOIN legalities AS T2 ON T2.uuid = T1.uuid WHERE T1.edhrecRank = 1 AND T2.status = 'Banned' GROUP BY T1.name, T2.format","SELECT c.name, l.format
+FROM cards c
+JOIN legalities l ON c.uuid = l.uuid
+WHERE c.edhrecRank = 1
+  AND l.status = 'Banned';",,,
+168,financial,What percentage of clients who opened their accounts in the district with an average salary of over 10000 are women?,client.client_id; client.district_id; client.gender; district.A11; district.district_id,account.district_id; disp.client_id; card.disp_id; disp.disp_id; district.A14; district.A15; district.A16; district.A10; district.A12; district.A13; account.account_id; disp.account_id; loan.account_id; order.account_id; trans.account_id; loan.loan_id; trans.trans_id; card.card_id; order.order_id; client.birth_date,SELECT CAST(SUM(T2.gender = 'F') AS REAL) * 100 / COUNT(T2.client_id) FROM district AS T1 INNER JOIN client AS T2 ON T1.district_id = T2.district_id WHERE T1.A11 > 10000,"SELECT CAST(SUM(CASE WHEN c.gender = 'F' THEN 1 ELSE 0 END) AS REAL) * 100 / COUNT(*) AS percentage
+FROM client c
+JOIN disp d ON c.client_id = d.client_id
+JOIN account a ON d.account_id = a.account_id
+JOIN district di ON a.district_id = di.district_id
+WHERE di.A11 > 10000;",,,
+26,california_schools,State the names and full communication address of high schools in Monterey which has more than 800 free or reduced price meals for ages 15-17?,frpm.CDSCode; frpm.Free Meal Count (Ages 5-17); frpm.School Name; frpm.School Type; schools.CDSCode; schools.City; schools.County; schools.State; schools.Street; schools.Zip,frpm.FRPM Count (Ages 5-17); frpm.Free Meal Count (K-12); schools.StreetAbr; schools.EdOpsCode; schools.MailStreet; frpm.School Code; schools.MailState; frpm.County Code; frpm.County Name; schools.School; frpm.Enrollment (Ages 5-17); schools.MailCity; schools.SOCType; schools.StatusType; schools.LastUpdate; frpm.FRPM Count (K-12); frpm.Charter School Number; satscores.cname; satscores.sname; satscores.cds,"SELECT T1.`School Name`, T2.Street, T2.City, T2.State, T2.Zip FROM frpm AS T1 INNER JOIN schools AS T2 ON T1.CDSCode = T2.CDSCode WHERE T2.County = 'Monterey' AND T1.`Free Meal Count (Ages 5-17)` > 800 AND T1.`School Type` = 'High Schools (Public)'","SELECT s.School AS name,
+       s.Street || ', ' || s.City || ', ' || s.State || ' ' || s.Zip AS full_address
+FROM schools AS s
+JOIN frpm AS f ON s.CDSCode = f.CDSCode
+WHERE s.City = 'Monterey'
+  AND f.""FRPM Count (Ages 5-17)"" > 800
+  AND f.""School Type"" = 'High Schools';",,,
+1435,student_club,"List the names of closed event as ""game"" that was closed from 3/15/2019 to 3/20/2020.",event.event_date; event.event_name; event.status; event.type,zip_code.type; event.event_id; budget.event_status; expense.expense_date; zip_code.state; member.last_name; member.first_name; major.major_name; zip_code.city; zip_code.short_state; event.notes; income.notes; member.phone; attendance.link_to_event; budget.link_to_event; budget.budget_id; member.member_id; budget.spent; expense.expense_description; expense.expense_id,"SELECT DISTINCT event_name FROM event WHERE type = 'Game' AND date(SUBSTR(event_date, 1, 10)) BETWEEN '2019-03-15' AND '2020-03-20' AND status = 'Closed'","SELECT event_name AS game
+FROM event
+WHERE type = 'Game'
+  AND status = 'Closed'
+  AND event_date BETWEEN '2019-03-15' AND '2020-03-20';",,,
+25,california_schools,"Name schools in Riverside which the average of average math score for SAT is grater than 400, what is the funding type of these schools?",frpm.CDSCode; frpm.Charter Funding Type; frpm.District Name; satscores.AvgScrMath; satscores.cds; satscores.sname,schools.CDSCode; satscores.cname; satscores.dname; frpm.District Type; schools.District; schools.EdOpsCode; frpm.District Code; schools.EdOpsName; schools.FundingType; satscores.AvgScrRead; satscores.AvgScrWrite; schools.EILName; frpm.School Name; schools.State; frpm.County Name; schools.AdmFName1; schools.AdmFName2; schools.AdmFName3; schools.AdmLName1; schools.AdmLName2,"SELECT T1.sname, T2.`Charter Funding Type` FROM satscores AS T1 INNER JOIN frpm AS T2 ON T1.cds = T2.CDSCode WHERE T2.`District Name` LIKE 'Riverside%' GROUP BY T1.sname, T2.`Charter Funding Type` HAVING CAST(SUM(T1.AvgScrMath) AS REAL) / COUNT(T1.cds) > 400","SELECT s.""School Name"", s.""Charter Funding Type""
+FROM frpm AS s
+JOIN satscores AS sat ON s.CDSCode = sat.cds
+WHERE s.""County Name"" = 'Riverside'
+GROUP BY s.CDSCode, s.""School Name"", s.""Charter Funding Type""
+HAVING AVG(sat.AvgScrMath) > 400;",,,
+1141,european_football_2,"Does the KSV Cercle Brugge team have a slow, balanced or fast speed class?",Team.team_api_id; Team.team_long_name; Team_Attributes.buildUpPlaySpeedClass; Team_Attributes.team_api_id,Team_Attributes.buildUpPlaySpeed; Match.away_team_api_id; Match.home_team_api_id; Team.team_fifa_api_id; Team_Attributes.team_fifa_api_id; Team_Attributes.buildUpPlayPassingClass; Team.team_short_name; Team_Attributes.buildUpPlayPassing; Team_Attributes.buildUpPlayDribblingClass; Team_Attributes.buildUpPlayPositioningClass; Match.match_api_id; Player.player_api_id; Player_Attributes.player_api_id; Team_Attributes.buildUpPlayDribbling; Player.player_fifa_api_id; Player_Attributes.player_fifa_api_id; Match.league_id; Player.player_name; Match.away_team_goal; Match.home_team_goal,SELECT DISTINCT t1.buildUpPlaySpeedClass FROM Team_Attributes AS t1 INNER JOIN Team AS t2 ON t1.team_api_id = t2.team_api_id WHERE t2.team_long_name = 'KSV Cercle Brugge',"SELECT ta.buildUpPlaySpeedClass
+FROM Team t
+JOIN Team_Attributes ta ON t.team_api_id = ta.team_api_id
+WHERE t.team_long_name = 'KSV Cercle Brugge';",,,
+1422,student_club,State the category of events were held at MU 215.,budget.category; budget.link_to_event; event.event_id; event.location,attendance.link_to_event; event.event_date; attendance.link_to_member; expense.link_to_budget; expense.link_to_member; income.link_to_member; event.event_name; expense.expense_id; member.position; member.link_to_major; budget.event_status; budget.budget_id; member.member_id; expense.expense_date; zip_code.city; income.income_id; member.last_name; zip_code.state; major.department; budget.spent,SELECT DISTINCT T2.category FROM event AS T1 INNER JOIN budget AS T2 ON T1.event_id = T2.link_to_event WHERE T1.location = 'MU 215',"SELECT b.category
+FROM budget b
+JOIN event e ON b.link_to_event = e.event_id
+WHERE e.location = 'MU 215';",,,
+358,card_games,"What is the border color of card ""Ancestor's Chosen""?",cards.borderColor; cards.name,foreign_data.name; sets.name; sets.mcmName; cards.faceName; cards.asciiName; cards.number; cards.colors; cards.flavorName; rulings.date; sets.booster; cards.colorIdentity; cards.colorIndicator; sets.isForeignOnly; sets.parentCode; cards.frameEffects; cards.frameVersion; cards.originalText; cards.originalType; cards.power; sets.block,SELECT DISTINCT borderColor FROM cards WHERE name = 'Ancestor''s Chosen',SELECT borderColor FROM cards WHERE name = 'Ancestor''s Chosen';,,,
+473,card_games,Is the set of cards with Adarkar Valkyrie only available outside the United States?,cards.name; cards.setCode; sets.code; sets.isForeignOnly,foreign_data.name; set_translations.setCode; sets.name; sets.isFoilOnly; sets.mcmName; sets.parentCode; sets.isNonFoilOnly; cards.faceName; sets.mtgoCode; cards.isOnlineOnly; sets.isOnlineOnly; cards.asciiName; cards.number; cards.flavorName; sets.keyruneCode; cards.isReprint; cards.side; cards.originalType; cards.hasFoil; cards.colorIdentity,"SELECT IIF(isForeignOnly = 1, 'YES', 'NO') FROM cards AS T1 INNER JOIN sets AS T2 ON T2.code = T1.setCode WHERE T1.name = 'Adarkar Valkyrie'","SELECT CASE WHEN COUNT(*) > 0 THEN 'Yes' ELSE 'No' END
+FROM cards c
+JOIN sets s ON c.setCode = s.code
+WHERE c.name = 'Adarkar Valkyrie'
+  AND s.isForeignOnly = 1;",,,
+1275,thrombosis_prediction,"Among the patients who has a normal level of anti-centromere and a normal level of anti-SSB, how many of them are male?",Laboratory.CENTROMEA; Laboratory.ID; Laboratory.SSB; Patient.ID; Patient.SEX,Examination.ID; Laboratory.SSA; Laboratory.CRE; Laboratory.IGA; Laboratory.IGG; Laboratory.IGM; Laboratory.LDH; Laboratory.PIC; Laboratory.SM; Examination.Thrombosis; Laboratory.DNA; Patient.Birthday; Examination.Symptoms; Laboratory.RA; Examination.Diagnosis; Examination.KCT; Laboratory.CRP; Patient.Admission; Patient.Diagnosis; Laboratory.ALB,"SELECT COUNT(DISTINCT T1.ID) FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.CENTROMEA IN ('negative', '0') AND T2.SSB IN ('negative', '0') AND T1.SEX = 'M'","SELECT COUNT(DISTINCT Patient.ID)
+FROM Patient
+JOIN Laboratory ON Patient.ID = Laboratory.ID
+WHERE Laboratory.CENTROMEA IN ('-', '+-')
+  AND Laboratory.SSB IN ('-', '+-')
+  AND Patient.SEX = 'M';",,,
+879,formula_1,"For the driver who set the fastest lap speed, what is his nationality?",drivers.driverId; drivers.nationality; results.driverId; results.fastestLapSpeed,constructors.nationality; driverStandings.driverId; lapTimes.driverId; pitStops.driverId; qualifying.driverId; results.fastestLap; results.fastestLapTime; drivers.driverRef; driverStandings.driverStandingsId; constructorResults.raceId; constructorStandings.raceId; driverStandings.raceId; lapTimes.raceId; pitStops.raceId; qualifying.raceId; races.raceId; results.raceId; circuits.location; pitStops.duration; results.grid,SELECT T1.nationality FROM drivers AS T1 INNER JOIN results AS T2 ON T2.driverId = T1.driverId ORDER BY T2.fastestLapSpeed DESC LIMIT 1,"SELECT d.nationality
+FROM drivers d
+JOIN results r ON d.driverId = r.driverId
+WHERE CAST(r.fastestLapSpeed AS REAL) = (
+    SELECT MAX(CAST(fastestLapSpeed AS REAL))
+    FROM results
+    WHERE fastestLapSpeed IS NOT NULL
+)
+LIMIT 1;",,,
+1338,student_club,"Was each expense in October Meeting on October 8, 2019 approved?",budget.budget_id; budget.link_to_event; event.event_date; event.event_id; event.event_name; expense.approved; expense.link_to_budget,attendance.link_to_event; attendance.link_to_member; expense.link_to_member; income.link_to_member; budget.event_status; expense.expense_date; expense.expense_id; member.last_name; member.link_to_major; member.first_name; member.member_id; zip_code.state; major.major_name; income.date_received; zip_code.short_state; income.income_id; member.phone; major.department; budget.spent; zip_code.zip_code,SELECT T3.approved FROM event AS T1 INNER JOIN budget AS T2 ON T1.event_id = T2.link_to_event INNER JOIN expense AS T3 ON T2.budget_id = T3.link_to_budget WHERE T1.event_name = 'October Meeting' AND T1.event_date LIKE '2019-10-08%',"SELECT expense.approved
+FROM expense
+JOIN budget ON expense.link_to_budget = budget.budget_id
+JOIN event ON budget.link_to_event = event.event_id
+WHERE event.event_name = 'October Meeting'
+  AND event.event_date = '2019-10-08';",,,
+685,codebase_community,Identify the total views on the post 'Computer Game Datasets'. Name the user who posted it last time.,postHistory.PostId; postHistory.Text; posts.Id; posts.LastEditorUserId; posts.ViewCount; users.DisplayName; users.Id,badges.Id; comments.Id; comments.PostId; comments.Text; postHistory.Id; postLinks.Id; postLinks.PostId; tags.Id; votes.Id; votes.PostId; comments.UserDisplayName; postHistory.UserDisplayName; posts.OwnerDisplayName; posts.PostTypeId; tags.WikiPostId; posts.FavoriteCount; tags.Count; posts.LastEditorDisplayName; postLinks.RelatedPostId; tags.ExcerptPostId,"SELECT T2.ViewCount, T3.DisplayName FROM postHistory AS T1 INNER JOIN posts AS T2 ON T1.PostId = T2.Id INNER JOIN users AS T3 ON T2.LastEditorUserId = T3.Id WHERE T1.Text = 'Computer Game Datasets'","SELECT p.ViewCount, p.LastEditorDisplayName AS DisplayName
+FROM posts p
+JOIN postHistory ph ON p.Id = ph.PostId
+WHERE ph.Text = 'Computer Game Datasets';",,,
+847,formula_1,What is the surname of the driver with the best lap time in race number 19 in the second qualifying period?,drivers.driverId; drivers.surname; qualifying.driverId; qualifying.q2; qualifying.raceId,constructorResults.raceId; constructorStandings.raceId; driverStandings.driverId; driverStandings.raceId; lapTimes.driverId; lapTimes.raceId; pitStops.driverId; pitStops.raceId; races.raceId; results.driverId; results.raceId; circuits.name; constructors.name; races.name; drivers.driverRef; drivers.forename; driverStandings.driverStandingsId; results.grid; results.resultId; qualifying.q1,SELECT T2.surname FROM qualifying AS T1 INNER JOIN drivers AS T2 ON T2.driverId = T1.driverId WHERE T1.raceId = 19 ORDER BY T1.q2 ASC LIMIT 1,"SELECT d.surname
+FROM qualifying q
+JOIN drivers d ON d.driverId = q.driverId
+WHERE q.raceId = 19
+  AND q.q2 IS NOT NULL
+ORDER BY q.q2 ASC
+LIMIT 1;",,,
+32,california_schools,What is the eligible free or reduced price meal rate for the top 5 schools in grades 1-12 with the highest free or reduced price meal count of the schools with the ownership code 66?,frpm.CDSCode; frpm.Enrollment (K-12); frpm.FRPM Count (K-12); schools.CDSCode; schools.SOC,frpm.Free Meal Count (K-12); frpm.Enrollment (Ages 5-17); frpm.FRPM Count (Ages 5-17); schools.EdOpsCode; schools.DOC; frpm.Free Meal Count (Ages 5-17); satscores.enroll12; satscores.cds; schools.SOCType; schools.EILCode; frpm.District Code; frpm.County Code; frpm.School Code; frpm.Percent (%) Eligible FRPM (K-12); frpm.Percent (%) Eligible Free (K-12); schools.NCESSchool; schools.School; frpm.School Name; frpm.School Type; schools.DOCType,SELECT CAST(T1.`FRPM Count (K-12)` AS REAL) / T1.`Enrollment (K-12)` FROM frpm AS T1 INNER JOIN schools AS T2 ON T1.CDSCode = T2.CDSCode WHERE T2.SOC = 66 ORDER BY T1.`FRPM Count (K-12)` DESC LIMIT 5,"SELECT s.School AS ""School Name"",
+       CAST(f.""FRPM Count (K-12)"" AS REAL) / f.""Enrollment (K-12)"" AS ""Eligible FRPM Rate""
+FROM frpm f
+JOIN schools s ON f.CDSCode = s.CDSCode
+WHERE s.SOC = '66'
+  AND f.""Enrollment (K-12)"" > 0
+ORDER BY f.""FRPM Count (K-12)"" DESC
+LIMIT 5;",,,
+1144,european_football_2,Please state the finishing rate and curve score of the player who has the heaviest weight.,Player.player_api_id; Player.weight; Player_Attributes.curve; Player_Attributes.finishing; Player_Attributes.id; Player_Attributes.player_api_id,Country.id; League.id; Match.id; Player.id; Team.id; Team_Attributes.id; Player.player_fifa_api_id; Player_Attributes.player_fifa_api_id; Player.height; Match.IWD; Match.away_team_api_id; Team.team_api_id; Team_Attributes.team_api_id; Match.match_api_id; Player.player_name; Match.home_team_api_id; Team.team_fifa_api_id; Team_Attributes.team_fifa_api_id; Match.league_id; Match.away_player_1,"SELECT id, finishing, curve FROM Player_Attributes WHERE player_api_id = ( SELECT player_api_id FROM Player ORDER BY weight DESC LIMIT 1 ) LIMIT 1","SELECT pa.finishing, pa.curve
+FROM Player_Attributes pa
+JOIN Player p ON pa.player_api_id = p.player_api_id
+WHERE p.weight = (SELECT MAX(weight) FROM Player)
+LIMIT 1;",,,
+169,financial,What was the growth rate of the total amount of loans across all accounts for a male client between 1996 and 1997?,account.account_id; client.client_id; client.gender; disp.account_id; disp.client_id; disp.type; loan.account_id; loan.amount; loan.date,account.date; card.type; order.account_id; trans.account_id; trans.amount; trans.date; trans.type; order.amount; trans.account; order.account_to; loan.loan_id; client.birth_date; loan.payments; account.district_id; card.card_id; card.disp_id; client.district_id; disp.disp_id; district.district_id; order.order_id,"SELECT CAST((SUM(CASE WHEN STRFTIME('%Y', T1.date) = '1997' THEN T1.amount ELSE 0 END) - SUM(CASE WHEN STRFTIME('%Y', T1.date) = '1996' THEN T1.amount ELSE 0 END)) AS REAL) * 100 / SUM(CASE WHEN STRFTIME('%Y', T1.date) = '1996' THEN T1.amount ELSE 0 END) FROM loan AS T1 INNER JOIN account AS T2 ON T1.account_id = T2.account_id INNER JOIN disp AS T3 ON T3.account_id = T2.account_id INNER JOIN client AS T4 ON T4.client_id = T3.client_id WHERE T4.gender = 'M' AND T3.type = 'OWNER'","SELECT (SUM(CASE WHEN strftime('%Y', l.date) = '1997' THEN l.amount ELSE 0 END) - SUM(CASE WHEN strftime('%Y', l.date) = '1996' THEN l.amount ELSE 0 END)) * 100.0 / NULLIF(SUM(CASE WHEN strftime('%Y', l.date) = '1996' THEN l.amount ELSE 0 END), 0) AS growth_rate
+FROM loan l
+JOIN account a ON l.account_id = a.account_id
+JOIN disp d ON a.account_id = d.account_id
+JOIN client c ON d.client_id = c.client_id
+WHERE c.gender = 'M'
+  AND strftime('%Y', l.date) IN ('1996', '1997');",,,
+1410,student_club,"List out the full name and total cost that member id ""rec4BLdZHS2Blfp4v"" incurred?",expense.cost; expense.link_to_member; member.first_name; member.last_name; member.member_id,attendance.link_to_member; income.link_to_member; attendance.link_to_event; budget.link_to_event; member.link_to_major; expense.link_to_budget; event.event_name; major.major_name; event.event_id; major.major_id; zip_code.state; zip_code.county; budget.budget_id; income.income_id; expense.expense_id; zip_code.short_state; event.location; member.position; zip_code.city; budget.spent,"SELECT T1.first_name, T1.last_name, SUM(T2.cost) FROM member AS T1 INNER JOIN expense AS T2 ON T1.member_id = T2.link_to_member WHERE T1.member_id = 'rec4BLdZHS2Blfp4v'","SELECT m.first_name || ' ' || m.last_name AS full_name, SUM(e.cost) AS total_cost
+FROM member m
+JOIN expense e ON e.link_to_member = m.member_id
+WHERE m.member_id = 'rec4BLdZHS2Blfp4v'
+GROUP BY m.member_id;",,,
+87,california_schools,"What are the valid e-mail addresses of the administrator of the school located in the San Bernardino county, City of San Bernardino City Unified that opened between 1/1/2009 to 12/31/2010 whose school types are public Intermediate/Middle Schools and Unified Schools?",frpm.CDSCode; schools.AdmEmail1; schools.AdmEmail2; schools.CDSCode; schools.City; schools.County; schools.DOC; schools.OpenDate; schools.SOC,schools.AdmEmail3; schools.EdOpsCode; frpm.County Code; frpm.County Name; schools.ClosedDate; schools.MailCity; satscores.cds; schools.DOCType; schools.SOCType; schools.EILCode; frpm.District Code; schools.EdOpsName; frpm.School Code; schools.AdmFName1; schools.AdmFName2; schools.AdmLName1; schools.AdmLName2; schools.LastUpdate; schools.EILName; schools.MailZip,"SELECT T2.AdmEmail1, T2.AdmEmail2 FROM frpm AS T1 INNER JOIN schools AS T2 ON T1.CDSCode = T2.CDSCode WHERE T2.County = 'San Bernardino' AND T2.City = 'San Bernardino' AND T2.DOC = 54 AND strftime('%Y', T2.OpenDate) BETWEEN '2009' AND '2010' AND T2.SOC = 62","SELECT s.AdmEmail1, s.AdmEmail2, s.AdmEmail3
+FROM schools AS s
+JOIN frpm AS f ON s.CDSCode = f.CDSCode
+WHERE s.County = 'San Bernardino'
+  AND f.District Code = 'San Bernardino City Unified'
+  AND s.OpenDate BETWEEN '2009-01-01' AND '2010-12-31'
+  AND s.SOC = '62'
+  AND s.DOC = '54';","OperationalError: near ""Code"": syntax error",,
+1322,student_club,"Among the events attended by more than 10 members of the Student_Club, how many of them are meetings?",attendance.link_to_event; event.event_id; event.type,budget.link_to_event; zip_code.type; event.event_date; attendance.link_to_member; expense.link_to_budget; expense.link_to_member; income.link_to_member; event.event_name; expense.expense_id; member.link_to_major; budget.event_status; budget.budget_id; member.member_id; expense.expense_date; zip_code.city; income.income_id; event.notes; income.notes; major.department; member.phone,SELECT COUNT(DISTINCT T1.event_id) FROM event AS T1 INNER JOIN attendance AS T2 ON T1.event_id = T2.link_to_event WHERE T1.type = 'Meeting' GROUP BY T1.event_id HAVING COUNT(T2.link_to_event) > 10,"SELECT COUNT(*) FROM (
+  SELECT e.event_id
+  FROM event e
+  JOIN attendance a ON a.link_to_event = e.event_id
+  WHERE e.type = 'Meeting'
+  GROUP BY e.event_id
+  HAVING COUNT(a.link_to_member) > 10
+)",,,
+149,financial,"Please list the account types that are not eligible for loans, and the average income of residents in the district where the account is located exceeds $8000 but is no more than $9000.",account.account_id; account.district_id; disp.account_id; disp.type; district.A11; district.district_id,card.type; client.district_id; loan.account_id; order.account_id; trans.account_id; trans.type; trans.account; order.account_to; card.disp_id; disp.disp_id; district.A14; district.A15; district.A16; district.A10; district.A12; district.A13; client.client_id; disp.client_id; loan.amount; trans.amount,SELECT T3.type FROM district AS T1 INNER JOIN account AS T2 ON T1.district_id = T2.district_id INNER JOIN disp AS T3 ON T2.account_id = T3.account_id WHERE T3.type != 'OWNER' AND T1.A11 BETWEEN 8000 AND 9000,"SELECT DISTINCT d.type
+FROM disp AS d
+JOIN account AS a ON d.account_id = a.account_id
+JOIN district AS di ON a.district_id = di.district_id
+WHERE d.type <> 'OWNER'
+  AND di.A11 > 8000
+  AND di.A11 <= 9000;",,,
+98,financial,"Among the accounts who have approved loan date in 1997, list out the accounts that have the lowest approved amount and choose weekly issuance statement.",account.account_id; account.frequency; loan.account_id; loan.amount; loan.date,account.date; disp.account_id; order.account_id; trans.account_id; trans.amount; trans.date; order.amount; trans.account; order.account_to; client.client_id; disp.client_id; loan.loan_id; client.birth_date; loan.payments; account.district_id; client.district_id; district.district_id; card.card_id; card.type; disp.type,"SELECT T2.account_id FROM loan AS T1 INNER JOIN account AS T2 ON T1.account_id = T2.account_id WHERE STRFTIME('%Y', T1.date) = '1997' AND T2.frequency = 'POPLATEK TYDNE' ORDER BY T1.amount LIMIT 1","SELECT a.account_id
+FROM account a
+JOIN loan l ON a.account_id = l.account_id
+WHERE a.frequency = 'POPLATEK TYDNE'
+  AND strftime('%Y', l.date) = '1997'
+  AND l.amount = (
+      SELECT MIN(l2.amount)
+      FROM loan l2
+      WHERE strftime('%Y', l2.date) = '1997'
+  );",,,
+581,codebase_community,Who is the owner of the post titled 'Open source tools for visualizing multi-dimensional data?',posts.OwnerUserId; posts.Title; users.DisplayName; users.Id,badges.Id; comments.Id; postHistory.Id; postLinks.Id; posts.Id; tags.Id; votes.Id; comments.UserDisplayName; postHistory.UserDisplayName; posts.OwnerDisplayName; badges.UserId; comments.UserId; postHistory.UserId; votes.UserId; posts.LastEditorDisplayName; posts.LastEditorUserId; tags.TagName; badges.Name; comments.PostId; postHistory.PostId,SELECT T2.DisplayName FROM posts AS T1 INNER JOIN users AS T2 ON T1.OwnerUserId = T2.Id WHERE T1.Title = 'Open source tools for visualizing multi-dimensional data?',"SELECT users.DisplayName
+FROM posts
+JOIN users ON posts.OwnerUserId = users.Id
+WHERE posts.Title = 'Open source tools for visualizing multi-dimensional data';",,,
+726,superhero,Rank heroes published by Marvel Comics by their height in descending order.,publisher.id; publisher.publisher_name; superhero.height_cm; superhero.publisher_id; superhero.superhero_name,alignment.id; attribute.id; colour.id; gender.id; race.id; superhero.id; superpower.id; superhero.weight_kg; superpower.power_name; hero_attribute.hero_id; hero_power.hero_id; superhero.full_name; hero_power.power_id; attribute.attribute_name; hero_attribute.attribute_id; superhero.alignment_id; superhero.gender_id; superhero.race_id; alignment.alignment; superhero.eye_colour_id,"SELECT superhero_name, height_cm, RANK() OVER (ORDER BY height_cm DESC) AS HeightRank FROM superhero INNER JOIN publisher ON superhero.publisher_id = publisher.id WHERE publisher.publisher_name = 'Marvel Comics'","SELECT superhero.superhero_name
+FROM superhero
+JOIN publisher ON superhero.publisher_id = publisher.id
+WHERE publisher.publisher_name = 'Marvel Comics'
+ORDER BY superhero.height_cm DESC;",,,
+1115,european_football_2,What percentage is Landon Donovan's overall rating higher than Jordan Bowery on 2013/7/12?,Player.player_fifa_api_id; Player.player_name; Player_Attributes.date; Player_Attributes.overall_rating; Player_Attributes.player_fifa_api_id,Match.date; Team_Attributes.date; Player.player_api_id; Player_Attributes.player_api_id; Team.team_fifa_api_id; Team_Attributes.team_fifa_api_id; Match.away_team_api_id; Team.team_api_id; Team_Attributes.team_api_id; Match.home_team_api_id; Match.away_player_1; Match.away_player_2; Match.away_player_3; Match.away_player_4; Match.away_player_5; Match.away_player_6; Match.away_player_7; Match.away_player_8; Match.away_player_9; Match.home_player_1,"SELECT (SUM(CASE WHEN t1.player_name = 'Landon Donovan' THEN t2.overall_rating ELSE 0 END) * 1.0 - SUM(CASE WHEN t1.player_name = 'Jordan Bowery' THEN t2.overall_rating ELSE 0 END)) * 100 / SUM(CASE WHEN t1.player_name = 'Landon Donovan' THEN t2.overall_rating ELSE 0 END) LvsJ_percent FROM Player AS t1 INNER JOIN Player_Attributes AS t2 ON t1.player_fifa_api_id = t2.player_fifa_api_id WHERE SUBSTR(t2.`date`, 1, 10) = '2013-07-12'","SELECT (MAX(CASE WHEN p.player_name = 'Landon Donovan' THEN pa.overall_rating END) - MAX(CASE WHEN p.player_name = 'Jordan Bowery' THEN pa.overall_rating END)) * 100.0 / MAX(CASE WHEN p.player_name = 'Landon Donovan' THEN pa.overall_rating END) AS percentage FROM Player p JOIN Player_Attributes pa ON p.player_api_id = pa.player_api_id WHERE pa.date = '2013/7/12' AND p.player_name IN ('Landon Donovan', 'Jordan Bowery');",,,
+186,financial,What percentage of male clients request for weekly statements to be issued?,account.account_id; account.district_id; account.frequency; client.client_id; client.district_id; client.gender; disp.account_id; disp.client_id; district.district_id,loan.account_id; order.account_id; trans.account_id; trans.account; order.account_to; card.disp_id; disp.disp_id; loan.amount; loan.loan_id; trans.amount; order.amount; trans.trans_id; card.card_id; order.order_id; client.birth_date; loan.duration; account.date; card.issued; loan.date; trans.date,SELECT CAST(SUM(T1.gender = 'M') AS REAL) * 100 / COUNT(T1.client_id) FROM client AS T1 INNER JOIN district AS T3 ON T1.district_id = T3.district_id INNER JOIN account AS T2 ON T2.district_id = T3.district_id INNER JOIN disp as T4 on T1.client_id = T4.client_id AND T2.account_id = T4.account_id WHERE T2.frequency = 'POPLATEK TYDNE',"SELECT 100.0 * SUM(CASE WHEN c.gender = 'M' THEN 1 ELSE 0 END) / COUNT(*) AS percentage
+FROM client c
+JOIN disp d ON c.client_id = d.client_id
+JOIN account a ON d.account_id = a.account_id
+WHERE a.frequency = 'POPLATEK TYDNE';",,,
+694,codebase_community,Provide the text of the latest 10 comments to the post with the title 'Analysing wind data with R' and the display name of the user who left it.,comments.PostId; comments.Text; posts.Id; posts.OwnerUserId; posts.Title; users.CreationDate; users.DisplayName; users.Id,badges.Id; comments.CreationDate; comments.Id; postHistory.CreationDate; postHistory.Id; postHistory.PostId; postHistory.Text; postLinks.CreationDate; postLinks.Id; postLinks.PostId; tags.Id; votes.Id; votes.PostId; votes.CreationDate; posts.CreaionDate; comments.UserDisplayName; postHistory.UserDisplayName; posts.OwnerDisplayName; posts.PostTypeId; tags.WikiPostId,"SELECT T3.Text, T1.DisplayName FROM users AS T1 INNER JOIN posts AS T2 ON T1.Id = T2.OwnerUserId INNER JOIN comments AS T3 ON T2.Id = T3.PostId WHERE T2.Title = 'Analysing wind data with R' ORDER BY T1.CreationDate DESC LIMIT 10","SELECT c.Text, c.UserDisplayName
+FROM comments c
+JOIN posts p ON c.PostId = p.Id
+WHERE p.Title = 'Analysing wind data with R'
+ORDER BY c.CreationDate DESC
+LIMIT 10;",,,
+1209,thrombosis_prediction,Please provide the diagnosis of patients with ALT glutamic pylvic transaminase beyond the normal range by ascending order of their date of birth.,Laboratory.GPT; Laboratory.ID; Patient.Birthday; Patient.Diagnosis; Patient.ID,Examination.Diagnosis; Examination.ID; Laboratory.PT; Laboratory.GOT; Laboratory.PLT; Laboratory.APTT; Patient.First Date; Laboratory.IGA; Laboratory.IGG; Laboratory.IGM; Laboratory.LDH; Laboratory.PIC; Laboratory.TG; Examination.Thrombosis; Laboratory.DNA; Laboratory.DNA-II; Laboratory.FG; Laboratory.RA; Laboratory.TP; Examination.Symptoms,SELECT DISTINCT T1.Diagnosis FROM Patient AS T1 INNER JOIN Laboratory AS T2 ON T1.ID = T2.ID WHERE T2.GPT > 60 ORDER BY T1.Birthday ASC,"SELECT p.Diagnosis
+FROM Patient p
+JOIN Laboratory l ON p.ID = l.ID
+WHERE l.GPT > 60
+ORDER BY p.Birthday ASC;",,,
+1130,european_football_2,What are the short name of team who played safe while creating chance of passing?,Team.team_api_id; Team.team_short_name; Team_Attributes.chanceCreationPassingClass; Team_Attributes.team_api_id,Team_Attributes.chanceCreationCrossingClass; Team_Attributes.chanceCreationShootingClass; Team_Attributes.chanceCreationPassing; Team_Attributes.chanceCreationPositioningClass; Match.away_team_api_id; Match.home_team_api_id; Team.team_fifa_api_id; Team_Attributes.team_fifa_api_id; Team_Attributes.chanceCreationCrossing; Team.team_long_name; Team_Attributes.chanceCreationShooting; Match.match_api_id; Player.player_api_id; Player_Attributes.player_api_id; Team_Attributes.defenceAggressionClass; Player.player_fifa_api_id; Player_Attributes.player_fifa_api_id; Player.player_name; Team_Attributes.buildUpPlayPassingClass; Team_Attributes.defencePressureClass,SELECT DISTINCT t1.team_short_name FROM Team AS t1 INNER JOIN Team_Attributes AS t2 ON t1.team_api_id = t2.team_api_id WHERE t2.chanceCreationPassingClass = 'Safe',"SELECT T.team_short_name
+FROM Team AS T
+JOIN Team_Attributes AS TA ON T.team_api_id = TA.team_api_id
+WHERE TA.chanceCreationPassingClass = 'Safe';",,,

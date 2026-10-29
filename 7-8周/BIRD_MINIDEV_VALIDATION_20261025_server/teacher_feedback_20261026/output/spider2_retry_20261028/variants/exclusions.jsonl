@@ -1,0 +1,5 @@
+{"instance_id": "local019", "error": "ValueError: Fewer than 20 random distractor columns"}
+{"instance_id": "local128", "error": "ValueError: Cross-table donor has no values: Bowler_Scores_Archive.BowlerID"}
+{"instance_id": "local194", "error": "ValueError: Cross-table donor has no values: film_text.film_id"}
+{"instance_id": "local270", "error": "ValueError: Cross-table donor has no values: orders.delivery"}
+{"instance_id": "local344", "error": "ValueError: Cross-table donor has no values: sprint_results.fastest_lap_speed"}

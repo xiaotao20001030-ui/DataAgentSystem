@@ -1,0 +1,6 @@
+api_control local195__base ok
+api_control local195__random20 ok
+api_control local195__synonym20 ok
+local195__base correct=1 scorable=1
+local195__random20 correct=1 scorable=1
+local195__synonym20 correct=1 scorable=1

@@ -1,0 +1,23 @@
+prediction counts {'qwen3_0_6b': 1634, 'qwen3_1_7b': 1564, 'qwen3_4b': 1296, 'qwen2_5_coder_1_5b': 1634, 'api_control': 1535}
+prediction counts {'qwen3_0_6b': 1634, 'qwen3_1_7b': 1612, 'qwen3_4b': 1329, 'qwen2_5_coder_1_5b': 1634, 'api_control': 1593}
+prediction counts {'qwen3_0_6b': 1634, 'qwen3_1_7b': 1634, 'qwen3_4b': 1353, 'qwen2_5_coder_1_5b': 1634, 'api_control': 1634}
+prediction counts {'qwen3_0_6b': 1634, 'qwen3_1_7b': 1634, 'qwen3_4b': 1380, 'qwen2_5_coder_1_5b': 1634, 'api_control': 1634}
+prediction counts {'qwen3_0_6b': 1634, 'qwen3_1_7b': 1634, 'qwen3_4b': 1406, 'qwen2_5_coder_1_5b': 1634, 'api_control': 1634}
+prediction counts {'qwen3_0_6b': 1634, 'qwen3_1_7b': 1634, 'qwen3_4b': 1440, 'qwen2_5_coder_1_5b': 1634, 'api_control': 1634}
+prediction counts {'qwen3_0_6b': 1634, 'qwen3_1_7b': 1634, 'qwen3_4b': 1474, 'qwen2_5_coder_1_5b': 1634, 'api_control': 1634}
+prediction counts {'qwen3_0_6b': 1634, 'qwen3_1_7b': 1634, 'qwen3_4b': 1506, 'qwen2_5_coder_1_5b': 1634, 'api_control': 1634}
+prediction counts {'qwen3_0_6b': 1634, 'qwen3_1_7b': 1634, 'qwen3_4b': 1548, 'qwen2_5_coder_1_5b': 1634, 'api_control': 1634}
+prediction counts {'qwen3_0_6b': 1634, 'qwen3_1_7b': 1634, 'qwen3_4b': 1588, 'qwen2_5_coder_1_5b': 1634, 'api_control': 1634}
+prediction counts {'qwen3_0_6b': 1634, 'qwen3_1_7b': 1634, 'qwen3_4b': 1616, 'qwen2_5_coder_1_5b': 1634, 'api_control': 1634}
+prediction counts {'qwen3_0_6b': 1634, 'qwen3_1_7b': 1634, 'qwen3_4b': 1634, 'qwen2_5_coder_1_5b': 1634, 'api_control': 1634}
+qwen3_0_6b: appended 500 baseline predictions
+qwen3_1_7b: appended 500 baseline predictions
+qwen3_4b: appended 500 baseline predictions
+qwen2_5_coder_1_5b: appended 500 baseline predictions
+api_control: appended 500 baseline predictions
+qwen3_0_6b: scored
+qwen2_5_coder_1_5b: scored
+qwen3_1_7b: scored
+qwen3_4b: scored
+api_control: scored
+complete

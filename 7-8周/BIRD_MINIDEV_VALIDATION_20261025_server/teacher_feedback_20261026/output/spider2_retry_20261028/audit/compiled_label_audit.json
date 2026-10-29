@@ -1,0 +1,9 @@
+[
+  {
+    "instance_id": "local195",
+    "missing_columns": [],
+    "missing_tables": [
+      "customer"
+    ]
+  }
+]

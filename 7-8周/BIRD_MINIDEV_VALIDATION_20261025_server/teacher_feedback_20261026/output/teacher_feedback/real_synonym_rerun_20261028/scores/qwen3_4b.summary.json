@@ -1,0 +1,42 @@
+{
+  "model_key": "qwen3_4b",
+  "prediction_file": "/root/fsas/home/xiaotao/xiaotao/BIRD_MINIDEV_VALIDATION_20261025/synonym_real_rerun_20261028/predictions/qwen3_4b.jsonl",
+  "timeout_seconds": 120.0,
+  "by_family": {
+    "add_real_synonym_10": {
+      "count": 460,
+      "evaluated": 459,
+      "excluded_evaluation_errors": 1,
+      "correct": 166,
+      "accuracy": 0.3616557734204793
+    },
+    "add_real_synonym_20": {
+      "count": 427,
+      "evaluated": 426,
+      "excluded_evaluation_errors": 1,
+      "correct": 151,
+      "accuracy": 0.3544600938967136
+    },
+    "add_real_synonym_5": {
+      "count": 499,
+      "evaluated": 497,
+      "excluded_evaluation_errors": 2,
+      "correct": 188,
+      "accuracy": 0.3782696177062374
+    },
+    "add_real_synonym_50": {
+      "count": 248,
+      "evaluated": 247,
+      "excluded_evaluation_errors": 1,
+      "correct": 73,
+      "accuracy": 0.29554655870445345
+    },
+    "base": {
+      "count": 500,
+      "evaluated": 498,
+      "excluded_evaluation_errors": 2,
+      "correct": 218,
+      "accuracy": 0.43775100401606426
+    }
+  }
+}
